@@ -1,4 +1,5 @@
 ﻿using csc13001_plant_pos.Contracts.Services;
+using csc13001_plant_pos.Core.Models;
 using csc13001_plant_pos.Helpers;
 using csc13001_plant_pos.ViewModels;
 
@@ -6,8 +7,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-
 using Windows.System;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace csc13001_plant_pos.Views;
 
@@ -19,9 +20,11 @@ public sealed partial class ShellPage : Page
         get;
     }
 
-    public ShellPage(ShellViewModel viewModel)
+    private Core.Models.User _user;
+
+    public ShellPage()
     {
-        ViewModel = viewModel;
+        ViewModel = App.GetService<ShellViewModel>();
         InitializeComponent();
 
         ViewModel.NavigationService.Frame = NavigationFrame;
@@ -42,6 +45,19 @@ public sealed partial class ShellPage : Page
 
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
+    }
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+            System.Diagnostics.Debug.WriteLine("is navigate");
+        if (e.Parameter is Core.Models.User user)
+        {
+            this._user = user;
+            System.Diagnostics.Debug.WriteLine("is user");
+            System.Diagnostics.Debug.WriteLine(_user.IsAdmin);
+            ViewModel.UpdateNavigationItemsBasedOnRole(this._user.IsAdmin);
+        }
+        
     }
 
     private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
