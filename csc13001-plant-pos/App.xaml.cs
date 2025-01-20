@@ -2,6 +2,7 @@
 using csc13001_plant_pos.Contracts.Services;
 using csc13001_plant_pos.Core.Contracts.Services;
 using csc13001_plant_pos.Core.Services;
+using csc13001_plant_pos.Data.Contexts;
 using csc13001_plant_pos.Helpers;
 using csc13001_plant_pos.Models;
 using csc13001_plant_pos.Notifications;
@@ -12,6 +13,12 @@ using csc13001_plant_pos.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using Windows.UI;
+using Microsoft.Extensions.Configuration;
+using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos;
 
@@ -41,7 +48,10 @@ public partial class App : Application
 
     public static WindowEx MainWindow { get; } = new MainWindow();
 
-    public static UIElement? AppTitlebar { get; set; }
+    public static UIElement? AppTitlebar
+    {
+        get; set;
+    }
 
     public App()
     {
@@ -64,15 +74,18 @@ public partial class App : Application
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
             services.AddTransient<INavigationViewService, NavigationViewService>();
 
-            services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
+            services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<AuthenticationService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
+            services.AddTransient<AuthenticationViewModel>();
+            services.AddTransient<AuthenticationPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
             services.AddTransient<DataGridViewModel>();
@@ -85,11 +98,18 @@ public partial class App : Application
             services.AddTransient<ListDetailsPage>();
             services.AddTransient<MainViewModel>();
             services.AddTransient<MainPage>();
-            services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
+            services.AddTransient<ShellPage>();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
+
+            // Database MySQL
+            var connectionString = context.Configuration.GetConnectionString("DefaultConnection");
+            Debug.WriteLine(connectionString);
+            services.AddDbContext<ApplicationDbContext>((
+                options => options.UseMySql(connectionString,
+                    ServerVersion.AutoDetect(connectionString))));
         }).
         Build();
 

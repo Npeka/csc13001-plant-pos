@@ -29,8 +29,10 @@ public class ActivationService : IActivationService
         // Set the MainWindow Content.
         if (App.MainWindow.Content == null)
         {
-            _shell = App.GetService<ShellPage>();
-            App.MainWindow.Content = _shell ?? new Frame();
+            //_shell = App.GetService<AuthenticationPage>();
+            var frame = new Frame();
+            App.MainWindow.Content = frame;
+            frame.Navigate(typeof(AuthenticationPage));
         }
 
         // Handle activation via ActivationHandlers.
