@@ -20,6 +20,8 @@ public class PageService : IPageService
         Configure<ContentGridDetailViewModel, ContentGridDetailPage>();
         Configure<DataGridViewModel, DataGridPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<AuthenticationViewModel, AuthenticationPage>();
+        Configure<ShellViewModel, ShellPage>();
     }
 
     public Type GetPageType(string key)

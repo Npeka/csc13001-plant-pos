@@ -120,4 +120,7 @@
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
   </data>
+  <data name="Shell_Authentication.Content" xml:space="preserve">
+    <value>Authentication</value>
+  </data>
 </root>
