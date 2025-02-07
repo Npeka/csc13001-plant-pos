@@ -1,15 +1,16 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.Core.Contracts.Services;
 using csc13001_plant_pos.Core.Models;
-using csc13001_plant_pos.Services;
-using csc13001_plant_pos.Views;
-using Microsoft.UI.Xaml.Controls;
 
-namespace csc13001_plant_pos.ViewModels;
 
-public partial class AuthenticationViewModel : ObservableRecipient
+namespace csc13001_plant_pos.ViewModels.Authentication;
+public partial class LoginViewModel : ObservableRecipient
 {
     private readonly IAuthenticationService _authService;
     public string Username
@@ -22,17 +23,23 @@ public partial class AuthenticationViewModel : ObservableRecipient
         get; set;
     }
 
+    public bool IsLoading
+    {
+        get; set;
+    }
+
     public string Error
     {
         get;
         private set;
     }
 
-    public AuthenticationViewModel(IAuthenticationService authService)
+    public LoginViewModel(IAuthenticationService authService)
     {
         _authService = authService;
         Username = string.Empty;
         Password = string.Empty;
+        IsLoading = false;
         Error = string.Empty;
     }
 
@@ -58,9 +65,11 @@ public partial class AuthenticationViewModel : ObservableRecipient
     [RelayCommand]
     public async Task<User?> LoginAsync()
     {
+        IsLoading = true;
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
             Error = "Username and password are required!";
+            IsLoading = false;
             return null;
         }
 
@@ -70,6 +79,7 @@ public partial class AuthenticationViewModel : ObservableRecipient
             Error = "Invalid username or password!";
         }
 
+        IsLoading = false;
         return user;
     }
 }
