@@ -10,11 +10,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using csc13001_plant_pos.Contracts.Services;
 using Microsoft.UI.Xaml.Media.Animation;
+using csc13001_plant_pos.Views.Authentication;
+using csc13001_plant_pos.ViewModels.Authentication;
+using Windows.Web.AtomPub;
 
 namespace csc13001_plant_pos.Views;
 
 public sealed partial class AuthenticationPage : Page
 {
+    public FormLogin LoginForm { get; } = new FormLogin();
+    public FormForgotPassword ForgotPasswordForm { get; } = new FormForgotPassword();
+    public FormResetPassword ResetPasswordForm { get; } = new FormResetPassword();
+
+
     public AuthenticationViewModel ViewModel
     {
         get;
@@ -23,25 +31,22 @@ public sealed partial class AuthenticationPage : Page
     public AuthenticationPage()
     {
         InitializeComponent();
-        ViewModel = App.GetService<AuthenticationViewModel>();
-        this.DataContext = ViewModel;
+        this.DataContext = ViewModel = App.GetService<AuthenticationViewModel>();
     }
 
-    private void NavigateToForgotPassword_Click(object sender, RoutedEventArgs e)
+    public void NavigateToLogin()
     {
+        FormLayout.Child = LoginForm;
     }
 
-    private void Password_PasswordChanged(object sender, RoutedEventArgs e)
+    public void NavigateToForgotPassword()
     {
-        ViewModel.Password = PasswordBox.Password;
+        FormLayout.Child = ForgotPasswordForm;
     }
 
-    private async void LoginButton_Click(object sender, RoutedEventArgs e)
+    public void NavigateToResetPassword(string username)
     {
-        var user = await ViewModel.LoginAsync();
-        if (user != null && App.MainWindow.Content is Frame frame)
-        {
-            frame.Navigate(typeof(ShellPage), user, new EntranceNavigationTransitionInfo());
-        }
+        ResetPasswordForm.SetUsername(username);
+        FormLayout.Child = ResetPasswordForm;
     }
 }

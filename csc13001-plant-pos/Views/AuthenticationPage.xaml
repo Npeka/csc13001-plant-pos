@@ -3,83 +3,18 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="using:csc13001_plant_pos.Views.Authentication"
       mc:Ignorable="d">
 
-	<Page.Resources>
-		<AcrylicBrush x:Key="AcrylicBackgroundBrush"
-                      TintColor="White"
-                      TintOpacity="0"
-                      FallbackColor="Black"
-                      TintLuminosityOpacity="0" />
-
-		<ImageBrush x:Key="PageBackground"
+    <Page.Resources>
+        <ImageBrush x:Key="PageBackground"
                     ImageSource="ms-appx:///Assets/Authentication/Background.jpg"
                     Stretch="UniformToFill" />
-	</Page.Resources>
+    </Page.Resources>
 
-	<Grid x:Name="ContentArea"
+    <Grid x:Name="ContentArea"
           Background="{StaticResource PageBackground}">
-		<!-- Login Form Container -->
-		<Border HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Width="400"
-                Padding="30"
-                CornerRadius="15"
-                BorderThickness="1"
-                BorderBrush="{StaticResource AccentAAFillColorDisabled}"
-                Background="{StaticResource AcrylicBackgroundBrush}">
-
-			<StackPanel Spacing="15">
-				<!-- Title -->
-				<TextBlock Text="Welcome to Plant Store"
-                           FontSize="24"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center" />
-
-				<!-- Username Input -->
-				<TextBox x:Name="Username"
-						 Text="{Binding Username, Mode=TwoWay}"
-                         PlaceholderText="Username"
-                         Height="40"
-                         Padding="10"
-                         BorderBrush="Gray"
-                         CornerRadius="5" />
-
-				<!-- Password Input -->
-				<PasswordBox x:Name="PasswordBox"
-                             PlaceholderText="Password"
-                             Height="40"
-                             Padding="10"
-                             BorderBrush="Gray"
-                             CornerRadius="5"
-							 PasswordChanged="Password_PasswordChanged"/>
-
-				<Button x:Name="LoginButton"
-                        HorizontalAlignment="Stretch"
-                        IsEnabled="True"
-                        Height="40"
-                        Click="LoginButton_Click"
-                        Style="{StaticResource AccentButtonStyle}">
-					<Button.Content>
-						<StackPanel Orientation="Horizontal" Spacing="8">
-							<ProgressRing x:Name="ButtonProgressRing"
-                                          Width="20"
-                                          Height="20"
-                                          IsActive="False"
-                                          Visibility="Collapsed"
-                                          />
-							<TextBlock Text="Login" />
-						</StackPanel>
-					</Button.Content>
-				</Button>
-
-				<TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center">
-					<Hyperlink Click="NavigateToForgotPassword_Click">
-						Forgot your password?
-					</Hyperlink>
-				</TextBlock>
-			</StackPanel>
-		</Border>
-	</Grid>
+        <local:FormLayout x:Name="FormLayout"
+                          Child="{x:Bind LoginForm}" />
+    </Grid>
 </Page>
