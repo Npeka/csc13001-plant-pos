@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="csc13001_plant_pos.Views.Authentication.FormTitle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:csc13001_plant_pos.Views.Authentication"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <TextBlock Text="{x:Bind Title, Mode=OneWay}"
+               FontSize="24"
+               FontWeight="Bold"
+               HorizontalAlignment="Center" />
+</UserControl>
