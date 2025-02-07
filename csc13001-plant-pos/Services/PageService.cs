@@ -22,6 +22,7 @@ public class PageService : IPageService
         Configure<SettingsViewModel, SettingsPage>();
         Configure<AuthenticationViewModel, AuthenticationPage>();
         Configure<ShellViewModel, ShellPage>();
+        Configure<OrderViewModel, OrderPage>();
     }
 
     public Type GetPageType(string key)
