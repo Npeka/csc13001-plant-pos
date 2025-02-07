@@ -52,13 +52,13 @@ public partial class ShellViewModel : ObservableRecipient
 
     public void UpdateNavigationItemsBasedOnRole(bool isAdmin)
     {
-        var role = isAdmin ? "Admin" : "Staff";
+        var notRole = !isAdmin ? "Admin" : "Staff";
 
         if (NavigationViewService.MenuItems != null)
         {
             var MenuItems = NavigationViewService.MenuItems
                    .OfType<NavigationViewItem>()
-                   .Where(item => !item.Name.StartsWith(role))
+                   .Where(item => item.Name.StartsWith(notRole))
                    .ToList();
 
             foreach (var item in MenuItems)

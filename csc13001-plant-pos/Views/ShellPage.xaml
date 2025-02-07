@@ -32,6 +32,7 @@
                         IsSettingsVisible="True"
                         ExpandedModeThresholdWidth="1280"
                         DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                        ItemInvoked="NavigationView_ItemInvoked"
                         Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
             <NavigationView.MenuItems>
                 <!--
@@ -41,6 +42,7 @@
                 TODO: Update item icons by updating FontIcon.Glyph properties.
                 https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
                 -->
+                <!-- Staff -->
                 <NavigationViewItem x:Uid="Shell_Main"
                                     x:Name="Admin_Main"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.MainViewModel">
@@ -66,14 +68,37 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Uid="Shell_DataGrid"
-                                    x:Name="Staff_DataGrid"
+                                    x:Name="Admin_DataGrid"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.DataGridViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xe80a;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+
+                <!-- Admin -->
+                <NavigationViewItem x:Uid="Shell_Order"
+                                    x:Name="Admin_Order"
+                                    helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.OrderViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE7BF;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <!-- Logout -->
+                <NavigationViewItem x:Name="Logout">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xF3B1;" />
+                        <!-- Logout icon -->
+                    </NavigationViewItem.Icon>
+                    <NavigationViewItem.Content>
+                        Logout
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
+
             <NavigationView.HeaderTemplate>
                 <DataTemplate>
                     <Grid>

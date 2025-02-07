@@ -123,4 +123,7 @@
   <data name="Shell_Authentication.Content" xml:space="preserve">
     <value>Authentication</value>
   </data>
+  <data name="Shell_Order.Content" xml:space="preserve">
+    <value>Order</value>
+  </data>
 </root>
