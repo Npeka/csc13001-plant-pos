@@ -50,12 +50,9 @@ public sealed partial class ShellPage : Page
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        System.Diagnostics.Debug.WriteLine("is navigate");
         if (e.Parameter is Core.Models.User user)
         {
             this._user = user;
-            System.Diagnostics.Debug.WriteLine("is user");
-            System.Diagnostics.Debug.WriteLine(_user.IsAdmin);
             ViewModel.UpdateNavigationItemsBasedOnRole(this._user.IsAdmin);
         }
     }

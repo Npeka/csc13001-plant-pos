@@ -31,7 +31,7 @@
                 HorizontalAlignment="Stretch"
                 Height="40"
                 Click="LoginButton_Click"
-                IsEnabled="{Binding IsLoading}"
+                IsEnabled="{Binding !IsLoading}"
                 Style="{StaticResource AccentButtonStyle}">
             <Button.Content>
                 <StackPanel Orientation="Horizontal"

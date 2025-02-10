@@ -40,7 +40,7 @@ public class AuthenticationService : IAuthenticationService
     public async Task<User?> LoginAsync(string username, string password)
     {
         //await RegisterAsync(username, password);
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+        var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Username == username);
         if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
         {
             return user;
