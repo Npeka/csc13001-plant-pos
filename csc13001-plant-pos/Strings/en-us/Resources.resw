@@ -120,4 +120,13 @@
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
   </data>
+  <data name="Shell_Sale.Content" xml:space="preserve">
+    <value>Sale</value>
+  </data>
+  <data name="Shell_AddStaff.Content" xml:space="preserve">
+    <value>AddStaff</value>
+  </data>
+  <data name="Shell_Discount.Content" xml:space="preserve">
+    <value>Discount</value>
+  </data>
 </root>
