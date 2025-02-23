@@ -6,9 +6,168 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="PageRoot"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <!--  Category button template  -->
+        <DataTemplate x:Key="CategoryButtonTemplate">
+            <Button
+                Margin="0,0,10,10"
+                Padding="15,8"
+                Background="{Binding IsSelected, Converter={StaticResource BoolToBackgroundConverter}}"
+                Command="{Binding DataContext.SelectCategoryCommand, ElementName=PageRoot}"
+                CommandParameter="{Binding}"
+                CornerRadius="14"
+                FontWeight="Bold"
+                Foreground="{Binding IsSelected, Converter={StaticResource BoolToForegroundConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon
+                        Margin="0,0,8,0"
+                        FontSize="10"
+                        Glyph="{Binding IconGlyph}" />
+                    <TextBlock FontSize="10" Text="{Binding Name}" />
+                </StackPanel>
+            </Button>
+        </DataTemplate>
+
+        <!--  Product item template  -->
+        <DataTemplate x:Key="ProductItemTemplate">
+            <Grid
+                Width="180"
+                Height="250"
+                Tag="{Binding}"
+                Tapped="ProductItem_Tapped">
+                <!--  Border phía sau  -->
+                <Border
+                    Margin="0,50,0,0"
+                    Background="White"
+                    CornerRadius="20">
+                    <StackPanel Margin="0,80,0,0" HorizontalAlignment="Center">
+                        <TextBlock
+                            Padding="0,10"
+                            HorizontalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{Binding Name}" />
+                        <TextBlock
+                            Padding="0,0,0,10"
+                            HorizontalAlignment="Center"
+                            FontWeight="Bold"
+                            Foreground="Green"
+                            Text="{Binding PriceFormatted}" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontSize="12"
+                            TextAlignment="Center">
+                            <Run
+                                FontWeight="Bold"
+                                Foreground="Black"
+                                Text="{Binding StockFormatted}" />
+                            <Run Foreground="Gray" Text=" Available" />
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <!--  Hình ảnh phía trước  -->
+                <Image
+                    Width="150"
+                    Height="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Source="{Binding Image}" />
+            </Grid>
+        </DataTemplate>
+
+        <!--  Order item template  -->
+        <DataTemplate x:Key="OrderItemTemplate">
+            <StackPanel>
+                <Border
+                    Padding="10"
+                    HorizontalAlignment="Stretch"
+                    Background="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Horizontal"
+                            Spacing="10">
+                            <Image
+                                Width="50"
+                                Height="50"
+                                Source="{Binding Image}" />
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Text="{Binding Name}" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="Gray"
+                                    Text="{Binding Note}" />
+                                <TextBlock
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="{Binding TotalPriceFormatted}" />
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Command="{Binding DataContext.DecreaseQuantityCommand, ElementName=PageRoot}"
+                                        CommandParameter="{Binding}"
+                                        Content="-"
+                                        CornerRadius="10"
+                                        FontSize="10" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="{Binding Quantity}" />
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Command="{Binding DataContext.IncreaseQuantityCommand, ElementName=PageRoot}"
+                                        CommandParameter="{Binding}"
+                                        Content="+"
+                                        CornerRadius="10"
+                                        FontSize="10" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button
+                            Grid.Column="1"
+                            Width="32"
+                            Height="32"
+                            Margin="0,5,0,0"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding DataContext.RemoveItemCommand, ElementName=PageRoot}"
+                            CommandParameter="{Binding}">
+                            <FontIcon FontSize="7" Glyph="&#xE8BB;" />
+                        </Button>
+                        <Button
+                            Grid.Column="1"
+                            Width="30"
+                            Height="30"
+                            VerticalAlignment="Bottom"
+                            Click="NoteButton_Click"
+                            CornerRadius="10">
+                            <FontIcon FontSize="6" Glyph="&#xE104;" />
+                        </Button>
+                    </Grid>
+                </Border>
+                <Border
+                    Height="2"
+                    Margin="0,0,0,0"
+                    Background="#EBEBEB"
+                    CornerRadius="10" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,208 +175,35 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-
+        <!--  Product Panel  -->
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
-            <!--  Khu vực sản phẩm  -->
             <StackPanel Grid.Column="0" Margin="0,0,0,40">
-                <controls:WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                    <Button
-                        Margin="0,0,10,10"
-                        Padding="15,8"
-                        Background="#EBEBEB"
-                        CornerRadius="14"
-                        FontWeight="Bold"
-                        Foreground="#0ABB6A">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon
-                                Margin="0,0,8,0"
-                                FontSize="10"
-                                Glyph="&#xE7BC;" />
-                            <!--  Plant icon  -->
-                            <TextBlock FontSize="10" Text="Plants" />
-                        </StackPanel>
-                    </Button>
+                <!--  Categories  -->
+                <ItemsControl ItemTemplate="{StaticResource CategoryButtonTemplate}" ItemsSource="{Binding Categories}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
-                    <Button
-                        Margin="0,0,10,10"
-                        Padding="15,8"
-                        Background="#EBEBEB"
-                        CornerRadius="14"
-                        FontWeight="Bold"
-                        Foreground="#0ABB6A">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon
-                                Margin="0,0,8,0"
-                                FontSize="10"
-                                Glyph="&#xE8F1;" />
-                            <!--  Pot icon  -->
-                            <TextBlock FontSize="10" Text="Pots" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button
-                        Margin="0,0,10,10"
-                        Padding="15,8"
-                        Background="#EBEBEB"
-                        CornerRadius="14"
-                        FontWeight="Bold"
-                        Foreground="#0ABB6A">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon
-                                Margin="0,0,8,0"
-                                FontSize="10"
-                                Glyph="&#xE710;" />
-                            <!--  Watering icon  -->
-                            <TextBlock FontSize="10" Text="Fertilizers &amp; Nutrients" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button
-                        Margin="0,0,10,10"
-                        Padding="15,8"
-                        Background="#EBEBEB"
-                        CornerRadius="14"
-                        FontWeight="Bold"
-                        Foreground="#0ABB6A">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon
-                                Margin="0,0,8,0"
-                                FontSize="10"
-                                Glyph="&#xE71D;" />
-                            <!--  Scissors icon  -->
-                            <TextBlock FontSize="10" Text="Gardening Tools" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button
-                        Margin="0,0,10,10"
-                        Padding="15,8"
-                        Background="#EBEBEB"
-                        CornerRadius="14"
-                        FontWeight="Bold"
-                        Foreground="#0ABB6A">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon
-                                Margin="0,0,8,0"
-                                FontSize="10"
-                                Glyph="&#xE72D;" />
-                            <!--  Gift icon  -->
-                            <TextBlock FontSize="10" Text="Decor &amp; Accessories" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button
-                        Margin="0,0,10,10"
-                        Padding="15,8"
-                        Background="#EBEBEB"
-                        CornerRadius="14"
-                        FontWeight="Bold"
-                        Foreground="#0ABB6A">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon
-                                Margin="0,0,8,0"
-                                FontSize="10"
-                                Glyph="&#xE72D;" />
-                            <!--  Gift icon  -->
-                            <TextBlock FontSize="10" Text="Decor &amp; Accessories" />
-                        </StackPanel>
-                    </Button>
-                </controls:WrapPanel>
-
-                <!--  Danh sách sản phẩm với dữ liệu cứng  -->
-                <controls:WrapPanel
-                    Padding="0,0,0,250"
-                    HorizontalAlignment="Center"
-                    HorizontalSpacing="25"
-                    Orientation="Horizontal"
-                    VerticalSpacing="270">
-                    <Canvas Width="180">
-                        <Border
-                            Canvas.Top="50"
-                            Width="180"
-                            Padding="10,100,10,20"
-                            Background="White"
-                            Canvas.ZIndex="0"
-                            CornerRadius="20">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock
-                                    Padding="0,10"
-                                    HorizontalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Text="American Favorite" />
-
-                                <TextBlock
-                                    Padding="0,0,0,10"
-                                    HorizontalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Foreground="Green"
-                                    Text="$4.87" />
-
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="12"
-                                    TextAlignment="Center">
-                                    <Run
-                                        FontWeight="Bold"
-                                        Foreground="Black"
-                                        Text="18 Pan" />
-                                    <Run Foreground="Gray" Text=" Available" />
-                                </TextBlock>
-                            </StackPanel>
-                        </Border>
-                        <Image
-                            Canvas.Left="15"
-                            Width="150"
-                            Height="150"
-                            Canvas.ZIndex="1"
-                            Source="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\sample.png" />
-                    </Canvas>
-                    <Canvas Width="180">
-                        <Border
-                            Canvas.Top="50"
-                            Width="180"
-                            Padding="10,100,10,20"
-                            Background="White"
-                            Canvas.ZIndex="0"
-                            CornerRadius="20">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock
-                                    Padding="0,10"
-                                    HorizontalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Text="American Favorite" />
-
-                                <TextBlock
-                                    Padding="0,0,0,10"
-                                    HorizontalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Foreground="Green"
-                                    Text="$4.87" />
-
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="12"
-                                    TextAlignment="Center">
-                                    <Run
-                                        FontWeight="Bold"
-                                        Foreground="Black"
-                                        Text="18 Pan" />
-                                    <Run Foreground="Gray" Text=" Available" />
-                                </TextBlock>
-                            </StackPanel>
-                        </Border>
-                        <Image
-                            Canvas.Left="15"
-                            Width="150"
-                            Height="150"
-                            Canvas.ZIndex="1"
-                            Source="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\sample.png" />
-                    </Canvas>
-                </controls:WrapPanel>
+                <!--  Products  -->
+                <ItemsControl ItemTemplate="{StaticResource ProductItemTemplate}" ItemsSource="{Binding FilteredProducts}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WrapPanel
+                                Padding="0,0,0,250"
+                                HorizontalAlignment="Left"
+                                HorizontalSpacing="25"
+                                Orientation="Horizontal"
+                                VerticalSpacing="15" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
             </StackPanel>
         </ScrollViewer>
 
-        <!--  Khu vực hóa đơn với dữ liệu cứng  -->
+        <!--  Order Panel  -->
         <StackPanel
             Grid.Column="1"
             Margin="0,0,0,20"
@@ -229,131 +215,18 @@
                 FontWeight="SemiBold"
                 Foreground="#0ABB6A"
                 Text="Current order" />
-            <StackPanel>
-                <Border
-                    Padding="10"
-                    HorizontalAlignment="Stretch"
-                    Background="White">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel
-                            Grid.Column="0"
-                            Orientation="Horizontal"
-                            Spacing="10">
-                            <Image
-                                Width="50"
-                                Height="50"
-                                Source="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\sample.png" />
-                            <StackPanel>
-                                <TextBlock
-                                    FontSize="16"
-                                    FontWeight="Bold"
-                                    Text="Orange Juice" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="Gray"
-                                    Text="Note: Less Ice" />
-                                <TextBlock
-                                    FontSize="14"
-                                    FontWeight="Bold"
-                                    Text="$2.87" />
-                                <StackPanel Orientation="Horizontal" Spacing="10">
-                                    <Button
-                                        Width="30"
-                                        Height="30"
-                                        Content="-"
-                                        FontSize="14" />
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        FontWeight="Bold"
-                                        Text="4" />
-                                    <Button
-                                        Width="30"
-                                        Height="30"
-                                        Content="+"
-                                        FontSize="14" />
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <Button
-                            Grid.Column="1"
-                            Width="30"
-                            Height="30"
-                            VerticalAlignment="Bottom">
-                            <FontIcon Glyph="&#xE104;" />
-                        </Button>
-                    </Grid>
-                </Border>
-                <Border
-                    Padding="10"
-                    HorizontalAlignment="Stretch"
-                    Background="White">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel
-                            Grid.Column="0"
-                            Orientation="Horizontal"
-                            Spacing="10">
-                            <Image
-                                Width="50"
-                                Height="50"
-                                Source="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\sample.png" />
-                            <StackPanel>
-                                <TextBlock
-                                    FontSize="16"
-                                    FontWeight="Bold"
-                                    Text="Orange Juice" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="Gray"
-                                    Text="Note: Less Ice" />
-                                <TextBlock
-                                    FontSize="14"
-                                    FontWeight="Bold"
-                                    Text="$2.87" />
-                                <StackPanel Orientation="Horizontal" Spacing="10">
-                                    <Button
-                                        Width="30"
-                                        Height="30"
-                                        Content="-"
-                                        FontSize="14" />
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        FontWeight="Bold"
-                                        Text="4" />
-                                    <Button
-                                        Width="30"
-                                        Height="30"
-                                        Content="+"
-                                        FontSize="14" />
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <Button
-                            Grid.Column="1"
-                            Width="30"
-                            Height="30"
-                            VerticalAlignment="Bottom">
-                            <FontIcon Glyph="&#xE104;" />
-                        </Button>
-                    </Grid>
-                </Border>
-
-            </StackPanel>
+            <!--  Order Items  -->
+            <Border
+                MinHeight="100"
+                Margin="0,10,0,10"
+                Background=" #F2F2F2"
+                BorderThickness="1"
+                CornerRadius="25">
+                <ItemsControl ItemTemplate="{StaticResource OrderItemTemplate}" ItemsSource="{Binding OrderItems}" />
+            </Border>
 
 
+            <!--  Order Summary  -->
             <StackPanel Spacing="5">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -363,12 +236,12 @@
                     <TextBlock
                         FontSize="16"
                         Foreground="Gray"
-                        Text="Items (7)" />
+                        Text="{Binding TotalItemsFormatted}" />
                     <TextBlock
                         Grid.Column="1"
                         FontSize="16"
                         FontWeight="Bold"
-                        Text="$28.67" />
+                        Text="{Binding SubTotalFormatted}" />
                 </Grid>
 
                 <Grid>
@@ -384,7 +257,7 @@
                         Grid.Column="1"
                         FontSize="16"
                         FontWeight="Bold"
-                        Text="$2.86" />
+                        Text="{Binding TaxFormatted}" />
                 </Grid>
 
                 <Border
@@ -405,11 +278,11 @@
                         Grid.Column="1"
                         FontSize="18"
                         FontWeight="Bold"
-                        Text="$31.53" />
+                        Text="{Binding TotalFormatted}" />
                 </Grid>
             </StackPanel>
 
-            <!--  Nút Print Bills  -->
+            <!--  Print Button  -->
             <Button
                 Padding="10"
                 HorizontalAlignment="Stretch"
