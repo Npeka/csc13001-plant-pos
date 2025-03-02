@@ -6,15 +6,18 @@ import csc13001.plantpos.application.dtos.auth.LoginResponseDTO;
 import csc13001.plantpos.application.dtos.auth.RegisterDTO;
 import csc13001.plantpos.application.dtos.auth.ResetPassworDTO;
 import csc13001.plantpos.config.JwtUtil;
+import csc13001.plantpos.domain.events.OtpEvent;
 import csc13001.plantpos.domain.models.User;
 import csc13001.plantpos.exception.auth.AuthException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class AuthService {
@@ -26,6 +29,10 @@ public class AuthService {
 
     @Autowired
     private ApplicationEventPublisher eventPublisher;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+    private static final long OTP_EXPIRATION_TIME = 5;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -62,13 +69,28 @@ public class AuthService {
     }
 
     public void forgotPassword(String username) {
-        boolean isExist = userRepository.findByUsername(username).isPresent();
-        if (!isExist) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (userOptional.isEmpty()) {
             throw new AuthException.UserNotFoundException();
         }
+
+        String key = "otp:" + username + ":otp";
+        int otp = ThreadLocalRandom.current().nextInt(100000, 1000000);
+        redisTemplate.opsForValue().set(key, String.valueOf(otp), OTP_EXPIRATION_TIME, TimeUnit.MINUTES);
+
+        User user = userOptional.get();
+        OtpEvent event = new OtpEvent(user.getEmail(), String.valueOf(otp));
+        eventPublisher.publishEvent(event);
     }
 
     public boolean verifyOtp(String username, String otp) {
+        String key = "otp:" + username + ":otp";
+        String storedOtp = redisTemplate.opsForValue().get(key);
+        if (storedOtp == null || !storedOtp.equals(otp)) {
+            return false;
+        }
+
+        redisTemplate.delete(key);
         return true;
     }
 
@@ -86,7 +108,6 @@ public class AuthService {
             User user = userOptional.get();
             user.setPassword(bCryptPasswordEncoder.encode(newPassword));
             userRepository.save(user);
-            // eventPublisher.publishEvent();
         } else {
             throw new AuthException.UserNotFoundException();
         }
