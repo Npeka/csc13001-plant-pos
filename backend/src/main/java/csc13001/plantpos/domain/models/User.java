@@ -37,11 +37,10 @@ public class User {
         this.isAdmin = false;
     }
 
-    public User(Long userId, String username, String email, String password, boolean isAdmin) {
-        this.userId = userId;
+    public User(String username, String password, String email, boolean isAdmin) {
         this.username = username;
-        this.email = email;
         this.password = password;
+        this.email = email;
         this.isAdmin = isAdmin;
     }
 

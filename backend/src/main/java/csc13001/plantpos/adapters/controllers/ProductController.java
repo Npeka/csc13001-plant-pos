@@ -2,6 +2,7 @@ package csc13001.plantpos.adapters.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import csc13001.plantpos.domain.models.Product;
 import csc13001.plantpos.utils.http.HttpResponse;
@@ -22,8 +23,14 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public ResponseEntity<?> createProduct(
+            @RequestBody Product product,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return HttpResponse.invalidInputData();
+        }
+        Product createdProduct = productService.createProduct(product);
+        return HttpResponse.ok("Create product successful", createdProduct);
     }
 
     @GetMapping("/{id}")
@@ -37,8 +44,8 @@ public class ProductController {
     public ResponseEntity<?> updateProduct(
             @PathVariable Long id,
             @RequestBody Product productDetails) {
-        Product updatedProduct = productService.updateProduct(id, productDetails);
-        return HttpResponse.ok("Update product successful", updatedProduct);
+        productService.updateProduct(id, productDetails);
+        return HttpResponse.ok("Update product successful");
     }
 
     @DeleteMapping("/{id}")

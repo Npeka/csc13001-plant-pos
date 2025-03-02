@@ -4,6 +4,8 @@ install:
 run:
 	mvn spring-boot:run
 
+
+
 test:
 	mvn test
 
@@ -19,3 +21,7 @@ d-down:
 
 d-down-v:
 	docker-compose down -v
+
+d-reset:
+	docker-compose down -v
+	docker-compose up -d
