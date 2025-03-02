@@ -17,4 +17,9 @@ public class DiscountExceptionHandler {
     public ResponseEntity<?> handleDiscountNotFound(DiscountException.DiscountNotFoundException ex) {
         return HttpResponse.badRequest(DiscountErrorMessages.DISCOUNT_NOT_FOUND);
     }
+
+    @ExceptionHandler(DiscountException.DiscountInvalidDateException.class)
+    public ResponseEntity<?> handleDiscountInvalidDate(DiscountException.DiscountInvalidDateException ex) {
+        return HttpResponse.badRequest(DiscountErrorMessages.INVALID_DATE);
+    }
 }

@@ -22,4 +22,9 @@ public class DiscountException extends RuntimeException {
         }
     }
 
+    public static class DiscountInvalidDateException extends DiscountException {
+        public DiscountInvalidDateException() {
+            super(DiscountErrorMessages.INVALID_DATE);
+        }
+    }
 }
