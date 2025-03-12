@@ -7,3 +7,10 @@
 /csc13001-plant-pos/obj
 /csc13001-plant-pos.Tests.MSTest/bin
 /csc13001-plant-pos.Tests.MSTest/.vs
+/csc13001-plant-pos-frontend.Core/.vs
+/csc13001-plant-pos-frontend.Core/bin
+/csc13001-plant-pos-frontend.Core/obj
+/csc13001-plant-pos-frontend/.vs
+/csc13001-plant-pos-frontend/bin
+/csc13001-plant-pos-frontend/obj
+/backend/target
