@@ -27,7 +27,7 @@ public class DiscountProgramController {
             @RequestBody DiscountProgram discountProgram,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest(bindingResult);
         }
 
         DiscountProgram createdDiscountProgram = discountProgramService.createDiscountProgram(discountProgram);
@@ -40,7 +40,7 @@ public class DiscountProgramController {
             @RequestBody DiscountProgram discountProgram,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest(bindingResult);
         }
 
         discountProgramService.updateDiscountProgram(id, discountProgram);

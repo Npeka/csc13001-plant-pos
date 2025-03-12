@@ -1,6 +1,8 @@
 package csc13001.plantpos.domain.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,17 +29,21 @@ public class DiscountProgram {
     @Column(name = "discount_id")
     private Long discountId;
 
+    @NotBlank(message = "Name is mandatory")
     @Column(name = "name")
     private String name;
 
-    @Column(name = "start_date")
+    @NotNull(message = "Start date is mandatory")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "start_date")
     private Date startDate;
 
-    @Column(name = "end_date")
+    @NotNull(message = "End date is mandatory")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "end_date")
     private Date endDate;
 
+    @NotBlank(message = "Applicable customer type is mandatory")
     @Column(name = "applicable_customer_type")
     private String applicableCustomerType;
 }

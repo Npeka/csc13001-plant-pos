@@ -3,15 +3,17 @@ package csc13001.plantpos.application.services;
 import csc13001.plantpos.adapters.repositories.CategoryRepository;
 import csc13001.plantpos.domain.models.Category;
 import csc13001.plantpos.exception.category.CategoryException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class CategoryService {
 
-    @Autowired
-    CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
@@ -25,27 +27,23 @@ public class CategoryService {
     }
 
     public Category getCategoryById(Long id) {
-        try {
-            return categoryRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new CategoryException.CategoryNotFoundException();
-        }
+        return categoryRepository.findById(id).orElse(null);
     }
 
-    public void updateCategory(Long id, Category categoryDetails) {
-        Category category = categoryRepository.findById(id)
+    public Category updateCategory(Long id, Category categoryDetails) {
+        return categoryRepository.findById(id)
+                .map(existingCategory -> {
+                    existingCategory.setName(categoryDetails.getName());
+                    existingCategory.setDescription(categoryDetails.getDescription());
+                    return categoryRepository.save(existingCategory);
+                })
                 .orElseThrow(() -> new CategoryException.CategoryNotFoundException());
-
-        category.setName(categoryDetails.getName());
-        category.setDescription(categoryDetails.getDescription());
-        categoryRepository.save(category);
     }
 
     public void deleteCategory(Long id) {
-        try {
-            categoryRepository.deleteById(id);
-        } catch (Exception e) {
+        if (!categoryRepository.existsById(id)) {
             throw new CategoryException.CategoryNotFoundException();
         }
+        categoryRepository.deleteById(id);
     }
 }

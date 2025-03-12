@@ -34,7 +34,7 @@ public class DatabaseSeeder {
             if (userRepository.count() == 0) {
                 List<User> users = List.of(
                         new User("admin", bCryptPasswordEncoder.encode("admin"), null, true),
-                        new User("user", bCryptPasswordEncoder.encode("user")));
+                        new User("staff", bCryptPasswordEncoder.encode("staff")));
                 userRepository.saveAll(users);
             }
 

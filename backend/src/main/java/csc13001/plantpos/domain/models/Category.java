@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,9 +22,12 @@ public class Category {
     @Column(name = "category_id")
     private Long categoryId;
 
+    @NotBlank(message = "Name is mandatory")
+    @Size(max = 100, message = "Name should not exceed 100 characters")
     @Column(name = "name", nullable = false, unique = true)
     private String name = "";
 
+    @Size(max = 255, message = "Description should not exceed 255 characters")
     @Column(name = "description")
     private String description;
 

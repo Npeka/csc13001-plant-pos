@@ -24,7 +24,7 @@ public class AuthController {
             @RequestBody @Validated RegisterDTO registerDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest(bindingResult);
         }
 
         authService.register(registerDTO);
@@ -37,7 +37,7 @@ public class AuthController {
             @RequestBody @Validated LoginDTO loginDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest(bindingResult);
         }
 
         LoginResponseDTO loginResponseDTO = authService.login(loginDTO);
@@ -58,7 +58,7 @@ public class AuthController {
         boolean result = authService.verifyOtp(username, otp);
 
         if (!result) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest("Invalid Username or OTP");
         }
 
         return HttpResponse.ok("OTP verified successfully", result);
@@ -69,22 +69,11 @@ public class AuthController {
             @RequestBody @Validated ResetPassworDTO resetPassworDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest(bindingResult);
         }
 
         authService.resetPassword(resetPassworDTO);
 
         return HttpResponse.ok("Password reset successfully");
     }
-
-    @GetMapping("/staff/test-jwt")
-    public ResponseEntity<?> jwtStaff() {
-        return HttpResponse.ok("Test JWT Staff successful");
-    }
-
-    @GetMapping("/admin/test-jwt")
-    public ResponseEntity<?> jwtAdmin() {
-        return HttpResponse.ok("Test JWT Admin successful");
-    }
-
 }

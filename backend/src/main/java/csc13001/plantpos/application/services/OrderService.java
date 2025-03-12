@@ -4,16 +4,15 @@ import csc13001.plantpos.adapters.repositories.*;
 import csc13001.plantpos.application.dtos.order.CreateOrderDTO;
 import csc13001.plantpos.application.dtos.order.OrderDetailDTO;
 import csc13001.plantpos.application.dtos.order.UpdateOrderDTO;
+import csc13001.plantpos.domain.models.Customer;
 import csc13001.plantpos.domain.models.DiscountProgram;
 import csc13001.plantpos.domain.models.Order;
 import csc13001.plantpos.domain.models.OrderDetail;
 import csc13001.plantpos.domain.models.Product;
-import csc13001.plantpos.exception.customer.CustomerException;
 import csc13001.plantpos.exception.discount.DiscountException;
 import csc13001.plantpos.exception.order.OrderException;
 import csc13001.plantpos.exception.product.ProductException;
 import csc13001.plantpos.exception.staff.StaffException;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -22,12 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
     private final StaffRepository staffRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
@@ -41,18 +39,18 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(CreateOrderDTO createOrderDTO) {
-        if (!customerRepository.existsById(createOrderDTO.getCustomer_id())) {
-            throw new CustomerException.CustomerNotFoundException();
-        }
+        Customer customer = customerService.createCustomer(Customer.builder()
+                .phone(createOrderDTO.getCustomerPhone())
+                .build());
 
-        if (!staffRepository.existsById(createOrderDTO.getStaff_id())) {
+        if (!staffRepository.existsById(createOrderDTO.getStaffId())) {
             throw new StaffException.StaffNotFoundException();
         }
 
         Order order = Order.builder()
-                .customerId(createOrderDTO.getCustomer_id())
-                .staffId(createOrderDTO.getStaff_id())
-                .totalPrice(createOrderDTO.getTotal_price())
+                .customerId(customer.getCustomerId())
+                .staffId(createOrderDTO.getStaffId())
+                .totalPrice(createOrderDTO.getTotalPrice())
                 .status(createOrderDTO.getStatus())
                 .build();
 
@@ -69,10 +67,10 @@ public class OrderService {
 
     public void createOrderDetailsAsync(CreateOrderDTO createOrderDTO, Order savedOrder) {
         for (OrderDetailDTO orderDetailDTO : createOrderDTO.getItems()) {
-            Product product = productRepository.findById(orderDetailDTO.getProduct_id())
+            Product product = productRepository.findById(orderDetailDTO.getProductId())
                     .orElseThrow(ProductException.ProductNotFoundException::new);
 
-            Long discountId = orderDetailDTO.getDiscount_id();
+            Long discountId = orderDetailDTO.getDiscountId();
             DiscountProgram discountProgram = null;
             if (discountId != null) {
                 discountProgram = discountProgramRepository.findById(discountId)
@@ -83,7 +81,7 @@ public class OrderService {
 
             OrderDetail orderDetail = OrderDetail.builder()
                     .orderId(savedOrder.getOrderId())
-                    .productId(orderDetailDTO.getProduct_id())
+                    .productId(orderDetailDTO.getProductId())
                     .quantity(orderDetailDTO.getQuantity())
                     .unitPrice(unitPrice)
                     .discountId(discountId)
@@ -104,6 +102,7 @@ public class OrderService {
         Order order = orderRepository.findById(updateOrderDTO.getId())
                 .orElseThrow(OrderException.OrderNotFoundException::new);
 
+        order.setStatus(updateOrderDTO.getStatus());
         return orderRepository.save(order);
     }
 

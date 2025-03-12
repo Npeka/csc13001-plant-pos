@@ -1,6 +1,7 @@
 package csc13001.plantpos.utils.http;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,9 +42,21 @@ public class HttpResponse<T> {
         return ResponseEntity.badRequest().body(error("Invalid input data"));
     }
 
+    public static <T> ResponseEntity<?> invalidInputData(String message) {
+        return ResponseEntity.badRequest().body(error(message));
+    }
+
+    public static <T> ResponseEntity<?> badRequest(BindingResult bindingResult) {
+        return ResponseEntity.badRequest().body(error(bindingResult.getFieldErrors().get(0).getDefaultMessage()));
+    }
+
     // 404 - Resource not found
+    public static <T> ResponseEntity<?> notFound(String message) {
+        return ResponseEntity.status(404).body(error(message));
+    }
+
     public static <T> ResponseEntity<?> notFound() {
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).body(error("Resource not found"));
     }
 
     public enum Status {

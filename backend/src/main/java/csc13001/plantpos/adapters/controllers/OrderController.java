@@ -31,7 +31,7 @@ public class OrderController {
             @RequestBody @Validated CreateOrderDTO createOrderDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.invalidInputData();
+            return HttpResponse.badRequest(bindingResult);
         }
 
         Order order = orderService.createOrder(createOrderDTO);
