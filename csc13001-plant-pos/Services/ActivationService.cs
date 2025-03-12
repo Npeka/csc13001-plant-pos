@@ -32,7 +32,7 @@ public class ActivationService : IActivationService
             //_shell = App.GetService<AuthenticationPage>();
             var frame = new Frame();
             App.MainWindow.Content = frame;
-            frame.Navigate(typeof(AuthenticationPage));
+            frame.Navigate(typeof(ListUsers));
         }
 
         // Handle activation via ActivationHandlers.

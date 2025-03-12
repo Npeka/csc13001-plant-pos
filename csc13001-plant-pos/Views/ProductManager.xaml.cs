@@ -39,16 +39,25 @@ namespace csc13001_plant_pos.Views
         }
 
 
+        private bool isAscending = true;
+
         private void SortByPrice_Click(object sender, RoutedEventArgs e)
         {
-            // Sắp xếp theo giá (Tăng dần)
-            var sortedList = new ObservableCollection<Product>(Products.OrderBy(p => p.Price));
+            if (Products == null || Products.Count == 0) return;
+
+            var sortedList = isAscending
+                ? new ObservableCollection<Product>(Products.OrderByDescending(p => p.Price))
+                : new ObservableCollection<Product>(Products.OrderBy(p => p.Price));
+
             Products.Clear();
             foreach (var product in sortedList)
             {
                 Products.Add(product);
             }
+
+            isAscending = !isAscending; // Đảo trạng thái
         }
+
         private void FilterProducts()
         {
             if (Products == null || Products.Count == 0)

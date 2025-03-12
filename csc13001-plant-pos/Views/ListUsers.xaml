@@ -10,33 +10,93 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Padding="20" Width="800" Height="400">
+    <Grid Padding="20" Width="1200" Height="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel>
-            <!-- Thanh tìm kiếm -->
-            <TextBox x:Name="SearchBox" PlaceholderText="Tìm kiếm khách hàng..." Margin="0,0,0,10" TextChanged="SearchBox_TextChanged"/>
+        <!-- Thông tin tổng quan (Dashboard) -->
+        <Grid Grid.Row="0" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <!-- Bộ lọc ngày -->
-            <Grid VerticalAlignment="Center">
+            <!-- Tổng số khách hàng -->
+            <Border Background="#0078D7" CornerRadius="8" Margin="0,0,5,0">
+                <StackPanel Padding="15">
+                    <TextBlock Text="Tổng số khách hàng" Foreground="White" FontSize="14"/>
+                    <TextBlock x:Name="TotalCustomersCount" Text="{x:Bind TotalCustomers, Mode=OneWay}" 
+                               Foreground="White" FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Khách hàng mới trong tháng -->
+            <Border Background="#107C10" CornerRadius="8" Grid.Column="1" Margin="5,0,5,0">
+                <StackPanel Padding="15">
+                    <TextBlock Text="Khách hàng mới trong tháng" Foreground="White" FontSize="14"/>
+                    <TextBlock x:Name="NewCustomersCount" Text="{x:Bind NewCustomersThisMonth, Mode=OneWay}" 
+                               Foreground="White" FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Khách hàng hạng cao -->
+            <Border Background="#5C2D91" CornerRadius="8" Grid.Column="2" Margin="5,0,0,0">
+                <StackPanel Padding="15">
+                    <TextBlock Text="Khách hàng cao cấp" Foreground="White" FontSize="14"/>
+                    <TextBlock x:Name="PremiumCustomersCount" Text="{x:Bind PremiumCustomers, Mode=OneWay}" 
+                               Foreground="White" FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Khu vực tìm kiếm và lọc -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Hàng 1: Thanh tìm kiếm -->
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="SearchBox" Grid.Column="0" PlaceholderText="Tìm kiếm theo tên, ID..." 
+                         TextChanged="SearchBox_TextChanged"/>
+
+                <Button x:Name="AddNewCustomer" Grid.Column="1" Margin="10,0,0,0"
+                        Content="+ Thêm khách hàng" Background="#0078D7" Foreground="White"/>
+            </Grid>
+
+            <!-- Hàng 2: Các bộ lọc -->
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Bộ lọc ngày -->
                 <CalendarDatePicker x:Name="DateFilter"
-        PlaceholderText="Ngày đăng ký"
-        DateChanged="DateFilter_DateChanged"
-        Width="200"
-        VerticalAlignment="Center"
-        Grid.Column="0"/>
+                    PlaceholderText="Ngày đăng ký"
+                    DateChanged="DateFilter_DateChanged"
+                    Width="180"
+                    VerticalAlignment="Center"
+                    Grid.Column="0"/>
 
                 <!-- Bộ lọc hạng -->
                 <ComboBox x:Name="RankFilter" Width="150" PlaceholderText="Chọn hạng"
-              SelectionChanged="RankFilter_SelectionChanged"
-              VerticalAlignment="Center"
-              Grid.Column="1" Margin="10,0,0,0">
+                          SelectionChanged="RankFilter_SelectionChanged"
+                          VerticalAlignment="Center"
+                          Grid.Column="1" Margin="10,0,0,0">
                     <ComboBoxItem Content="Tất cả"/>
                     <ComboBoxItem Content="Đồng"/>
                     <ComboBoxItem Content="Bạc"/>
@@ -45,44 +105,81 @@
                     <ComboBoxItem Content="Kim Cương"/>
                 </ComboBox>
 
-                <!-- Nút Reset -->
-                <Button Content="Đặt lại" Click="ResetFilter_Click" Width="100" Background="Red" Foreground="White"
-            VerticalAlignment="Center"
-            Grid.Column="2" Margin="10,0,0,0"/>
+                <!-- Bộ lọc trạng thái -->
+                <ComboBox x:Name="StatusFilter" Width="150" PlaceholderText="Trạng thái"
+                          SelectionChanged="StatusFilter_SelectionChanged"
+                          VerticalAlignment="Center"
+                          Grid.Column="2" Margin="10,0,0,0">
+                    <ComboBoxItem Content="Tất cả"/>
+                    <ComboBoxItem Content="Hoạt động"/>
+                    <ComboBoxItem Content="Đã khóa"/>
+                </ComboBox>
+
+                <!-- Nút Đặt lại -->
+                <Button Content="Đặt lại bộ lọc" Click="ResetFilter_Click" 
+                        Background="#E81123" Foreground="White"
+                        VerticalAlignment="Center"
+                        Grid.Column="4"/>
             </Grid>
+        </Grid>
+
+        <!-- Danh sách khách hàng -->
+        <Grid Grid.Row="2">
+            <controls:DataGrid x:Name="CustomersGrid" ItemsSource="{x:Bind FilteredUsers, Mode=OneWay}" 
+                               AutoGenerateColumns="False" HeadersVisibility="Column" 
+                               SelectionMode="Single" IsReadOnly="True"
+                               GridLinesVisibility="Horizontal"
+                               >
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="70"/>
+                    <controls:DataGridTextColumn Header="Họ và tên" Binding="{Binding Name}" Width="*"/>
+                    <controls:DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="130"/>
+                    <controls:DataGridTextColumn Header="Điểm số" Binding="{Binding Points}" Width="80"/>
+                    <controls:DataGridTemplateColumn Header="Hạng thẻ" Width="120">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Padding="5" CornerRadius="10" BorderThickness="0"
+             Margin="5,2">
+                                    <TextBlock Text="{Binding Rank}" FontWeight="SemiBold" 
+                   Foreground="{Binding RankColor}" HorizontalAlignment="Center"/>
+                                </Border>
+                            </DataTemplate>
+
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
+                    <controls:DataGridTextColumn Header="Ngày đăng ký" Binding="{Binding CreatedAt}" Width="120"/>
+                    <controls:DataGridTextColumn Header="Trạng thái" Width="100" Binding="{Binding Status}"/>
+                    <controls:DataGridTemplateColumn Header="Thao tác" Width="180">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <!-- Button Cập nhật với Icon -->
+                                    <Button Click="UpdateCustomer_Click" Margin="0,0,5,0"
+                    Background="#0078D7" Foreground="White" Padding="8,4">
+                                        <FontIcon Glyph="&#xE70F;" />
+                                        <!-- Icon Edit -->
+                                    </Button>
+
+                                    <!-- Button Khóa/Mở khóa với Icon -->
+                                    <Button Click="LockCustomer_Click" Background="{Binding LockButtonColor}" 
+                    Foreground="White" Padding="8,4">
+                                        <FontIcon Glyph="{Binding LockButtonIcon}" />
+                                    </Button>
+                                    <!-- -->
+                                    <Button Click="DeleteCustomer_Click" Margin="5,0,0,0"
+        Background="#D32F2F" Foreground="White" Padding="8,4">
+                                        <FontIcon Glyph="&#xE74D;" />
+                                        <!-- Icon Trash -->
+                                    </Button>
 
 
+                                </StackPanel>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
 
-
-            <!-- Bọc DataGrid trong ScrollViewer để kích hoạt cuộn -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="300">
-                <controls:DataGrid x:Name="CustomersGrid" ItemsSource="{x:Bind FilteredUsers, Mode=OneWay}" 
-   AutoGenerateColumns="False" HeadersVisibility="Column" Margin="0,10,0,0" MinWidth="800">
-                    <controls:DataGrid.Columns>
-                        <controls:DataGridTextColumn Header="Id" Binding="{Binding ID}" Width="100"/>
-                        <controls:DataGridTextColumn Header="Họ Tên" Binding="{Binding Name}" Width="*"/>
-                        <controls:DataGridTextColumn Header="Điểm số" Binding="{Binding Points}" Width="120"/>
-                        <controls:DataGridTemplateColumn Header="Hạng bậc thẻ" Width="150">
-                            <controls:DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Border Padding="5" CornerRadius="10" BorderThickness="2"
-                   BorderBrush="{Binding RankColor}"
-                   Background="{Binding RankColor}"
-                   Margin="5">
-                                            <TextBlock Text="{Binding Rank}" FontWeight="Bold" Foreground="White"/>
-                                        </Border>
-                                    </Grid>
-                                </DataTemplate>
-                            </controls:DataGridTemplateColumn.CellTemplate>
-                        </controls:DataGridTemplateColumn>
-                        <controls:DataGridTextColumn Header="Ngày tạo" Binding="{Binding CreatedAt}" Width="150"/>
-                    </controls:DataGrid.Columns>
-                </controls:DataGrid>
-
-            </ScrollViewer>
-
-
-        </StackPanel>
+                    </controls:DataGridTemplateColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+        </Grid>
     </Grid>
 </Page>

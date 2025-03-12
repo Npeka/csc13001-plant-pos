@@ -31,6 +31,9 @@ namespace csc13001_plant_pos.Views
             };
             FilteredEmployees = new ObservableCollection<Employee>(Employees);
             this.DataContext = this;
+
+            // Cập nhật số lượng nhân viên hiển thị
+            UpdateEmployeeCount();
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -41,32 +44,17 @@ namespace csc13001_plant_pos.Views
             {
                 FilteredEmployees.Add(employee);
             }
+            UpdateEmployeeCount();
         }
 
         private void DateFilter_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            if (sender.Date.HasValue)
-            {
-                DateTime selectedDate = sender.Date.Value.DateTime;
-                FilteredEmployees.Clear();
-
-                foreach (var employee in Employees)
-                {
-                    if (employee.StartDate.Date == selectedDate.Date)
-                    {
-                        FilteredEmployees.Add(employee);
-                    }
-                }
-            }
+            ApplyFilters();
         }
 
         private void PositionFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PositionFilter.SelectedItem is ComboBoxItem selectedItem)
-            {
-                string selectedPosition = selectedItem.Content.ToString();
-                ApplyFilters(selectedPosition);
-            }
+            ApplyFilters();
         }
 
         private void ResetFilter_Click(object sender, RoutedEventArgs e)
@@ -80,18 +68,30 @@ namespace csc13001_plant_pos.Views
             {
                 FilteredEmployees.Add(employee);
             }
+            UpdateEmployeeCount();
         }
 
-        private void ApplyFilters(string selectedPosition)
+        private void ApplyFilters()
         {
+            string searchQuery = SearchBox.Text.ToLower();
+            string selectedPosition = (PositionFilter.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Tất cả";
+            DateTime? selectedDate = DateFilter.Date?.DateTime;
+
             FilteredEmployees.Clear();
             var filtered = Employees.AsEnumerable();
 
-            // Lọc theo ngày bắt đầu làm việc
-            if (DateFilter.Date.HasValue)
+            // Lọc theo tìm kiếm
+            if (!string.IsNullOrEmpty(searchQuery))
             {
-                DateTime selectedDate = DateFilter.Date.Value.DateTime;
-                filtered = filtered.Where(emp => emp.StartDate.Date == selectedDate.Date);
+                filtered = filtered.Where(emp =>
+                    emp.Name.ToLower().Contains(searchQuery) ||
+                    emp.ID.ToLower().Contains(searchQuery));
+            }
+
+            // Lọc theo ngày bắt đầu làm việc
+            if (selectedDate.HasValue)
+            {
+                filtered = filtered.Where(emp => emp.StartDate.Date == selectedDate.Value.Date);
             }
 
             // Lọc theo vị trí
@@ -103,6 +103,70 @@ namespace csc13001_plant_pos.Views
             foreach (var employee in filtered)
             {
                 FilteredEmployees.Add(employee);
+            }
+
+            UpdateEmployeeCount();
+        }
+
+        private void UpdateEmployeeCount()
+        {
+            EmployeeCount.Text = $"{FilteredEmployees.Count} nhân viên";
+        }
+
+        // Xử lý nút chỉnh sửa nhân viên
+        private void EditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Employee employee = button.Tag as Employee;
+
+            // Xử lý logic chỉnh sửa nhân viên
+            // Frame.Navigate(typeof(EditEmployeePage), employee);
+
+            // Hiển thị thông báo tạm thời để kiểm tra
+            ContentDialog dialog = new ContentDialog()
+            {
+                Title = "Thông báo",
+                Content = $"Đang chỉnh sửa nhân viên: {employee.Name}",
+                CloseButtonText = "Đóng",
+                XamlRoot = this.XamlRoot
+            };
+
+            _ = dialog.ShowAsync();
+        }
+
+        // Xử lý nút xóa nhân viên
+        private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Employee employee = button.Tag as Employee;
+
+            // Hiển thị dialog xác nhận xóa
+            ShowDeleteConfirmationDialog(employee);
+        }
+
+        private async void ShowDeleteConfirmationDialog(Employee employee)
+        {
+            ContentDialog deleteDialog = new ContentDialog()
+            {
+                Title = "Xác nhận xóa",
+                Content = $"Bạn có chắc chắn muốn xóa nhân viên '{employee.Name}' không?",
+                PrimaryButtonText = "Xóa",
+                CloseButtonText = "Hủy",
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = this.XamlRoot
+            };
+
+            ContentDialogResult result = await deleteDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // Xóa nhân viên
+                Employees.Remove(employee);
+                if (FilteredEmployees.Contains(employee))
+                {
+                    FilteredEmployees.Remove(employee);
+                }
+                UpdateEmployeeCount();
             }
         }
     }

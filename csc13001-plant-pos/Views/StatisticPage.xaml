@@ -5,94 +5,289 @@
     xmlns:local="using:csc13001_plant_pos.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
     mc:Ignorable="d">
 
-    <Grid Padding="20" Background="#F8F8F8">
-        <StackPanel Spacing="20">
+    <Page.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
 
-            <!-- Header Controls -->
-            <StackPanel Orientation="Horizontal" Spacing="10">
-                <ComboBox Width="150" Header="Last 7 days">
-                    <ComboBoxItem Content="Last 7 days" IsSelected="True"/>
-                    <ComboBoxItem Content="Last 30 days"/>
-                    <ComboBoxItem Content="This month"/>
-                </ComboBox>
-                <Button Content="Export" Padding="10,5" Background="LightGray"/>
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#505050"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+        <Style x:Key="ValueTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+        <Style x:Key="PeriodButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#606060"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+
+        <Style x:Key="ActivePeriodButtonStyle" TargetType="Button" BasedOn="{StaticResource PeriodButtonStyle}">
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="ExportButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#4CAF50"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+
+        <Style x:Key="TableHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#505050"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <Style x:Key="TableCellStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Padding="30" Background="#F8F9FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header and Period Selection -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Sales Dashboard" FontSize="28" FontWeight="Bold" Foreground="#333333"/>
+                <TextBlock Text="Overview of your store performance" FontSize="16" Foreground="#707070" Margin="0,5,0,0"/>
             </StackPanel>
 
-            <!-- Statistics Overview -->
-            <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Border Background="White" CornerRadius="10" Padding="15" Grid.Column="0">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Revenue" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="$14,329" FontSize="24" FontWeight="Bold"/>
-                        <TextBlock Text="▼ 10%" Foreground="Red"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
+                <Button Content="7 Days" Style="{StaticResource ActivePeriodButtonStyle}"/>
+                <Button Content="30 Days" Style="{StaticResource PeriodButtonStyle}"/>
+                <Button Content="This Month" Style="{StaticResource PeriodButtonStyle}"/>
+                <Button Style="{StaticResource ExportButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE2C3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0"/>
+                        <TextBlock Text="Export Report"/>
                     </StackPanel>
-                </Border>
+                </Button>
+            </StackPanel>
+        </Grid>
 
-                <Border Background="White" CornerRadius="10" Padding="15" Grid.Column="1" Margin="10,0">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Orders" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="2,506" FontSize="24" FontWeight="Bold"/>
-                        <TextBlock Text="▲ 20%" Foreground="Green"/>
+        <!-- Statistics Cards -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource CardStyle}" Grid.Column="0" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Total Revenue" Style="{StaticResource HeaderTextStyle}"/>
+                    <TextBlock Text="$14,329" Style="{StaticResource ValueTextStyle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="▼ 10%" Foreground="#FF5252" FontWeight="SemiBold"/>
+                        <TextBlock Text=" vs previous period" Foreground="#707070" FontSize="12" VerticalAlignment="Center"/>
                     </StackPanel>
-                </Border>
-
-                <Border Background="White" CornerRadius="10" Padding="15" Grid.Column="2">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Average" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="$2,047" FontSize="24" FontWeight="Bold"/>
-                        <TextBlock Text="▼ 10%" Foreground="Red"/>
-                    </StackPanel>
-                </Border>
-            </Grid>
-
-            <!-- Sales Chart Placeholder -->
-            <Border Background="White" CornerRadius="10" Padding="15" Height="200">
-                <TextBlock Text="Sales Chart (Placeholder)" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray"/>
+                </StackPanel>
             </Border>
 
-            <!-- Sales Data Table -->
-            <Border Background="White" CornerRadius="10" Padding="15" Margin="0,10">
-                <ListView ItemsSource="{x:Bind SalesDataList, Mode=OneWay}">
+            <Border Style="{StaticResource CardStyle}" Grid.Column="1" Margin="10,0">
+                <StackPanel>
+                    <TextBlock Text="Total Orders" Style="{StaticResource HeaderTextStyle}"/>
+                    <TextBlock Text="2,506" Style="{StaticResource ValueTextStyle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="▲ 20%" Foreground="#4CAF50" FontWeight="SemiBold"/>
+                        <TextBlock Text=" vs previous period" Foreground="#707070" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardStyle}" Grid.Column="2" Margin="10,0">
+                <StackPanel>
+                    <TextBlock Text="Average Order" Style="{StaticResource HeaderTextStyle}"/>
+                    <TextBlock Text="$57.18" Style="{StaticResource ValueTextStyle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="▼ 8%" Foreground="#FF5252" FontWeight="SemiBold"/>
+                        <TextBlock Text=" vs previous period" Foreground="#707070" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardStyle}" Grid.Column="3" Margin="10,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Conversion Rate" Style="{StaticResource HeaderTextStyle}"/>
+                    <TextBlock Text="3.2%" Style="{StaticResource ValueTextStyle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="▲ 15%" Foreground="#4CAF50" FontWeight="SemiBold"/>
+                        <TextBlock Text=" vs previous period" Foreground="#707070" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Charts Section -->
+        <Grid Grid.Row="2" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sales Chart -->
+            <Border Style="{StaticResource CardStyle}" Grid.Column="0" Margin="0,0,10,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Sales Trend" Grid.Row="0" Style="{StaticResource HeaderTextStyle}" FontSize="18"/>
+
+                    <lvc:CartesianChart
+    Grid.Row="1"
+    Series="{x:Bind SalesChartSeries, Mode=OneWay}"
+    XAxes="{x:Bind SalesChartXAxes, Converter={StaticResource AxisConverter}, Mode=OneWay}"
+    YAxes="{x:Bind SalesChartYAxes, Converter={StaticResource AxisConverter}, Mode=OneWay}"
+    Tooltip="{x:Bind SalesChartTooltip, Mode=OneWay}"
+    Height="300"
+    Margin="0,10,0,0"/>
+
+
+                </Grid>
+            </Border>
+
+            <!-- Products Chart -->
+            <Border Style="{StaticResource CardStyle}" Grid.Column="1" Margin="10,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Top Products" Grid.Row="0" Style="{StaticResource HeaderTextStyle}" FontSize="18"/>
+
+                    <lvc:PieChart
+                        Grid.Row="1"
+                        Series="{x:Bind ProductsChartSeries, Mode=OneWay}"
+                        LegendPosition="Right"
+                        Height="300"
+                        Margin="0,10,0,0"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Sales Data Table -->
+        <Border Style="{StaticResource CardStyle}" Grid.Row="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Sales by Product" Style="{StaticResource HeaderTextStyle}" FontSize="18"/>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                        <TextBox PlaceholderText="Search products..." Width="200" 
+                                 Padding="10,5"/>
+                        <ComboBox PlaceholderText="Category" Width="150">
+                            <ComboBoxItem Content="All Categories" IsSelected="True"/>
+                            <ComboBoxItem Content="Indoor Plants"/>
+                            <ComboBoxItem Content="Outdoor Plants"/>
+                            <ComboBoxItem Content="Accessories"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <ListView Grid.Row="1" ItemsSource="{x:Bind SalesDataList, Mode=OneWay}" 
+                          BorderThickness="0" Background="Transparent">
                     <ListView.Header>
-                        <Grid>
+                        <Grid Padding="0,10" BorderThickness="0,0,0,1" BorderBrush="#E0E0E0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Name" FontWeight="Bold" Grid.Column="0"/>
-                            <TextBlock Text="Sales" FontWeight="Bold" Grid.Column="1"/>
-                            <TextBlock Text="Refunds" FontWeight="Bold" Grid.Column="2"/>
-                            <TextBlock Text="Net" FontWeight="Bold" Grid.Column="3"/>
+                            <TextBlock Text="Product" Style="{StaticResource TableHeaderStyle}" Grid.Column="0"/>
+                            <TextBlock Text="Sales" Style="{StaticResource TableHeaderStyle}" Grid.Column="1"/>
+                            <TextBlock Text="Refunds" Style="{StaticResource TableHeaderStyle}" Grid.Column="2"/>
+                            <TextBlock Text="Net" Style="{StaticResource TableHeaderStyle}" Grid.Column="3"/>
+                            <TextBlock Text="Trend" Style="{StaticResource TableHeaderStyle}" Grid.Column="4"/>
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:SalesData">
-                            <Grid>
+                            <Grid Padding="0,15" BorderThickness="0,0,0,1" BorderBrush="#E0E0E0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{x:Bind Name}" Grid.Column="0"/>
-                                <TextBlock Text="{x:Bind Sales}" Grid.Column="1"/>
-                                <TextBlock Text="{x:Bind Refunds}" Grid.Column="2"/>
-                                <TextBlock Text="{x:Bind Net}" Grid.Column="3"/>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10">
+                                    <Image Source="{x:Bind ImagePath}" Width="40" Height="40" 
+                                           VerticalAlignment="Center"/>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{x:Bind Name}" Style="{StaticResource TableCellStyle}" 
+                                                   FontWeight="SemiBold"/>
+                                        <TextBlock Text="{x:Bind Category}" Style="{StaticResource TableCellStyle}" 
+                                                   FontSize="12" Foreground="#707070"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <TextBlock Text="{x:Bind Sales}" Style="{StaticResource TableCellStyle}" Grid.Column="1"/>
+                                <TextBlock Text="{x:Bind Refunds}" Style="{StaticResource TableCellStyle}" Grid.Column="2"/>
+                                <TextBlock Text="{x:Bind Net}" Style="{StaticResource TableCellStyle}" 
+                                           FontWeight="SemiBold" Grid.Column="3"/>
+                                <lvc:CartesianChart Grid.Column="4" Series="{x:Bind TrendSeries}" 
+                                                   Height="40" Width="100" 
+                                                   Padding="0" Margin="0"
+                                                   TooltipPosition="Hidden"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </Border>
-        </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
