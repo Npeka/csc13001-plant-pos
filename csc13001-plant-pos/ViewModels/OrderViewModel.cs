@@ -25,24 +25,18 @@ public partial class OrderViewModel : ObservableRecipient, INavigationAware
 
     public async void OnNavigatedTo(object parameter)
     {
-        Debug.Print("OrderViewModel.OnNavigatedTo");
         Source.Clear();
         var data = await _orderService.GetOrders();
         if (data != null)
         {
 
-            Debug.Print("_orderService.GetOrders...");
             foreach (var item in data)
             {
                 Source.Add(item);
             }
 
-            Debug.Print("_orderService.GetOrders...complete");
-            Debug.Print("_orderService.GetOrderDetails...");
 
             OrderDetailItem = await _orderService.GetOrderDetails(Source[0].OrderId);
-            Debug.Print("_orderService.GetOrderDetails...complete");
-
         }
     }
 

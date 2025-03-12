@@ -45,8 +45,10 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.231008000" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+		<PackageReference Include="payOS" Version="1.0.9" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
 		<PackageReference Include="StackExchange.Redis" Version="2.8.24" />
+		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
 		<PackageReference Include="WinUIEx" Version="2.3.2" />
 	</ItemGroup>
 
@@ -83,6 +85,7 @@
 
 	<ItemGroup>
 		<Folder Include="Assets\Authentication\" />
+		<Folder Include="Commands\" />
 		<Folder Include="InitDb\" />
 	</ItemGroup>
 

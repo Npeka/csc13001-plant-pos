@@ -25,6 +25,7 @@
                        Margin="28,0,0,0" />
         </Grid>
         <NavigationView x:Name="NavigationViewControl"
+                        OpenPaneLength="100"
                         Canvas.ZIndex="0"
                         IsBackButtonVisible="Visible"
                         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
@@ -33,7 +34,7 @@
                         ExpandedModeThresholdWidth="1280"
                         DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
                         ItemInvoked="NavigationView_ItemInvoked"
-                        Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                        Header="{x:Bind ((ContentControl)ViewModel.Selected).Name, Mode=OneWay}">
             <NavigationView.MenuItems>
                 <!--
                 TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
@@ -43,59 +44,82 @@
                 https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
                 -->
                 <!-- Staff -->
-                <NavigationViewItem x:Uid="Shell_Main"
-                                    x:Name="Admin_Main"
+                <NavigationViewItem x:Name="Admin_Main"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.MainViewModel">
-                    <NavigationViewItem.Icon>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xe7c3;" />
-                    </NavigationViewItem.Icon>
+                        <TextBlock Text="Main"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_ListDetails"
-                                    x:Name="Staff_ListDetails"
+
+                <NavigationViewItem x:Name="Staff_ListDetails"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.ListDetailsViewModel">
-                    <NavigationViewItem.Icon>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xea37;" />
-                    </NavigationViewItem.Icon>
+                        <TextBlock Text="List Details"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_ContentGrid"
-                                    x:Name="Staff_ContentGrid"
+
+                <NavigationViewItem x:Name="Staff_ContentGrid"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.ContentGridViewModel">
-                    <NavigationViewItem.Icon>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xf0e2;" />
-                    </NavigationViewItem.Icon>
+                        <TextBlock Text="Content Grid"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_DataGrid"
-                                    x:Name="Admin_DataGrid"
+
+                <NavigationViewItem x:Name="Admin_DataGrid"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.DataGridViewModel">
-                    <NavigationViewItem.Icon>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xe80a;" />
-                    </NavigationViewItem.Icon>
+                        <TextBlock Text="Data Grid"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
 
                 <!-- Admin -->
-                <NavigationViewItem x:Uid="Shell_Order"
-                                    x:Name="Admin_Order"
+                <NavigationViewItem x:Name="Admin_Order"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
                                     helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.OrderViewModel">
-                    <NavigationViewItem.Icon>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xE7BF;" />
-                    </NavigationViewItem.Icon>
+                        <TextBlock Text="Order"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
 
                 <!-- Logout -->
-                <NavigationViewItem x:Name="Logout">
-                    <NavigationViewItem.Icon>
+                <NavigationViewItem x:Name="Logout"
+                                    FontSize="12">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   Glyph="&#xF3B1;" />
-                        <!-- Logout icon -->
-                    </NavigationViewItem.Icon>
-                    <NavigationViewItem.Content>
-                        Logout
-                    </NavigationViewItem.Content>
+                        <TextBlock Text="Logout"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
@@ -108,7 +132,7 @@
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
             <i:Interaction.Behaviors>
-                <behaviors:NavigationViewHeaderBehavior DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Name, Mode=OneWay}">
                     <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                         <DataTemplate>
                             <Grid>

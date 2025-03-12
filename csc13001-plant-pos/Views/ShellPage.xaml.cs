@@ -53,7 +53,7 @@ public sealed partial class ShellPage : Page
         if (e.Parameter is Core.Models.User user)
         {
             this._user = user;
-            ViewModel.UpdateNavigationItemsBasedOnRole(this._user.IsAdmin);
+            //ViewModel.UpdateNavigationItemsBasedOnRole(this._user.IsAdmin);
         }
     }
 
@@ -111,7 +111,7 @@ public sealed partial class ShellPage : Page
         }
     }
 
-    private async void Logout_Click(object sender, RoutedEventArgs e)
+    private async void Logout_Click(object sender, RoutedEventArgs? e)
     {
         ContentDialog dialog = new ContentDialog
         {
