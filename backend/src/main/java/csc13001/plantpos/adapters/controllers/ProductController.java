@@ -19,8 +19,9 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<?> getAllProducts() {
+        List<Product> products = productService.getAllProducts();
+        return HttpResponse.ok("Get all products successful", products);
     }
 
     @PostMapping
