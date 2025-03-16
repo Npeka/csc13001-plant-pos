@@ -3,10 +3,10 @@ package csc13001.plantpos.adapters.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import csc13001.plantpos.domain.models.Product;
 import csc13001.plantpos.utils.http.HttpResponse;
+import csc13001.plantpos.application.dtos.product.ProductDTO;
 import csc13001.plantpos.application.services.ProductService;
 
 import java.util.List;
@@ -20,19 +20,8 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+        List<ProductDTO> products = productService.getAllProducts();
         return HttpResponse.ok("Get all products successful", products);
-    }
-
-    @PostMapping
-    public ResponseEntity<?> createProduct(
-            @RequestBody Product product,
-            BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return HttpResponse.badRequest(bindingResult);
-        }
-        Product createdProduct = productService.createProduct(product);
-        return HttpResponse.ok("Create product successful", createdProduct);
     }
 
     @GetMapping("/{id}")
@@ -42,14 +31,25 @@ public class ProductController {
 
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(
-            @PathVariable Long id,
-            @RequestBody Product productDetails, BindingResult bindingResult) {
+    @PostMapping
+    public ResponseEntity<?> createProduct(
+            @RequestBody ProductDTO productDTO,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
-        productService.updateProduct(id, productDetails);
+        Product createdProduct = productService.createProduct(productDTO);
+        return HttpResponse.ok("Create product successful", createdProduct);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateProduct(
+            @PathVariable Long id,
+            @RequestBody ProductDTO productDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return HttpResponse.badRequest(bindingResult);
+        }
+        productService.updateProduct(id, productDTO);
         return HttpResponse.ok("Update product successful");
     }
 

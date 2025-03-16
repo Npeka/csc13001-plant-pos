@@ -15,7 +15,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
@@ -53,12 +52,9 @@ public class AuthService {
         String username = loginDTO.getUsername();
         String password = loginDTO.getPassword();
 
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isEmpty()) {
-            throw new AuthException.UserNotFoundException();
-        }
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(AuthException.UserNotFoundException::new);
 
-        User user = userOptional.get();
         if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
             throw new AuthException.InvalidPasswordException();
         }
@@ -69,16 +65,13 @@ public class AuthService {
     }
 
     public void forgotPassword(String username) {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isEmpty()) {
-            throw new AuthException.UserNotFoundException();
-        }
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(AuthException.UserNotFoundException::new);
 
         String key = "otp:" + username + ":otp";
         int otp = ThreadLocalRandom.current().nextInt(100000, 1000000);
         redisTemplate.opsForValue().set(key, String.valueOf(otp), OTP_EXPIRATION_TIME, TimeUnit.MINUTES);
 
-        User user = userOptional.get();
         OtpEvent event = new OtpEvent(user.getEmail(), String.valueOf(otp));
         eventPublisher.publishEvent(event);
     }
@@ -103,13 +96,10 @@ public class AuthService {
             throw new AuthException.InvalidPasswordException();
         }
 
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            user.setPassword(bCryptPasswordEncoder.encode(newPassword));
-            userRepository.save(user);
-        } else {
-            throw new AuthException.UserNotFoundException();
-        }
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(AuthException.UserNotFoundException::new);
+
+        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }

@@ -3,17 +3,15 @@ package csc13001.plantpos.application.services;
 import csc13001.plantpos.adapters.repositories.CategoryRepository;
 import csc13001.plantpos.domain.models.Category;
 import csc13001.plantpos.exception.category.CategoryException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
-
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
@@ -23,11 +21,13 @@ public class CategoryService {
         if (categoryRepository.findByName(category.getName()).isPresent()) {
             throw new CategoryException.CategoryExistsException();
         }
+
         return categoryRepository.save(category);
     }
 
     public Category getCategoryById(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+        return categoryRepository.findById(id)
+                .orElseThrow(CategoryException.CategoryNotFoundException::new);
     }
 
     public Category updateCategory(Long id, Category categoryDetails) {
@@ -37,7 +37,7 @@ public class CategoryService {
                     existingCategory.setDescription(categoryDetails.getDescription());
                     return categoryRepository.save(existingCategory);
                 })
-                .orElseThrow(() -> new CategoryException.CategoryNotFoundException());
+                .orElseThrow(CategoryException.CategoryNotFoundException::new);
     }
 
     public void deleteCategory(Long id) {

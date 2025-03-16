@@ -18,4 +18,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex) {
         return HttpResponse.badRequest("null source");
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleGeneralException(Exception ex) {
+        return HttpResponse.invalidInputData(ex.getMessage());
+    }
 }

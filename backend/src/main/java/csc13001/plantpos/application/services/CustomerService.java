@@ -27,6 +27,10 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
+    public Customer createCustomerIfNotExists(Customer customer) {
+        return customerRepository.findByPhone(customer.getPhone()).orElseGet(() -> customerRepository.save(customer));
+    }
+
     public Customer getCustomerById(Long id) {
         return customerRepository.findById(id).orElse(null);
     }

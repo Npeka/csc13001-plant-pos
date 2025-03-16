@@ -29,16 +29,13 @@ public class DiscountProgramService {
     }
 
     public DiscountProgram getDiscountProgramById(Long id) {
-        try {
-            return discountProgramRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new DiscountException.DiscountNotFoundException();
-        }
+        return discountProgramRepository.findById(id)
+                .orElseThrow(DiscountException.DiscountNotFoundException::new);
     }
 
     public void updateDiscountProgram(Long id, DiscountProgram discountProgram) {
         DiscountProgram existingDiscount = discountProgramRepository.findById(id)
-                .orElseThrow(() -> new DiscountException.DiscountNotFoundException());
+                .orElseThrow(DiscountException.DiscountNotFoundException::new);
 
         Date startDate = discountProgram.getStartDate();
         Date endDate = discountProgram.getEndDate();
@@ -50,10 +47,9 @@ public class DiscountProgramService {
     }
 
     public void deleteDiscountProgram(Long id) {
-        try {
-            discountProgramRepository.deleteById(id);
-        } catch (Exception e) {
+        if (!discountProgramRepository.existsById(id)) {
             throw new DiscountException.DiscountNotFoundException();
         }
+        discountProgramRepository.deleteById(id);
     }
 }

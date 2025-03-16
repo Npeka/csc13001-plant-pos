@@ -22,7 +22,7 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
-    @NotBlank(message = "Username is mandatory")
+    @NotBlank(message = "Username is required")
     @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -31,12 +31,12 @@ public class User {
     @Column(name = "email", nullable = true, unique = true)
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
-    @Size(min = 5, max = 255, message = "Password must be between 6 and 255 characters")
+    @NotBlank(message = "Password is required")
+    @Size(min = 5, max = 255, message = "Password must be between 5 and 255 characters")
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotNull(message = "isAdmin is mandatory")
+    @NotNull(message = "isAdmin is required")
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin;
 

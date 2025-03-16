@@ -17,4 +17,9 @@ public class CategoryExceptionHandler {
     public ResponseEntity<?> handleCustomerNotFound(CategoryException.CategoryNotFoundException ex) {
         return HttpResponse.badRequest(CategoryErrorMessages.CATEGORY_NOT_FOUND);
     }
+
+    @ExceptionHandler(CategoryException.CategoryUpdateFailedException.class)
+    public ResponseEntity<?> handleCategoryUpdateFailed(CategoryException.CategoryUpdateFailedException ex) {
+        return HttpResponse.badRequest(CategoryErrorMessages.CATEGORY_UPDATE_FAILED);
+    }
 }

@@ -2,6 +2,7 @@ package csc13001.plantpos.application.services;
 
 import csc13001.plantpos.adapters.repositories.CategoryRepository;
 import csc13001.plantpos.adapters.repositories.ProductRepository;
+import csc13001.plantpos.application.dtos.product.ProductDTO;
 import csc13001.plantpos.domain.models.Category;
 import csc13001.plantpos.domain.models.Product;
 import csc13001.plantpos.exception.product.ProductException;
@@ -10,9 +11,9 @@ import csc13001.plantpos.exception.category.CategoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -22,46 +23,67 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
-
-    public Product createProduct(Product product) {
-        Set<Category> existingCategories = new HashSet<>();
-        for (Category category : product.getCategories()) {
-            Category existingCategory = categoryRepository.findById(category.getCategoryId())
-                    .orElseThrow(CategoryException.CategoryNotFoundException::new);
-            existingCategories.add(existingCategory);
-        }
-        product.setCategories(existingCategories);
-        return productRepository.save(product);
+    public List<ProductDTO> getAllProducts() {
+        return productRepository.findAll().stream()
+                .map(ProductDTO::new)
+                .collect(Collectors.toList());
     }
 
     public Product getProductById(Long id) {
-        try {
-            return productRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new ProductException.ProductNotFoundException();
-        }
+        return productRepository.findById(id)
+                .orElseThrow(ProductException.ProductNotFoundException::new);
     }
 
-    public void updateProduct(Long id, Product productDetails) {
-        try {
-            Product product = productRepository.findById(id).get();
+    public Product createProduct(ProductDTO productDTO) {
+        Category category = categoryRepository.findByName(productDTO.getCategoryName())
+                .orElseThrow(CategoryException.CategoryNotFoundException::new);
 
-            product.setName(productDetails.getName());
-            product.setPrice(productDetails.getPrice());
+        Product product = new Product();
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setCareLevel(productDTO.getCareLevel());
+        product.setEnvironmentType(productDTO.getEnvironmentType());
+        product.setSize(productDTO.getSize());
+        product.setLightRequirement(productDTO.getLightRequirement());
+        product.setWateringSchedule(productDTO.getWateringSchedule());
+        product.setCategory(category);
 
-        } catch (Exception e) {
-            throw new ProductException.ProductNotFoundException();
+        return productRepository.save(product);
+    }
+
+    public void updateProduct(Long id, ProductDTO productDTO) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(ProductException.ProductNotFoundException::new);
+
+        for (Field dtoField : ProductDTO.class.getDeclaredFields()) {
+            dtoField.setAccessible(true);
+            try {
+                Object newValue = dtoField.get(productDTO);
+                if (newValue == null)
+                    continue;
+
+                if (dtoField.getName().equals("categoryName")) {
+                    Category category = categoryRepository.findByName((String) newValue)
+                            .orElseThrow(CategoryException.CategoryNotFoundException::new);
+                    product.setCategory(category);
+                } else {
+                    Field productField = Product.class.getDeclaredField(dtoField.getName());
+                    productField.setAccessible(true);
+                    productField.set(product, newValue);
+                }
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new CategoryException.CategoryUpdateFailedException();
+            }
         }
+
+        productRepository.save(product);
     }
 
     public void deleteProduct(Long productId) {
-        try {
-            productRepository.deleteById(productId);
-        } catch (Exception e) {
+        if (!productRepository.existsById(productId)) {
             throw new ProductException.ProductNotFoundException();
         }
+        productRepository.deleteById(productId);
     }
 }

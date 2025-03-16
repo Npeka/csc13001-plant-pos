@@ -2,6 +2,7 @@ package csc13001.plantpos.adapters.controllers;
 
 import csc13001.plantpos.application.dtos.order.CreateOrderDTO;
 import csc13001.plantpos.application.dtos.order.UpdateOrderDTO;
+import csc13001.plantpos.application.dtos.order.UpdateOrderStatusDTO;
 import csc13001.plantpos.application.services.OrderService;
 import csc13001.plantpos.domain.models.Order;
 import csc13001.plantpos.utils.http.HttpResponse;
@@ -55,6 +56,14 @@ public class OrderController {
         Order order = orderService.updateOrder(updateOrderDTO);
 
         return HttpResponse.ok("Order updated successfully", order);
+    }
+
+    @PutMapping("/{orderId}/status")
+    public ResponseEntity<?> updateOrderStatus(
+            @PathVariable Long orderId,
+            @RequestBody @Validated UpdateOrderStatusDTO updateOrderStatusDTO) {
+        Order order = orderService.updateOrderStatus(orderId, updateOrderStatusDTO.getStatus());
+        return HttpResponse.ok("Order status updated successfully", order);
     }
 
     @DeleteMapping("/{orderId}")
