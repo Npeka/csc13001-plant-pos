@@ -13,6 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class RegisterDTO extends JsonModel {
+    @NotBlank(message = "Fullname is required")
+    @Size(min = 5, max = 256, message = "Fullname must be between 5 and 256 characters")
+    private String fullname;
+
     @NotBlank(message = "Username is required")
     @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
     private String username;

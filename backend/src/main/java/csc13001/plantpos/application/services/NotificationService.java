@@ -2,19 +2,18 @@ package csc13001.plantpos.application.services;
 
 import csc13001.plantpos.domain.events.NotificationEvent;
 import csc13001.plantpos.domain.events.OtpEvent;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-
 @Service
+@RequiredArgsConstructor
 public class NotificationService {
-
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     @Async
     @EventListener
@@ -25,7 +24,7 @@ public class NotificationService {
     @Async
     @EventListener
     public void handlerOtpEven(OtpEvent event) {
-//        sendEmail(event.getRecipient(), "OTP Verification", event.getMessage());
+        // sendEmail(event.getRecipient(), "OTP Verification", event.getMessage());
     }
 
     private void sendEmail(String to, String subject, String text) {

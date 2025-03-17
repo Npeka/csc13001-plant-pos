@@ -18,8 +18,9 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    public ResponseEntity<?> getAllCustomers() {
+        List<Customer> customers = customerService.getAllCustomers();
+        return HttpResponse.ok("Get all customers successful", customers);
     }
 
     @PostMapping

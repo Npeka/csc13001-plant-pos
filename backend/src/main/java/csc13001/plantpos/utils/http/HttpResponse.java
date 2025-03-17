@@ -5,14 +5,21 @@ import org.springframework.validation.BindingResult;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 public class HttpResponse<T> {
+    @Schema(description = "Status of the response", example = "success")
     private final Status status;
+
+    @Schema(description = "Message of the response", example = "Get all products successful")
     private final String message;
+
+    @Schema(description = "Data of the response")
     private final T data;
 
     public static <T> HttpResponse<T> success(String message, T data) {

@@ -22,4 +22,9 @@ public class CategoryException extends RuntimeException {
         }
     }
 
+    public static class CategoryUpdateFailedException extends CategoryException {
+        public CategoryUpdateFailedException() {
+            super(CategoryErrorMessages.CATEGORY_UPDATE_FAILED);
+        }
+    }
 }

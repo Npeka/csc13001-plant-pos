@@ -22,12 +22,12 @@ public class Category {
     @Column(name = "category_id")
     private Long categoryId;
 
-    @NotBlank(message = "Name is mandatory")
-    @Size(max = 100, message = "Name should not exceed 100 characters")
+    @NotBlank(message = "Category is required")
+    @Size(max = 100, message = "Category name should not exceed 100 characters")
     @Column(name = "name", nullable = false, unique = true)
     private String name = "";
 
-    @Size(max = 255, message = "Description should not exceed 255 characters")
+    @Size(max = 255, message = "Category description should not exceed 255 characters")
     @Column(name = "description")
     private String description;
 

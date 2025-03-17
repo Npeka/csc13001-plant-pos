@@ -4,6 +4,7 @@ import csc13001.plantpos.adapters.repositories.*;
 import csc13001.plantpos.application.dtos.order.CreateOrderDTO;
 import csc13001.plantpos.application.dtos.order.OrderDetailDTO;
 import csc13001.plantpos.application.dtos.order.UpdateOrderDTO;
+import csc13001.plantpos.domain.enums.OrderStatus;
 import csc13001.plantpos.domain.models.Customer;
 import csc13001.plantpos.domain.models.DiscountProgram;
 import csc13001.plantpos.domain.models.Order;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -26,7 +28,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderService {
     private final CustomerService customerService;
-    private final StaffRepository staffRepository;
+    private final InventoryService inventoryService;
+    private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
     private final ProductRepository productRepository;
@@ -39,23 +42,24 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(CreateOrderDTO createOrderDTO) {
-        Customer customer = customerService.createCustomer(Customer.builder()
+        Customer customer = customerService.createCustomerIfNotExists(Customer.builder()
                 .phone(createOrderDTO.getCustomerPhone())
                 .build());
 
-        if (!staffRepository.existsById(createOrderDTO.getStaffId())) {
+        if (!userRepository.existsById(createOrderDTO.getStaffId())) {
             throw new StaffException.StaffNotFoundException();
         }
 
         Order order = Order.builder()
                 .customerId(customer.getCustomerId())
                 .staffId(createOrderDTO.getStaffId())
-                .totalPrice(createOrderDTO.getTotalPrice())
-                .status(createOrderDTO.getStatus())
+                .status(OrderStatus.PENDING)
+                .totalPrice(BigDecimal.ZERO)
                 .build();
 
         Order savedOrder = orderRepository.save(order);
-        this.createOrderDetailsAsync(createOrderDTO, savedOrder);
+        BigDecimal totalPrice = this.createOrderDetails(createOrderDTO, savedOrder);
+        savedOrder.setTotalPrice(totalPrice);
 
         // eventPublisher.publishEvent(
         // new OrderCreatedEvent(
@@ -65,10 +69,15 @@ public class OrderService {
         return savedOrder;
     }
 
-    public void createOrderDetailsAsync(CreateOrderDTO createOrderDTO, Order savedOrder) {
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public BigDecimal createOrderDetails(CreateOrderDTO createOrderDTO, Order savedOrder) {
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
         for (OrderDetailDTO orderDetailDTO : createOrderDTO.getItems()) {
             Product product = productRepository.findById(orderDetailDTO.getProductId())
                     .orElseThrow(ProductException.ProductNotFoundException::new);
+
+            inventoryService.updateStock(product.getProductId(), orderDetailDTO.getQuantity());
 
             Long discountId = orderDetailDTO.getDiscountId();
             DiscountProgram discountProgram = null;
@@ -78,6 +87,7 @@ public class OrderService {
             }
 
             BigDecimal unitPrice = product.getPrice();
+            totalPrice = totalPrice.add(unitPrice);
 
             OrderDetail orderDetail = OrderDetail.builder()
                     .orderId(savedOrder.getOrderId())
@@ -89,12 +99,13 @@ public class OrderService {
 
             orderDetailRepository.save(orderDetail);
         }
+
+        return totalPrice;
     }
 
     public Order getOrderById(Long orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(OrderException.OrderNotFoundException::new);
-
         return order;
     }
 
@@ -106,6 +117,24 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
+    @Transactional
+    public Order updateOrderStatus(Long orderId, OrderStatus status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(OrderException.OrderNotFoundException::new);
+
+        if (status == OrderStatus.CANCELED && order.getStatus() != OrderStatus.CANCELED) {
+            List<OrderDetail> orderDetails = orderDetailRepository.findByOrderId(orderId);
+            for (OrderDetail orderDetail : orderDetails) {
+                Product product = productRepository.findById(orderDetail.getProductId())
+                        .orElseThrow(ProductException.ProductNotFoundException::new);
+                inventoryService.updateStock(product.getProductId(), -orderDetail.getQuantity());
+            }
+        }
+
+        order.setStatus(status);
+        return orderRepository.save(order);
+    }
+
     public void deleteOrder(Long orderId) {
         try {
             orderRepository.deleteById(orderId);
@@ -113,5 +142,4 @@ public class OrderService {
             throw new OrderException.OrderNotFoundException();
         }
     }
-
 }

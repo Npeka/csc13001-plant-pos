@@ -17,4 +17,9 @@ public class ProductExceptionHandler {
     public ResponseEntity<?> handleProductNotFound(ProductException.ProductNotFoundException ex) {
         return HttpResponse.badRequest(ProductErrorMessages.PRODUCT_NOT_FOUND);
     }
+
+    @ExceptionHandler(ProductException.ProductWrongTypeImageException.class)
+    public ResponseEntity<?> handleProductImage(ProductException.ProductWrongTypeImageException ex) {
+        return HttpResponse.badRequest(ProductErrorMessages.PRODUCT_WRONG_TYPE_IMAGE);
+    }
 }

@@ -3,19 +3,16 @@ package csc13001.plantpos.application.services;
 import csc13001.plantpos.adapters.repositories.CustomerRepository;
 import csc13001.plantpos.domain.models.Customer;
 import csc13001.plantpos.exception.customer.CustomerException;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
-
     private final CustomerRepository customerRepository;
-
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
-
+    
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
@@ -25,6 +22,10 @@ public class CustomerService {
             throw new CustomerException.CustomerExistsException();
         }
         return customerRepository.save(customer);
+    }
+
+    public Customer createCustomerIfNotExists(Customer customer) {
+        return customerRepository.findByPhone(customer.getPhone()).orElseGet(() -> customerRepository.save(customer));
     }
 
     public Customer getCustomerById(Long id) {

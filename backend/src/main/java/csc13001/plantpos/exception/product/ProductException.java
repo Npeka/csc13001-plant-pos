@@ -22,4 +22,9 @@ public class ProductException extends RuntimeException {
         }
     }
 
+    public static class ProductWrongTypeImageException extends ProductException {
+        public ProductWrongTypeImageException() {
+            super(ProductErrorMessages.PRODUCT_WRONG_TYPE_IMAGE);
+        }
+    }
 }

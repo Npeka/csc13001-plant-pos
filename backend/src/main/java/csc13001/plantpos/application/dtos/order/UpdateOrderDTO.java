@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class UpdateOrderDTO extends JsonModel {
     private Long id;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 }
