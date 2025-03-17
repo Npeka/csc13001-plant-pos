@@ -4,14 +4,14 @@ services:
     container_name: csc13001-plant-pos-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mysql
+      MYSQL_DATABASE: plantdb
       MYSQL_USER: plantstore
       MYSQL_PASSWORD: plantstore
     ports:
       - "33306:3306"
     volumes:
-      - "mysql_data:/var/lib/mysql"
-      - "./initdb:/docker-entrypoint-initdb.d"
+      - mysql_data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
     restart: always
 
   redis:
@@ -27,6 +27,21 @@ services:
       - redis_data:/data
     restart: always
 
+  minio:
+    image: quay.io/minio/minio
+    container_name: csc13001-plant-pos-minio
+    environment:
+      MINIO_ROOT_USER: plantpos
+      MINIO_ROOT_PASSWORD: plantpos
+    ports:
+      - "9000:9000" # API
+      - "9001:9001" # Web UI
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    restart: always
+
 volumes:
   mysql_data:
   redis_data:
+  minio_data:

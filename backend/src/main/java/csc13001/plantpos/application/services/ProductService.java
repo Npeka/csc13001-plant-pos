@@ -3,25 +3,26 @@ package csc13001.plantpos.application.services;
 import csc13001.plantpos.adapters.repositories.CategoryRepository;
 import csc13001.plantpos.adapters.repositories.ProductRepository;
 import csc13001.plantpos.application.dtos.product.ProductDTO;
+import csc13001.plantpos.domain.enums.MinioBucket;
 import csc13001.plantpos.domain.models.Category;
 import csc13001.plantpos.domain.models.Product;
-import csc13001.plantpos.exception.product.ProductException;
 import csc13001.plantpos.exception.category.CategoryException;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import csc13001.plantpos.exception.product.ProductException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+    private final MinIOService minIOService;
 
     public List<ProductDTO> getAllProducts() {
         return productRepository.findAll().stream()
@@ -34,7 +35,8 @@ public class ProductService {
                 .orElseThrow(ProductException.ProductNotFoundException::new);
     }
 
-    public Product createProduct(ProductDTO productDTO) {
+    @Transactional
+    public Product createProduct(ProductDTO productDTO, MultipartFile image) {
         Category category = categoryRepository.findByName(productDTO.getCategoryName())
                 .orElseThrow(CategoryException.CategoryNotFoundException::new);
 
@@ -48,6 +50,9 @@ public class ProductService {
         product.setLightRequirement(productDTO.getLightRequirement());
         product.setWateringSchedule(productDTO.getWateringSchedule());
         product.setCategory(category);
+
+        String imageurl = minIOService.uploadFile(image, MinioBucket.PRODUCT);
+        product.setImageUrl(imageurl);
 
         return productRepository.save(product);
     }

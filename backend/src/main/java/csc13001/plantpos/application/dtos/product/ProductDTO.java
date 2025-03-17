@@ -23,6 +23,8 @@ public class ProductDTO extends JsonModel {
 
     private String description;
 
+    private String imageUrl;
+
     @NotNull(message = "Price cannot be null")
     private BigDecimal price;
 
@@ -49,6 +51,7 @@ public class ProductDTO extends JsonModel {
         this.productId = product.getProductId();
         this.name = product.getName();
         this.description = product.getDescription();
+        this.imageUrl = product.getImageUrl();
         this.price = product.getPrice();
         this.stock = product.getStock();
         this.careLevel = product.getCareLevel();

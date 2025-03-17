@@ -6,23 +6,19 @@ import csc13001.plantpos.domain.models.Inventory;
 import csc13001.plantpos.domain.models.Product;
 import csc13001.plantpos.exception.inventory.InventoryException;
 import csc13001.plantpos.exception.product.ProductException;
+import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class InventoryService {
-
-    @Autowired
-    private InventoryRepository inventoryRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
+    private final InventoryRepository inventoryRepository;
+    private final ProductRepository productRepository;
 
     public List<Inventory> getAllInventoryItems() {
         return inventoryRepository.findAll();

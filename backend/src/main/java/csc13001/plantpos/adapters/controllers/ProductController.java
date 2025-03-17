@@ -1,9 +1,16 @@
 package csc13001.plantpos.adapters.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import csc13001.plantpos.domain.models.Product;
 import csc13001.plantpos.utils.http.HttpResponse;
 import csc13001.plantpos.application.dtos.product.ProductDTO;
@@ -28,17 +35,20 @@ public class ProductController {
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
         return HttpResponse.ok("Get product successful", product);
-
     }
 
-    @PostMapping
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<?> createProduct(
-            @RequestBody ProductDTO productDTO,
-            BindingResult bindingResult) {
+            @RequestPart("product") String productJson,
+            @RequestPart(value = "image", required = false) MultipartFile image,
+            BindingResult bindingResult) throws JsonMappingException, JsonProcessingException {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
-        Product createdProduct = productService.createProduct(productDTO);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ProductDTO productDTO = objectMapper.readValue(productJson, ProductDTO.class);
+        Product createdProduct = productService.createProduct(productDTO, image);
         return HttpResponse.ok("Create product successful", createdProduct);
     }
 

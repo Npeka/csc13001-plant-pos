@@ -32,12 +32,12 @@ public class Inventory {
     private Product product;
 
     @NotNull(message = "Quantity is required")
-    @Min(value = 1, message = "Quantity must be greater than 0")
+    @Min(value = 0, message = "Quantity must be positive")
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
     @NotNull(message = "Purchase price is required")
-    @Min(value = 0, message = "Purchase price must be greater than 0")
+    @Min(value = 0, message = "Purchase price must be positive")
     @Column(name = "purchase_price", nullable = false, precision = 18, scale = 2)
     private BigDecimal purchasePrice;
 

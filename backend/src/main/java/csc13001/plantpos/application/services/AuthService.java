@@ -9,7 +9,8 @@ import csc13001.plantpos.config.JwtUtil;
 import csc13001.plantpos.domain.events.OtpEvent;
 import csc13001.plantpos.domain.models.User;
 import csc13001.plantpos.exception.auth.AuthException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,23 +20,18 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
-
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+    private final JwtUtil jwtUtil;
+    private final UserRepository userRepository;
+    private final ApplicationEventPublisher eventPublisher;
+    private final StringRedisTemplate redisTemplate;
     private static final long OTP_EXPIRATION_TIME = 5;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public void register(RegisterDTO registerDTO) {
+        String fullname = registerDTO.getFullname();
         String username = registerDTO.getUsername();
         String password = registerDTO.getPassword();
 
@@ -44,7 +40,7 @@ public class AuthService {
         }
 
         String hashedPassword = bCryptPasswordEncoder.encode(password);
-        User newUser = new User(username, hashedPassword);
+        User newUser = new User(fullname, username, hashedPassword);
         userRepository.save(newUser);
     }
 

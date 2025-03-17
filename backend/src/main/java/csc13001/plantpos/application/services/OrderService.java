@@ -29,7 +29,7 @@ import java.util.List;
 public class OrderService {
     private final CustomerService customerService;
     private final InventoryService inventoryService;
-    private final StaffRepository staffRepository;
+    private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
     private final ProductRepository productRepository;
@@ -46,7 +46,7 @@ public class OrderService {
                 .phone(createOrderDTO.getCustomerPhone())
                 .build());
 
-        if (!staffRepository.existsById(createOrderDTO.getStaffId())) {
+        if (!userRepository.existsById(createOrderDTO.getStaffId())) {
             throw new StaffException.StaffNotFoundException();
         }
 

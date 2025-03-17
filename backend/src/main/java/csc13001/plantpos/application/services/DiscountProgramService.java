@@ -3,17 +3,17 @@ package csc13001.plantpos.application.services;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import csc13001.plantpos.adapters.repositories.DiscountProgramRepository;
 import csc13001.plantpos.domain.models.DiscountProgram;
 import csc13001.plantpos.exception.discount.DiscountException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class DiscountProgramService {
-    @Autowired
-    private DiscountProgramRepository discountProgramRepository;
+    private final DiscountProgramRepository discountProgramRepository;
 
     public List<DiscountProgram> getDiscountPrograms() {
         return discountProgramRepository.findAll();

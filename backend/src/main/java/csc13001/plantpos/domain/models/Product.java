@@ -37,6 +37,9 @@ public class Product extends JsonModel {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "image")
+    private String imageUrl;
+
     @NotNull(message = "Price cannot be null")
     @Column(name = "price", columnDefinition = "decimal(18,2)")
     private BigDecimal price;
@@ -63,10 +66,12 @@ public class Product extends JsonModel {
     @Column(name = "watering_schedule")
     private int wateringSchedule;
 
-    public Product(String name, String description, BigDecimal price, int stock, int careLevel, String environmentType,
-            String size, int lightRequirement, int wateringSchedule, Category category) {
+    public Product(
+            String name, String description, String imageUrl, BigDecimal price, int stock, int careLevel,
+            String environmentType, String size, int lightRequirement, int wateringSchedule, Category category) {
         this.name = name;
         this.description = description;
+        this.imageUrl = imageUrl;
         this.price = price;
         this.stock = stock;
         this.careLevel = careLevel;

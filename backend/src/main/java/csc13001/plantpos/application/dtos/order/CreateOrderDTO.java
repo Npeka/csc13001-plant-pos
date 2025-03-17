@@ -4,6 +4,7 @@ import csc13001.plantpos.domain.enums.OrderStatus;
 import csc13001.plantpos.utils.http.JsonModel;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,7 +21,10 @@ public class CreateOrderDTO extends JsonModel {
     private String customerPhone;
 
     private Long staffId;
+
+    @Valid
     private List<OrderDetailDTO> items;
+
     private BigDecimal totalPrice;
 
     @Enumerated(EnumType.STRING)
