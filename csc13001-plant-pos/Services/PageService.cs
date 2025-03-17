@@ -20,6 +20,9 @@ public class PageService : IPageService
         Configure<ContentGridDetailViewModel, ContentGridDetailPage>();
         Configure<DataGridViewModel, DataGridPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<AuthenticationViewModel, AuthenticationPage>();
+        Configure<ShellViewModel, ShellPage>();
+        Configure<OrderViewModel, OrderPage>();
         Configure<SaleViewModel, SalePage>();
         Configure<AddStaffViewModel, AddStaffPage>();
         Configure<DiscountViewModel, DiscountPage>();

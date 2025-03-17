@@ -1,4 +1,5 @@
 ﻿using csc13001_plant_pos.Contracts.Services;
+using csc13001_plant_pos.Core.Models;
 using csc13001_plant_pos.Helpers;
 using csc13001_plant_pos.ViewModels;
 
@@ -6,8 +7,9 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-
 using Windows.System;
+using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace csc13001_plant_pos.Views;
 
@@ -19,9 +21,11 @@ public sealed partial class ShellPage : Page
         get;
     }
 
-    public ShellPage(ShellViewModel viewModel)
+    private Core.Models.User _user;
+
+    public ShellPage()
     {
-        ViewModel = viewModel;
+        ViewModel = App.GetService<ShellViewModel>();
         InitializeComponent();
 
         ViewModel.NavigationService.Frame = NavigationFrame;
@@ -42,6 +46,15 @@ public sealed partial class ShellPage : Page
 
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
+    }
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+        if (e.Parameter is Core.Models.User user)
+        {
+            this._user = user;
+            //ViewModel.UpdateNavigationItemsBasedOnRole(this._user.IsAdmin);
+        }
     }
 
     private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
@@ -81,5 +94,49 @@ public sealed partial class ShellPage : Page
         var result = navigationService.GoBack();
 
         args.Handled = result;
+    }
+
+    private async void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    {
+        if (args != null && args.InvokedItemContainer != null)
+        {
+            var item = args.InvokedItemContainer.Name.ToString();
+            if (item == "Logout")
+            {
+                Logout_Click(sender, null);
+            }
+            else
+            {
+            }
+        }
+    }
+
+    private async void Logout_Click(object sender, RoutedEventArgs? e)
+    {
+        ContentDialog dialog = new ContentDialog
+        {
+            XamlRoot = this.XamlRoot,
+            Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+            Title = "Confirm Logout",
+            Content = "Are you sure you want to log out?",
+            CloseButtonText = "No",
+            PrimaryButtonText = "Yes",
+            DefaultButton = ContentDialogButton.Primary,
+        };
+
+        var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Primary && App.MainWindow.Content is Frame frame)
+        {
+            if (frame.BackStack.Count > 0)
+            {
+                this._user = null;
+                frame.GoBack();
+            }
+            else
+            {
+                frame.Navigate(typeof(AuthenticationPage), null, new EntranceNavigationTransitionInfo());
+            }
+        }
     }
 }

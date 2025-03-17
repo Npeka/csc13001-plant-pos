@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:9.1.0
+    container_name: csc13001-plant-pos-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: plantstore
+      MYSQL_PASSWORD: plantstore
+    ports:
+      - "33306:3306"
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+      - "./initdb:/docker-entrypoint-initdb.d"
+    restart: always
+
+  redis:
+    image: redis:alpine
+    container_name: csc13001-plant-pos-redis
+    environment:
+      REDIS_PASSWORD: ""
+      REDIS_DB: 0
+      REDIS_POOL_SIZE: 10
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+
+volumes:
+  mysql_data:
+  redis_data:

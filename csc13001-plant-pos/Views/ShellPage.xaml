@@ -1,43 +1,40 @@
-﻿<Page
-    x:Class="csc13001_plant_pos.Views.ShellPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:behaviors="using:csc13001_plant_pos.Behaviors"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:helpers="using:csc13001_plant_pos.Helpers"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Loaded="OnLoaded">
+﻿<Page x:Class="csc13001_plant_pos.Views.ShellPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:helpers="using:csc13001_plant_pos.Helpers"
+      xmlns:behaviors="using:csc13001_plant_pos.Behaviors"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      Loaded="OnLoaded">
 
     <Grid>
-        <Grid
-            x:Name="AppTitleBar"
-            Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
-            VerticalAlignment="Top"
-            Canvas.ZIndex="1"
-            IsHitTestVisible="True">
-            <Image
-                Width="16"
-                Height="16"
-                HorizontalAlignment="Left"
-                Source="/Assets/WindowIcon.ico" />
-            <TextBlock
-                x:Name="AppTitleBarText"
-                Margin="28,0,0,0"
-                VerticalAlignment="Center"
-                Style="{StaticResource CaptionTextBlockStyle}"
-                TextWrapping="NoWrap" />
+        <Grid x:Name="AppTitleBar"
+              Canvas.ZIndex="1"
+              Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+              IsHitTestVisible="True"
+              VerticalAlignment="Top">
+            <Image Source="/Assets/WindowIcon.ico"
+                   HorizontalAlignment="Left"
+                   Width="16"
+                   Height="16" />
+            <TextBlock x:Name="AppTitleBarText"
+                       VerticalAlignment="Center"
+                       TextWrapping="NoWrap"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="28,0,0,0" />
         </Grid>
-        <NavigationView
-            x:Name="NavigationViewControl"
-            Canvas.ZIndex="0"
-            DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-            ExpandedModeThresholdWidth="1280"
-            Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
-            IsBackButtonVisible="Visible"
-            IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-            IsSettingsVisible="True"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+        <NavigationView x:Name="NavigationViewControl"
+                        OpenPaneLength="100"
+                        Canvas.ZIndex="0"
+                        IsBackButtonVisible="Visible"
+                        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+                        IsSettingsVisible="True"
+                        ExpandedModeThresholdWidth="1280"
+                        DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                        ItemInvoked="NavigationView_ItemInvoked"
+                        Header="{x:Bind ((ContentControl)ViewModel.Selected).Name, Mode=OneWay}">
             <NavigationView.MenuItems>
                 <!--
                 TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
@@ -46,21 +43,83 @@
                 TODO: Update item icons by updating FontIcon.Glyph properties.
                 https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
                 -->
-                <NavigationViewItem x:Uid="Shell_Main" helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.MainViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;" />
-                    </NavigationViewItem.Icon>
+                <!-- Staff -->
+                <NavigationViewItem x:Name="Admin_Main"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
+                                    helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.MainViewModel">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xe7c3;" />
+                        <TextBlock Text="Main"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_ListDetails" helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.ListDetailsViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xea37;" />
-                    </NavigationViewItem.Icon>
+
+                <NavigationViewItem x:Name="Staff_ListDetails"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
+                                    helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.ListDetailsViewModel">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xea37;" />
+                        <TextBlock Text="List Details"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_ContentGrid" helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.ContentGridViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xf0e2;" />
-                    </NavigationViewItem.Icon>
+
+                <NavigationViewItem x:Name="Staff_ContentGrid"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
+                                    helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.ContentGridViewModel">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xf0e2;" />
+                        <TextBlock Text="Content Grid"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
                 </NavigationViewItem>
+
+                <NavigationViewItem x:Name="Admin_DataGrid"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
+                                    helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.DataGridViewModel">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xe80a;" />
+                        <TextBlock Text="Data Grid"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </NavigationViewItem>
+
+                <!-- Admin -->
+                <NavigationViewItem x:Name="Admin_Order"
+                                    Margin="0,10,0,10"
+                                    FontSize="12"
+                                    helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.OrderViewModel">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE7BF;" />
+                        <TextBlock Text="Order"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </NavigationViewItem>
+
+                <!-- Logout -->
+                <NavigationViewItem x:Name="Logout"
+                                    FontSize="12">
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xF3B1;" />
+                        <TextBlock Text="Logout"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
                 <NavigationViewItem x:Uid="Shell_DataGrid" helpers:NavigationHelper.NavigateTo="csc13001_plant_pos.ViewModels.DataGridViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe80a;" />
@@ -82,19 +141,22 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
+
             <NavigationView.HeaderTemplate>
                 <DataTemplate>
                     <Grid>
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{Binding}" />
+                        <TextBlock Text="{Binding}"
+                                   Style="{ThemeResource TitleTextBlockStyle}" />
                     </Grid>
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
             <i:Interaction.Behaviors>
-                <behaviors:NavigationViewHeaderBehavior DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Name, Mode=OneWay}">
                     <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                         <DataTemplate>
                             <Grid>
-                                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{Binding}" />
+                                <TextBlock Text="{Binding}"
+                                           Style="{ThemeResource TitleTextBlockStyle}" />
                             </Grid>
                         </DataTemplate>
                     </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>

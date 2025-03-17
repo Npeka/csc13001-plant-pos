@@ -1,0 +1,20 @@
+﻿<Page x:Class="csc13001_plant_pos_frontend.Views.AuthenticationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="using:csc13001_plant_pos_frontend.Views.Authentication"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <ImageBrush x:Key="PageBackground"
+                    ImageSource="ms-appx:///Assets/Authentication/Background.jpg"
+                    Stretch="UniformToFill" />
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea"
+          Background="{StaticResource PageBackground}">
+        <local:FormLayout x:Name="FormLayout"
+                          Child="{x:Bind LoginForm}" />
+    </Grid>
+</Page>

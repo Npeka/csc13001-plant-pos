@@ -1,17 +1,26 @@
-﻿using csc13001_plant_pos.Activation;
+﻿using System.Diagnostics;
+
+using csc13001_plant_pos.Activation;
 using csc13001_plant_pos.Contracts.Services;
 using csc13001_plant_pos.Core.Contracts.Services;
 using csc13001_plant_pos.Core.Services;
+using csc13001_plant_pos.Data.Contexts;
 using csc13001_plant_pos.Helpers;
 using csc13001_plant_pos.Models;
 using csc13001_plant_pos.Notifications;
 using csc13001_plant_pos.Services;
 using csc13001_plant_pos.ViewModels;
+using csc13001_plant_pos.ViewModels.Authentication;
 using csc13001_plant_pos.Views;
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+
+using Windows.UI;
 
 namespace csc13001_plant_pos;
 
@@ -41,7 +50,10 @@ public partial class App : Application
 
     public static WindowEx MainWindow { get; } = new MainWindow();
 
-    public static UIElement? AppTitlebar { get; set; }
+    public static UIElement? AppTitlebar
+    {
+        get; set;
+    }
 
     public App()
     {
@@ -52,6 +64,8 @@ public partial class App : Application
         UseContentRoot(AppContext.BaseDirectory).
         ConfigureServices((context, services) =>
         {
+            services.Configure<SmtpSettings>(context.Configuration.GetSection("SmtpSettings"));
+
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
@@ -64,15 +78,25 @@ public partial class App : Application
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
             services.AddTransient<INavigationViewService, NavigationViewService>();
 
-            services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
+            services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<INotificationService, NotificationService>();
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IOrderService, OrderService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
+            services.AddTransient<AuthenticationViewModel>();
+            services.AddTransient<AuthenticationPage>();
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<ForgotPasswordViewModel>();
+            services.AddTransient<ResetPasswordViewModel>();
+            services.AddTransient<OrderViewModel>();
+            services.AddTransient<OrderPage>();
             services.AddTransient<DiscountViewModel>();
             services.AddTransient<DiscountPage>();
             services.AddTransient<AddStaffViewModel>();
@@ -91,11 +115,28 @@ public partial class App : Application
             services.AddTransient<ListDetailsPage>();
             services.AddTransient<MainViewModel>();
             services.AddTransient<MainPage>();
-            services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
+            services.AddTransient<ShellPage>();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
+
+            // Database MySQL
+            var mySqlConnection = context.Configuration.GetConnectionString("MySqlConnection");
+            services.AddDbContext<ApplicationDbContext>((
+                options => options.UseMySql(mySqlConnection,
+                    ServerVersion.AutoDetect(mySqlConnection))));
+
+            // Redis
+            services.AddSingleton<RedisService>(provider =>
+            {
+                var redisConnection = context.Configuration.GetConnectionString("RedisConnection");
+                if (string.IsNullOrEmpty(redisConnection))
+                {
+                    redisConnection = "localhost:6379";
+                }
+                return new RedisService(redisConnection);
+            });
         }).
         Build();
 
