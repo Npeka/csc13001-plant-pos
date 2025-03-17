@@ -10,7 +10,7 @@
 
 ### **1.2 Frontend (.NET C# WinUI)**
 
-- Install **.NET SDK** (compatible with the project).
+- Install **.NET SDK 8** (compatible with the project).
 - Install **Visual Studio** (with required workloads for C# and WinUI development).
 
 ---
@@ -78,8 +78,8 @@ http://localhost:9001
 
 - **Host:** `localhost`
 - **Port:** `33306`
-- **Database:** `plantstore`
-- **Username:** `plantstore`
-- **Password:** `plantstore`
+- **Database:** `plantpos`
+- **Username:** `plantpos`
+- **Password:** `plantpos`
 
 Use any MySQL client to connect and browse the database.
