@@ -96,4 +96,25 @@ public class MinIOService {
         return "";
     }
 
+    public void deleteFile(String fileUrl) {
+        try {
+            String relativePath = fileUrl.replace(minioUrl + "/", "");
+            int firstSlashIndex = relativePath.indexOf("/");
+            if (firstSlashIndex == -1) {
+                throw new IllegalArgumentException("File URL không hợp lệ: " + fileUrl);
+            }
+
+            String bucketName = relativePath.substring(0, firstSlashIndex);
+            String objectName = relativePath.substring(firstSlashIndex + 1);
+
+            minioClient.removeObject(
+                    io.minio.RemoveObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .build());
+
+        } catch (Exception e) {
+            throw new RuntimeException("Lỗi khi xóa file trên MinIO: " + fileUrl, e);
+        }
+    }
 }

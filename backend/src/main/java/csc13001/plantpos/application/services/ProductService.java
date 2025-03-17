@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
+
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final MinIOService minIOService;
@@ -51,15 +52,25 @@ public class ProductService {
         product.setWateringSchedule(productDTO.getWateringSchedule());
         product.setCategory(category);
 
-        String imageurl = minIOService.uploadFile(image, MinioBucket.PRODUCT);
-        product.setImageUrl(imageurl);
+        if (image != null) {
+            String imageurl = minIOService.uploadFile(image, MinioBucket.PRODUCT);
+            product.setImageUrl(imageurl);
+        }
 
         return productRepository.save(product);
     }
 
-    public void updateProduct(Long id, ProductDTO productDTO) {
+    public void updateProduct(Long id, ProductDTO productDTO, MultipartFile image) {
         Product product = productRepository.findById(id)
                 .orElseThrow(ProductException.ProductNotFoundException::new);
+
+        if (image != null) {
+            if (product.getImageUrl() != null) {
+                minIOService.deleteFile(product.getImageUrl());
+            }
+            String imageUrl = minIOService.uploadFile(image, MinioBucket.PRODUCT);
+            product.setImageUrl(imageUrl);
+        }
 
         for (Field dtoField : ProductDTO.class.getDeclaredFields()) {
             dtoField.setAccessible(true);
@@ -72,6 +83,7 @@ public class ProductService {
                     Category category = categoryRepository.findByName((String) newValue)
                             .orElseThrow(CategoryException.CategoryNotFoundException::new);
                     product.setCategory(category);
+
                 } else {
                     Field productField = Product.class.getDeclaredField(dtoField.getName());
                     productField.setAccessible(true);
@@ -86,8 +98,10 @@ public class ProductService {
     }
 
     public void deleteProduct(Long productId) {
-        if (!productRepository.existsById(productId)) {
-            throw new ProductException.ProductNotFoundException();
+        Product product = productRepository.findById(productId)
+                .orElseThrow(ProductException.ProductNotFoundException::new);
+        if (product.getImageUrl() != null) {
+            minIOService.deleteFile(product.getImageUrl());
         }
         productRepository.deleteById(productId);
     }
