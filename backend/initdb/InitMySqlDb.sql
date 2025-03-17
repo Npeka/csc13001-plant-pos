@@ -1,12 +1,12 @@
-﻿CREATE USER IF NOT EXISTS 'plantstore'@'%' IDENTIFIED BY 'plantstore';
+﻿CREATE USER IF NOT EXISTS 'plantpos'@'%' IDENTIFIED BY 'plantpos';
 
-CREATE DATABASE IF NOT EXISTS plantstore;
+CREATE DATABASE IF NOT EXISTS plantpos;
 
-GRANT ALL PRIVILEGES ON plantstore.* TO 'plantstore'@'%';
+GRANT ALL PRIVILEGES ON plantpos.* TO 'plantpos'@'%';
 
 FLUSH PRIVILEGES;
 
-USE plantstore;
+USE plantpos;
 
 -- Drop tables if exists
 DROP TABLE IF EXISTS users;

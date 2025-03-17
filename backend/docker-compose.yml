@@ -4,9 +4,9 @@ services:
     container_name: csc13001-plant-pos-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: plantdb
-      MYSQL_USER: plantstore
-      MYSQL_PASSWORD: plantstore
+      MYSQL_DATABASE: plantpos
+      MYSQL_USER: plantpos
+      MYSQL_PASSWORD: plantpos
     ports:
       - "33306:3306"
     volumes:

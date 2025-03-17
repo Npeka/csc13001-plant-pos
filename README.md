@@ -1,45 +1,85 @@
 # Project Setup and Run Instructions
 
-## 1. Install Docker
+## 1. Prerequisites
 
-- Download and install Docker from [here](https://www.docker.com/products/docker-desktop).
+### **1.1 Backend (Java Spring Boot)**
 
-- Verify installation by running the following command:
+- Install **Java 17** or a compatible version.
+- Install **Maven** to manage dependencies.
+- Install **Docker** and **Docker Compose** to run the database and MinIO.
 
-  ```bash
-  docker --version
-  ```
+### **1.2 Frontend (.NET C# WinUI)**
 
-## 2. Start the Database with Docker Compose
+- Install **.NET SDK** (compatible with the project).
+- Install **Visual Studio** (with required workloads for C# and WinUI development).
 
-- In the project root folder, run the following command to start the database:
+---
 
-  ```bash
-  docker-compose up -d
-  ```
+## 2. Running the Backend
 
-  This will start the database container in the background.
+1. **Navigate to the backend directory:**
 
-- To stop the database and remove the containers and volumes, run:
+```bash
+cd backend
+```
 
-  ```bash
-  docker-compose down -v
-  ```
+2. **Start the database and MinIO using Docker Compose:**
 
-- Connect to MySQL Database
+```bash
+docker-compose up -d
+```
 
-  - **Host**: `localhost`
-  - **Port**: `3306`
-  - **Database**: `plantstore`
-  - **Username**: `plantstore`
-  - **Password**: `plantstore`
+This will start the required services in the background.
 
-- You should now be connected to the MySQL database and able to browse the database schema and execute SQL queries.
+To stop and remove containers/volumes, run:
 
-## 3. Install Project Dependencies
+```bash
+docker-compose down -v
+```
 
-- Restore the project dependencies:
+3. **Run the Spring Boot application:**
 
-  ```bash
-  dotnet restore
-  ```
+```bash
+mvn spring-boot:run
+```
+
+---
+
+## 3. Running the Frontend
+
+1. **Navigate to the main frontend project:**
+
+```bash
+cd csc13001-plant-pos-frontend
+```
+
+2. **Open the project in Visual Studio and run the application.**
+
+---
+
+## 4. Accessing MinIO
+
+1. **Open MinIO Web UI in a browser:**
+
+```
+http://localhost:9001
+```
+
+2. **Login with default credentials (if not changed in configuration):**
+
+- **Username:** `plantpos`
+- **Password:** `plantpos`
+
+3. **Manage and view uploaded files in MinIO.**
+
+---
+
+## 5. Database Connection Details
+
+- **Host:** `localhost`
+- **Port:** `33306`
+- **Database:** `plantstore`
+- **Username:** `plantstore`
+- **Password:** `plantstore`
+
+Use any MySQL client to connect and browse the database.
