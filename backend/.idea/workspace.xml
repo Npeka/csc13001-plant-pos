@@ -5,9 +5,219 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8e7e372-dca9-4f33-92f3-75feb62b7dfe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Contracts/Services/IAuthenticationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Contracts/Services/IFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Contracts/Services/IOrderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Contracts/Services/ISampleDataService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Auth/LoginResponseDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Orders/OrderDetailDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Orders/OrderDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Payments/PaymentItemDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Payments/PaymentRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Payments/PaymentResponseDataDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/DTOs/Payments/PaymentResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Helpers/Json.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/Category.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/Customer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/DiscountProgram.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/HttpResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/Inventory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/Order.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/OrderDetail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/Product.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/SampleCompany.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/SampleOrder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/SampleOrderDetail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/Staff.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Models/User.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Services/FileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/Services/SampleDataService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend.Core/csc13001-plant-pos-frontend.Core.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Activation/ActivationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Activation/AppNotificationActivationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Activation/DefaultActivationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Activation/IActivationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/App.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/App.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/Authentication/Background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/LockScreenLogo.scale-200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/SplashScreen.scale-200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/Square150x150Logo.scale-200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/Square44x44Logo.scale-200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/Square44x44Logo.targetsize-24_altform-unplated.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/StoreLogo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Assets/Wide310x150Logo.scale-200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Behaviors/NavigationViewHeaderBehavior.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Behaviors/NavigationViewHeaderMode.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/IActivationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/IAppNotificationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/ILocalSettingsService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/INavigationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/INavigationViewService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/IPageService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/Services/IThemeSelectorService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Contracts/ViewModels/INavigationAware.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Converters/BooleanToVisibilityConverter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Converters/Converters.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Converters/StringToVisibilityConverter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/EnumToBooleanConverter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/FrameExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/NavigationHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/ResourceExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/RuntimeHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/SettingsStorageExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Helpers/TitleBarHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/MainWindow.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/MainWindow.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Models/LocalSettingsOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Package.appxmanifest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Properties/PublishProfiles/win-arm64.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Properties/PublishProfiles/win-x64.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Properties/PublishProfiles/win-x86.pubxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Properties/launchSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/ActivationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/AppNotificationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/AuthenticationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/LocalSettingsService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/NavigationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/NavigationViewService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/OrderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/PageService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Services/ThemeSelectorService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Strings/en-us/Resources.resw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Styles/FontSizes.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Styles/TextBlock.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Styles/Thickness.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Usings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Utils/JsonUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Utils/RandomUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/Authentication/ForgotPasswordViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/Authentication/LoginViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/Authentication/ResetPasswordViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/AuthenticationViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/MainViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/OrderViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/SettingsViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/ViewModels/ShellViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormForgotPassword.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormForgotPassword.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormLayout.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormLayout.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormLogin.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormLogin.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormResetPassword.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormResetPassword.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormTitle.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/Authentication/FormTitle.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/AuthenticationPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/AuthenticationPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/CustomerProfile.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/CustomerProfile.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/EmployeeManagerPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/EmployeeManagerPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/EmployeeProfile.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/EmployeeProfile.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ListDetailsDetailControl.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ListDetailsDetailControl.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ListEmployees.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ListEmployees.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ListUsers.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ListUsers.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/MainPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/MainPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/OrderPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/OrderPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ProductManager.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ProductManager.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/SettingsPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/SettingsPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ShellPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/ShellPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/StatisticPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/Views/StatisticPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/app.manifest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/csc13001-plant-pos-frontend.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/csc13001-plant-pos-frontend.csproj.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos-frontend/csc13001-plant-pos-frontend.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Contracts/Services/IAuthenticationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Contracts/Services/INotificationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Contracts/Services/IOrderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/DTOs/Orders/OrderDetailDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/DTOs/Orders/OrderDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/DTOs/Payments/PaymentItemDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/DTOs/Payments/PaymentRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/DTOs/Payments/PaymentResponseDataDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/DTOs/Payments/PaymentResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/Category.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/Customer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/DiscountProgram.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/Inventory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/Order.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/OrderDetail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/Product.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/Staff.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/Models/User.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Tests.MSTest/csc13001-plant-pos.Tests.MSTest.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Assets/Authentication/Background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Converters/BooleanToVisibilityConverter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Converters/Converters.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Converters/StringToVisibilityConverter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Data/Contexts/ApplicationDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/InitDb/InitMySqlDb.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/AuthenticationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/MailService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/NotificationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/OrderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/RedisService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Utils/RandomUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/Authentication/ForgotPasswordViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/Authentication/LoginViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/Authentication/ResetPasswordViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/AuthenticationViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/OrderViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormForgotPassword.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormForgotPassword.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormLayout.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormLayout.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormLogin.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormLogin.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormResetPassword.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormResetPassword.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormTitle.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormTitle.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/AuthenticationPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/AuthenticationPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/CustomerProfile.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/CustomerProfile.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/EmployeeManagerPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/EmployeeManagerPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/EmployeeProfile.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/EmployeeProfile.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ListEmployees.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ListEmployees.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ListUsers.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ListUsers.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/OrderPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/OrderPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ProductManager.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ProductManager.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/StatisticPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/StatisticPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/csc13001-plant-pos.csproj.Backup.tmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/csc13001-plant-pos.csproj.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csc13001-plant-pos/update_script.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos.Core/csc13001-plant-pos.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Core/csc13001-plant-pos.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos.Tests.MSTest/csc13001-plant-pos.Tests.MSTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos.Tests.MSTest/csc13001-plant-pos.Tests.MSTest.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/App.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/Services/ActivationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/ActivationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/Services/PageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Services/PageService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/Strings/en-us/Resources.resw" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Strings/en-us/Resources.resw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/OrderViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/OrderViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormForgotPassword.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/Authentication/FormForgotPassword.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/ShellViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/ViewModels/ShellViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ShellPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ShellPage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ShellPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/Views/ShellPage.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../csc13001-plant-pos/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../csc13001-plant-pos/appsettings.json" afterDir="false" />
@@ -64,16 +274,26 @@
     "JUnit.PlantposApplicationTests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "Merging JonasAugust12/Sales-Discount-Customer",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Workspace/csc13001-plant-pos/backend-1",
+    "last_opened_file_path": "G:/GithubRepo/csc13001-plant-pos",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,8 +302,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1739820230683</updated>
+      <workItem from="1742178378332" duration="176000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
