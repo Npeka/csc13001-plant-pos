@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "csc13001-plant-pos (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "csc13001-plant-pos (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

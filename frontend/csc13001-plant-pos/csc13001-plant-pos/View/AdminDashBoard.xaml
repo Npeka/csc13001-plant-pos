@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="csc13001_plant_pos.View.AdminDashBoard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <NavigationView
+            x:Name="navigation"
+            IsBackButtonVisible="Collapsed"
+            ItemInvoked="navigation_ItemInvoked"
+            SelectionChanged="navigation_SelectionChanged">
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Thống kê" Tag="StatisticPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE9D2;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem
+                    Content="Quản lý đơn hàng"
+                    Icon="Shop"
+                    Tag="ProfilePage" />
+
+                <NavigationViewItem
+                    Content="Quản lý nhân viên"
+                    Icon="People"
+                    Tag="StaffManagementPage" />
+
+                <NavigationViewItem Content="Quản lý khách hàng" Tag="CustomerManagementPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEC0A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Quản lý sản phẩm" Tag="ProductManagementPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEC0A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem
+                    Content="Quản lý chương trình giảm giá"
+                    Icon="Tag"
+                    Tag="DiscountManagementPage" />
+
+                <NavigationViewItem
+                    Content="Quản lý kho"
+                    Icon="Home"
+                    Tag="WarehouseManagementPage" />
+            </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Đăng xuất" Tag="Logout">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8DE;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+
+            <Frame x:Name="adminFrame" />
+        </NavigationView>
+    </Grid>
+</Page>

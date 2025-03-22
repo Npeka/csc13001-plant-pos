@@ -1,0 +1,470 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\admindashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\admindashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\saledashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\saledashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\statisticpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\statisticpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\statisticpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\statisticpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\discountmanagementpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\discountmanagementpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\addcustomerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\addcustomerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\roleselectionpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\roleselectionpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\orderpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\orderpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\roleselectionpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\roleselectionpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\saledashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\saledashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\salepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\salepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\orderpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\orderpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\view\\salepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\view\\salepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\viewmodel\\saleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\viewmodel\\saleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\converter\\converter.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\converter\\converter.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\converter\\booltoforegroundconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\converter\\booltoforegroundconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\converter\\booltobackgroundconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\converter\\booltobackgroundconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\converter\\booleantovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\converter\\booleantovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\converter\\stringtovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\converter\\stringtovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\fodyweavers.xsd||{DEE6CEF9-3BCA-449A-82A6-FC757D6956FB}|",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\fodyweavers.xsd||{DEE6CEF9-3BCA-449A-82A6-FC757D6956FB}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|g:\\githubrepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\fodyweavers.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{5F9183EE-5595-428E-AC3E-10B37FAF1A06}|csc13001-plant-pos\\csc13001-plant-pos.csproj|solutionrelative:csc13001-plant-pos\\fodyweavers.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\obj\\x64\\Debug\\net9.0-windows10.0.19041.0\\win-x64\\View\\SalePage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:csc13001-plant-pos\\obj\\x64\\Debug\\net9.0-windows10.0.19041.0\\win-x64\\View\\SalePage.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StatisticPage.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\StatisticPage.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\StatisticPage.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\StatisticPage.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\StatisticPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T14:45:37.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StatisticPage.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\StatisticPage.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\StatisticPage.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\StatisticPage.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\StatisticPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-22T14:43:12.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DiscountManagementPage.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\DiscountManagementPage.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\DiscountManagementPage.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\DiscountManagementPage.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\DiscountManagementPage.xaml",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAAANkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-22T14:39:14.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminDashBoard.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\AdminDashBoard.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\AdminDashBoard.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\AdminDashBoard.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\AdminDashBoard.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T14:37:54.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminDashBoard.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\AdminDashBoard.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\AdminDashBoard.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\AdminDashBoard.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\AdminDashBoard.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-22T13:56:29.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RoleSelectionPage.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\RoleSelectionPage.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\RoleSelectionPage.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\RoleSelectionPage.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\RoleSelectionPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:24:34.313Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SaleDashBoard.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SaleDashBoard.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\SaleDashBoard.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SaleDashBoard.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\SaleDashBoard.xaml.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAIAxwD4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T17:27:10.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\MainWindow.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\MainWindow.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\MainWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T14:11:26.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderPage.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\OrderPage.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\OrderPage.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\OrderPage.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\OrderPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T16:32:30.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\App.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\App.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\App.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:10:49.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddCustomerPage.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\AddCustomerPage.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\AddCustomerPage.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\AddCustomerPage.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\AddCustomerPage.xaml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAEQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-22T13:36:54.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\MainWindow.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\MainWindow.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:11:08.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RoleSelectionPage.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\RoleSelectionPage.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\RoleSelectionPage.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\RoleSelectionPage.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\RoleSelectionPage.xaml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T14:21:10.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\App.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\App.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\App.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T14:05:45.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SaleDashBoard.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SaleDashBoard.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\SaleDashBoard.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SaleDashBoard.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\SaleDashBoard.xaml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T17:21:04.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SalePage.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SalePage.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\SalePage.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SalePage.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\SalePage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T14:39:32.882Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "OrderPage.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\OrderPage.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\OrderPage.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\OrderPage.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\OrderPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T16:33:20.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SaleViewModel.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\ViewModel\\SaleViewModel.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\ViewModel\\SaleViewModel.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\ViewModel\\SaleViewModel.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\ViewModel\\SaleViewModel.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAIwKEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T15:56:50.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SalePage.xaml.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SalePage.xaml.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\View\\SalePage.xaml.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\View\\SalePage.xaml.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\View\\SalePage.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T15:58:21.31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "BooleanToVisibilityConverter.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\BooleanToVisibilityConverter.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\Converter\\BooleanToVisibilityConverter.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\BooleanToVisibilityConverter.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\Converter\\BooleanToVisibilityConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T18:29:21.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "BoolToForegroundConverter.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\BoolToForegroundConverter.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\Converter\\BoolToForegroundConverter.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\BoolToForegroundConverter.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\Converter\\BoolToForegroundConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T16:39:26.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Converter.xaml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\Converter.xaml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\Converter\\Converter.xaml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\Converter.xaml",
+              "RelativeToolTip": "csc13001-plant-pos\\Converter\\Converter.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-20T18:45:22.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "BoolToBackgroundConverter.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\BoolToBackgroundConverter.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\Converter\\BoolToBackgroundConverter.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\BoolToBackgroundConverter.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\Converter\\BoolToBackgroundConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T16:38:55.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "StringToVisibilityConverter.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\StringToVisibilityConverter.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\Converter\\StringToVisibilityConverter.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\Converter\\StringToVisibilityConverter.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\Converter\\StringToVisibilityConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T18:34:08.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "FodyWeavers.xsd [Design]",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\FodyWeavers.xsd",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\FodyWeavers.xsd",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\FodyWeavers.xsd [Design]",
+              "RelativeToolTip": "csc13001-plant-pos\\FodyWeavers.xsd [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2025-03-20T16:29:31.429Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FodyWeavers.xml",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\FodyWeavers.xml",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\FodyWeavers.xml",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\FodyWeavers.xml",
+              "RelativeToolTip": "csc13001-plant-pos\\FodyWeavers.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-03-20T16:27:19.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SalePage.g.cs",
+              "DocumentMoniker": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\obj\\x64\\Debug\\net9.0-windows10.0.19041.0\\win-x64\\View\\SalePage.g.cs",
+              "RelativeDocumentMoniker": "csc13001-plant-pos\\obj\\x64\\Debug\\net9.0-windows10.0.19041.0\\win-x64\\View\\SalePage.g.cs",
+              "ToolTip": "G:\\GithubRepo\\csc13001-plant-pos\\frontend\\csc13001-plant-pos\\csc13001-plant-pos\\obj\\x64\\Debug\\net9.0-windows10.0.19041.0\\win-x64\\View\\SalePage.g.cs",
+              "RelativeToolTip": "csc13001-plant-pos\\obj\\x64\\Debug\\net9.0-windows10.0.19041.0\\win-x64\\View\\SalePage.g.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:53:11.416Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
