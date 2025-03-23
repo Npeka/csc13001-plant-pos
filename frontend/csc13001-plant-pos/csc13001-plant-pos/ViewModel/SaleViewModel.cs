@@ -105,7 +105,7 @@ namespace csc13001_plant_pos.ViewModel
             SelectedCategory == null ? Products : Products.Where(p => p.CategoryId == SelectedCategory.CategoryId);
 
         public int TotalItems => OrderItems.Sum(i => i.Quantity);
-        public string TotalItemsFormatted => $"Items({TotalItems})";
+        public string TotalItemsFormatted => $"Số lượng ({TotalItems})";
 
         public double SubTotal => OrderItems.Sum(i => i.TotalPrice);
         public string SubTotalFormatted => $"${SubTotal:F2}";
@@ -134,21 +134,128 @@ namespace csc13001_plant_pos.ViewModel
                 {
                     ProductId = 1,
                     CategoryId = 1,
-                    Name = "Moss Terrarium",
+                    Name = "Cây tùng bồng lai",
                     Price = 25.99,
                     Stock = 10,
-                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1740301069/csc13001/rr6os1gdld8fqipnihni.png"
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742618091/csc13001/pifd9aimwfdzw8zyqmjd.jpg"
                 },
                 new Product
                 {
                     ProductId = 2,
                     CategoryId = 2,
-                    Name = "Anubias",
+                    Name = "Cây phát tài",
                     Price = 15.50,
                     Stock = 5,
-                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1740301069/csc13001/rr6os1gdld8fqipnihni.png"
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742618630/csc13001/kfgj97onhvytghw10twl.jpg"
                 },
-                // Additional products...
+                new Product
+                {
+                    ProductId = 3,
+                    CategoryId = 2,
+                    Name = "Cây ngũ gia bì cẩm thạch",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742618783/csc13001/xldw2yuc0oeqizcosesx.jpg"
+                },
+                new Product
+                {
+                    ProductId = 4,
+                    CategoryId = 2,
+                    Name = "Cây kim ngân ba thân",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742618922/csc13001/phpg3zxrxwaokhcc9ppv.jpg"
+                },
+                new Product
+                {
+                    ProductId = 5,
+                    CategoryId = 2,
+                    Name = "Cây trầu bà cột",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742619025/csc13001/nua3alzyfo6siz6ehbgf.jpg"
+                },
+                new Product
+                {
+                    ProductId = 6,
+                    CategoryId = 2,
+                    Name = "Cây bông giấy Sakura",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742619211/csc13001/pkxeuclvhbwogvafpupg.jpg"
+                },
+                new Product
+                {
+                    ProductId = 7,
+                    CategoryId = 2,
+                    Name = "Chậu hoa cúc mâm xôi",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742619323/csc13001/wyu6wyqgtskx0el6fqhx.jpg"
+                },
+                new Product
+                {
+                    ProductId = 8,
+                    CategoryId = 2,
+                    Name = "Cây bông giấy thái ghép",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742619689/csc13001/daffahluekpeuprklh0e.jpg"
+                },
+                new Product
+                {
+                    ProductId = 9,
+                    CategoryId = 2,
+                    Name = "Cây bàng đài loan cẩm thạch",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742619826/csc13001/y3hojjoeqdjvfvjx9org.jpg"
+                },
+                new Product
+                {
+                    ProductId = 10,
+                    CategoryId = 2,
+                    Name = "Cây trúc mặt trời ‘Compacta’",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742619995/csc13001/zuuqihzd7uyy4bmppvpp.jpg"
+                },
+                new Product
+                {
+                    ProductId = 11,
+                    CategoryId = 2,
+                    Name = "Cây phú quý’",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742620683/csc13001/hchjebf3su3nhjymjp74.jpg"
+                },
+                new Product
+                {
+                    ProductId = 12,
+                    CategoryId = 2,
+                    Name = "Cây lưỡi hổ Thái ‘Futura superba’",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742620086/csc13001/mztukw97mql8vvaubcdr.jpg"
+                },
+                new Product
+                {
+                    ProductId = 13,
+                    CategoryId = 2,
+                    Name = "Cây vạn lộc son",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742620373/csc13001/mbgdqaflohsx8e126csy.jpg"
+                },
+                new Product
+                {
+                    ProductId = 14,
+                    CategoryId = 2,
+                    Name = "Cây ngọc ngân",
+                    Price = 15.50,
+                    Stock = 5,
+                    Image = "https://res.cloudinary.com/djyugezvf/image/upload/v1742620467/csc13001/xply6ushku54nhgizncx.jpg"
+                },
             };
 
             OrderItems = new ObservableCollection<OrderItem>();

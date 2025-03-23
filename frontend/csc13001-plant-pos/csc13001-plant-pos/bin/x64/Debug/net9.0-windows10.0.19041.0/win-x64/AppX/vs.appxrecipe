@@ -10,7 +10,7 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>2ebf5f53-ff1f-461c-917a-80850b86c4c5</PackageIdentityName>
     <PackageIdentityPublisher>CN=Admin</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\</IntermediateOutputPath>
+    <IntermediateOutputPath>G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
     </PackageRegistrationPath>
@@ -18,7 +18,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>
     </WindowsSdkPath>
-    <LayoutDir>D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\AppX</LayoutDir>
+    <LayoutDir>G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\AppX</LayoutDir>
     <RegisteredManifestChecksum>A84761A064EF828A6AA1FD212C60C1C4C0776E1F7FB4DEDF610A75F77852ECFA</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>2ebf5f53-ff1f-461c-917a-80850b86c4c5_1.0.0.0_x64__5gyrq6psz227t</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>2ebf5f53-ff1f-461c-917a-80850b86c4c5_5gyrq6psz227t!App</RegisteredUserModeAppID>
@@ -27,28 +27,28 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
+    <AppXManifest Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-03-22T14:49:03.921</Modified>
+      <Modified>2025-03-23T20:34:51.797</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\resources.pri">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-03-22T14:49:03.590</Modified>
+      <Modified>2025-03-23T20:34:51.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.runtimeconfig.json">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.runtimeconfig.json">
       <PackagePath>csc13001-plant-pos.runtimeconfig.json</PackagePath>
-      <Modified>2025-03-21T09:18:34.992</Modified>
+      <Modified>2025-03-23T14:58:22.116</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.dll">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.dll">
       <PackagePath>csc13001-plant-pos.dll</PackagePath>
-      <Modified>2025-03-22T14:49:02.575</Modified>
+      <Modified>2025-03-23T20:34:50.441</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\apphost.exe">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\apphost.exe">
       <PackagePath>csc13001-plant-pos.exe</PackagePath>
-      <Modified>2025-03-22T14:49:02.812</Modified>
+      <Modified>2025-03-23T20:34:50.696</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.netcore.app.runtime.win-x64\9.0.1\runtimes\win-x64\lib\net9.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -898,43 +898,43 @@
       <PackagePath>Microsoft.Web.WebView2.Core.Projection.dll</PackagePath>
       <Modified>2024-11-10T08:57:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
       <PackagePath>csc13001-plant-pos.deps.json</PackagePath>
-      <Modified>2025-03-22T14:49:03.230</Modified>
+      <Modified>2025-03-23T20:34:51.138</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ManagerIcon.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ManagerIcon.png">
       <PackagePath>Assets\Icon\ManagerIcon.png</PackagePath>
       <Modified>2025-03-20T15:01:22.207</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ShoppingIcon.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ShoppingIcon.png">
       <PackagePath>Assets\Icon\ShoppingIcon.png</PackagePath>
       <Modified>2025-03-20T14:46:17.752</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2025-02-06T13:51:48.730</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <Modified>2025-02-06T13:51:48.730</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <Modified>2025-02-06T13:51:48.730</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <Modified>2025-02-06T13:51:48.731</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <Modified>2025-02-06T13:51:48.731</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <Modified>2025-02-06T13:51:48.732</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <Modified>2025-02-06T13:51:48.732</Modified>
     </AppxPackagedFile>

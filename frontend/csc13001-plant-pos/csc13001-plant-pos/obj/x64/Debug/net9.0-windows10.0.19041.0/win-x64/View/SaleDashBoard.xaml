@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="csc13001_plant_pos.View.SaleDashBoard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <NavigationView x:ConnectionId='2'
+            x:Name="navigation"
+            IsBackButtonVisible="Collapsed"
+                                                
+                                                          >
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem
+                    Content="Cửa hàng"
+                    Icon="Shop"
+                    Tag="SalePage" />
+
+                <NavigationViewItem
+                    Content="Hồ sơ cá nhân"
+                    Icon="Contact"
+                    Tag="StaffProfilePage" />
+
+                <NavigationViewItem
+                    Content="Thêm khách hàng"
+                    Icon="People"
+                    Tag="AddCustomerPage" />
+
+                <NavigationViewItem
+                    Content="Hồ sơ khách hàng"
+                    Icon="People"
+                    Tag="CustomerProfilePage" />
+            </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Đăng xuất" Tag="Logout">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8DE;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+
+            <Frame x:ConnectionId='3' x:Name="saleFrame" />
+        </NavigationView>
+    </Grid>
+</Page>
+

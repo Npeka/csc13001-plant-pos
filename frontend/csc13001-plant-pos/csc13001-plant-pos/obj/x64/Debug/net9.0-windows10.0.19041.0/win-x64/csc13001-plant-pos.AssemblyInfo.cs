@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("csc13001-plant-pos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c84a70af94b6a7307512a2fd1497e1b2d8d5a446")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+408c943a2888c6d2d08ecae3f489560152ce28fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("csc13001-plant-pos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("csc13001-plant-pos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
