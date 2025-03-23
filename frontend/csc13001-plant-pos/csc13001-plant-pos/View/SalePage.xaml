@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="csc13001_plant_pos.View.SalePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:csc13001_plant_pos.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converter:BoolToBackgroundConverter x:Key="BoolToBackgroundConverter" />
+        <converter:BoolToForegroundConverter x:Key="BoolToForegroundConverter" />
+        <!--  Category button template  -->
+        <DataTemplate x:Key="CategoryButtonTemplate">
+            <Button
+                Margin="0,0,10,10"
+                Padding="15,8"
+                Background="{Binding IsSelected, Converter={StaticResource BoolToBackgroundConverter}}"
+                Command="{Binding DataContext.SelectCategoryCommand, ElementName=PageRoot}"
+                CommandParameter="{Binding}"
+                CornerRadius="14"
+                FontWeight="Bold"
+                Foreground="{Binding IsSelected, Converter={StaticResource BoolToForegroundConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon
+                        Margin="0,0,8,0"
+                        FontSize="10"
+                        Glyph="{Binding IconGlyph}" />
+                    <TextBlock FontSize="10" Text="{Binding Name}" />
+                </StackPanel>
+            </Button>
+        </DataTemplate>
+
+        <!--  Product item template  -->
+        <DataTemplate x:Key="ProductItemTemplate">
+            <Grid
+                Width="180"
+                Height="250"
+                Margin="10"
+                Tag="{Binding}"
+                Tapped="ProductItem_Tapped">
+                <!--  Border phía sau  -->
+                <Border
+                    Margin="0,50,0,0"
+                    Background="White"
+                    CornerRadius="20">
+                    <StackPanel Margin="0,80,0,0" HorizontalAlignment="Center">
+                        <TextBlock
+                            Padding="0,10"
+                            HorizontalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{Binding Name}" />
+                        <TextBlock
+                            Padding="0,0,0,10"
+                            HorizontalAlignment="Center"
+                            FontWeight="Bold"
+                            Foreground="Green"
+                            Text="{Binding PriceFormatted}" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontSize="12"
+                            TextAlignment="Center">
+                            <Run
+                                FontWeight="Bold"
+                                Foreground="Black"
+                                Text="{Binding StockFormatted}" />
+                            <Run Foreground="Gray" Text=" Available" />
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <!--  Hình ảnh phía trước  -->
+                <Image
+                    Width="150"
+                    Height="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Source="{Binding Image}" />
+            </Grid>
+        </DataTemplate>
+
+        <!--  Order item template  -->
+        <DataTemplate x:Key="OrderItemTemplate">
+            <StackPanel>
+                <Border
+                    Padding="10"
+                    HorizontalAlignment="Stretch"
+                    Background="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Horizontal"
+                            Spacing="10">
+                            <Image
+                                Width="50"
+                                Height="50"
+                                Source="{Binding Image}" />
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Text="{Binding Name}" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="Gray"
+                                    Text="{Binding Note}" />
+                                <TextBlock
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="{Binding TotalPriceFormatted}" />
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Command="{Binding DataContext.DecreaseQuantityCommand, ElementName=PageRoot}"
+                                        CommandParameter="{Binding}"
+                                        Content="-"
+                                        CornerRadius="10"
+                                        FontSize="10" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="{Binding Quantity}" />
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Command="{Binding DataContext.IncreaseQuantityCommand, ElementName=PageRoot}"
+                                        CommandParameter="{Binding}"
+                                        Content="+"
+                                        CornerRadius="10"
+                                        FontSize="10" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button
+                            Grid.Column="1"
+                            Width="32"
+                            Height="32"
+                            Margin="0,5,0,0"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding DataContext.RemoveItemCommand, ElementName=PageRoot}"
+                            CommandParameter="{Binding}">
+                            <FontIcon FontSize="7" Glyph="&#xE8BB;" />
+                        </Button>
+                        <Button
+                            Grid.Column="1"
+                            Width="30"
+                            Height="30"
+                            VerticalAlignment="Bottom"
+                            Click="NoteButton_Click"
+                            CornerRadius="10">
+                            <FontIcon FontSize="6" Glyph="&#xE104;" />
+                        </Button>
+                    </Grid>
+                </Border>
+                <Border
+                    Height="2"
+                    Margin="0,0,0,0"
+                    Background="#EBEBEB"
+                    CornerRadius="10" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="PageRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Product Panel  -->
+        <Grid Grid.Column="0" Margin="0,0,0,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Categories  -->
+            <ListView
+                Grid.Row="0"
+                ItemTemplate="{StaticResource CategoryButtonTemplate}"
+                ItemsSource="{Binding Categories}"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollMode="Enabled"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                ScrollViewer.VerticalScrollMode="Disabled"
+                SelectionMode="None">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <!--  Products  -->
+            <GridView
+                Grid.Row="1"
+                Margin="0,10,0,0"
+                Padding="0,0,0,250"
+                ItemTemplate="{StaticResource ProductItemTemplate}"
+                ItemsSource="{Binding FilteredProducts}"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                SelectionMode="None">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid
+                            HorizontalAlignment="Left"
+                            MaximumRowsOrColumns="4"
+                            Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+        </Grid>
+
+        <!--  Order Panel  -->
+        <StackPanel
+            Grid.Column="1"
+            Margin="0,0,0,20"
+            Padding="10"
+            Background="White"
+            CornerRadius="25">
+            <TextBlock
+                FontSize="20"
+                FontWeight="SemiBold"
+                Foreground="#0ABB6A"
+                Text="Current order" />
+            <!--  Order Items  -->
+            <Border
+                MinHeight="100"
+                Margin="0,10,0,10"
+                Background=" #F2F2F2"
+                BorderThickness="1"
+                CornerRadius="25">
+                <ListView
+                    IsItemClickEnabled="False"
+                    ItemTemplate="{StaticResource OrderItemTemplate}"
+                    ItemsSource="{Binding OrderItems}"
+                    SelectionMode="None" />
+            </Border>
+
+
+            <!--  Order Summary  -->
+            <StackPanel Spacing="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        FontSize="16"
+                        Foreground="Gray"
+                        Text="{Binding TotalItemsFormatted}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="{Binding SubTotalFormatted}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        FontSize="16"
+                        Foreground="Gray"
+                        Text="Tax (10%)" />
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="{Binding TaxFormatted}" />
+                </Grid>
+
+                <Border
+                    Margin="0,10,0,10"
+                    BorderBrush="LightGray"
+                    BorderThickness="1" />
+
+                <Grid Margin="0,10,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Total" />
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="{Binding TotalFormatted}" />
+                </Grid>
+            </StackPanel>
+
+            <!--  Print Button  -->
+            <Button
+                Padding="10"
+                HorizontalAlignment="Stretch"
+                Background="#0ABB6A"
+                Content="Print Bills"
+                CornerRadius="16"
+                FontSize="14"
+                FontWeight="Bold"
+                Foreground="White" />
+        </StackPanel>
+    </Grid>
+</Page>
