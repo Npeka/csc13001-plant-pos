@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Nguyễn Văn An",
+    "phone": "0901234567",
+    "email": "annguyen@gmail.com",
+    "gender": "Male",
+    "loyaltyPoints": 120,
+    "loyaltyCardType": "Silver"
+  },
+  {
+    "name": "Trần Thị Bình",
+    "phone": "0912345678",
+    "email": "binhtt@gmail.com",
+    "gender": "Female",
+    "loyaltyPoints": 350,
+    "loyaltyCardType": "Gold"
+  },
+  {
+    "name": "Lê Hoàng Chương",
+    "phone": "0923456789",
+    "email": "chuonglh@gmail.com",
+    "gender": "Male",
+    "loyaltyPoints": 80,
+    "loyaltyCardType": "Bronze"
+  },
+  {
+    "name": "Phạm Thùy Dung",
+    "phone": "0934567890",
+    "email": "dungpt@gmail.com",
+    "gender": "Female",
+    "loyaltyPoints": 210,
+    "loyaltyCardType": "Silver"
+  },
+  {
+    "name": "Hoàng Minh Đức",
+    "phone": "0945678901",
+    "email": "duchm@gmail.com",
+    "gender": "Male",
+    "loyaltyPoints": 420,
+    "loyaltyCardType": "Gold"
+  },
+  {
+    "name": "Vũ Ngọc Giang",
+    "phone": "0956789012",
+    "email": "giangvn@gmail.com",
+    "gender": "Female",
+    "loyaltyPoints": 560,
+    "loyaltyCardType": "Platinum"
+  }
+]

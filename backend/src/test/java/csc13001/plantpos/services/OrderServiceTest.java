@@ -1,9 +1,9 @@
 package csc13001.plantpos.services;
 
-import csc13001.plantpos.application.dtos.order.CreateOrderDTO;
-import csc13001.plantpos.application.services.OrderService;
-import csc13001.plantpos.domain.models.Order;
-import csc13001.plantpos.adapters.repositories.OrderRepository;
+import csc13001.plantpos.order.OrderRepository;
+import csc13001.plantpos.order.OrderService;
+import csc13001.plantpos.order.dtos.CreateOrderDTO;
+import csc13001.plantpos.order.models.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

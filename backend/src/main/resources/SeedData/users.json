@@ -1,0 +1,54 @@
+[
+  {
+    "username": "admin",
+    "password": "admin",
+    "fullname": "Administrator",
+    "isAdmin": true,
+    "startDate": null
+  },
+  {
+    "username": "staff1",
+    "password": "staff1",
+    "fullname": "Trần Văn Bán",
+    "isAdmin": true,
+    "status": "Working",
+    "gender": "Male",
+    "startDate": "2019-05-20"
+  },
+  {
+    "username": "staff2",
+    "password": "staff2",
+    "fullname": "Phạm Văn Kho",
+    "isAdmin": false,
+    "status": "Working",
+    "gender": "Male",
+    "startDate": "2020-01-15"
+  },
+  {
+    "username": "staff3",
+    "password": "staff3",
+    "fullname": "Hoàng Thị Kế",
+    "isAdmin": false,
+    "status": "Working",
+    "gender": "Female",
+    "startDate": "2021-03-10"
+  },
+  {
+    "username": "staff4",
+    "password": "staff4",
+    "fullname": "Lê Thị Quản",
+    "isAdmin": false,
+    "status": "OnLeave",
+    "gender": "Female",
+    "startDate": "2019-07-22"
+  },
+  {
+    "username": "staff5",
+    "password": "staff5",
+    "fullname": "Vũ Minh Tư",
+    "isAdmin": false,
+    "status": "Resigned",
+    "gender": "Male",
+    "startDate": "2018-11-05"
+  }
+]
