@@ -44,7 +44,7 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "discount_program_id")
-    DiscountProgram discountProgram;
+    private DiscountProgram discountProgram;
 
     public OrderItem(Order order, Product product, Integer quantity, BigDecimal salePrice) {
         this.order = order;

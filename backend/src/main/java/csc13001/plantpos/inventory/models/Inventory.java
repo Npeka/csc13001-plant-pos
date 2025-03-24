@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "inventory")
@@ -32,5 +33,8 @@ public class Inventory {
     private BigDecimal totalPrice;
 
     @Column(name = "purchase_date", nullable = false)
-    private Date purchaseDate;
+    private Date purchaseDate;  
+
+    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
+    private List<InventoryItem> items;
 }
