@@ -1,9 +1,7 @@
 package csc13001.plantpos.staff.dtos;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import csc13001.plantpos.order.models.Order;
 import csc13001.plantpos.user.User;
 import csc13001.plantpos.utils.http.JsonModel;
 import lombok.Data;
