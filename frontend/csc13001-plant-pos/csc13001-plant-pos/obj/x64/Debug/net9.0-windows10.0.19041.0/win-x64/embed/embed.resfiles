@@ -2,10 +2,13 @@ App.xbf
 Converter\Converter.xbf
 View\AddCustomerPage.xbf
 View\AdminDashBoard.xbf
+View\CustomerProfilePage.xbf
 View\DiscountManagementPage.xbf
 View\MainWindow.xbf
 View\OrderPage.xbf
 View\RoleSelectionPage.xbf
 View\SaleDashBoard.xbf
 View\SalePage.xbf
+View\StaffProfilePage.xbf
 View\StatisticPage.xbf
+View\WarehouseManagementPage.xbf

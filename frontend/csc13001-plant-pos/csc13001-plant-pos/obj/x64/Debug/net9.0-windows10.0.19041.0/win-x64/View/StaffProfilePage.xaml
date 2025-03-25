@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="csc13001_plant_pos.View.StaffProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="DatePicker">
+            <Setter Property="MinHeight" Value="50" />
+        </Style>
+    </Page.Resources>
+    <Grid x:ConnectionId='2' x:Name="ContentArea">
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <!--  Sidebar  -->
+                <ColumnDefinition Width="20" />
+                <!--  Khoảng cách giữa hai bên  -->
+                <ColumnDefinition Width="*" />
+                <!--  Nội dung bên phải  -->
+            </Grid.ColumnDefinitions>
+
+            <!--  Left Side Menu (Bo góc 25)  -->
+            <Border
+                Grid.Column="0"
+                Padding="20"
+                VerticalAlignment="Top"
+                Background="White"
+                CornerRadius="25">
+                <StackPanel Width="280" Padding="15">
+                    <TextBlock
+                        Margin="0,0,0,0"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Foreground="#0ABB6A"
+                        Text="Thông tin nhân viên" />
+
+                    <Grid
+                        Width="120"
+                        Height="120"
+                        Margin="0,12,0,12">
+                        <Border
+                            Width="120"
+                            Height="120"
+                            CornerRadius="60">
+                            <Border.Background>
+                                <ImageBrush ImageSource="https://res.cloudinary.com/djyugezvf/image/upload/v1735137936/csc13008/avatar/avatars_6759d0d5eb6a720ac748a335.jpg" />
+                            </Border.Background>
+                        </Border>
+
+                        <!--  Status Icon Container  -->
+                        <Border
+                            Width="28"
+                            Height="28"
+                            Margin="-8,-8,8,3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Background="#0ABB6A"
+                            BorderThickness="2"
+                            CornerRadius="16">
+                            <FontIcon
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="14"
+                                Foreground="White"
+                                Glyph="&#xE89E;" />
+                        </Border>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  ID  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="ID:" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="1234" />
+
+                        <!--  Tên  -->
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="Tên:" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="Nguyễn Văn A" />
+
+                        <!--  Giới tính  -->
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="Giới tính:" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="Nam" />
+
+                        <!--  SĐT  -->
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="SĐT:" />
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="01234566" />
+
+                        <!--  Email  -->
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="Email:" />
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="a@gmail.com" />
+
+                        <!--  Ngày bắt đầu  -->
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="Ngày bắt đầu:" />
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="1/1/2022" />
+
+                        <!--  Số đơn hàng  -->
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="Số đơn hàng:" />
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="20" />
+
+                        <!--  Doanh thu  -->
+                        <TextBlock
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            Margin="0,0,10,10"
+                            FontWeight="SemiBold"
+                            Foreground="#0ABB6A"
+                            Text="Doanh thu:" />
+                        <TextBlock
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            Foreground="#555555"
+                            Text="200" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!--  Right Side Content (Bo góc 25)  -->
+            <Border
+                Grid.Column="2"
+                Padding="20"
+                Background="White"
+                CornerRadius="25">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="10"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <TextBox Width="500" PlaceholderText="Tìm kiếm..." />
+                        <CalendarDatePicker PlaceholderText="Chọn ngày" />
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <Expander
+                                Margin="0,0,0,8"
+                                Padding="0"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Background="White"
+                                BorderBrush="#E5E5E5"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                IsExpanded="False">
+                                <Expander.Header>
+                                    <Grid Padding="16">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            Spacing="12">
+                                            <FontIcon
+                                                FontSize="20"
+                                                Foreground="#4CAF50"
+                                                Glyph="&#xE8EC;" />
+                                            <StackPanel>
+                                                <!--  Mã đơn  -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,4,0"
+                                                        FontSize="16"
+                                                        FontWeight="SemiBold"
+                                                        Text="Mã đơn: " />
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        FontWeight="SemiBold"
+                                                        Text="1234" />
+                                                </StackPanel>
+
+                                                <!--  Mã khách hàng  -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,4,0"
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="Mã khách hàng: " />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="1234" />
+                                                </StackPanel>
+
+                                                <!--  Tên khách hàng  -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,4,0"
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="Tên khách hàng: " />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="Nguyễn Văn C" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <Grid Grid.Column="2" HorizontalAlignment="Right">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                HorizontalAlignment="Right"
+                                                FontSize="12"
+                                                Foreground="#4CAF50"
+                                                Text="1/1/2025" />
+
+                                            <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <TextBlock FontWeight="SemiBold" Text="Giá gốc:" />
+                                                    <TextBlock
+                                                        Margin="4,0,0,0"
+                                                        Foreground="#555555"
+                                                        Text="1234đ" />
+                                                </StackPanel>
+
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <TextBlock FontWeight="SemiBold" Text="Giá bán:" />
+                                                    <TextBlock
+                                                        Margin="4,0,0,0"
+                                                        Foreground="#555555"
+                                                        Text="1234đ" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+
+
+                                    </Grid>
+                                </Expander.Header>
+
+                                <Expander.Content>
+                                    <StackPanel Margin="32,0,16,16" Spacing="5">
+                                        <!--  Items2  -->
+                                        <Grid Padding="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image
+                                                Width="40"
+                                                Height="40"
+                                                Source="https://res.cloudinary.com/djyugezvf/image/upload/v1742618091/csc13001/pifd9aimwfdzw8zyqmjd.jpg" />
+                                            <Grid Grid.Column="1" Margin="12,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Margin="0,0,0,2"
+                                                    FontWeight="SemiBold"
+                                                    Text="Cây hoa hồng  " />
+                                                <StackPanel Grid.Row="1">
+                                                    <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="Số lượng:" />
+                                                        <TextBlock
+                                                            Margin="4,0,0,0"
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="5" />
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="Giá:" />
+                                                        <TextBlock
+                                                            Margin="4,0,0,0"
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="1234 đ" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <Grid Grid.Column="2" HorizontalAlignment="Right">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    HorizontalAlignment="Right"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#666666"
+                                                    Text="Tổng tiền:" />
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    HorizontalAlignment="Right"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#4CAF50"
+                                                    Text="$56.24" />
+                                            </Grid>
+                                        </Grid>
+
+                                        <!--  Items1  -->
+                                    </StackPanel>
+                                </Expander.Content>
+                            </Expander>
+                            <Expander
+                                Padding="0"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Background="White"
+                                BorderBrush="#E5E5E5"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                IsExpanded="False">
+                                <Expander.Header>
+                                    <Grid Padding="16">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            Spacing="12">
+                                            <FontIcon
+                                                FontSize="20"
+                                                Foreground="#4CAF50"
+                                                Glyph="&#xE8EC;" />
+                                            <StackPanel>
+                                                <!--  Mã đơn  -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,5,0"
+                                                        FontSize="16"
+                                                        FontWeight="SemiBold"
+                                                        Text="Mã đơn: " />
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        FontWeight="SemiBold"
+                                                        Text="1234" />
+                                                </StackPanel>
+
+                                                <!--  Mã khách hàng  -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,5,0"
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="Mã khách hàng: " />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="1234" />
+                                                </StackPanel>
+
+                                                <!--  Tên khách hàng  -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,5,0"
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="Tên khách hàng: " />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        Foreground="#666666"
+                                                        Text="Nguyễn Văn C" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <Grid Grid.Column="2" HorizontalAlignment="Right">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                HorizontalAlignment="Right"
+                                                FontSize="12"
+                                                Foreground="#4CAF50"
+                                                Text="1/1/2025" />
+
+                                            <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <TextBlock FontWeight="SemiBold" Text="Giá gốc:" />
+                                                    <TextBlock
+                                                        Margin="5,0,0,0"
+                                                        Foreground="#555555"
+                                                        Text="1234đ" />
+                                                </StackPanel>
+
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <TextBlock FontWeight="SemiBold" Text="Giá bán:" />
+                                                    <TextBlock
+                                                        Margin="5,0,0,0"
+                                                        Foreground="#555555"
+                                                        Text="1234đ" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+
+
+                                    </Grid>
+                                </Expander.Header>
+
+                                <Expander.Content>
+                                    <StackPanel Margin="32,0,16,16" Spacing="5">
+                                        <!--  Items2  -->
+                                        <Grid Padding="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image
+                                                Width="40"
+                                                Height="40"
+                                                Source="https://res.cloudinary.com/djyugezvf/image/upload/v1742618091/csc13001/pifd9aimwfdzw8zyqmjd.jpg" />
+                                            <Grid Grid.Column="1" Margin="12,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Margin="0,0,0,2"
+                                                    FontWeight="SemiBold"
+                                                    Text="Cây hoa hồng  " />
+                                                <StackPanel Grid.Row="1">
+                                                    <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="Số lượng:" />
+                                                        <TextBlock
+                                                            Margin="5,0,0,0"
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="5" />
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="Giá:" />
+                                                        <TextBlock
+                                                            Margin="5,0,0,0"
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="1234 đ" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <Grid Grid.Column="2" HorizontalAlignment="Right">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    HorizontalAlignment="Right"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#666666"
+                                                    Text="Tổng tiền:" />
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    HorizontalAlignment="Right"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#4CAF50"
+                                                    Text="$56.24" />
+                                            </Grid>
+                                        </Grid>
+
+                                        <!--  Items1  -->
+                                        <Grid Padding="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image
+                                                Width="40"
+                                                Height="40"
+                                                Source="https://res.cloudinary.com/djyugezvf/image/upload/v1742618091/csc13001/pifd9aimwfdzw8zyqmjd.jpg" />
+                                            <Grid Grid.Column="1" Margin="12,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Margin="0,0,0,2"
+                                                    FontWeight="SemiBold"
+                                                    Text="Cây hoa hồng  " />
+                                                <StackPanel Grid.Row="1">
+                                                    <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="Số lượng:" />
+                                                        <TextBlock
+                                                            Margin="5,0,0,0"
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="5" />
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="Giá:" />
+                                                        <TextBlock
+                                                            Margin="5,0,0,0"
+                                                            FontSize="12"
+                                                            Foreground="#666666"
+                                                            Text="1234 đ" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <Grid Grid.Column="2" HorizontalAlignment="Right">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    HorizontalAlignment="Right"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#666666"
+                                                    Text="Tổng tiền:" />
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    HorizontalAlignment="Right"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#4CAF50"
+                                                    Text="$56.24" />
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander.Content>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Page>
+

@@ -16,12 +16,15 @@
     <None Remove="Converter\Converter.xaml" />
     <None Remove="View\AddCustomerPage.xaml" />
     <None Remove="View\AdminDashBoard.xaml" />
+    <None Remove="View\CustomerProfilePage.xaml" />
     <None Remove="View\DiscountManagementPage.xaml" />
     <None Remove="View\OrderPage.xaml" />
     <None Remove="View\RoleSelectionPage.xaml" />
     <None Remove="View\SaleDashBoard.xaml" />
     <None Remove="View\SalePage.xaml" />
+    <None Remove="View\StaffProfilePage.xaml" />
     <None Remove="View\StatisticPage.xaml" />
+    <None Remove="View\WarehouseManagementPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +67,21 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="View\Authentication\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\WarehouseManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\CustomerProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\StaffProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\StatisticPage.xaml">

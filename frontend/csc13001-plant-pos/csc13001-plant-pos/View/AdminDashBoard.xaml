@@ -26,16 +26,17 @@
                 <NavigationViewItem
                     Content="Quản lý đơn hàng"
                     Icon="Shop"
-                    Tag="ProfilePage" />
+                    Tag="OrderPage" />
 
                 <NavigationViewItem
                     Content="Quản lý nhân viên"
                     Icon="People"
                     Tag="StaffManagementPage" />
 
+
                 <NavigationViewItem Content="Quản lý khách hàng" Tag="CustomerManagementPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEC0A;" />
+                        <FontIcon Glyph="&#xE902;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

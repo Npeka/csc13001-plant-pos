@@ -1,1 +1,1 @@
-D:\Users\Admin\source\repos\csc13001-plant-pos\csc13001-plant-pos\csc13001-plant-pos.csproj;x64
+G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\csc13001-plant-pos.csproj;x64

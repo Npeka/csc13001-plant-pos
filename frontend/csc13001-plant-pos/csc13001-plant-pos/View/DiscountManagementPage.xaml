@@ -13,7 +13,22 @@
         x:Name="ContentArea"
         Padding="20"
         Background="White">
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Margin="10"
+            Orientation="Horizontal"
+            Spacing="10">
+            <TextBox Width="500" PlaceholderText="Tìm kiếm..." />
+            <CalendarDatePicker PlaceholderText="Chọn ngày" />
+        </StackPanel>
+        <ScrollViewer
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Hidden">
             <StackPanel Spacing="12">
                 <!--  Active Discount Campaign  -->
                 <Grid
@@ -22,17 +37,10 @@
                     BorderBrush="#E5E5E5"
                     BorderThickness="1"
                     CornerRadius="8">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <!--  Campaign Header  -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="85*" />
+                            <ColumnDefinition Width="15*" />
                         </Grid.ColumnDefinitions>
 
                         <StackPanel
@@ -47,19 +55,19 @@
                                 <TextBlock
                                     FontSize="16"
                                     FontWeight="SemiBold"
-                                    Text="Summer Sale 2024" />
+                                    Text="Khuyến mãi mùa xuân 2025" />
                                 <TextBlock
                                     FontSize="12"
                                     Foreground="#666666"
-                                    Text="Active until June 30, 2024" />
+                                    Text="1/1/2025 - 2/2/2025" />
                                 <HyperlinkButton
                                     Padding="0"
-                                    Content="Edit Campaign"
+                                    Content="Sửa chương trình"
                                     Foreground="#666666" />
                             </StackPanel>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left">
                             <TextBlock
                                 FontSize="16"
                                 FontWeight="SemiBold"
@@ -67,136 +75,14 @@
                             <TextBlock
                                 FontSize="12"
                                 Foreground="#666666"
-                                Text="All Indoor Plants" />
+                                Text="Tất cả khách hàng" />
                             <TextBlock
                                 FontSize="12"
                                 Foreground="#4CAF50"
-                                Text="Active" />
+                                Text="Đang diễn ra" />
                         </StackPanel>
                     </Grid>
-
-                    <!--  Discounted Items  -->
-                    <StackPanel
-                        Grid.Row="1"
-                        Margin="32,16,0,0"
-                        Spacing="16">
-                        <!--  Monstera Deliciosa  -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Image
-                                Width="40"
-                                Height="40"
-                                Source="https://res.cloudinary.com/djyugezvf/image/upload/v1742620683/csc13001/hchjebf3su3nhjymjp74.jpg" />
-                            <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                <TextBlock FontWeight="SemiBold" Text="Monstera Deliciosa" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#666666"
-                                    Text="Indoor Plant - Large" />
-                            </StackPanel>
-                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Foreground="#666666"
-                                    Text="$74.99" />
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Foreground="#4CAF50"
-                                    Text="$56.24" />
-                            </StackPanel>
-                        </Grid>
-
-                        <!--  Snake Plant  -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Image
-                                Width="40"
-                                Height="40"
-                                Source="https://res.cloudinary.com/djyugezvf/image/upload/v1742620683/csc13001/hchjebf3su3nhjymjp74.jpg" />
-                            <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                <TextBlock FontWeight="SemiBold" Text="Snake Plant" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#666666"
-                                    Text="Indoor Plant - Medium" />
-                            </StackPanel>
-                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Foreground="#666666"
-                                    Text="$45.99" />
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Foreground="#4CAF50"
-                                    Text="$34.49" />
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
                 </Grid>
-
-                <!--  Upcoming Discount Campaign  -->
-                <Grid
-                    Padding="16"
-                    Background="White"
-                    BorderBrush="#E5E5E5"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel
-                        Grid.Column="0"
-                        Orientation="Horizontal"
-                        Spacing="12">
-                        <FontIcon
-                            FontSize="20"
-                            Foreground="#FFA000"
-                            Glyph="&#xE8EC;" />
-                        <StackPanel>
-                            <TextBlock
-                                FontSize="16"
-                                FontWeight="SemiBold"
-                                Text="Spring Collection 2024" />
-                            <TextBlock
-                                FontSize="12"
-                                Foreground="#666666"
-                                Text="Starts from April 1, 2024" />
-                            <HyperlinkButton
-                                Padding="0"
-                                Content="Edit Campaign"
-                                Foreground="#666666" />
-                        </StackPanel>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="2" HorizontalAlignment="Right">
-                        <TextBlock
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Text="30% OFF" />
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="#666666"
-                            Text="New Arrivals" />
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="#FFA000"
-                            Text="Upcoming" />
-                    </StackPanel>
-                </Grid>
-
                 <!--  Expired Campaign  -->
                 <Grid
                     Padding="16"
@@ -204,50 +90,104 @@
                     BorderBrush="#E5E5E5"
                     BorderThickness="1"
                     CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85*" />
+                            <ColumnDefinition Width="15*" />
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel
-                        Grid.Column="0"
-                        Orientation="Horizontal"
-                        Spacing="12">
-                        <FontIcon
-                            FontSize="20"
-                            Foreground="red"
-                            Glyph="&#xE8EC;" />
-                        <StackPanel>
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Horizontal"
+                            Spacing="12">
+                            <FontIcon
+                                FontSize="20"
+                                Foreground="red"
+                                Glyph="&#xE8EC;" />
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Khuyến mãi mùa xuân 2025" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#666666"
+                                    Text="1/1/2025 - 2/2/2025" />
+                                <HyperlinkButton
+                                    Padding="0"
+                                    Content="Sửa chương trình"
+                                    Foreground="#666666" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left">
                             <TextBlock
                                 FontSize="16"
                                 FontWeight="SemiBold"
-                                Text="Winter Sale 2023" />
+                                Text="25% OFF" />
                             <TextBlock
                                 FontSize="12"
                                 Foreground="#666666"
-                                Text="Ended on Dec 31, 2023" />
-                            <HyperlinkButton
-                                Padding="0"
-                                Content="View Details"
-                                Foreground="#666666" />
+                                Text="Khách hàng hạng Vàng" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="red"
+                                Text="Hết hạn" />
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
+                </Grid>
+                <!--  Upcoming Discount Campaign  -->
+                <Grid
+                    Padding="16"
+                    Background="White"
+                    BorderBrush="#E5E5E5"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85*" />
+                            <ColumnDefinition Width="15*" />
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="2" HorizontalAlignment="Right">
-                        <TextBlock
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Text="20% OFF" />
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="#666666"
-                            Text="Seasonal Plants" />
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="#666666"
-                            Text="Expired" />
-                    </StackPanel>
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Horizontal"
+                            Spacing="12">
+                            <FontIcon
+                                FontSize="20"
+                                Foreground="#FFA000"
+                                Glyph="&#xE8EC;" />
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Khuyến mãi mùa xuân 2025" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#666666"
+                                    Text="1/1/2025 - 2/2/2025" />
+                                <HyperlinkButton
+                                    Padding="0"
+                                    Content="Sửa chương trình"
+                                    Foreground="#666666" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="30% OFF" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="#666666"
+                                Text="Khách hàng hạng kim cương" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="#FFA000"
+                                Text="Sắp diễn ra" />
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
