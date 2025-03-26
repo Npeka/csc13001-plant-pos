@@ -4,7 +4,9 @@
     "password": "admin",
     "fullname": "Administrator",
     "isAdmin": true,
-    "startDate": null
+    "startDate": null,
+    "phone": "123-456-7890",
+    "email": "admin@example.com"
   },
   {
     "username": "staff1",
@@ -13,7 +15,9 @@
     "isAdmin": true,
     "status": "Working",
     "gender": "Male",
-    "startDate": "2019-05-20"
+    "startDate": "2019-05-20",
+    "phone": "234-567-8901",
+    "email": "staff1@example.com"
   },
   {
     "username": "staff2",
@@ -22,7 +26,9 @@
     "isAdmin": false,
     "status": "Working",
     "gender": "Male",
-    "startDate": "2020-01-15"
+    "startDate": "2020-01-15",
+    "phone": "345-678-9012",
+    "email": "staff2@example.com"
   },
   {
     "username": "staff3",
@@ -31,7 +37,9 @@
     "isAdmin": false,
     "status": "Working",
     "gender": "Female",
-    "startDate": "2021-03-10"
+    "startDate": "2021-03-10",
+    "phone": "456-789-0123",
+    "email": "staff3@example.com"
   },
   {
     "username": "staff4",
@@ -40,7 +48,9 @@
     "isAdmin": false,
     "status": "OnLeave",
     "gender": "Female",
-    "startDate": "2019-07-22"
+    "startDate": "2019-07-22",
+    "phone": "567-890-1234",
+    "email": "staff4@example.com"
   },
   {
     "username": "staff5",
@@ -49,6 +59,8 @@
     "isAdmin": false,
     "status": "Resigned",
     "gender": "Male",
-    "startDate": "2018-11-05"
+    "startDate": "2018-11-05",
+    "phone": "678-901-2345",
+    "email": "staff5@example.com"
   }
 ]
