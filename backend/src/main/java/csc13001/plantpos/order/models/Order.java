@@ -51,9 +51,9 @@ public class Order {
 
     @Column(name = "final_price", nullable = false)
     private BigDecimal finalPrice;
-    
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+    private List<OrderItem> items;
 
     public Long getOrderId() {
         return orderId;

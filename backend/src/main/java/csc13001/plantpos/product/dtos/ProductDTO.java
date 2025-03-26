@@ -1,5 +1,6 @@
 package csc13001.plantpos.product.dtos;
 
+import csc13001.plantpos.category.Category;
 import csc13001.plantpos.product.Product;
 import csc13001.plantpos.utils.http.JsonModel;
 import jakarta.validation.constraints.Min;
@@ -42,8 +43,8 @@ public class ProductDTO extends JsonModel {
     @Min(value = 0, message = "Watering schedule must be at least 0")
     private int wateringSchedule;
 
-    @NotBlank(message = "Category name cannot be blank")
-    private String categoryName;
+    @NotNull(message = "Category name cannot be null")
+    private Category category;
 
     public ProductDTO(Product product) {
         this.productId = product.getProductId();
@@ -57,6 +58,6 @@ public class ProductDTO extends JsonModel {
         this.size = product.getSize();
         this.lightRequirement = product.getLightRequirement();
         this.wateringSchedule = product.getWateringSchedule();
-        this.categoryName = (product.getCategory() != null) ? product.getCategory().getName() : null;
+        this.category = product.getCategory();
     }
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Data
@@ -24,6 +25,7 @@ public class InventoryItem {
     @Column(name = "inventory_item_id")
     private Long inventoryItemId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "inventory_id", nullable = false)
     private Inventory inventory;
