@@ -598,6 +598,21 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\communitytoolkit.mvvm\8.4.0\lib\net8.0-windows10.0.17763\CommunityToolkit.Mvvm.dll">
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\harfbuzzsharp\7.3.0.3\lib\net6.0\HarfBuzzSharp.dll">
+      <PackagePath>HarfBuzzSharp.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.dll">
+      <PackagePath>LiveChartsCore.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.behaviours\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.Behaviours.dll">
+      <PackagePath>LiveChartsCore.Behaviours.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.dll">
+      <PackagePath>LiveChartsCore.SkiaSharpView.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview.winui\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.WinUI.dll">
+      <PackagePath>LiveChartsCore.SkiaSharpView.WinUI.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.windowsappsdk\1.7.250310001\lib\net6.0-windows10.0.18362.0\Microsoft.InteractiveExperiences.Projection.dll">
       <PackagePath>Microsoft.InteractiveExperiences.Projection.dll</PackagePath>
     </AppxPackagedFile>
@@ -658,6 +673,24 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.windowsappsdk\1.7.250310001\lib\net6.0-windows10.0.18362.0\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\propertychanged.fody\4.1.0\lib\netstandard2.1\PropertyChanged.dll">
+      <PackagePath>PropertyChanged.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp\2.88.9\lib\net6.0\SkiaSharp.dll">
+      <PackagePath>SkiaSharp.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.harfbuzz\2.88.9\lib\net6.0\SkiaSharp.HarfBuzz.dll">
+      <PackagePath>SkiaSharp.HarfBuzz.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.winui\2.88.9\runtimes\win-x64\lib\net6.0-windows10.0.19041\SkiaSharp.Views.WinUI.Native.Projection.dll">
+      <PackagePath>SkiaSharp.Views.WinUI.Native.Projection.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.views.winui\2.88.9\lib\net6.0-windows10.0.19041.0\SkiaSharp.Views.Windows.dll">
+      <PackagePath>SkiaSharp.Views.Windows.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\harfbuzzsharp.nativeassets.win32\7.3.0.3\runtimes\win-x64\native\libHarfBuzzSharp.dll">
+      <PackagePath>libHarfBuzzSharp.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2903.40\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>WebView2Loader.dll</PackagePath>
     </AppxPackagedFile>
@@ -667,20 +700,53 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.windowsappsdk\1.7.250310001\runtimes\win-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.win32\2.88.9\runtimes\win-x64\native\libSkiaSharp.dll">
+      <PackagePath>libSkiaSharp.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.winui\2.88.9\runtimes\win-x64\native\SkiaSharp.Views.WinUI.Native.dll">
+      <PackagePath>SkiaSharp.Views.WinUI.Native.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.winui\2.88.9\runtimes\win-x64\native\SkiaSharp.Views.WinUI.Native.winmd">
+      <PackagePath>SkiaSharp.Views.WinUI.Native.winmd</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2903.40\runtimes\win-x64\native_uap\Microsoft.Web.WebView2.Core.dll">
       <PackagePath>Microsoft.Web.WebView2.Core.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2903.40\lib_manual\net8.0-windows10.0.17763.0\Microsoft.Web.WebView2.Core.Projection.dll">
       <PackagePath>Microsoft.Web.WebView2.Core.Projection.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
       <PackagePath>csc13001-plant-pos.deps.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview.winui\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.WinUI.pri">
+      <PackagePath>LiveChartsCore.SkiaSharpView.WinUI.pri</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Authentication\Background.jpg">
+      <PackagePath>Assets\Authentication\Background.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\All.svg">
+      <PackagePath>Assets\Icon\All.svg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Bronze.svg">
+      <PackagePath>Assets\Icon\Bronze.svg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Gold.svg">
+      <PackagePath>Assets\Icon\Gold.svg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ManagerIcon.png">
       <PackagePath>Assets\Icon\ManagerIcon.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Platinum.svg">
+      <PackagePath>Assets\Icon\Platinum.svg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\README.md">
+      <PackagePath>Assets\Icon\README.md</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ShoppingIcon.png">
       <PackagePath>Assets\Icon\ShoppingIcon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Silver.svg">
+      <PackagePath>Assets\Icon\Silver.svg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>

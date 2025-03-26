@@ -16,6 +16,12 @@
     <None Remove="Converter\Converter.xaml" />
     <None Remove="View\AddCustomerPage.xaml" />
     <None Remove="View\AdminDashBoard.xaml" />
+    <None Remove="View\AuthenticationPage.xaml" />
+    <None Remove="View\Authentication\FormForgotPassword.xaml" />
+    <None Remove="View\Authentication\FormLayout.xaml" />
+    <None Remove="View\Authentication\FormLogin.xaml" />
+    <None Remove="View\Authentication\FormResetPassword.xaml" />
+    <None Remove="View\Authentication\FormTitle.xaml" />
     <None Remove="View\CustomerProfilePage.xaml" />
     <None Remove="View\DiscountManagementPage.xaml" />
     <None Remove="View\OrderPage.xaml" />
@@ -51,8 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Fody" Version="6.9.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-rc5.3" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\SalePage.xaml">
@@ -65,8 +77,38 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="View\Authentication\" />
+    <Folder Include="Assets\Authentication\" />
+    <Folder Include="DTO\CustomerDTO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Authentication\FormTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Authentication\FormResetPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Authentication\FormLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Authentication\FormForgotPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Authentication\FormLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\AuthenticationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\WarehouseManagementPage.xaml">

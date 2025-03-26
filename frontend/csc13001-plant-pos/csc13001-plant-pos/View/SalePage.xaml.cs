@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Diagnostics;
+using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.View { 
     public sealed partial class SalePage : Page
@@ -35,12 +36,12 @@ namespace csc13001_plant_pos.View {
         private async void NoteButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            var orderItem = button.DataContext as OrderItem;
+            var orderItem = button.DataContext as CurrentOrder;
 
             // Create TextBox
             var textBox = new TextBox
             {
-                PlaceholderText = "Enter note here...",
+                PlaceholderText = "Nhập ghi chú...",
                 Text = orderItem.Note,
                 TextWrapping = TextWrapping.Wrap,
                 AcceptsReturn = true,
@@ -51,10 +52,10 @@ namespace csc13001_plant_pos.View {
             // Create ContentDialog
             var dialog = new ContentDialog
             {
-                Title = "Add Note",
+                Title = "Thêm ghi chú",
                 Content = textBox,
-                PrimaryButtonText = "Save",
-                CloseButtonText = "Cancel",
+                PrimaryButtonText = "Lưu",
+                CloseButtonText = "Huỷ",
                 DefaultButton = ContentDialogButton.Primary,
                 XamlRoot = this.XamlRoot
             };

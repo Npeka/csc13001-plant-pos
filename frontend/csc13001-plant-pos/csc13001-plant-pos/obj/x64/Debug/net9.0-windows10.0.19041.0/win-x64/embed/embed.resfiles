@@ -2,6 +2,12 @@ App.xbf
 Converter\Converter.xbf
 View\AddCustomerPage.xbf
 View\AdminDashBoard.xbf
+View\Authentication\FormForgotPassword.xbf
+View\Authentication\FormLayout.xbf
+View\Authentication\FormLogin.xbf
+View\Authentication\FormResetPassword.xbf
+View\Authentication\FormTitle.xbf
+View\AuthenticationPage.xbf
 View\CustomerProfilePage.xbf
 View\DiscountManagementPage.xbf
 View\MainWindow.xbf

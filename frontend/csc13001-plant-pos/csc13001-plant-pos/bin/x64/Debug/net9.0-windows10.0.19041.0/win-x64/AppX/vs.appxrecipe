@@ -30,25 +30,25 @@
     <AppXManifest Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-03-23T20:34:51.797</Modified>
+      <Modified>2025-03-26T20:22:08.322</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-03-23T20:34:51.449</Modified>
+      <Modified>2025-03-26T20:22:08.022</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.runtimeconfig.json">
       <PackagePath>csc13001-plant-pos.runtimeconfig.json</PackagePath>
-      <Modified>2025-03-23T14:58:22.116</Modified>
+      <Modified>2025-03-25T17:00:38.211</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.dll">
       <PackagePath>csc13001-plant-pos.dll</PackagePath>
-      <Modified>2025-03-23T20:34:50.441</Modified>
+      <Modified>2025-03-26T20:22:07.608</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\apphost.exe">
       <PackagePath>csc13001-plant-pos.exe</PackagePath>
-      <Modified>2025-03-23T20:34:50.696</Modified>
+      <Modified>2025-03-26T20:22:07.830</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.netcore.app.runtime.win-x64\9.0.1\runtimes\win-x64\lib\net9.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -798,6 +798,26 @@
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
       <Modified>2024-12-12T07:54:40.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\harfbuzzsharp\7.3.0.3\lib\net6.0\HarfBuzzSharp.dll">
+      <PackagePath>HarfBuzzSharp.dll</PackagePath>
+      <Modified>2024-11-07T13:54:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.dll">
+      <PackagePath>LiveChartsCore.dll</PackagePath>
+      <Modified>2025-02-17T20:45:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.behaviours\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.Behaviours.dll">
+      <PackagePath>LiveChartsCore.Behaviours.dll</PackagePath>
+      <Modified>2025-02-17T20:45:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.dll">
+      <PackagePath>LiveChartsCore.SkiaSharpView.dll</PackagePath>
+      <Modified>2025-02-17T20:45:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview.winui\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.WinUI.dll">
+      <PackagePath>LiveChartsCore.SkiaSharpView.WinUI.dll</PackagePath>
+      <Modified>2025-02-17T20:46:20.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.windowsappsdk\1.7.250310001\lib\net6.0-windows10.0.18362.0\Microsoft.InteractiveExperiences.Projection.dll">
       <PackagePath>Microsoft.InteractiveExperiences.Projection.dll</PackagePath>
       <Modified>2025-03-05T01:25:52.000</Modified>
@@ -878,6 +898,30 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
       <Modified>2025-03-06T18:42:06.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\propertychanged.fody\4.1.0\lib\netstandard2.1\PropertyChanged.dll">
+      <PackagePath>PropertyChanged.dll</PackagePath>
+      <Modified>2022-11-06T16:42:22.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp\2.88.9\lib\net6.0\SkiaSharp.dll">
+      <PackagePath>SkiaSharp.dll</PackagePath>
+      <Modified>2024-11-07T13:55:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.harfbuzz\2.88.9\lib\net6.0\SkiaSharp.HarfBuzz.dll">
+      <PackagePath>SkiaSharp.HarfBuzz.dll</PackagePath>
+      <Modified>2024-11-07T13:55:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.winui\2.88.9\runtimes\win-x64\lib\net6.0-windows10.0.19041\SkiaSharp.Views.WinUI.Native.Projection.dll">
+      <PackagePath>SkiaSharp.Views.WinUI.Native.Projection.dll</PackagePath>
+      <Modified>2024-11-07T13:54:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.views.winui\2.88.9\lib\net6.0-windows10.0.19041.0\SkiaSharp.Views.Windows.dll">
+      <PackagePath>SkiaSharp.Views.Windows.dll</PackagePath>
+      <Modified>2024-11-07T13:55:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\harfbuzzsharp.nativeassets.win32\7.3.0.3\runtimes\win-x64\native\libHarfBuzzSharp.dll">
+      <PackagePath>libHarfBuzzSharp.dll</PackagePath>
+      <Modified>2024-11-07T13:55:16.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2903.40\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>WebView2Loader.dll</PackagePath>
       <Modified>2024-11-10T08:57:38.000</Modified>
@@ -890,6 +934,18 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2025-03-06T18:41:20.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.win32\2.88.9\runtimes\win-x64\native\libSkiaSharp.dll">
+      <PackagePath>libSkiaSharp.dll</PackagePath>
+      <Modified>2024-11-07T13:55:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.winui\2.88.9\runtimes\win-x64\native\SkiaSharp.Views.WinUI.Native.dll">
+      <PackagePath>SkiaSharp.Views.WinUI.Native.dll</PackagePath>
+      <Modified>2024-11-07T13:55:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\skiasharp.nativeassets.winui\2.88.9\runtimes\win-x64\native\SkiaSharp.Views.WinUI.Native.winmd">
+      <PackagePath>SkiaSharp.Views.WinUI.Native.winmd</PackagePath>
+      <Modified>2024-11-07T13:03:50.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2903.40\runtimes\win-x64\native_uap\Microsoft.Web.WebView2.Core.dll">
       <PackagePath>Microsoft.Web.WebView2.Core.dll</PackagePath>
       <Modified>2024-11-10T08:58:00.000</Modified>
@@ -898,17 +954,49 @@
       <PackagePath>Microsoft.Web.WebView2.Core.Projection.dll</PackagePath>
       <Modified>2024-11-10T08:57:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
       <PackagePath>csc13001-plant-pos.deps.json</PackagePath>
-      <Modified>2025-03-23T20:34:51.138</Modified>
+      <Modified>2025-03-25T17:00:39.053</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview.winui\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.WinUI.pri">
+      <PackagePath>LiveChartsCore.SkiaSharpView.WinUI.pri</PackagePath>
+      <Modified>2025-02-17T20:46:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Authentication\Background.jpg">
+      <PackagePath>Assets\Authentication\Background.jpg</PackagePath>
+      <Modified>2025-03-23T20:58:48.492</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\All.svg">
+      <PackagePath>Assets\Icon\All.svg</PackagePath>
+      <Modified>2025-03-24T10:11:43.191</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Bronze.svg">
+      <PackagePath>Assets\Icon\Bronze.svg</PackagePath>
+      <Modified>2025-03-24T10:10:39.481</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Gold.svg">
+      <PackagePath>Assets\Icon\Gold.svg</PackagePath>
+      <Modified>2025-03-24T10:11:00.318</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ManagerIcon.png">
       <PackagePath>Assets\Icon\ManagerIcon.png</PackagePath>
       <Modified>2025-03-20T15:01:22.207</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Platinum.svg">
+      <PackagePath>Assets\Icon\Platinum.svg</PackagePath>
+      <Modified>2025-03-24T10:11:18.276</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\README.md">
+      <PackagePath>Assets\Icon\README.md</PackagePath>
+      <Modified>2025-03-24T16:10:11.994</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\ShoppingIcon.png">
       <PackagePath>Assets\Icon\ShoppingIcon.png</PackagePath>
       <Modified>2025-03-20T14:46:17.752</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\Icon\Silver.svg">
+      <PackagePath>Assets\Icon\Silver.svg</PackagePath>
+      <Modified>2025-03-24T10:10:48.832</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>

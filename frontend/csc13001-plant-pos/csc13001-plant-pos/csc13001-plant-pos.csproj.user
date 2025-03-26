@@ -5,6 +5,24 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="View\Authentication\FormTitle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormResetPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormForgotPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormLayout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AuthenticationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\WarehouseManagementPage.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -30,6 +30,10 @@ namespace csc13001_plant_pos
             m_window = new MainWindow();
             m_window.Activate();
         }
+        public MainWindow? GetMainWindow()
+        {
+            return m_window as MainWindow;
+        }
 
         private Window? m_window;
     }
