@@ -37,7 +37,7 @@ public class ProductService {
 
     @Transactional
     public Product createProduct(ProductDTO productDTO, MultipartFile image) {
-        Category category = categoryRepository.findByName(productDTO.getCategoryName())
+        Category category = categoryRepository.findById(productDTO.getCategory().getCategoryId())
                 .orElseThrow(CategoryException.CategoryNotFoundException::new);
 
         Product product = new Product();
@@ -78,8 +78,8 @@ public class ProductService {
                 if (newValue == null)
                     continue;
 
-                if (dtoField.getName().equals("categoryName")) {
-                    Category category = categoryRepository.findByName((String) newValue)
+                if (dtoField.getName().equals("category")) {
+                    Category category = categoryRepository.findById(((Category) newValue).getCategoryId())
                             .orElseThrow(CategoryException.CategoryNotFoundException::new);
                     product.setCategory(category);
 
