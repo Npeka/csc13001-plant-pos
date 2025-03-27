@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "inventory")
 @Data
@@ -32,8 +34,9 @@ public class Inventory {
     @Column(name = "total_price", nullable = false)
     private BigDecimal totalPrice;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "purchase_date", nullable = false)
-    private Date purchaseDate;  
+    private Date purchaseDate;
 
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
     private List<InventoryItem> items;
