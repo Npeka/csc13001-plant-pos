@@ -28,7 +28,7 @@ public class StaffControlller {
     @GetMapping("/{staffId}")
     public ResponseEntity<?> getAllProducts(@PathVariable Long staffId) {
         StaffDTO staffDTO = staffService.getStaffById(staffId);
-        return HttpResponse.ok("Get all products successful", staffDTO);
+        return HttpResponse.ok("Get all staff successful", staffDTO);
     }
 
     @PutMapping("/{staffId}")

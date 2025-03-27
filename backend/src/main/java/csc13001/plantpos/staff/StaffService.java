@@ -33,10 +33,7 @@ public class StaffService {
                 .map(Order::getFinalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        StaffDTO staffDTO = new StaffDTO();
-        staffDTO.setUser(user);
-        staffDTO.setTotalOrders(totalOrders);
-        staffDTO.setTotalRevenue(totalRevenue);
+        StaffDTO staffDTO = new StaffDTO(user, totalOrders, totalRevenue);
         return staffDTO;
     }
 

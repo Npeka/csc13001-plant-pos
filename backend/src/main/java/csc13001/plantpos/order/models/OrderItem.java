@@ -1,6 +1,5 @@
 package csc13001.plantpos.order.models;
 
-import csc13001.plantpos.discount.DiscountProgram;
 import csc13001.plantpos.product.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

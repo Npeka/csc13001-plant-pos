@@ -92,6 +92,19 @@ public class User {
         this.status = WorkingStatus.Working;
     }
 
+    public User(User other) {
+        this.userId = other.userId;
+        this.fullname = other.fullname;
+        this.username = other.username;
+        this.email = other.email;
+        this.phone = other.phone;
+        this.password = other.password;
+        this.isAdmin = other.isAdmin;
+        this.startDate = other.startDate;
+        this.status = other.status;
+        this.gender = other.gender;
+    }
+
     @JsonIgnore
     public String getRole() {
         return isAdmin ? "admin" : "staff";
