@@ -36,7 +36,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCustomerById(@PathVariable Long id) {
-        Customer customer = customerService.getCustomerById(id);
+        CustomerDTO customer = customerService.getCustomerById(id);
         return HttpResponse.ok("Get customer successful", customer);
     }
 
