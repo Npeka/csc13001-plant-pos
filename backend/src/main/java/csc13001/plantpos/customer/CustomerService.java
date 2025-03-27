@@ -21,7 +21,7 @@ public class CustomerService {
                 .map(customer -> {
                     List<Order> orders = orderRepository.findByCustomer_CustomerId(customer.getCustomerId());
                     return new CustomerDTO(customer, orders.size(),
-                            orders.stream().map(Order::getTotalPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
+                            orders.stream().map(Order::getFinalPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
                 })
                 .toList();
     }
@@ -33,9 +33,13 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer getCustomerById(Long id) {
-        return customerRepository.findById(id)
+    public CustomerDTO getCustomerById(Long id) {
+        Customer customer = customerRepository.findById(id)
                 .orElseThrow(CustomerException.CustomerNotFoundException::new);
+
+        List<Order> orders = orderRepository.findByCustomer_CustomerId(customer.getCustomerId());
+        return new CustomerDTO(customer, orders.size(),
+                orders.stream().map(Order::getFinalPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
     }
 
     public void updateCustomer(Customer customer) {

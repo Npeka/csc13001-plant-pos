@@ -23,7 +23,9 @@ public class CustomerDTO extends Customer {
                 customer.getName(),
                 customer.getPhone(),
                 customer.getEmail(),
-                customer.getGender());
+                customer.getGender(),
+                customer.getLoyaltyPoints(),
+                customer.getLoyaltyCardType());
         this.totalOrders = 0;
         this.totalSpent = BigDecimal.ZERO;
     }
@@ -34,7 +36,9 @@ public class CustomerDTO extends Customer {
                 customer.getName(),
                 customer.getPhone(),
                 customer.getEmail(),
-                customer.getGender());
+                customer.getGender(),
+                customer.getLoyaltyPoints(),
+                customer.getLoyaltyCardType());
         this.totalOrders = totalOrders;
         this.totalSpent = totalSpent;
     }
