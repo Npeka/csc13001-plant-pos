@@ -4,6 +4,7 @@
     <Import Project="D:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\microsoft.windows.sdk.buildtools\10.0.26100.1742\buildTransitive\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('D:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\microsoft.windows.sdk.buildtools\10.0.26100.1742\buildTransitive\Microsoft.Windows.SDK.BuildTools.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.web.webview2\1.0.2903.40\buildTransitive\Microsoft.Web.WebView2.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.web.webview2\1.0.2903.40\buildTransitive\Microsoft.Web.WebView2.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.windowsappsdk\1.7.250310001\buildTransitive\Microsoft.WindowsAppSDK.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windowsappsdk\1.7.250310001\buildTransitive\Microsoft.WindowsAppSDK.targets')" />
+    <Import Project="$(NuGetPackageRoot)fody\6.9.2\build\Fody.targets" Condition="Exists('$(NuGetPackageRoot)fody\6.9.2\build\Fody.targets')" />
     <Import Project="$(NuGetPackageRoot)communitytoolkit.mvvm\8.4.0\buildTransitive\CommunityToolkit.Mvvm.targets" Condition="Exists('$(NuGetPackageRoot)communitytoolkit.mvvm\8.4.0\buildTransitive\CommunityToolkit.Mvvm.targets')" />
   </ImportGroup>
 </Project>

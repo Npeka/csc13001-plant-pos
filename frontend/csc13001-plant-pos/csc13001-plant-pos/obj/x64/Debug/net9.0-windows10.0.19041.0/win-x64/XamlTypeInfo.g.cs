@@ -226,123 +226,275 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[57];
+            _typeNameTable = new string[132];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
             _typeNameTable[4] = "csc13001_plant_pos.Converter.BooleanToVisibilityConverter";
-            _typeNameTable[5] = "csc13001_plant_pos.View.AddCustomerPage";
-            _typeNameTable[6] = "Microsoft.UI.Xaml.Controls.Page";
-            _typeNameTable[7] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[8] = "Microsoft.UI.Xaml.Controls.NavigationView";
-            _typeNameTable[9] = "Microsoft.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[10] = "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible";
-            _typeNameTable[11] = "System.Enum";
-            _typeNameTable[12] = "System.ValueType";
-            _typeNameTable[13] = "System.Collections.Generic.IList`1<Object>";
-            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.AutoSuggestBox";
-            _typeNameTable[15] = "Double";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.UIElement";
-            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode";
-            _typeNameTable[18] = "Microsoft.UI.Xaml.DataTemplate";
-            _typeNameTable[19] = "Microsoft.UI.Xaml.Style";
-            _typeNameTable[20] = "Microsoft.UI.Xaml.Controls.StyleSelector";
-            _typeNameTable[21] = "Microsoft.UI.Xaml.Controls.DataTemplateSelector";
-            _typeNameTable[22] = "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode";
-            _typeNameTable[23] = "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode";
-            _typeNameTable[24] = "String";
-            _typeNameTable[25] = "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus";
-            _typeNameTable[26] = "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled";
-            _typeNameTable[27] = "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings";
-            _typeNameTable[28] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[29] = "Microsoft.UI.Xaml.Controls.NavigationViewItem";
-            _typeNameTable[30] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
-            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.IconElement";
-            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.InfoBadge";
-            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[34] = "csc13001_plant_pos.View.AdminDashBoard";
-            _typeNameTable[35] = "Microsoft.UI.Xaml.Controls.Expander";
-            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.ExpandDirection";
-            _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings";
-            _typeNameTable[38] = "csc13001_plant_pos.View.CustomerProfilePage";
-            _typeNameTable[39] = "csc13001_plant_pos.View.DiscountManagementPage";
-            _typeNameTable[40] = "csc13001_plant_pos.MainWindow";
-            _typeNameTable[41] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[42] = "csc13001_plant_pos.View.OrderPage";
-            _typeNameTable[43] = "csc13001_plant_pos.View.RoleSelectionPage";
-            _typeNameTable[44] = "csc13001_plant_pos.View.SaleDashBoard";
-            _typeNameTable[45] = "csc13001_plant_pos.Converter.BoolToBackgroundConverter";
-            _typeNameTable[46] = "csc13001_plant_pos.Converter.BoolToForegroundConverter";
-            _typeNameTable[47] = "csc13001_plant_pos.View.SalePage";
-            _typeNameTable[48] = "csc13001_plant_pos.ViewModel.SaleViewModel";
-            _typeNameTable[49] = "CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient";
-            _typeNameTable[50] = "CommunityToolkit.Mvvm.ComponentModel.ObservableObject";
-            _typeNameTable[51] = "csc13001_plant_pos.View.StaffProfilePage";
-            _typeNameTable[52] = "csc13001_plant_pos.View.StatisticPage";
-            _typeNameTable[53] = "csc13001_plant_pos.View.WarehouseManagementPage";
-            _typeNameTable[54] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[55] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[56] = "Int32";
+            _typeNameTable[5] = "csc13001_plant_pos.Converter.CurrencyConverter";
+            _typeNameTable[6] = "csc13001_plant_pos.Converter.BoolToForegroundConverter";
+            _typeNameTable[7] = "csc13001_plant_pos.Converter.BoolToBackgroundConverter";
+            _typeNameTable[8] = "csc13001_plant_pos.Converter.StringToVisibilityConverter";
+            _typeNameTable[9] = "csc13001_plant_pos.Converter.DateToStringConverter";
+            _typeNameTable[10] = "csc13001_plant_pos.Converter.GenderConverter";
+            _typeNameTable[11] = "csc13001_plant_pos.Converter.PercentageConverter";
+            _typeNameTable[12] = "csc13001_plant_pos.Converter.MembershipTypeToImageConverter";
+            _typeNameTable[13] = "csc13001_plant_pos.Converter.DiscountStatusToTextConverter";
+            _typeNameTable[14] = "csc13001_plant_pos.Converter.DiscountStatusToColorConverter";
+            _typeNameTable[15] = "csc13001_plant_pos.Converter.MembershipTypeToBackgroundConverter";
+            _typeNameTable[16] = "csc13001_plant_pos.View.AddCustomerPage";
+            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.Page";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[19] = "Microsoft.UI.Xaml.Controls.NavigationView";
+            _typeNameTable[20] = "Microsoft.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[21] = "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible";
+            _typeNameTable[22] = "System.Enum";
+            _typeNameTable[23] = "System.ValueType";
+            _typeNameTable[24] = "System.Collections.Generic.IList`1<Object>";
+            _typeNameTable[25] = "Microsoft.UI.Xaml.Controls.AutoSuggestBox";
+            _typeNameTable[26] = "Double";
+            _typeNameTable[27] = "Microsoft.UI.Xaml.UIElement";
+            _typeNameTable[28] = "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode";
+            _typeNameTable[29] = "Microsoft.UI.Xaml.DataTemplate";
+            _typeNameTable[30] = "Microsoft.UI.Xaml.Style";
+            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.StyleSelector";
+            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.DataTemplateSelector";
+            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode";
+            _typeNameTable[34] = "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode";
+            _typeNameTable[35] = "String";
+            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus";
+            _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled";
+            _typeNameTable[38] = "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings";
+            _typeNameTable[39] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.NavigationViewItem";
+            _typeNameTable[41] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
+            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.IconElement";
+            _typeNameTable[43] = "Microsoft.UI.Xaml.Controls.InfoBadge";
+            _typeNameTable[44] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[45] = "csc13001_plant_pos.View.AdminDashBoard";
+            _typeNameTable[46] = "csc13001_plant_pos.View.Authentication.FormLayout";
+            _typeNameTable[47] = "csc13001_plant_pos.View.AuthenticationPage";
+            _typeNameTable[48] = "csc13001_plant_pos.View.Authentication.FormLogin";
+            _typeNameTable[49] = "csc13001_plant_pos.View.Authentication.FormForgotPassword";
+            _typeNameTable[50] = "csc13001_plant_pos.View.Authentication.FormResetPassword";
+            _typeNameTable[51] = "csc13001_plant_pos.View.Authentication.FormTitle";
+            _typeNameTable[52] = "Microsoft.UI.Xaml.Media.AcrylicBrush";
+            _typeNameTable[53] = "Microsoft.UI.Xaml.Media.XamlCompositionBrushBase";
+            _typeNameTable[54] = "Windows.UI.Color";
+            _typeNameTable[55] = "System.Nullable`1<Double>";
+            _typeNameTable[56] = "TimeSpan";
+            _typeNameTable[57] = "Microsoft.UI.Xaml.Controls.ProgressRing";
+            _typeNameTable[58] = "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings";
+            _typeNameTable[59] = "Microsoft.UI.Xaml.Controls.Expander";
+            _typeNameTable[60] = "Microsoft.UI.Xaml.Controls.ExpandDirection";
+            _typeNameTable[61] = "Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings";
+            _typeNameTable[62] = "csc13001_plant_pos.View.CustomerProfilePage";
+            _typeNameTable[63] = "csc13001_plant_pos.ViewModel.CustomerProfilePageViewModel";
+            _typeNameTable[64] = "csc13001_plant_pos.View.DiscountManagementPage";
+            _typeNameTable[65] = "csc13001_plant_pos.ViewModel.DiscountManagementPageViewModel";
+            _typeNameTable[66] = "CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient";
+            _typeNameTable[67] = "CommunityToolkit.Mvvm.ComponentModel.ObservableObject";
+            _typeNameTable[68] = "csc13001_plant_pos.MainWindow";
+            _typeNameTable[69] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[70] = "csc13001_plant_pos.View.OrderPage";
+            _typeNameTable[71] = "csc13001_plant_pos.View.RoleSelectionPage";
+            _typeNameTable[72] = "csc13001_plant_pos.View.SaleDashBoard";
+            _typeNameTable[73] = "csc13001_plant_pos.View.SalePage";
+            _typeNameTable[74] = "csc13001_plant_pos.ViewModel.SaleViewModel";
+            _typeNameTable[75] = "csc13001_plant_pos.View.StaffProfilePage";
+            _typeNameTable[76] = "csc13001_plant_pos.ViewModel.StaffProfilePageViewModel";
+            _typeNameTable[77] = "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart";
+            _typeNameTable[78] = "System.Collections.Generic.IEnumerable`1<LiveChartsCore.ISeries>";
+            _typeNameTable[79] = "LiveChartsCore.Measure.TooltipPosition";
+            _typeNameTable[80] = "System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.Sketches.ICartesianAxis>";
+            _typeNameTable[81] = "LiveChartsCore.Chart";
+            _typeNameTable[82] = "LiveChartsCore.Measure.Margin";
+            _typeNameTable[83] = "LiveChartsCore.Motion.CoreMotionCanvas";
+            _typeNameTable[84] = "LiveChartsCore.VisualElements.VisualElement";
+            _typeNameTable[85] = "LiveChartsCore.Kernel.ChartElement";
+            _typeNameTable[86] = "System.Collections.Generic.IEnumerable`1<LiveChartsCore.CoreSection>";
+            _typeNameTable[87] = "System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.ChartElement>";
+            _typeNameTable[88] = "LiveChartsCore.CoreDrawMarginFrame";
+            _typeNameTable[89] = "LiveChartsCore.Measure.ZoomAndPanMode";
+            _typeNameTable[90] = "LiveChartsCore.Measure.TooltipFindingStrategy";
+            _typeNameTable[91] = "LiveChartsCore.Measure.FindingStrategy";
+            _typeNameTable[92] = "System.Func`2<Single, Single>";
+            _typeNameTable[93] = "System.MulticastDelegate";
+            _typeNameTable[94] = "System.Delegate";
+            _typeNameTable[95] = "LiveChartsCore.Measure.LegendPosition";
+            _typeNameTable[96] = "LiveChartsCore.Painting.Paint";
+            _typeNameTable[97] = "LiveChartsCore.Drawing.Animatable";
+            _typeNameTable[98] = "LiveChartsCore.Kernel.Sketches.IChartLegend";
+            _typeNameTable[99] = "LiveChartsCore.Kernel.Sketches.IChartTooltip";
+            _typeNameTable[100] = "System.Windows.Input.ICommand";
+            _typeNameTable[101] = "csc13001_plant_pos.View.StatisticPage";
+            _typeNameTable[102] = "System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.ISeries>";
+            _typeNameTable[103] = "System.Collections.ObjectModel.Collection`1<LiveChartsCore.ISeries>";
+            _typeNameTable[104] = "LiveChartsCore.ISeries";
+            _typeNameTable[105] = "Int32";
+            _typeNameTable[106] = "LiveChartsCore.Kernel.SeriesProperties";
+            _typeNameTable[107] = "System.Collections.IEnumerable";
+            _typeNameTable[108] = "LiveChartsCore.Drawing.LvcPoint";
+            _typeNameTable[109] = "System.Nullable`1<TimeSpan>";
+            _typeNameTable[110] = "LiveChartsCore.Drawing.Padding";
+            _typeNameTable[111] = "System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.SkiaSharpView.Axis>";
+            _typeNameTable[112] = "System.Collections.ObjectModel.Collection`1<LiveChartsCore.SkiaSharpView.Axis>";
+            _typeNameTable[113] = "LiveChartsCore.SkiaSharpView.Axis";
+            _typeNameTable[114] = "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>";
+            _typeNameTable[115] = "LiveChartsCore.Measure.Bounds";
+            _typeNameTable[116] = "System.Nullable`1<LiveChartsCore.Drawing.Align>";
+            _typeNameTable[117] = "LiveChartsCore.Drawing.Align";
+            _typeNameTable[118] = "LiveChartsCore.Measure.AxisOrientation";
+            _typeNameTable[119] = "Single";
+            _typeNameTable[120] = "System.Func`2<Double, String>";
+            _typeNameTable[121] = "LiveChartsCore.Measure.AxisPosition";
+            _typeNameTable[122] = "System.Collections.Generic.IList`1<String>";
+            _typeNameTable[123] = "System.Collections.Generic.IEnumerable`1<Double>";
+            _typeNameTable[124] = "System.Nullable`1<LiveChartsCore.Drawing.LvcColor>";
+            _typeNameTable[125] = "LiveChartsCore.Drawing.LvcColor";
+            _typeNameTable[126] = "System.Collections.ObjectModel.ObservableCollection`1<csc13001_plant_pos.View.SalesData>";
+            _typeNameTable[127] = "System.Collections.ObjectModel.Collection`1<csc13001_plant_pos.View.SalesData>";
+            _typeNameTable[128] = "csc13001_plant_pos.View.SalesData";
+            _typeNameTable[129] = "csc13001_plant_pos.View.WarehouseManagementPage";
+            _typeNameTable[130] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[131] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
 
-            _typeTable = new global::System.Type[57];
+            _typeTable = new global::System.Type[132];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
             _typeTable[4] = typeof(global::csc13001_plant_pos.Converter.BooleanToVisibilityConverter);
-            _typeTable[5] = typeof(global::csc13001_plant_pos.View.AddCustomerPage);
-            _typeTable[6] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
-            _typeTable[7] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[8] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationView);
-            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
-            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible);
-            _typeTable[11] = typeof(global::System.Enum);
-            _typeTable[12] = typeof(global::System.ValueType);
-            _typeTable[13] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
-            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.AutoSuggestBox);
-            _typeTable[15] = typeof(global::System.Double);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.UIElement);
-            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode);
-            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
-            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Style);
-            _typeTable[20] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
-            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.Controls.DataTemplateSelector);
-            _typeTable[22] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode);
-            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode);
-            _typeTable[24] = typeof(global::System.String);
-            _typeTable[25] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus);
-            _typeTable[26] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled);
-            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings);
-            _typeTable[28] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem);
-            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
-            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
-            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
-            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[34] = typeof(global::csc13001_plant_pos.View.AdminDashBoard);
-            _typeTable[35] = typeof(global::Microsoft.UI.Xaml.Controls.Expander);
-            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.ExpandDirection);
-            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings);
-            _typeTable[38] = typeof(global::csc13001_plant_pos.View.CustomerProfilePage);
-            _typeTable[39] = typeof(global::csc13001_plant_pos.View.DiscountManagementPage);
-            _typeTable[40] = typeof(global::csc13001_plant_pos.MainWindow);
-            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[42] = typeof(global::csc13001_plant_pos.View.OrderPage);
-            _typeTable[43] = typeof(global::csc13001_plant_pos.View.RoleSelectionPage);
-            _typeTable[44] = typeof(global::csc13001_plant_pos.View.SaleDashBoard);
-            _typeTable[45] = typeof(global::csc13001_plant_pos.Converter.BoolToBackgroundConverter);
-            _typeTable[46] = typeof(global::csc13001_plant_pos.Converter.BoolToForegroundConverter);
-            _typeTable[47] = typeof(global::csc13001_plant_pos.View.SalePage);
-            _typeTable[48] = typeof(global::csc13001_plant_pos.ViewModel.SaleViewModel);
-            _typeTable[49] = typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient);
-            _typeTable[50] = typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject);
-            _typeTable[51] = typeof(global::csc13001_plant_pos.View.StaffProfilePage);
-            _typeTable[52] = typeof(global::csc13001_plant_pos.View.StatisticPage);
-            _typeTable[53] = typeof(global::csc13001_plant_pos.View.WarehouseManagementPage);
-            _typeTable[54] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[55] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[56] = typeof(global::System.Int32);
+            _typeTable[5] = typeof(global::csc13001_plant_pos.Converter.CurrencyConverter);
+            _typeTable[6] = typeof(global::csc13001_plant_pos.Converter.BoolToForegroundConverter);
+            _typeTable[7] = typeof(global::csc13001_plant_pos.Converter.BoolToBackgroundConverter);
+            _typeTable[8] = typeof(global::csc13001_plant_pos.Converter.StringToVisibilityConverter);
+            _typeTable[9] = typeof(global::csc13001_plant_pos.Converter.DateToStringConverter);
+            _typeTable[10] = typeof(global::csc13001_plant_pos.Converter.GenderConverter);
+            _typeTable[11] = typeof(global::csc13001_plant_pos.Converter.PercentageConverter);
+            _typeTable[12] = typeof(global::csc13001_plant_pos.Converter.MembershipTypeToImageConverter);
+            _typeTable[13] = typeof(global::csc13001_plant_pos.Converter.DiscountStatusToTextConverter);
+            _typeTable[14] = typeof(global::csc13001_plant_pos.Converter.DiscountStatusToColorConverter);
+            _typeTable[15] = typeof(global::csc13001_plant_pos.Converter.MembershipTypeToBackgroundConverter);
+            _typeTable[16] = typeof(global::csc13001_plant_pos.View.AddCustomerPage);
+            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationView);
+            _typeTable[20] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
+            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible);
+            _typeTable[22] = typeof(global::System.Enum);
+            _typeTable[23] = typeof(global::System.ValueType);
+            _typeTable[24] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
+            _typeTable[25] = typeof(global::Microsoft.UI.Xaml.Controls.AutoSuggestBox);
+            _typeTable[26] = typeof(global::System.Double);
+            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.UIElement);
+            _typeTable[28] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode);
+            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
+            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Style);
+            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
+            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.DataTemplateSelector);
+            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode);
+            _typeTable[34] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode);
+            _typeTable[35] = typeof(global::System.String);
+            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus);
+            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled);
+            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings);
+            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem);
+            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
+            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
+            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
+            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[45] = typeof(global::csc13001_plant_pos.View.AdminDashBoard);
+            _typeTable[46] = typeof(global::csc13001_plant_pos.View.Authentication.FormLayout);
+            _typeTable[47] = typeof(global::csc13001_plant_pos.View.AuthenticationPage);
+            _typeTable[48] = typeof(global::csc13001_plant_pos.View.Authentication.FormLogin);
+            _typeTable[49] = typeof(global::csc13001_plant_pos.View.Authentication.FormForgotPassword);
+            _typeTable[50] = typeof(global::csc13001_plant_pos.View.Authentication.FormResetPassword);
+            _typeTable[51] = typeof(global::csc13001_plant_pos.View.Authentication.FormTitle);
+            _typeTable[52] = typeof(global::Microsoft.UI.Xaml.Media.AcrylicBrush);
+            _typeTable[53] = typeof(global::Microsoft.UI.Xaml.Media.XamlCompositionBrushBase);
+            _typeTable[54] = typeof(global::Windows.UI.Color);
+            _typeTable[55] = typeof(global::System.Nullable<global::System.Double>);
+            _typeTable[56] = typeof(global::System.TimeSpan);
+            _typeTable[57] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
+            _typeTable[58] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings);
+            _typeTable[59] = typeof(global::Microsoft.UI.Xaml.Controls.Expander);
+            _typeTable[60] = typeof(global::Microsoft.UI.Xaml.Controls.ExpandDirection);
+            _typeTable[61] = typeof(global::Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings);
+            _typeTable[62] = typeof(global::csc13001_plant_pos.View.CustomerProfilePage);
+            _typeTable[63] = typeof(global::csc13001_plant_pos.ViewModel.CustomerProfilePageViewModel);
+            _typeTable[64] = typeof(global::csc13001_plant_pos.View.DiscountManagementPage);
+            _typeTable[65] = typeof(global::csc13001_plant_pos.ViewModel.DiscountManagementPageViewModel);
+            _typeTable[66] = typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient);
+            _typeTable[67] = typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject);
+            _typeTable[68] = typeof(global::csc13001_plant_pos.MainWindow);
+            _typeTable[69] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[70] = typeof(global::csc13001_plant_pos.View.OrderPage);
+            _typeTable[71] = typeof(global::csc13001_plant_pos.View.RoleSelectionPage);
+            _typeTable[72] = typeof(global::csc13001_plant_pos.View.SaleDashBoard);
+            _typeTable[73] = typeof(global::csc13001_plant_pos.View.SalePage);
+            _typeTable[74] = typeof(global::csc13001_plant_pos.ViewModel.SaleViewModel);
+            _typeTable[75] = typeof(global::csc13001_plant_pos.View.StaffProfilePage);
+            _typeTable[76] = typeof(global::csc13001_plant_pos.ViewModel.StaffProfilePageViewModel);
+            _typeTable[77] = typeof(global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart);
+            _typeTable[78] = typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.ISeries>);
+            _typeTable[79] = typeof(global::LiveChartsCore.Measure.TooltipPosition);
+            _typeTable[80] = typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.Sketches.ICartesianAxis>);
+            _typeTable[81] = typeof(global::LiveChartsCore.Chart);
+            _typeTable[82] = typeof(global::LiveChartsCore.Measure.Margin);
+            _typeTable[83] = typeof(global::LiveChartsCore.Motion.CoreMotionCanvas);
+            _typeTable[84] = typeof(global::LiveChartsCore.VisualElements.VisualElement);
+            _typeTable[85] = typeof(global::LiveChartsCore.Kernel.ChartElement);
+            _typeTable[86] = typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.CoreSection>);
+            _typeTable[87] = typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.ChartElement>);
+            _typeTable[88] = typeof(global::LiveChartsCore.CoreDrawMarginFrame);
+            _typeTable[89] = typeof(global::LiveChartsCore.Measure.ZoomAndPanMode);
+#pragma warning disable 0618  //   Warning on Deprecated usage
+            _typeTable[90] = typeof(global::LiveChartsCore.Measure.TooltipFindingStrategy);
+#pragma warning restore 0618
+            _typeTable[91] = typeof(global::LiveChartsCore.Measure.FindingStrategy);
+            _typeTable[92] = typeof(global::System.Func<global::System.Single, global::System.Single>);
+            _typeTable[93] = typeof(global::System.MulticastDelegate);
+            _typeTable[94] = typeof(global::System.Delegate);
+            _typeTable[95] = typeof(global::LiveChartsCore.Measure.LegendPosition);
+            _typeTable[96] = typeof(global::LiveChartsCore.Painting.Paint);
+            _typeTable[97] = typeof(global::LiveChartsCore.Drawing.Animatable);
+            _typeTable[98] = typeof(global::LiveChartsCore.Kernel.Sketches.IChartLegend);
+            _typeTable[99] = typeof(global::LiveChartsCore.Kernel.Sketches.IChartTooltip);
+            _typeTable[100] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[101] = typeof(global::csc13001_plant_pos.View.StatisticPage);
+            _typeTable[102] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.ISeries>);
+            _typeTable[103] = typeof(global::System.Collections.ObjectModel.Collection<global::LiveChartsCore.ISeries>);
+            _typeTable[104] = typeof(global::LiveChartsCore.ISeries);
+            _typeTable[105] = typeof(global::System.Int32);
+            _typeTable[106] = typeof(global::LiveChartsCore.Kernel.SeriesProperties);
+            _typeTable[107] = typeof(global::System.Collections.IEnumerable);
+            _typeTable[108] = typeof(global::LiveChartsCore.Drawing.LvcPoint);
+            _typeTable[109] = typeof(global::System.Nullable<global::System.TimeSpan>);
+            _typeTable[110] = typeof(global::LiveChartsCore.Drawing.Padding);
+            _typeTable[111] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.SkiaSharpView.Axis>);
+            _typeTable[112] = typeof(global::System.Collections.ObjectModel.Collection<global::LiveChartsCore.SkiaSharpView.Axis>);
+            _typeTable[113] = typeof(global::LiveChartsCore.SkiaSharpView.Axis);
+            _typeTable[114] = typeof(global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>);
+            _typeTable[115] = typeof(global::LiveChartsCore.Measure.Bounds);
+            _typeTable[116] = typeof(global::System.Nullable<global::LiveChartsCore.Drawing.Align>);
+            _typeTable[117] = typeof(global::LiveChartsCore.Drawing.Align);
+            _typeTable[118] = typeof(global::LiveChartsCore.Measure.AxisOrientation);
+            _typeTable[119] = typeof(global::System.Single);
+            _typeTable[120] = typeof(global::System.Func<global::System.Double, global::System.String>);
+            _typeTable[121] = typeof(global::LiveChartsCore.Measure.AxisPosition);
+            _typeTable[122] = typeof(global::System.Collections.Generic.IList<global::System.String>);
+            _typeTable[123] = typeof(global::System.Collections.Generic.IEnumerable<global::System.Double>);
+            _typeTable[124] = typeof(global::System.Nullable<global::LiveChartsCore.Drawing.LvcColor>);
+            _typeTable[125] = typeof(global::LiveChartsCore.Drawing.LvcColor);
+            _typeTable[126] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::csc13001_plant_pos.View.SalesData>);
+            _typeTable[127] = typeof(global::System.Collections.ObjectModel.Collection<global::csc13001_plant_pos.View.SalesData>);
+            _typeTable[128] = typeof(global::csc13001_plant_pos.View.SalesData);
+            _typeTable[129] = typeof(global::csc13001_plant_pos.View.WarehouseManagementPage);
+            _typeTable[130] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[131] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -379,65 +531,173 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
         private object Activate_4_BooleanToVisibilityConverter() { return new global::csc13001_plant_pos.Converter.BooleanToVisibilityConverter(); }
-        private object Activate_5_AddCustomerPage() { return new global::csc13001_plant_pos.View.AddCustomerPage(); }
-        private object Activate_8_NavigationView() { return new global::Microsoft.UI.Xaml.Controls.NavigationView(); }
-        private object Activate_27_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
-        private object Activate_29_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
-        private object Activate_32_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
-        private object Activate_34_AdminDashBoard() { return new global::csc13001_plant_pos.View.AdminDashBoard(); }
-        private object Activate_35_Expander() { return new global::Microsoft.UI.Xaml.Controls.Expander(); }
-        private object Activate_38_CustomerProfilePage() { return new global::csc13001_plant_pos.View.CustomerProfilePage(); }
-        private object Activate_39_DiscountManagementPage() { return new global::csc13001_plant_pos.View.DiscountManagementPage(); }
-        private object Activate_40_MainWindow() { return new global::csc13001_plant_pos.MainWindow(); }
-        private object Activate_42_OrderPage() { return new global::csc13001_plant_pos.View.OrderPage(); }
-        private object Activate_43_RoleSelectionPage() { return new global::csc13001_plant_pos.View.RoleSelectionPage(); }
-        private object Activate_44_SaleDashBoard() { return new global::csc13001_plant_pos.View.SaleDashBoard(); }
-        private object Activate_45_BoolToBackgroundConverter() { return new global::csc13001_plant_pos.Converter.BoolToBackgroundConverter(); }
-        private object Activate_46_BoolToForegroundConverter() { return new global::csc13001_plant_pos.Converter.BoolToForegroundConverter(); }
-        private object Activate_47_SalePage() { return new global::csc13001_plant_pos.View.SalePage(); }
-        private object Activate_48_SaleViewModel() { return new global::csc13001_plant_pos.ViewModel.SaleViewModel(); }
-        private object Activate_51_StaffProfilePage() { return new global::csc13001_plant_pos.View.StaffProfilePage(); }
-        private object Activate_52_StatisticPage() { return new global::csc13001_plant_pos.View.StatisticPage(); }
-        private object Activate_53_WarehouseManagementPage() { return new global::csc13001_plant_pos.View.WarehouseManagementPage(); }
-        private object Activate_54_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_5_CurrencyConverter() { return new global::csc13001_plant_pos.Converter.CurrencyConverter(); }
+        private object Activate_6_BoolToForegroundConverter() { return new global::csc13001_plant_pos.Converter.BoolToForegroundConverter(); }
+        private object Activate_7_BoolToBackgroundConverter() { return new global::csc13001_plant_pos.Converter.BoolToBackgroundConverter(); }
+        private object Activate_8_StringToVisibilityConverter() { return new global::csc13001_plant_pos.Converter.StringToVisibilityConverter(); }
+        private object Activate_9_DateToStringConverter() { return new global::csc13001_plant_pos.Converter.DateToStringConverter(); }
+        private object Activate_10_GenderConverter() { return new global::csc13001_plant_pos.Converter.GenderConverter(); }
+        private object Activate_11_PercentageConverter() { return new global::csc13001_plant_pos.Converter.PercentageConverter(); }
+        private object Activate_12_MembershipTypeToImageConverter() { return new global::csc13001_plant_pos.Converter.MembershipTypeToImageConverter(); }
+        private object Activate_13_DiscountStatusToTextConverter() { return new global::csc13001_plant_pos.Converter.DiscountStatusToTextConverter(); }
+        private object Activate_14_DiscountStatusToColorConverter() { return new global::csc13001_plant_pos.Converter.DiscountStatusToColorConverter(); }
+        private object Activate_15_MembershipTypeToBackgroundConverter() { return new global::csc13001_plant_pos.Converter.MembershipTypeToBackgroundConverter(); }
+        private object Activate_16_AddCustomerPage() { return new global::csc13001_plant_pos.View.AddCustomerPage(); }
+        private object Activate_19_NavigationView() { return new global::Microsoft.UI.Xaml.Controls.NavigationView(); }
+        private object Activate_38_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
+        private object Activate_40_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
+        private object Activate_43_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
+        private object Activate_45_AdminDashBoard() { return new global::csc13001_plant_pos.View.AdminDashBoard(); }
+        private object Activate_46_FormLayout() { return new global::csc13001_plant_pos.View.Authentication.FormLayout(); }
+        private object Activate_47_AuthenticationPage() { return new global::csc13001_plant_pos.View.AuthenticationPage(); }
+        private object Activate_48_FormLogin() { return new global::csc13001_plant_pos.View.Authentication.FormLogin(); }
+        private object Activate_49_FormForgotPassword() { return new global::csc13001_plant_pos.View.Authentication.FormForgotPassword(); }
+        private object Activate_50_FormResetPassword() { return new global::csc13001_plant_pos.View.Authentication.FormResetPassword(); }
+        private object Activate_51_FormTitle() { return new global::csc13001_plant_pos.View.Authentication.FormTitle(); }
+        private object Activate_52_AcrylicBrush() { return new global::Microsoft.UI.Xaml.Media.AcrylicBrush(); }
+        private object Activate_57_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
+        private object Activate_59_Expander() { return new global::Microsoft.UI.Xaml.Controls.Expander(); }
+        private object Activate_62_CustomerProfilePage() { return new global::csc13001_plant_pos.View.CustomerProfilePage(); }
+        private object Activate_63_CustomerProfilePageViewModel() { return new global::csc13001_plant_pos.ViewModel.CustomerProfilePageViewModel(); }
+        private object Activate_64_DiscountManagementPage() { return new global::csc13001_plant_pos.View.DiscountManagementPage(); }
+        private object Activate_65_DiscountManagementPageViewModel() { return new global::csc13001_plant_pos.ViewModel.DiscountManagementPageViewModel(); }
+        private object Activate_68_MainWindow() { return new global::csc13001_plant_pos.MainWindow(); }
+        private object Activate_70_OrderPage() { return new global::csc13001_plant_pos.View.OrderPage(); }
+        private object Activate_71_RoleSelectionPage() { return new global::csc13001_plant_pos.View.RoleSelectionPage(); }
+        private object Activate_72_SaleDashBoard() { return new global::csc13001_plant_pos.View.SaleDashBoard(); }
+        private object Activate_73_SalePage() { return new global::csc13001_plant_pos.View.SalePage(); }
+        private object Activate_74_SaleViewModel() { return new global::csc13001_plant_pos.ViewModel.SaleViewModel(); }
+        private object Activate_75_StaffProfilePage() { return new global::csc13001_plant_pos.View.StaffProfilePage(); }
+        private object Activate_76_StaffProfilePageViewModel() { return new global::csc13001_plant_pos.ViewModel.StaffProfilePageViewModel(); }
+        private object Activate_77_CartesianChart() { return new global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart(); }
+        private object Activate_82_Margin() { return new global::LiveChartsCore.Measure.Margin(); }
+        private object Activate_83_CoreMotionCanvas() { return new global::LiveChartsCore.Motion.CoreMotionCanvas(); }
+        private object Activate_101_StatisticPage() { return new global::csc13001_plant_pos.View.StatisticPage(); }
+        private object Activate_102_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.ISeries>(); }
+        private object Activate_103_Collection() { return new global::System.Collections.ObjectModel.Collection<global::LiveChartsCore.ISeries>(); }
+        private object Activate_110_Padding() { return new global::LiveChartsCore.Drawing.Padding(); }
+        private object Activate_111_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.SkiaSharpView.Axis>(); }
+        private object Activate_112_Collection() { return new global::System.Collections.ObjectModel.Collection<global::LiveChartsCore.SkiaSharpView.Axis>(); }
+        private object Activate_113_Axis() { return new global::LiveChartsCore.SkiaSharpView.Axis(); }
+        private object Activate_115_Bounds() { return new global::LiveChartsCore.Measure.Bounds(); }
+        private object Activate_126_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::csc13001_plant_pos.View.SalesData>(); }
+        private object Activate_127_Collection() { return new global::System.Collections.ObjectModel.Collection<global::csc13001_plant_pos.View.SalesData>(); }
+        private object Activate_128_SalesData() { return new global::csc13001_plant_pos.View.SalesData(); }
+        private object Activate_129_WarehouseManagementPage() { return new global::csc13001_plant_pos.View.WarehouseManagementPage(); }
+        private object Activate_130_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
         private void StaticInitializer_4_BooleanToVisibilityConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.BooleanToVisibilityConverter).TypeHandle);
-        private void StaticInitializer_5_AddCustomerPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.AddCustomerPage).TypeHandle);
-        private void StaticInitializer_8_NavigationView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationView).TypeHandle);
-        private void StaticInitializer_10_NavigationViewBackButtonVisible() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible).TypeHandle);
-        private void StaticInitializer_11_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
-        private void StaticInitializer_12_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
-        private void StaticInitializer_13_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::System.Object>).TypeHandle);
-        private void StaticInitializer_17_NavigationViewDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode).TypeHandle);
-        private void StaticInitializer_22_NavigationViewOverflowLabelMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode).TypeHandle);
-        private void StaticInitializer_23_NavigationViewPaneDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode).TypeHandle);
-        private void StaticInitializer_25_NavigationViewSelectionFollowsFocus() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus).TypeHandle);
-        private void StaticInitializer_26_NavigationViewShoulderNavigationEnabled() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled).TypeHandle);
-        private void StaticInitializer_27_NavigationViewTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings).TypeHandle);
-        private void StaticInitializer_29_NavigationViewItem() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem).TypeHandle);
-        private void StaticInitializer_30_NavigationViewItemBase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase).TypeHandle);
-        private void StaticInitializer_32_InfoBadge() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge).TypeHandle);
-        private void StaticInitializer_34_AdminDashBoard() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.AdminDashBoard).TypeHandle);
-        private void StaticInitializer_35_Expander() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.Expander).TypeHandle);
-        private void StaticInitializer_36_ExpandDirection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ExpandDirection).TypeHandle);
-        private void StaticInitializer_37_ExpanderTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings).TypeHandle);
-        private void StaticInitializer_38_CustomerProfilePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.CustomerProfilePage).TypeHandle);
-        private void StaticInitializer_39_DiscountManagementPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.DiscountManagementPage).TypeHandle);
-        private void StaticInitializer_40_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.MainWindow).TypeHandle);
-        private void StaticInitializer_42_OrderPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.OrderPage).TypeHandle);
-        private void StaticInitializer_43_RoleSelectionPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.RoleSelectionPage).TypeHandle);
-        private void StaticInitializer_44_SaleDashBoard() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.SaleDashBoard).TypeHandle);
-        private void StaticInitializer_45_BoolToBackgroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.BoolToBackgroundConverter).TypeHandle);
-        private void StaticInitializer_46_BoolToForegroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.BoolToForegroundConverter).TypeHandle);
-        private void StaticInitializer_47_SalePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.SalePage).TypeHandle);
-        private void StaticInitializer_48_SaleViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.ViewModel.SaleViewModel).TypeHandle);
-        private void StaticInitializer_49_ObservableRecipient() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient).TypeHandle);
-        private void StaticInitializer_50_ObservableObject() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject).TypeHandle);
-        private void StaticInitializer_51_StaffProfilePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.StaffProfilePage).TypeHandle);
-        private void StaticInitializer_52_StatisticPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.StatisticPage).TypeHandle);
-        private void StaticInitializer_53_WarehouseManagementPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.WarehouseManagementPage).TypeHandle);
-        private void StaticInitializer_54_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_55_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_5_CurrencyConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.CurrencyConverter).TypeHandle);
+        private void StaticInitializer_6_BoolToForegroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.BoolToForegroundConverter).TypeHandle);
+        private void StaticInitializer_7_BoolToBackgroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.BoolToBackgroundConverter).TypeHandle);
+        private void StaticInitializer_8_StringToVisibilityConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.StringToVisibilityConverter).TypeHandle);
+        private void StaticInitializer_9_DateToStringConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.DateToStringConverter).TypeHandle);
+        private void StaticInitializer_10_GenderConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.GenderConverter).TypeHandle);
+        private void StaticInitializer_11_PercentageConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.PercentageConverter).TypeHandle);
+        private void StaticInitializer_12_MembershipTypeToImageConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.MembershipTypeToImageConverter).TypeHandle);
+        private void StaticInitializer_13_DiscountStatusToTextConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.DiscountStatusToTextConverter).TypeHandle);
+        private void StaticInitializer_14_DiscountStatusToColorConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.DiscountStatusToColorConverter).TypeHandle);
+        private void StaticInitializer_15_MembershipTypeToBackgroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.Converter.MembershipTypeToBackgroundConverter).TypeHandle);
+        private void StaticInitializer_16_AddCustomerPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.AddCustomerPage).TypeHandle);
+        private void StaticInitializer_19_NavigationView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationView).TypeHandle);
+        private void StaticInitializer_21_NavigationViewBackButtonVisible() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible).TypeHandle);
+        private void StaticInitializer_22_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
+        private void StaticInitializer_23_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
+        private void StaticInitializer_24_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::System.Object>).TypeHandle);
+        private void StaticInitializer_28_NavigationViewDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode).TypeHandle);
+        private void StaticInitializer_33_NavigationViewOverflowLabelMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode).TypeHandle);
+        private void StaticInitializer_34_NavigationViewPaneDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode).TypeHandle);
+        private void StaticInitializer_36_NavigationViewSelectionFollowsFocus() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus).TypeHandle);
+        private void StaticInitializer_37_NavigationViewShoulderNavigationEnabled() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled).TypeHandle);
+        private void StaticInitializer_38_NavigationViewTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings).TypeHandle);
+        private void StaticInitializer_40_NavigationViewItem() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem).TypeHandle);
+        private void StaticInitializer_41_NavigationViewItemBase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase).TypeHandle);
+        private void StaticInitializer_43_InfoBadge() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge).TypeHandle);
+        private void StaticInitializer_45_AdminDashBoard() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.AdminDashBoard).TypeHandle);
+        private void StaticInitializer_46_FormLayout() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.Authentication.FormLayout).TypeHandle);
+        private void StaticInitializer_47_AuthenticationPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.AuthenticationPage).TypeHandle);
+        private void StaticInitializer_48_FormLogin() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.Authentication.FormLogin).TypeHandle);
+        private void StaticInitializer_49_FormForgotPassword() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.Authentication.FormForgotPassword).TypeHandle);
+        private void StaticInitializer_50_FormResetPassword() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.Authentication.FormResetPassword).TypeHandle);
+        private void StaticInitializer_51_FormTitle() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.Authentication.FormTitle).TypeHandle);
+        private void StaticInitializer_52_AcrylicBrush() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Media.AcrylicBrush).TypeHandle);
+        private void StaticInitializer_54_Color() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Color).TypeHandle);
+        private void StaticInitializer_55_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::System.Double>).TypeHandle);
+        private void StaticInitializer_56_TimeSpan() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.TimeSpan).TypeHandle);
+        private void StaticInitializer_57_ProgressRing() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing).TypeHandle);
+        private void StaticInitializer_58_ProgressRingTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings).TypeHandle);
+        private void StaticInitializer_59_Expander() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.Expander).TypeHandle);
+        private void StaticInitializer_60_ExpandDirection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ExpandDirection).TypeHandle);
+        private void StaticInitializer_61_ExpanderTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings).TypeHandle);
+        private void StaticInitializer_62_CustomerProfilePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.CustomerProfilePage).TypeHandle);
+        private void StaticInitializer_63_CustomerProfilePageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.ViewModel.CustomerProfilePageViewModel).TypeHandle);
+        private void StaticInitializer_64_DiscountManagementPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.DiscountManagementPage).TypeHandle);
+        private void StaticInitializer_65_DiscountManagementPageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.ViewModel.DiscountManagementPageViewModel).TypeHandle);
+        private void StaticInitializer_66_ObservableRecipient() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient).TypeHandle);
+        private void StaticInitializer_67_ObservableObject() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject).TypeHandle);
+        private void StaticInitializer_68_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.MainWindow).TypeHandle);
+        private void StaticInitializer_70_OrderPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.OrderPage).TypeHandle);
+        private void StaticInitializer_71_RoleSelectionPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.RoleSelectionPage).TypeHandle);
+        private void StaticInitializer_72_SaleDashBoard() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.SaleDashBoard).TypeHandle);
+        private void StaticInitializer_73_SalePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.SalePage).TypeHandle);
+        private void StaticInitializer_74_SaleViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.ViewModel.SaleViewModel).TypeHandle);
+        private void StaticInitializer_75_StaffProfilePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.StaffProfilePage).TypeHandle);
+        private void StaticInitializer_76_StaffProfilePageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.ViewModel.StaffProfilePageViewModel).TypeHandle);
+        private void StaticInitializer_77_CartesianChart() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart).TypeHandle);
+        private void StaticInitializer_78_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.ISeries>).TypeHandle);
+        private void StaticInitializer_79_TooltipPosition() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.TooltipPosition).TypeHandle);
+        private void StaticInitializer_80_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.Sketches.ICartesianAxis>).TypeHandle);
+        private void StaticInitializer_81_Chart() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Chart).TypeHandle);
+        private void StaticInitializer_82_Margin() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.Margin).TypeHandle);
+        private void StaticInitializer_83_CoreMotionCanvas() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Motion.CoreMotionCanvas).TypeHandle);
+        private void StaticInitializer_84_VisualElement() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.VisualElements.VisualElement).TypeHandle);
+        private void StaticInitializer_85_ChartElement() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Kernel.ChartElement).TypeHandle);
+        private void StaticInitializer_86_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.CoreSection>).TypeHandle);
+        private void StaticInitializer_87_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.ChartElement>).TypeHandle);
+        private void StaticInitializer_88_CoreDrawMarginFrame() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.CoreDrawMarginFrame).TypeHandle);
+        private void StaticInitializer_89_ZoomAndPanMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.ZoomAndPanMode).TypeHandle);
+#pragma warning disable 0618  //   Warning on Deprecated usage
+        private void StaticInitializer_90_TooltipFindingStrategy() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.TooltipFindingStrategy).TypeHandle);
+#pragma warning restore 0618
+        private void StaticInitializer_91_FindingStrategy() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.FindingStrategy).TypeHandle);
+        private void StaticInitializer_92_Func() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Func<global::System.Single, global::System.Single>).TypeHandle);
+        private void StaticInitializer_93_MulticastDelegate() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.MulticastDelegate).TypeHandle);
+        private void StaticInitializer_94_Delegate() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Delegate).TypeHandle);
+        private void StaticInitializer_95_LegendPosition() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.LegendPosition).TypeHandle);
+        private void StaticInitializer_96_Paint() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Painting.Paint).TypeHandle);
+        private void StaticInitializer_97_Animatable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Drawing.Animatable).TypeHandle);
+        private void StaticInitializer_98_IChartLegend() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Kernel.Sketches.IChartLegend).TypeHandle);
+        private void StaticInitializer_99_IChartTooltip() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Kernel.Sketches.IChartTooltip).TypeHandle);
+        private void StaticInitializer_100_ICommand() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Windows.Input.ICommand).TypeHandle);
+        private void StaticInitializer_101_StatisticPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.StatisticPage).TypeHandle);
+        private void StaticInitializer_102_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.ISeries>).TypeHandle);
+        private void StaticInitializer_103_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::LiveChartsCore.ISeries>).TypeHandle);
+        private void StaticInitializer_104_ISeries() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.ISeries).TypeHandle);
+        private void StaticInitializer_106_SeriesProperties() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Kernel.SeriesProperties).TypeHandle);
+        private void StaticInitializer_107_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.IEnumerable).TypeHandle);
+        private void StaticInitializer_108_LvcPoint() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Drawing.LvcPoint).TypeHandle);
+        private void StaticInitializer_109_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::System.TimeSpan>).TypeHandle);
+        private void StaticInitializer_110_Padding() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Drawing.Padding).TypeHandle);
+        private void StaticInitializer_111_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.SkiaSharpView.Axis>).TypeHandle);
+        private void StaticInitializer_112_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::LiveChartsCore.SkiaSharpView.Axis>).TypeHandle);
+        private void StaticInitializer_113_Axis() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.SkiaSharpView.Axis).TypeHandle);
+        private void StaticInitializer_114_CoreAxis() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>).TypeHandle);
+        private void StaticInitializer_115_Bounds() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.Bounds).TypeHandle);
+        private void StaticInitializer_116_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::LiveChartsCore.Drawing.Align>).TypeHandle);
+        private void StaticInitializer_117_Align() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Drawing.Align).TypeHandle);
+        private void StaticInitializer_118_AxisOrientation() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.AxisOrientation).TypeHandle);
+        private void StaticInitializer_120_Func() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Func<global::System.Double, global::System.String>).TypeHandle);
+        private void StaticInitializer_121_AxisPosition() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Measure.AxisPosition).TypeHandle);
+        private void StaticInitializer_122_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::System.String>).TypeHandle);
+        private void StaticInitializer_123_IEnumerable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IEnumerable<global::System.Double>).TypeHandle);
+        private void StaticInitializer_124_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::LiveChartsCore.Drawing.LvcColor>).TypeHandle);
+        private void StaticInitializer_125_LvcColor() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::LiveChartsCore.Drawing.LvcColor).TypeHandle);
+        private void StaticInitializer_126_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::csc13001_plant_pos.View.SalesData>).TypeHandle);
+        private void StaticInitializer_127_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::csc13001_plant_pos.View.SalesData>).TypeHandle);
+        private void StaticInitializer_128_SalesData() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.SalesData).TypeHandle);
+        private void StaticInitializer_129_WarehouseManagementPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::csc13001_plant_pos.View.WarehouseManagementPage).TypeHandle);
+        private void StaticInitializer_130_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_131_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -445,13 +705,55 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_13_IList(object instance, object item)
+        private void VectorAdd_24_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::System.Object>)instance;
             var newItem = (global::System.Object)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_55_IList(object instance, object item)
+        private void VectorAdd_102_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::LiveChartsCore.ISeries>)instance;
+            var newItem = (global::LiveChartsCore.ISeries)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_103_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::LiveChartsCore.ISeries>)instance;
+            var newItem = (global::LiveChartsCore.ISeries)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_111_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::LiveChartsCore.SkiaSharpView.Axis>)instance;
+            var newItem = (global::LiveChartsCore.SkiaSharpView.Axis)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_112_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::LiveChartsCore.SkiaSharpView.Axis>)instance;
+            var newItem = (global::LiveChartsCore.SkiaSharpView.Axis)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_122_IList(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::System.String>)instance;
+            var newItem = (global::System.String)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_126_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::csc13001_plant_pos.View.SalesData>)instance;
+            var newItem = (global::csc13001_plant_pos.View.SalesData)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_127_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::csc13001_plant_pos.View.SalesData>)instance;
+            var newItem = (global::csc13001_plant_pos.View.SalesData)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_131_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -497,26 +799,114 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 5:   //  csc13001_plant_pos.View.AddCustomerPage
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_AddCustomerPage;
-                userType.StaticInitializer = StaticInitializer_5_AddCustomerPage;
+            case 5:   //  csc13001_plant_pos.Converter.CurrencyConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_5_CurrencyConverter;
+                userType.StaticInitializer = StaticInitializer_5_CurrencyConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 6:   //  Microsoft.UI.Xaml.Controls.Page
+            case 6:   //  csc13001_plant_pos.Converter.BoolToForegroundConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_6_BoolToForegroundConverter;
+                userType.StaticInitializer = StaticInitializer_6_BoolToForegroundConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  csc13001_plant_pos.Converter.BoolToBackgroundConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_7_BoolToBackgroundConverter;
+                userType.StaticInitializer = StaticInitializer_7_BoolToBackgroundConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  csc13001_plant_pos.Converter.StringToVisibilityConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_8_StringToVisibilityConverter;
+                userType.StaticInitializer = StaticInitializer_8_StringToVisibilityConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  csc13001_plant_pos.Converter.DateToStringConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_9_DateToStringConverter;
+                userType.StaticInitializer = StaticInitializer_9_DateToStringConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  csc13001_plant_pos.Converter.GenderConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_10_GenderConverter;
+                userType.StaticInitializer = StaticInitializer_10_GenderConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 11:   //  csc13001_plant_pos.Converter.PercentageConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_11_PercentageConverter;
+                userType.StaticInitializer = StaticInitializer_11_PercentageConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 12:   //  csc13001_plant_pos.Converter.MembershipTypeToImageConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_12_MembershipTypeToImageConverter;
+                userType.StaticInitializer = StaticInitializer_12_MembershipTypeToImageConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 13:   //  csc13001_plant_pos.Converter.DiscountStatusToTextConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_13_DiscountStatusToTextConverter;
+                userType.StaticInitializer = StaticInitializer_13_DiscountStatusToTextConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 14:   //  csc13001_plant_pos.Converter.DiscountStatusToColorConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_14_DiscountStatusToColorConverter;
+                userType.StaticInitializer = StaticInitializer_14_DiscountStatusToColorConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 15:   //  csc13001_plant_pos.Converter.MembershipTypeToBackgroundConverter
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_15_MembershipTypeToBackgroundConverter;
+                userType.StaticInitializer = StaticInitializer_15_MembershipTypeToBackgroundConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 16:   //  csc13001_plant_pos.View.AddCustomerPage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_16_AddCustomerPage;
+                userType.StaticInitializer = StaticInitializer_16_AddCustomerPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 17:   //  Microsoft.UI.Xaml.Controls.Page
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 7:   //  Microsoft.UI.Xaml.Controls.UserControl
+            case 18:   //  Microsoft.UI.Xaml.Controls.UserControl
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  Microsoft.UI.Xaml.Controls.NavigationView
+            case 19:   //  Microsoft.UI.Xaml.Controls.NavigationView
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
-                userType.Activator = Activate_8_NavigationView;
-                userType.StaticInitializer = StaticInitializer_8_NavigationView;
+                userType.Activator = Activate_19_NavigationView;
+                userType.StaticInitializer = StaticInitializer_19_NavigationView;
                 userType.AddMemberName("IsBackButtonVisible");
                 userType.AddMemberName("MenuItems");
                 userType.AddMemberName("FooterMenuItems");
@@ -557,87 +947,87 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 9:   //  Microsoft.UI.Xaml.Controls.ContentControl
+            case 20:   //  Microsoft.UI.Xaml.Controls.ContentControl
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible
+            case 21:   //  Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_10_NavigationViewBackButtonVisible;
+                userType.StaticInitializer = StaticInitializer_21_NavigationViewBackButtonVisible;
                 userType.AddEnumValue("Collapsed", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed);
                 userType.AddEnumValue("Visible", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible);
                 userType.AddEnumValue("Auto", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Auto);
                 xamlType = userType;
                 break;
 
-            case 11:   //  System.Enum
+            case 22:   //  System.Enum
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_11_Enum;
+                userType.StaticInitializer = StaticInitializer_22_Enum;
                 xamlType = userType;
                 break;
 
-            case 12:   //  System.ValueType
+            case 23:   //  System.ValueType
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_12_ValueType;
+                userType.StaticInitializer = StaticInitializer_23_ValueType;
                 xamlType = userType;
                 break;
 
-            case 13:   //  System.Collections.Generic.IList`1<Object>
+            case 24:   //  System.Collections.Generic.IList`1<Object>
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_13_IList;
-                userType.CollectionAdd = VectorAdd_13_IList;
+                userType.StaticInitializer = StaticInitializer_24_IList;
+                userType.CollectionAdd = VectorAdd_24_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 14:   //  Microsoft.UI.Xaml.Controls.AutoSuggestBox
+            case 25:   //  Microsoft.UI.Xaml.Controls.AutoSuggestBox
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 15:   //  Double
+            case 26:   //  Double
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.UIElement
+            case 27:   //  Microsoft.UI.Xaml.UIElement
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 17:   //  Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode
+            case 28:   //  Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_17_NavigationViewDisplayMode;
+                userType.StaticInitializer = StaticInitializer_28_NavigationViewDisplayMode;
                 userType.AddEnumValue("Minimal", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal);
                 userType.AddEnumValue("Compact", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Compact);
                 userType.AddEnumValue("Expanded", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded);
                 xamlType = userType;
                 break;
 
-            case 18:   //  Microsoft.UI.Xaml.DataTemplate
+            case 29:   //  Microsoft.UI.Xaml.DataTemplate
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 19:   //  Microsoft.UI.Xaml.Style
+            case 30:   //  Microsoft.UI.Xaml.Style
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 20:   //  Microsoft.UI.Xaml.Controls.StyleSelector
+            case 31:   //  Microsoft.UI.Xaml.Controls.StyleSelector
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 21:   //  Microsoft.UI.Xaml.Controls.DataTemplateSelector
+            case 32:   //  Microsoft.UI.Xaml.Controls.DataTemplateSelector
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 22:   //  Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode
+            case 33:   //  Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_22_NavigationViewOverflowLabelMode;
+                userType.StaticInitializer = StaticInitializer_33_NavigationViewOverflowLabelMode;
                 userType.AddEnumValue("MoreLabel", global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode.MoreLabel);
                 userType.AddEnumValue("NoLabel", global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode.NoLabel);
                 xamlType = userType;
                 break;
 
-            case 23:   //  Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode
+            case 34:   //  Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_23_NavigationViewPaneDisplayMode;
+                userType.StaticInitializer = StaticInitializer_34_NavigationViewPaneDisplayMode;
                 userType.AddEnumValue("Auto", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto);
                 userType.AddEnumValue("Left", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left);
                 userType.AddEnumValue("Top", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top);
@@ -646,42 +1036,42 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 24:   //  String
+            case 35:   //  String
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 25:   //  Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus
+            case 36:   //  Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_25_NavigationViewSelectionFollowsFocus;
+                userType.StaticInitializer = StaticInitializer_36_NavigationViewSelectionFollowsFocus;
                 userType.AddEnumValue("Disabled", global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Disabled);
                 userType.AddEnumValue("Enabled", global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Enabled);
                 xamlType = userType;
                 break;
 
-            case 26:   //  Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled
+            case 37:   //  Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_26_NavigationViewShoulderNavigationEnabled;
+                userType.StaticInitializer = StaticInitializer_37_NavigationViewShoulderNavigationEnabled;
                 userType.AddEnumValue("WhenSelectionFollowsFocus", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.WhenSelectionFollowsFocus);
                 userType.AddEnumValue("Always", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.Always);
                 userType.AddEnumValue("Never", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.Never);
                 xamlType = userType;
                 break;
 
-            case 27:   //  Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings
+            case 38:   //  Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.StaticInitializer = StaticInitializer_27_NavigationViewTemplateSettings;
+                userType.StaticInitializer = StaticInitializer_38_NavigationViewTemplateSettings;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 28:   //  Microsoft.UI.Xaml.DependencyObject
+            case 39:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 29:   //  Microsoft.UI.Xaml.Controls.NavigationViewItem
+            case 40:   //  Microsoft.UI.Xaml.Controls.NavigationViewItem
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItemBase"));
-                userType.Activator = Activate_29_NavigationViewItem;
-                userType.StaticInitializer = StaticInitializer_29_NavigationViewItem;
+                userType.Activator = Activate_40_NavigationViewItem;
+                userType.StaticInitializer = StaticInitializer_40_NavigationViewItem;
                 userType.AddMemberName("Icon");
                 userType.AddMemberName("CompactPaneLength");
                 userType.AddMemberName("HasUnrealizedChildren");
@@ -694,40 +1084,151 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 30:   //  Microsoft.UI.Xaml.Controls.NavigationViewItemBase
+            case 41:   //  Microsoft.UI.Xaml.Controls.NavigationViewItemBase
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
-                userType.StaticInitializer = StaticInitializer_30_NavigationViewItemBase;
+                userType.StaticInitializer = StaticInitializer_41_NavigationViewItemBase;
                 userType.AddMemberName("IsSelected");
                 xamlType = userType;
                 break;
 
-            case 31:   //  Microsoft.UI.Xaml.Controls.IconElement
+            case 42:   //  Microsoft.UI.Xaml.Controls.IconElement
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 32:   //  Microsoft.UI.Xaml.Controls.InfoBadge
+            case 43:   //  Microsoft.UI.Xaml.Controls.InfoBadge
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.StaticInitializer = StaticInitializer_32_InfoBadge;
+                userType.StaticInitializer = StaticInitializer_43_InfoBadge;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 33:   //  Microsoft.UI.Xaml.Controls.Control
+            case 44:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 34:   //  csc13001_plant_pos.View.AdminDashBoard
+            case 45:   //  csc13001_plant_pos.View.AdminDashBoard
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_34_AdminDashBoard;
-                userType.StaticInitializer = StaticInitializer_34_AdminDashBoard;
+                userType.Activator = Activate_45_AdminDashBoard;
+                userType.StaticInitializer = StaticInitializer_45_AdminDashBoard;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 35:   //  Microsoft.UI.Xaml.Controls.Expander
+            case 46:   //  csc13001_plant_pos.View.Authentication.FormLayout
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_46_FormLayout;
+                userType.StaticInitializer = StaticInitializer_46_FormLayout;
+                userType.AddMemberName("Child");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 47:   //  csc13001_plant_pos.View.AuthenticationPage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_47_AuthenticationPage;
+                userType.StaticInitializer = StaticInitializer_47_AuthenticationPage;
+                userType.AddMemberName("LoginForm");
+                userType.AddMemberName("ForgotPasswordForm");
+                userType.AddMemberName("ResetPasswordForm");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 48:   //  csc13001_plant_pos.View.Authentication.FormLogin
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_48_FormLogin;
+                userType.StaticInitializer = StaticInitializer_48_FormLogin;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 49:   //  csc13001_plant_pos.View.Authentication.FormForgotPassword
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_49_FormForgotPassword;
+                userType.StaticInitializer = StaticInitializer_49_FormForgotPassword;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 50:   //  csc13001_plant_pos.View.Authentication.FormResetPassword
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_50_FormResetPassword;
+                userType.StaticInitializer = StaticInitializer_50_FormResetPassword;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 51:   //  csc13001_plant_pos.View.Authentication.FormTitle
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_51_FormTitle;
+                userType.StaticInitializer = StaticInitializer_51_FormTitle;
+                userType.AddMemberName("Title");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 52:   //  Microsoft.UI.Xaml.Media.AcrylicBrush
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Media.XamlCompositionBrushBase"));
+                userType.Activator = Activate_52_AcrylicBrush;
+                userType.StaticInitializer = StaticInitializer_52_AcrylicBrush;
+                userType.AddMemberName("TintColor");
+                userType.AddMemberName("TintOpacity");
+                userType.AddMemberName("TintLuminosityOpacity");
+                userType.AddMemberName("AlwaysUseFallback");
+                userType.AddMemberName("TintTransitionDuration");
+                xamlType = userType;
+                break;
+
+            case 53:   //  Microsoft.UI.Xaml.Media.XamlCompositionBrushBase
+                xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 54:   //  Windows.UI.Color
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.StaticInitializer = StaticInitializer_54_Color;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 55:   //  System.Nullable`1<Double>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetBoxedType(GetXamlTypeByName("Double"));
+                userType.BoxInstance = userType.BoxType<global::System.Double>;
+                userType.StaticInitializer = StaticInitializer_55_Nullable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 56:   //  TimeSpan
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.StaticInitializer = StaticInitializer_56_TimeSpan;
+                xamlType = userType;
+                break;
+
+            case 57:   //  Microsoft.UI.Xaml.Controls.ProgressRing
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_57_ProgressRing;
+                userType.StaticInitializer = StaticInitializer_57_ProgressRing;
+                userType.AddMemberName("IsActive");
+                userType.AddMemberName("IsIndeterminate");
+                userType.AddMemberName("Maximum");
+                userType.AddMemberName("Minimum");
+                userType.AddMemberName("TemplateSettings");
+                userType.AddMemberName("Value");
+                xamlType = userType;
+                break;
+
+            case 58:   //  Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
+                userType.StaticInitializer = StaticInitializer_58_ProgressRingTemplateSettings;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 59:   //  Microsoft.UI.Xaml.Controls.Expander
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
-                userType.Activator = Activate_35_Expander;
-                userType.StaticInitializer = StaticInitializer_35_Expander;
+                userType.Activator = Activate_59_Expander;
+                userType.StaticInitializer = StaticInitializer_59_Expander;
                 userType.AddMemberName("IsExpanded");
                 userType.AddMemberName("Header");
                 userType.AddMemberName("ExpandDirection");
@@ -737,146 +1238,688 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 36:   //  Microsoft.UI.Xaml.Controls.ExpandDirection
+            case 60:   //  Microsoft.UI.Xaml.Controls.ExpandDirection
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_36_ExpandDirection;
+                userType.StaticInitializer = StaticInitializer_60_ExpandDirection;
                 userType.AddEnumValue("Down", global::Microsoft.UI.Xaml.Controls.ExpandDirection.Down);
                 userType.AddEnumValue("Up", global::Microsoft.UI.Xaml.Controls.ExpandDirection.Up);
                 xamlType = userType;
                 break;
 
-            case 37:   //  Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings
+            case 61:   //  Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.StaticInitializer = StaticInitializer_37_ExpanderTemplateSettings;
+                userType.StaticInitializer = StaticInitializer_61_ExpanderTemplateSettings;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 38:   //  csc13001_plant_pos.View.CustomerProfilePage
+            case 62:   //  csc13001_plant_pos.View.CustomerProfilePage
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_38_CustomerProfilePage;
-                userType.StaticInitializer = StaticInitializer_38_CustomerProfilePage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 39:   //  csc13001_plant_pos.View.DiscountManagementPage
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_39_DiscountManagementPage;
-                userType.StaticInitializer = StaticInitializer_39_DiscountManagementPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 40:   //  csc13001_plant_pos.MainWindow
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_40_MainWindow;
-                userType.StaticInitializer = StaticInitializer_40_MainWindow;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 41:   //  Microsoft.UI.Xaml.Window
-                xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 42:   //  csc13001_plant_pos.View.OrderPage
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_42_OrderPage;
-                userType.StaticInitializer = StaticInitializer_42_OrderPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 43:   //  csc13001_plant_pos.View.RoleSelectionPage
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_43_RoleSelectionPage;
-                userType.StaticInitializer = StaticInitializer_43_RoleSelectionPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 44:   //  csc13001_plant_pos.View.SaleDashBoard
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_44_SaleDashBoard;
-                userType.StaticInitializer = StaticInitializer_44_SaleDashBoard;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 45:   //  csc13001_plant_pos.Converter.BoolToBackgroundConverter
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_45_BoolToBackgroundConverter;
-                userType.StaticInitializer = StaticInitializer_45_BoolToBackgroundConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 46:   //  csc13001_plant_pos.Converter.BoolToForegroundConverter
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_46_BoolToForegroundConverter;
-                userType.StaticInitializer = StaticInitializer_46_BoolToForegroundConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 47:   //  csc13001_plant_pos.View.SalePage
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_47_SalePage;
-                userType.StaticInitializer = StaticInitializer_47_SalePage;
+                userType.Activator = Activate_62_CustomerProfilePage;
+                userType.StaticInitializer = StaticInitializer_62_CustomerProfilePage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 48:   //  csc13001_plant_pos.ViewModel.SaleViewModel
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient"));
-                userType.StaticInitializer = StaticInitializer_48_SaleViewModel;
+            case 63:   //  csc13001_plant_pos.ViewModel.CustomerProfilePageViewModel
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_63_CustomerProfilePageViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 49:   //  CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient
+            case 64:   //  csc13001_plant_pos.View.DiscountManagementPage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_64_DiscountManagementPage;
+                userType.StaticInitializer = StaticInitializer_64_DiscountManagementPage;
+                userType.AddMemberName("ViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 65:   //  csc13001_plant_pos.ViewModel.DiscountManagementPageViewModel
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient"));
+                userType.StaticInitializer = StaticInitializer_65_DiscountManagementPageViewModel;
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 66:   //  CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("CommunityToolkit.Mvvm.ComponentModel.ObservableObject"));
-                userType.StaticInitializer = StaticInitializer_49_ObservableRecipient;
+                userType.StaticInitializer = StaticInitializer_66_ObservableRecipient;
                 xamlType = userType;
                 break;
 
-            case 50:   //  CommunityToolkit.Mvvm.ComponentModel.ObservableObject
+            case 67:   //  CommunityToolkit.Mvvm.ComponentModel.ObservableObject
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_50_ObservableObject;
+                userType.StaticInitializer = StaticInitializer_67_ObservableObject;
                 xamlType = userType;
                 break;
 
-            case 51:   //  csc13001_plant_pos.View.StaffProfilePage
-                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_51_StaffProfilePage;
-                userType.StaticInitializer = StaticInitializer_51_StaffProfilePage;
+            case 68:   //  csc13001_plant_pos.MainWindow
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.Activator = Activate_68_MainWindow;
+                userType.StaticInitializer = StaticInitializer_68_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 52:   //  csc13001_plant_pos.View.StatisticPage
+            case 69:   //  Microsoft.UI.Xaml.Window
+                xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 70:   //  csc13001_plant_pos.View.OrderPage
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_52_StatisticPage;
-                userType.StaticInitializer = StaticInitializer_52_StatisticPage;
+                userType.Activator = Activate_70_OrderPage;
+                userType.StaticInitializer = StaticInitializer_70_OrderPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 53:   //  csc13001_plant_pos.View.WarehouseManagementPage
+            case 71:   //  csc13001_plant_pos.View.RoleSelectionPage
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_53_WarehouseManagementPage;
-                userType.StaticInitializer = StaticInitializer_53_WarehouseManagementPage;
+                userType.Activator = Activate_71_RoleSelectionPage;
+                userType.StaticInitializer = StaticInitializer_71_RoleSelectionPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 54:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 72:   //  csc13001_plant_pos.View.SaleDashBoard
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_72_SaleDashBoard;
+                userType.StaticInitializer = StaticInitializer_72_SaleDashBoard;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 73:   //  csc13001_plant_pos.View.SalePage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_73_SalePage;
+                userType.StaticInitializer = StaticInitializer_73_SalePage;
+                userType.AddMemberName("ViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 74:   //  csc13001_plant_pos.ViewModel.SaleViewModel
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("CommunityToolkit.Mvvm.ComponentModel.ObservableRecipient"));
+                userType.StaticInitializer = StaticInitializer_74_SaleViewModel;
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 75:   //  csc13001_plant_pos.View.StaffProfilePage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_75_StaffProfilePage;
+                userType.StaticInitializer = StaticInitializer_75_StaffProfilePage;
+                userType.AddMemberName("ViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 76:   //  csc13001_plant_pos.ViewModel.StaffProfilePageViewModel
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_76_StaffProfilePageViewModel;
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 77:   //  LiveChartsCore.SkiaSharpView.WinUI.CartesianChart
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_77_CartesianChart;
+                userType.StaticInitializer = StaticInitializer_77_CartesianChart;
+                userType.AddMemberName("Series");
+                userType.AddMemberName("TooltipPosition");
+                userType.AddMemberName("XAxes");
+                userType.AddMemberName("YAxes");
+                userType.AddMemberName("CoreChart");
+                userType.AddMemberName("DrawMargin");
+                userType.AddMemberName("CoreCanvas");
+                userType.AddMemberName("SyncContext");
+                userType.AddMemberName("Title");
+                userType.AddMemberName("Sections");
+                userType.AddMemberName("VisualElements");
+                userType.AddMemberName("DrawMarginFrame");
+                userType.AddMemberName("ZoomMode");
+                userType.AddMemberName("ZoomingSpeed");
+                userType.AddMemberName("TooltipFindingStrategy");
+                userType.AddMemberName("FindingStrategy");
+                userType.AddMemberName("AnimationsSpeed");
+                userType.AddMemberName("EasingFunction");
+                userType.AddMemberName("LegendPosition");
+                userType.AddMemberName("LegendBackgroundPaint");
+                userType.AddMemberName("LegendTextPaint");
+                userType.AddMemberName("LegendTextSize");
+                userType.AddMemberName("Legend");
+                userType.AddMemberName("TooltipBackgroundPaint");
+                userType.AddMemberName("TooltipTextPaint");
+                userType.AddMemberName("TooltipTextSize");
+                userType.AddMemberName("Tooltip");
+                userType.AddMemberName("AutoUpdateEnabled");
+                userType.AddMemberName("UpdaterThrottler");
+                userType.AddMemberName("UpdateStartedCommand");
+                userType.AddMemberName("PointerPressedCommand");
+                userType.AddMemberName("PointerReleasedCommand");
+                userType.AddMemberName("PointerMoveCommand");
+                userType.AddMemberName("DataPointerDownCommand");
+                userType.AddMemberName("HoveredPointsChangedCommand");
+                userType.AddMemberName("ChartPointPointerDownCommand");
+                userType.AddMemberName("VisualElementsPointerDownCommand");
+                userType.AddMemberName("MatchAxesScreenDataRatio");
+                xamlType = userType;
+                break;
+
+            case 78:   //  System.Collections.Generic.IEnumerable`1<LiveChartsCore.ISeries>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_78_IEnumerable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 79:   //  LiveChartsCore.Measure.TooltipPosition
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_79_TooltipPosition;
+                userType.AddEnumValue("Hidden", global::LiveChartsCore.Measure.TooltipPosition.Hidden);
+                userType.AddEnumValue("Auto", global::LiveChartsCore.Measure.TooltipPosition.Auto);
+                userType.AddEnumValue("Top", global::LiveChartsCore.Measure.TooltipPosition.Top);
+                userType.AddEnumValue("Bottom", global::LiveChartsCore.Measure.TooltipPosition.Bottom);
+                userType.AddEnumValue("Left", global::LiveChartsCore.Measure.TooltipPosition.Left);
+                userType.AddEnumValue("Right", global::LiveChartsCore.Measure.TooltipPosition.Right);
+                userType.AddEnumValue("Center", global::LiveChartsCore.Measure.TooltipPosition.Center);
+                xamlType = userType;
+                break;
+
+            case 80:   //  System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.Sketches.ICartesianAxis>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_80_IEnumerable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 81:   //  LiveChartsCore.Chart
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_81_Chart;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 82:   //  LiveChartsCore.Measure.Margin
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_82_Margin;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 83:   //  LiveChartsCore.Motion.CoreMotionCanvas
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_83_CoreMotionCanvas;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 84:   //  LiveChartsCore.VisualElements.VisualElement
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("LiveChartsCore.Kernel.ChartElement"));
+                userType.StaticInitializer = StaticInitializer_84_VisualElement;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 85:   //  LiveChartsCore.Kernel.ChartElement
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_85_ChartElement;
+                userType.AddMemberName("Tag");
+                userType.AddMemberName("IsVisible");
+                xamlType = userType;
+                break;
+
+            case 86:   //  System.Collections.Generic.IEnumerable`1<LiveChartsCore.CoreSection>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_86_IEnumerable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 87:   //  System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.ChartElement>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_87_IEnumerable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 88:   //  LiveChartsCore.CoreDrawMarginFrame
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("LiveChartsCore.Kernel.ChartElement"));
+                userType.StaticInitializer = StaticInitializer_88_CoreDrawMarginFrame;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 89:   //  LiveChartsCore.Measure.ZoomAndPanMode
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_89_ZoomAndPanMode;
+                userType.AddEnumValue("None", global::LiveChartsCore.Measure.ZoomAndPanMode.None);
+                userType.AddEnumValue("PanX", global::LiveChartsCore.Measure.ZoomAndPanMode.PanX);
+                userType.AddEnumValue("PanY", global::LiveChartsCore.Measure.ZoomAndPanMode.PanY);
+                userType.AddEnumValue("ZoomX", global::LiveChartsCore.Measure.ZoomAndPanMode.ZoomX);
+                userType.AddEnumValue("X", global::LiveChartsCore.Measure.ZoomAndPanMode.X);
+                userType.AddEnumValue("ZoomY", global::LiveChartsCore.Measure.ZoomAndPanMode.ZoomY);
+                userType.AddEnumValue("Y", global::LiveChartsCore.Measure.ZoomAndPanMode.Y);
+                userType.AddEnumValue("Both", global::LiveChartsCore.Measure.ZoomAndPanMode.Both);
+                userType.AddEnumValue("InvertPanningPointerTrigger", global::LiveChartsCore.Measure.ZoomAndPanMode.InvertPanningPointerTrigger);
+                xamlType = userType;
+                break;
+
+            case 90:   //  LiveChartsCore.Measure.TooltipFindingStrategy
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_90_TooltipFindingStrategy;
+#pragma warning disable 0618  //   Warning on Deprecated usage
+                userType.AddEnumValue("Automatic", global::LiveChartsCore.Measure.TooltipFindingStrategy.Automatic);
+                userType.AddEnumValue("CompareAll", global::LiveChartsCore.Measure.TooltipFindingStrategy.CompareAll);
+                userType.AddEnumValue("CompareOnlyX", global::LiveChartsCore.Measure.TooltipFindingStrategy.CompareOnlyX);
+                userType.AddEnumValue("CompareOnlyY", global::LiveChartsCore.Measure.TooltipFindingStrategy.CompareOnlyY);
+                userType.AddEnumValue("CompareAllTakeClosest", global::LiveChartsCore.Measure.TooltipFindingStrategy.CompareAllTakeClosest);
+                userType.AddEnumValue("CompareOnlyXTakeClosest", global::LiveChartsCore.Measure.TooltipFindingStrategy.CompareOnlyXTakeClosest);
+                userType.AddEnumValue("CompareOnlyYTakeClosest", global::LiveChartsCore.Measure.TooltipFindingStrategy.CompareOnlyYTakeClosest);
+                userType.AddEnumValue("ExactMatch", global::LiveChartsCore.Measure.TooltipFindingStrategy.ExactMatch);
+                userType.AddEnumValue("ExactMatchTakeClosest", global::LiveChartsCore.Measure.TooltipFindingStrategy.ExactMatchTakeClosest);
+#pragma warning restore 0618
+                xamlType = userType;
+                break;
+
+            case 91:   //  LiveChartsCore.Measure.FindingStrategy
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_91_FindingStrategy;
+                userType.AddEnumValue("Automatic", global::LiveChartsCore.Measure.FindingStrategy.Automatic);
+                userType.AddEnumValue("CompareAll", global::LiveChartsCore.Measure.FindingStrategy.CompareAll);
+                userType.AddEnumValue("CompareOnlyX", global::LiveChartsCore.Measure.FindingStrategy.CompareOnlyX);
+                userType.AddEnumValue("CompareOnlyY", global::LiveChartsCore.Measure.FindingStrategy.CompareOnlyY);
+                userType.AddEnumValue("CompareAllTakeClosest", global::LiveChartsCore.Measure.FindingStrategy.CompareAllTakeClosest);
+                userType.AddEnumValue("CompareOnlyXTakeClosest", global::LiveChartsCore.Measure.FindingStrategy.CompareOnlyXTakeClosest);
+                userType.AddEnumValue("CompareOnlyYTakeClosest", global::LiveChartsCore.Measure.FindingStrategy.CompareOnlyYTakeClosest);
+                userType.AddEnumValue("ExactMatch", global::LiveChartsCore.Measure.FindingStrategy.ExactMatch);
+                userType.AddEnumValue("ExactMatchTakeClosest", global::LiveChartsCore.Measure.FindingStrategy.ExactMatchTakeClosest);
+                xamlType = userType;
+                break;
+
+            case 92:   //  System.Func`2<Single, Single>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.MulticastDelegate"));
+                userType.StaticInitializer = StaticInitializer_92_Func;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 93:   //  System.MulticastDelegate
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Delegate"));
+                userType.StaticInitializer = StaticInitializer_93_MulticastDelegate;
+                xamlType = userType;
+                break;
+
+            case 94:   //  System.Delegate
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_94_Delegate;
+                xamlType = userType;
+                break;
+
+            case 95:   //  LiveChartsCore.Measure.LegendPosition
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_95_LegendPosition;
+                userType.AddEnumValue("Hidden", global::LiveChartsCore.Measure.LegendPosition.Hidden);
+                userType.AddEnumValue("Top", global::LiveChartsCore.Measure.LegendPosition.Top);
+                userType.AddEnumValue("Left", global::LiveChartsCore.Measure.LegendPosition.Left);
+                userType.AddEnumValue("Right", global::LiveChartsCore.Measure.LegendPosition.Right);
+                userType.AddEnumValue("Bottom", global::LiveChartsCore.Measure.LegendPosition.Bottom);
+                xamlType = userType;
+                break;
+
+            case 96:   //  LiveChartsCore.Painting.Paint
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("LiveChartsCore.Drawing.Animatable"));
+                userType.StaticInitializer = StaticInitializer_96_Paint;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 97:   //  LiveChartsCore.Drawing.Animatable
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_97_Animatable;
+                xamlType = userType;
+                break;
+
+            case 98:   //  LiveChartsCore.Kernel.Sketches.IChartLegend
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_98_IChartLegend;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 99:   //  LiveChartsCore.Kernel.Sketches.IChartTooltip
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_99_IChartTooltip;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 100:   //  System.Windows.Input.ICommand
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_100_ICommand;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 101:   //  csc13001_plant_pos.View.StatisticPage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_101_StatisticPage;
+                userType.StaticInitializer = StaticInitializer_101_StatisticPage;
+                userType.AddMemberName("Series");
+                userType.AddMemberName("XAxes");
+                userType.AddMemberName("YAxes");
+                userType.AddMemberName("SalesList");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 102:   //  System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.ISeries>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<LiveChartsCore.ISeries>"));
+                userType.StaticInitializer = StaticInitializer_102_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_102_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 103:   //  System.Collections.ObjectModel.Collection`1<LiveChartsCore.ISeries>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_103_Collection;
+                userType.StaticInitializer = StaticInitializer_103_Collection;
+                userType.CollectionAdd = VectorAdd_103_Collection;
+                xamlType = userType;
+                break;
+
+            case 104:   //  LiveChartsCore.ISeries
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_104_ISeries;
+                userType.AddMemberName("SeriesId");
+                userType.AddMemberName("SeriesProperties");
+                userType.AddMemberName("RequiresFindClosestOnPointerDown");
+                userType.AddMemberName("Name");
+                userType.AddMemberName("Values");
+                userType.AddMemberName("IsHoverable");
+                userType.AddMemberName("IsVisibleAtLegend");
+                userType.AddMemberName("MiniatureShapeSize");
+                userType.AddMemberName("DataPadding");
+                userType.AddMemberName("ZIndex");
+                userType.AddMemberName("Pivot");
+                userType.AddMemberName("GeometrySvg");
+                userType.AddMemberName("AnimationsSpeed");
+                userType.AddMemberName("EasingFunction");
+                userType.AddMemberName("DataLabelsPaint");
+                userType.AddMemberName("DataLabelsSize");
+                userType.AddMemberName("DataLabelsRotation");
+                userType.AddMemberName("DataLabelsPadding");
+                userType.AddMemberName("DataLabelsMaxWidth");
+                xamlType = userType;
+                break;
+
+            case 105:   //  Int32
+                xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 106:   //  LiveChartsCore.Kernel.SeriesProperties
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_106_SeriesProperties;
+                userType.AddEnumValue("AllSeries", global::LiveChartsCore.Kernel.SeriesProperties.AllSeries);
+                userType.AddEnumValue("CartesianSeries", global::LiveChartsCore.Kernel.SeriesProperties.CartesianSeries);
+                userType.AddEnumValue("Bar", global::LiveChartsCore.Kernel.SeriesProperties.Bar);
+                userType.AddEnumValue("Line", global::LiveChartsCore.Kernel.SeriesProperties.Line);
+                userType.AddEnumValue("StepLine", global::LiveChartsCore.Kernel.SeriesProperties.StepLine);
+                userType.AddEnumValue("Scatter", global::LiveChartsCore.Kernel.SeriesProperties.Scatter);
+                userType.AddEnumValue("Heat", global::LiveChartsCore.Kernel.SeriesProperties.Heat);
+                userType.AddEnumValue("Financial", global::LiveChartsCore.Kernel.SeriesProperties.Financial);
+                userType.AddEnumValue("PieSeries", global::LiveChartsCore.Kernel.SeriesProperties.PieSeries);
+                userType.AddEnumValue("Stacked", global::LiveChartsCore.Kernel.SeriesProperties.Stacked);
+                userType.AddEnumValue("PrimaryAxisVerticalOrientation", global::LiveChartsCore.Kernel.SeriesProperties.PrimaryAxisVerticalOrientation);
+                userType.AddEnumValue("PrimaryAxisHorizontalOrientation", global::LiveChartsCore.Kernel.SeriesProperties.PrimaryAxisHorizontalOrientation);
+                userType.AddEnumValue("Gauge", global::LiveChartsCore.Kernel.SeriesProperties.Gauge);
+                userType.AddEnumValue("GaugeFill", global::LiveChartsCore.Kernel.SeriesProperties.GaugeFill);
+                userType.AddEnumValue("Sketch", global::LiveChartsCore.Kernel.SeriesProperties.Sketch);
+                userType.AddEnumValue("Solid", global::LiveChartsCore.Kernel.SeriesProperties.Solid);
+                userType.AddEnumValue("PrefersXStrategyTooltips", global::LiveChartsCore.Kernel.SeriesProperties.PrefersXStrategyTooltips);
+                userType.AddEnumValue("PrefersYStrategyTooltips", global::LiveChartsCore.Kernel.SeriesProperties.PrefersYStrategyTooltips);
+                userType.AddEnumValue("PrefersXYStrategyTooltips", global::LiveChartsCore.Kernel.SeriesProperties.PrefersXYStrategyTooltips);
+                userType.AddEnumValue("Polar", global::LiveChartsCore.Kernel.SeriesProperties.Polar);
+                userType.AddEnumValue("PolarLine", global::LiveChartsCore.Kernel.SeriesProperties.PolarLine);
+                userType.AddEnumValue("IsSVGPath", global::LiveChartsCore.Kernel.SeriesProperties.IsSVGPath);
+                userType.AddEnumValue("BoxSeries", global::LiveChartsCore.Kernel.SeriesProperties.BoxSeries);
+                xamlType = userType;
+                break;
+
+            case 107:   //  System.Collections.IEnumerable
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_107_IEnumerable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 108:   //  LiveChartsCore.Drawing.LvcPoint
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.StaticInitializer = StaticInitializer_108_LvcPoint;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 109:   //  System.Nullable`1<TimeSpan>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetBoxedType(GetXamlTypeByName("TimeSpan"));
+                userType.BoxInstance = userType.BoxType<global::System.TimeSpan>;
+                userType.StaticInitializer = StaticInitializer_109_Nullable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 110:   //  LiveChartsCore.Drawing.Padding
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_110_Padding;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 111:   //  System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.SkiaSharpView.Axis>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<LiveChartsCore.SkiaSharpView.Axis>"));
+                userType.StaticInitializer = StaticInitializer_111_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_111_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 112:   //  System.Collections.ObjectModel.Collection`1<LiveChartsCore.SkiaSharpView.Axis>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_112_Collection;
+                userType.StaticInitializer = StaticInitializer_112_Collection;
+                userType.CollectionAdd = VectorAdd_112_Collection;
+                xamlType = userType;
+                break;
+
+            case 113:   //  LiveChartsCore.SkiaSharpView.Axis
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>"));
+                userType.Activator = Activate_113_Axis;
+                userType.StaticInitializer = StaticInitializer_113_Axis;
+                xamlType = userType;
+                break;
+
+            case 114:   //  LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("LiveChartsCore.Kernel.ChartElement"));
+                userType.StaticInitializer = StaticInitializer_114_CoreAxis;
+                userType.AddMemberName("DataBounds");
+                userType.AddMemberName("VisibleDataBounds");
+                userType.AddMemberName("Name");
+                userType.AddMemberName("NameTextSize");
+                userType.AddMemberName("NamePadding");
+                userType.AddMemberName("LabelsAlignment");
+                userType.AddMemberName("Orientation");
+                userType.AddMemberName("Padding");
+                userType.AddMemberName("LabelsDensity");
+                userType.AddMemberName("Labeler");
+                userType.AddMemberName("MinStep");
+                userType.AddMemberName("ForceStepToMin");
+                userType.AddMemberName("MinLimit");
+                userType.AddMemberName("MaxLimit");
+                userType.AddMemberName("UnitWidth");
+                userType.AddMemberName("Position");
+                userType.AddMemberName("LabelsRotation");
+                userType.AddMemberName("TextSize");
+                userType.AddMemberName("Labels");
+                userType.AddMemberName("ShowSeparatorLines");
+                userType.AddMemberName("CustomSeparators");
+                userType.AddMemberName("IsInverted");
+                userType.AddMemberName("SeparatorsAtCenter");
+                userType.AddMemberName("TicksAtCenter");
+                userType.AddMemberName("NamePaint");
+                userType.AddMemberName("LabelsPaint");
+                userType.AddMemberName("SeparatorsPaint");
+                userType.AddMemberName("SubseparatorsPaint");
+                userType.AddMemberName("SubseparatorsCount");
+                userType.AddMemberName("DrawTicksPath");
+                userType.AddMemberName("TicksPaint");
+                userType.AddMemberName("SubticksPaint");
+                userType.AddMemberName("ZeroPaint");
+                userType.AddMemberName("CrosshairPaint");
+                userType.AddMemberName("CrosshairLabelsPaint");
+                userType.AddMemberName("CrosshairLabelsBackground");
+                userType.AddMemberName("CrosshairPadding");
+                userType.AddMemberName("CrosshairSnapEnabled");
+                userType.AddMemberName("AnimationsSpeed");
+                userType.AddMemberName("EasingFunction");
+                userType.AddMemberName("MinZoomDelta");
+                userType.AddMemberName("InLineNamePlacement");
+                userType.AddMemberName("SharedWith");
+                xamlType = userType;
+                break;
+
+            case 115:   //  LiveChartsCore.Measure.Bounds
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_115_Bounds;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 116:   //  System.Nullable`1<LiveChartsCore.Drawing.Align>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetBoxedType(GetXamlTypeByName("LiveChartsCore.Drawing.Align"));
+                userType.BoxInstance = userType.BoxType<global::LiveChartsCore.Drawing.Align>;
+                userType.StaticInitializer = StaticInitializer_116_Nullable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 117:   //  LiveChartsCore.Drawing.Align
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_117_Align;
+                userType.AddEnumValue("Start", global::LiveChartsCore.Drawing.Align.Start);
+                userType.AddEnumValue("End", global::LiveChartsCore.Drawing.Align.End);
+                userType.AddEnumValue("Middle", global::LiveChartsCore.Drawing.Align.Middle);
+                xamlType = userType;
+                break;
+
+            case 118:   //  LiveChartsCore.Measure.AxisOrientation
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_118_AxisOrientation;
+                userType.AddEnumValue("Unknown", global::LiveChartsCore.Measure.AxisOrientation.Unknown);
+                userType.AddEnumValue("X", global::LiveChartsCore.Measure.AxisOrientation.X);
+                userType.AddEnumValue("Y", global::LiveChartsCore.Measure.AxisOrientation.Y);
+                xamlType = userType;
+                break;
+
+            case 119:   //  Single
+                xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 120:   //  System.Func`2<Double, String>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.MulticastDelegate"));
+                userType.StaticInitializer = StaticInitializer_120_Func;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 121:   //  LiveChartsCore.Measure.AxisPosition
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_121_AxisPosition;
+                userType.AddEnumValue("Start", global::LiveChartsCore.Measure.AxisPosition.Start);
+                userType.AddEnumValue("End", global::LiveChartsCore.Measure.AxisPosition.End);
+                xamlType = userType;
+                break;
+
+            case 122:   //  System.Collections.Generic.IList`1<String>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_122_IList;
+                userType.CollectionAdd = VectorAdd_122_IList;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 123:   //  System.Collections.Generic.IEnumerable`1<Double>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_123_IEnumerable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 124:   //  System.Nullable`1<LiveChartsCore.Drawing.LvcColor>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetBoxedType(GetXamlTypeByName("LiveChartsCore.Drawing.LvcColor"));
+                userType.BoxInstance = userType.BoxType<global::LiveChartsCore.Drawing.LvcColor>;
+                userType.StaticInitializer = StaticInitializer_124_Nullable;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 125:   //  LiveChartsCore.Drawing.LvcColor
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.StaticInitializer = StaticInitializer_125_LvcColor;
+                xamlType = userType;
+                break;
+
+            case 126:   //  System.Collections.ObjectModel.ObservableCollection`1<csc13001_plant_pos.View.SalesData>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<csc13001_plant_pos.View.SalesData>"));
+                userType.StaticInitializer = StaticInitializer_126_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_126_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 127:   //  System.Collections.ObjectModel.Collection`1<csc13001_plant_pos.View.SalesData>
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_127_Collection;
+                userType.StaticInitializer = StaticInitializer_127_Collection;
+                userType.CollectionAdd = VectorAdd_127_Collection;
+                xamlType = userType;
+                break;
+
+            case 128:   //  csc13001_plant_pos.View.SalesData
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_128_SalesData;
+                userType.StaticInitializer = StaticInitializer_128_SalesData;
+                userType.AddMemberName("Name");
+                userType.AddMemberName("Sales");
+                userType.AddMemberName("Refunds");
+                userType.AddMemberName("Net");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 129:   //  csc13001_plant_pos.View.WarehouseManagementPage
+                userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_129_WarehouseManagementPage;
+                userType.StaticInitializer = StaticInitializer_129_WarehouseManagementPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 130:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_54_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_54_TreeViewNode;
+                userType.Activator = Activate_130_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_130_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -888,16 +1931,12 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 55:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 131:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_55_IList;
-                userType.CollectionAdd = VectorAdd_55_IList;
+                userType.StaticInitializer = StaticInitializer_131_IList;
+                userType.CollectionAdd = VectorAdd_131_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
-                break;
-
-            case 56:   //  Int32
-                xamlType = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
             return xamlType;
@@ -913,6 +1952,8 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                     var otherProviders = new global::System.Collections.Generic.List<global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider>();
                     global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider provider;
                     provider = new global::Microsoft.UI.Xaml.XamlTypeInfo.XamlControlsXamlMetaDataProvider() as global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    provider = new global::LiveChartsCore.SkiaSharpView.WinUI.LiveChartsCore_SkiaSharpView_WinUI_XamlTypeInfo.XamlMetaDataProvider() as global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider;
                     otherProviders.Add(provider); 
                     _otherProviders = otherProviders;
                 }
@@ -1403,112 +2444,1336 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase)instance;
             that.IsSelected = (global::System.Boolean)Value;
         }
-        private object get_48_Expander_IsExpanded(object instance)
+        private object get_48_FormLayout_Child(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.Authentication.FormLayout)instance;
+            return that.Child;
+        }
+        private void set_48_FormLayout_Child(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.Authentication.FormLayout)instance;
+            that.Child = (global::Microsoft.UI.Xaml.UIElement)Value;
+        }
+        private object get_49_AuthenticationPage_LoginForm(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.AuthenticationPage)instance;
+            return that.LoginForm;
+        }
+        private object get_50_AuthenticationPage_ForgotPasswordForm(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.AuthenticationPage)instance;
+            return that.ForgotPasswordForm;
+        }
+        private object get_51_AuthenticationPage_ResetPasswordForm(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.AuthenticationPage)instance;
+            return that.ResetPasswordForm;
+        }
+        private object get_52_FormTitle_Title(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.Authentication.FormTitle)instance;
+            return that.Title;
+        }
+        private void set_52_FormTitle_Title(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.Authentication.FormTitle)instance;
+            that.Title = (global::System.String)Value;
+        }
+        private object get_53_AcrylicBrush_TintColor(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            return that.TintColor;
+        }
+        private void set_53_AcrylicBrush_TintColor(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            that.TintColor = (global::Windows.UI.Color)Value;
+        }
+        private object get_54_AcrylicBrush_TintOpacity(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            return that.TintOpacity;
+        }
+        private void set_54_AcrylicBrush_TintOpacity(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            that.TintOpacity = (global::System.Double)Value;
+        }
+        private object get_55_AcrylicBrush_TintLuminosityOpacity(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            return that.TintLuminosityOpacity;
+        }
+        private void set_55_AcrylicBrush_TintLuminosityOpacity(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            that.TintLuminosityOpacity = (global::System.Nullable<global::System.Double>)Value;
+        }
+        private object get_56_AcrylicBrush_AlwaysUseFallback(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            return that.AlwaysUseFallback;
+        }
+        private void set_56_AcrylicBrush_AlwaysUseFallback(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            that.AlwaysUseFallback = (global::System.Boolean)Value;
+        }
+        private object get_57_AcrylicBrush_TintTransitionDuration(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            return that.TintTransitionDuration;
+        }
+        private void set_57_AcrylicBrush_TintTransitionDuration(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Media.AcrylicBrush)instance;
+            that.TintTransitionDuration = (global::System.TimeSpan)Value;
+        }
+        private object get_58_ProgressRing_IsActive(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.IsActive;
+        }
+        private void set_58_ProgressRing_IsActive(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.IsActive = (global::System.Boolean)Value;
+        }
+        private object get_59_ProgressRing_IsIndeterminate(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.IsIndeterminate;
+        }
+        private void set_59_ProgressRing_IsIndeterminate(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.IsIndeterminate = (global::System.Boolean)Value;
+        }
+        private object get_60_ProgressRing_Maximum(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.Maximum;
+        }
+        private void set_60_ProgressRing_Maximum(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.Maximum = (global::System.Double)Value;
+        }
+        private object get_61_ProgressRing_Minimum(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.Minimum;
+        }
+        private void set_61_ProgressRing_Minimum(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.Minimum = (global::System.Double)Value;
+        }
+        private object get_62_ProgressRing_TemplateSettings(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.TemplateSettings;
+        }
+        private object get_63_ProgressRing_Value(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.Value;
+        }
+        private void set_63_ProgressRing_Value(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.Value = (global::System.Double)Value;
+        }
+        private object get_64_Expander_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             return that.IsExpanded;
         }
-        private void set_48_Expander_IsExpanded(object instance, object Value)
+        private void set_64_Expander_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_49_Expander_Header(object instance)
+        private object get_65_Expander_Header(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             return that.Header;
         }
-        private void set_49_Expander_Header(object instance, object Value)
+        private void set_65_Expander_Header(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             that.Header = (global::System.Object)Value;
         }
-        private object get_50_Expander_ExpandDirection(object instance)
+        private object get_66_Expander_ExpandDirection(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             return that.ExpandDirection;
         }
-        private void set_50_Expander_ExpandDirection(object instance, object Value)
+        private void set_66_Expander_ExpandDirection(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             that.ExpandDirection = (global::Microsoft.UI.Xaml.Controls.ExpandDirection)Value;
         }
-        private object get_51_Expander_HeaderTemplate(object instance)
+        private object get_67_Expander_HeaderTemplate(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             return that.HeaderTemplate;
         }
-        private void set_51_Expander_HeaderTemplate(object instance, object Value)
+        private void set_67_Expander_HeaderTemplate(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             that.HeaderTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_52_Expander_HeaderTemplateSelector(object instance)
+        private object get_68_Expander_HeaderTemplateSelector(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             return that.HeaderTemplateSelector;
         }
-        private void set_52_Expander_HeaderTemplateSelector(object instance, object Value)
+        private void set_68_Expander_HeaderTemplateSelector(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             that.HeaderTemplateSelector = (global::Microsoft.UI.Xaml.Controls.DataTemplateSelector)Value;
         }
-        private object get_53_Expander_TemplateSettings(object instance)
+        private object get_69_Expander_TemplateSettings(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.Expander)instance;
             return that.TemplateSettings;
         }
-        private object get_54_SalePage_ViewModel(object instance)
+        private object get_70_CustomerProfilePage_ViewModel(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.CustomerProfilePage)instance;
+            return that.ViewModel;
+        }
+        private object get_71_DiscountManagementPage_ViewModel(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.DiscountManagementPage)instance;
+            return that.ViewModel;
+        }
+        private object get_72_SalePage_ViewModel(object instance)
         {
             var that = (global::csc13001_plant_pos.View.SalePage)instance;
             return that.ViewModel;
         }
-        private object get_55_TreeViewNode_Children(object instance)
+        private object get_73_StaffProfilePage_ViewModel(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.StaffProfilePage)instance;
+            return that.ViewModel;
+        }
+        private object get_74_CartesianChart_Series(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.Series;
+        }
+        private void set_74_CartesianChart_Series(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.Series = (global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.ISeries>)Value;
+        }
+        private object get_75_CartesianChart_TooltipPosition(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.TooltipPosition;
+        }
+        private void set_75_CartesianChart_TooltipPosition(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.TooltipPosition = (global::LiveChartsCore.Measure.TooltipPosition)Value;
+        }
+        private object get_76_CartesianChart_XAxes(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.XAxes;
+        }
+        private void set_76_CartesianChart_XAxes(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.XAxes = (global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.Sketches.ICartesianAxis>)Value;
+        }
+        private object get_77_CartesianChart_YAxes(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.YAxes;
+        }
+        private void set_77_CartesianChart_YAxes(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.YAxes = (global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.Sketches.ICartesianAxis>)Value;
+        }
+        private object get_78_CartesianChart_CoreChart(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.CoreChart;
+        }
+        private object get_79_CartesianChart_DrawMargin(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.DrawMargin;
+        }
+        private void set_79_CartesianChart_DrawMargin(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.DrawMargin = (global::LiveChartsCore.Measure.Margin)Value;
+        }
+        private object get_80_CartesianChart_CoreCanvas(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.CoreCanvas;
+        }
+        private object get_81_CartesianChart_SyncContext(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.SyncContext;
+        }
+        private void set_81_CartesianChart_SyncContext(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.SyncContext = (global::System.Object)Value;
+        }
+        private object get_82_CartesianChart_Title(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.Title;
+        }
+        private void set_82_CartesianChart_Title(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.Title = (global::LiveChartsCore.VisualElements.VisualElement)Value;
+        }
+        private object get_83_CartesianChart_Sections(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.Sections;
+        }
+        private void set_83_CartesianChart_Sections(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.Sections = (global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.CoreSection>)Value;
+        }
+        private object get_84_CartesianChart_VisualElements(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.VisualElements;
+        }
+        private void set_84_CartesianChart_VisualElements(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.VisualElements = (global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.ChartElement>)Value;
+        }
+        private object get_85_CartesianChart_DrawMarginFrame(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.DrawMarginFrame;
+        }
+        private void set_85_CartesianChart_DrawMarginFrame(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.DrawMarginFrame = (global::LiveChartsCore.CoreDrawMarginFrame)Value;
+        }
+        private object get_86_CartesianChart_ZoomMode(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.ZoomMode;
+        }
+        private void set_86_CartesianChart_ZoomMode(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.ZoomMode = (global::LiveChartsCore.Measure.ZoomAndPanMode)Value;
+        }
+        private object get_87_CartesianChart_ZoomingSpeed(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.ZoomingSpeed;
+        }
+        private void set_87_CartesianChart_ZoomingSpeed(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.ZoomingSpeed = (global::System.Double)Value;
+        }
+#pragma warning disable 0618  //   Warning on Deprecated usage
+        private object get_88_CartesianChart_TooltipFindingStrategy(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.TooltipFindingStrategy;
+        }
+        private void set_88_CartesianChart_TooltipFindingStrategy(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.TooltipFindingStrategy = (global::LiveChartsCore.Measure.TooltipFindingStrategy)Value;
+        }
+#pragma warning restore 0618
+        private object get_89_CartesianChart_FindingStrategy(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.FindingStrategy;
+        }
+        private void set_89_CartesianChart_FindingStrategy(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.FindingStrategy = (global::LiveChartsCore.Measure.FindingStrategy)Value;
+        }
+        private object get_90_CartesianChart_AnimationsSpeed(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.AnimationsSpeed;
+        }
+        private void set_90_CartesianChart_AnimationsSpeed(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.AnimationsSpeed = (global::System.TimeSpan)Value;
+        }
+        private object get_91_CartesianChart_EasingFunction(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.EasingFunction;
+        }
+        private void set_91_CartesianChart_EasingFunction(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.EasingFunction = (global::System.Func<global::System.Single, global::System.Single>)Value;
+        }
+        private object get_92_CartesianChart_LegendPosition(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.LegendPosition;
+        }
+        private void set_92_CartesianChart_LegendPosition(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.LegendPosition = (global::LiveChartsCore.Measure.LegendPosition)Value;
+        }
+        private object get_93_CartesianChart_LegendBackgroundPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.LegendBackgroundPaint;
+        }
+        private void set_93_CartesianChart_LegendBackgroundPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.LegendBackgroundPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_94_CartesianChart_LegendTextPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.LegendTextPaint;
+        }
+        private void set_94_CartesianChart_LegendTextPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.LegendTextPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_95_CartesianChart_LegendTextSize(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.LegendTextSize;
+        }
+        private void set_95_CartesianChart_LegendTextSize(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.LegendTextSize = (global::System.Double)Value;
+        }
+        private object get_96_CartesianChart_Legend(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.Legend;
+        }
+        private void set_96_CartesianChart_Legend(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.Legend = (global::LiveChartsCore.Kernel.Sketches.IChartLegend)Value;
+        }
+        private object get_97_CartesianChart_TooltipBackgroundPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.TooltipBackgroundPaint;
+        }
+        private void set_97_CartesianChart_TooltipBackgroundPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.TooltipBackgroundPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_98_CartesianChart_TooltipTextPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.TooltipTextPaint;
+        }
+        private void set_98_CartesianChart_TooltipTextPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.TooltipTextPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_99_CartesianChart_TooltipTextSize(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.TooltipTextSize;
+        }
+        private void set_99_CartesianChart_TooltipTextSize(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.TooltipTextSize = (global::System.Double)Value;
+        }
+        private object get_100_CartesianChart_Tooltip(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.Tooltip;
+        }
+        private void set_100_CartesianChart_Tooltip(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.Tooltip = (global::LiveChartsCore.Kernel.Sketches.IChartTooltip)Value;
+        }
+        private object get_101_CartesianChart_AutoUpdateEnabled(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.AutoUpdateEnabled;
+        }
+        private void set_101_CartesianChart_AutoUpdateEnabled(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.AutoUpdateEnabled = (global::System.Boolean)Value;
+        }
+        private object get_102_CartesianChart_UpdaterThrottler(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.UpdaterThrottler;
+        }
+        private void set_102_CartesianChart_UpdaterThrottler(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.UpdaterThrottler = (global::System.TimeSpan)Value;
+        }
+        private object get_103_CartesianChart_UpdateStartedCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.UpdateStartedCommand;
+        }
+        private void set_103_CartesianChart_UpdateStartedCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.UpdateStartedCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_104_CartesianChart_PointerPressedCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.PointerPressedCommand;
+        }
+        private void set_104_CartesianChart_PointerPressedCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.PointerPressedCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_105_CartesianChart_PointerReleasedCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.PointerReleasedCommand;
+        }
+        private void set_105_CartesianChart_PointerReleasedCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.PointerReleasedCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_106_CartesianChart_PointerMoveCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.PointerMoveCommand;
+        }
+        private void set_106_CartesianChart_PointerMoveCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.PointerMoveCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_107_CartesianChart_DataPointerDownCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.DataPointerDownCommand;
+        }
+        private void set_107_CartesianChart_DataPointerDownCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.DataPointerDownCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_108_CartesianChart_HoveredPointsChangedCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.HoveredPointsChangedCommand;
+        }
+        private void set_108_CartesianChart_HoveredPointsChangedCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.HoveredPointsChangedCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+#pragma warning disable 0618  //   Warning on Deprecated usage
+        private object get_109_CartesianChart_ChartPointPointerDownCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.ChartPointPointerDownCommand;
+        }
+        private void set_109_CartesianChart_ChartPointPointerDownCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.ChartPointPointerDownCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+#pragma warning restore 0618
+        private object get_110_CartesianChart_VisualElementsPointerDownCommand(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.VisualElementsPointerDownCommand;
+        }
+        private void set_110_CartesianChart_VisualElementsPointerDownCommand(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.VisualElementsPointerDownCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_111_CartesianChart_MatchAxesScreenDataRatio(object instance)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            return that.MatchAxesScreenDataRatio;
+        }
+        private void set_111_CartesianChart_MatchAxesScreenDataRatio(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.SkiaSharpView.WinUI.CartesianChart)instance;
+            that.MatchAxesScreenDataRatio = (global::System.Boolean)Value;
+        }
+        private object get_112_StatisticPage_Series(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            return that.Series;
+        }
+        private void set_112_StatisticPage_Series(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            that.Series = (global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.ISeries>)Value;
+        }
+        private object get_113_ISeries_SeriesId(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.SeriesId;
+        }
+        private void set_113_ISeries_SeriesId(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.SeriesId = (global::System.Int32)Value;
+        }
+        private object get_114_ISeries_SeriesProperties(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.SeriesProperties;
+        }
+        private object get_115_ISeries_RequiresFindClosestOnPointerDown(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.RequiresFindClosestOnPointerDown;
+        }
+        private object get_116_ISeries_Name(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.Name;
+        }
+        private void set_116_ISeries_Name(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.Name = (global::System.String)Value;
+        }
+        private object get_117_ISeries_Values(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.Values;
+        }
+        private void set_117_ISeries_Values(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.Values = (global::System.Collections.IEnumerable)Value;
+        }
+        private object get_118_ISeries_IsHoverable(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.IsHoverable;
+        }
+        private void set_118_ISeries_IsHoverable(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.IsHoverable = (global::System.Boolean)Value;
+        }
+        private object get_119_ISeries_IsVisibleAtLegend(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.IsVisibleAtLegend;
+        }
+        private void set_119_ISeries_IsVisibleAtLegend(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.IsVisibleAtLegend = (global::System.Boolean)Value;
+        }
+        private object get_120_ISeries_MiniatureShapeSize(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.MiniatureShapeSize;
+        }
+        private void set_120_ISeries_MiniatureShapeSize(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.MiniatureShapeSize = (global::System.Double)Value;
+        }
+        private object get_121_ISeries_DataPadding(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.DataPadding;
+        }
+        private void set_121_ISeries_DataPadding(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.DataPadding = (global::LiveChartsCore.Drawing.LvcPoint)Value;
+        }
+        private object get_122_ISeries_ZIndex(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.ZIndex;
+        }
+        private void set_122_ISeries_ZIndex(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.ZIndex = (global::System.Int32)Value;
+        }
+        private object get_123_ISeries_Pivot(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.Pivot;
+        }
+        private void set_123_ISeries_Pivot(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.Pivot = (global::System.Double)Value;
+        }
+        private object get_124_ISeries_GeometrySvg(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.GeometrySvg;
+        }
+        private void set_124_ISeries_GeometrySvg(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.GeometrySvg = (global::System.String)Value;
+        }
+        private object get_125_ISeries_AnimationsSpeed(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.AnimationsSpeed;
+        }
+        private void set_125_ISeries_AnimationsSpeed(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.AnimationsSpeed = (global::System.Nullable<global::System.TimeSpan>)Value;
+        }
+        private object get_126_ISeries_EasingFunction(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.EasingFunction;
+        }
+        private void set_126_ISeries_EasingFunction(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.EasingFunction = (global::System.Func<global::System.Single, global::System.Single>)Value;
+        }
+        private object get_127_ISeries_DataLabelsPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.DataLabelsPaint;
+        }
+        private void set_127_ISeries_DataLabelsPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.DataLabelsPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_128_ISeries_DataLabelsSize(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.DataLabelsSize;
+        }
+        private void set_128_ISeries_DataLabelsSize(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.DataLabelsSize = (global::System.Double)Value;
+        }
+        private object get_129_ISeries_DataLabelsRotation(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.DataLabelsRotation;
+        }
+        private void set_129_ISeries_DataLabelsRotation(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.DataLabelsRotation = (global::System.Double)Value;
+        }
+        private object get_130_ISeries_DataLabelsPadding(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.DataLabelsPadding;
+        }
+        private void set_130_ISeries_DataLabelsPadding(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.DataLabelsPadding = (global::LiveChartsCore.Drawing.Padding)Value;
+        }
+        private object get_131_ISeries_DataLabelsMaxWidth(object instance)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            return that.DataLabelsMaxWidth;
+        }
+        private void set_131_ISeries_DataLabelsMaxWidth(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.ISeries)instance;
+            that.DataLabelsMaxWidth = (global::System.Double)Value;
+        }
+        private object get_132_StatisticPage_XAxes(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            return that.XAxes;
+        }
+        private void set_132_StatisticPage_XAxes(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            that.XAxes = (global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.SkiaSharpView.Axis>)Value;
+        }
+        private object get_133_CoreAxis_DataBounds(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.DataBounds;
+        }
+        private object get_134_CoreAxis_VisibleDataBounds(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.VisibleDataBounds;
+        }
+        private object get_135_CoreAxis_Name(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.Name;
+        }
+        private void set_135_CoreAxis_Name(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.Name = (global::System.String)Value;
+        }
+        private object get_136_CoreAxis_NameTextSize(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.NameTextSize;
+        }
+        private void set_136_CoreAxis_NameTextSize(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.NameTextSize = (global::System.Double)Value;
+        }
+        private object get_137_CoreAxis_NamePadding(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.NamePadding;
+        }
+        private void set_137_CoreAxis_NamePadding(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.NamePadding = (global::LiveChartsCore.Drawing.Padding)Value;
+        }
+        private object get_138_CoreAxis_LabelsAlignment(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.LabelsAlignment;
+        }
+        private void set_138_CoreAxis_LabelsAlignment(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.LabelsAlignment = (global::System.Nullable<global::LiveChartsCore.Drawing.Align>)Value;
+        }
+        private object get_139_CoreAxis_Orientation(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.Orientation;
+        }
+        private object get_140_CoreAxis_Padding(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.Padding;
+        }
+        private void set_140_CoreAxis_Padding(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.Padding = (global::LiveChartsCore.Drawing.Padding)Value;
+        }
+        private object get_141_CoreAxis_LabelsDensity(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.LabelsDensity;
+        }
+        private void set_141_CoreAxis_LabelsDensity(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.LabelsDensity = (global::System.Single)Value;
+        }
+        private object get_142_CoreAxis_Labeler(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.Labeler;
+        }
+        private void set_142_CoreAxis_Labeler(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.Labeler = (global::System.Func<global::System.Double, global::System.String>)Value;
+        }
+        private object get_143_CoreAxis_MinStep(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.MinStep;
+        }
+        private void set_143_CoreAxis_MinStep(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.MinStep = (global::System.Double)Value;
+        }
+        private object get_144_CoreAxis_ForceStepToMin(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.ForceStepToMin;
+        }
+        private void set_144_CoreAxis_ForceStepToMin(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.ForceStepToMin = (global::System.Boolean)Value;
+        }
+        private object get_145_CoreAxis_MinLimit(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.MinLimit;
+        }
+        private void set_145_CoreAxis_MinLimit(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.MinLimit = (global::System.Nullable<global::System.Double>)Value;
+        }
+        private object get_146_CoreAxis_MaxLimit(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.MaxLimit;
+        }
+        private void set_146_CoreAxis_MaxLimit(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.MaxLimit = (global::System.Nullable<global::System.Double>)Value;
+        }
+        private object get_147_CoreAxis_UnitWidth(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.UnitWidth;
+        }
+        private void set_147_CoreAxis_UnitWidth(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.UnitWidth = (global::System.Double)Value;
+        }
+        private object get_148_CoreAxis_Position(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.Position;
+        }
+        private void set_148_CoreAxis_Position(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.Position = (global::LiveChartsCore.Measure.AxisPosition)Value;
+        }
+        private object get_149_CoreAxis_LabelsRotation(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.LabelsRotation;
+        }
+        private void set_149_CoreAxis_LabelsRotation(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.LabelsRotation = (global::System.Double)Value;
+        }
+        private object get_150_CoreAxis_TextSize(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.TextSize;
+        }
+        private void set_150_CoreAxis_TextSize(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.TextSize = (global::System.Double)Value;
+        }
+        private object get_151_CoreAxis_Labels(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.Labels;
+        }
+        private void set_151_CoreAxis_Labels(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.Labels = (global::System.Collections.Generic.IList<global::System.String>)Value;
+        }
+        private object get_152_CoreAxis_ShowSeparatorLines(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.ShowSeparatorLines;
+        }
+        private void set_152_CoreAxis_ShowSeparatorLines(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.ShowSeparatorLines = (global::System.Boolean)Value;
+        }
+        private object get_153_CoreAxis_CustomSeparators(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.CustomSeparators;
+        }
+        private void set_153_CoreAxis_CustomSeparators(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.CustomSeparators = (global::System.Collections.Generic.IEnumerable<global::System.Double>)Value;
+        }
+        private object get_154_CoreAxis_IsInverted(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.IsInverted;
+        }
+        private void set_154_CoreAxis_IsInverted(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.IsInverted = (global::System.Boolean)Value;
+        }
+        private object get_155_CoreAxis_SeparatorsAtCenter(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.SeparatorsAtCenter;
+        }
+        private void set_155_CoreAxis_SeparatorsAtCenter(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.SeparatorsAtCenter = (global::System.Boolean)Value;
+        }
+        private object get_156_CoreAxis_TicksAtCenter(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.TicksAtCenter;
+        }
+        private void set_156_CoreAxis_TicksAtCenter(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.TicksAtCenter = (global::System.Boolean)Value;
+        }
+        private object get_157_CoreAxis_NamePaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.NamePaint;
+        }
+        private void set_157_CoreAxis_NamePaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.NamePaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_158_CoreAxis_LabelsPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.LabelsPaint;
+        }
+        private void set_158_CoreAxis_LabelsPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.LabelsPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_159_CoreAxis_SeparatorsPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.SeparatorsPaint;
+        }
+        private void set_159_CoreAxis_SeparatorsPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.SeparatorsPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_160_CoreAxis_SubseparatorsPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.SubseparatorsPaint;
+        }
+        private void set_160_CoreAxis_SubseparatorsPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.SubseparatorsPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_161_CoreAxis_SubseparatorsCount(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.SubseparatorsCount;
+        }
+        private void set_161_CoreAxis_SubseparatorsCount(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.SubseparatorsCount = (global::System.Int32)Value;
+        }
+        private object get_162_CoreAxis_DrawTicksPath(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.DrawTicksPath;
+        }
+        private void set_162_CoreAxis_DrawTicksPath(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.DrawTicksPath = (global::System.Boolean)Value;
+        }
+        private object get_163_CoreAxis_TicksPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.TicksPaint;
+        }
+        private void set_163_CoreAxis_TicksPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.TicksPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_164_CoreAxis_SubticksPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.SubticksPaint;
+        }
+        private void set_164_CoreAxis_SubticksPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.SubticksPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_165_CoreAxis_ZeroPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.ZeroPaint;
+        }
+        private void set_165_CoreAxis_ZeroPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.ZeroPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_166_CoreAxis_CrosshairPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.CrosshairPaint;
+        }
+        private void set_166_CoreAxis_CrosshairPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.CrosshairPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_167_CoreAxis_CrosshairLabelsPaint(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.CrosshairLabelsPaint;
+        }
+        private void set_167_CoreAxis_CrosshairLabelsPaint(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.CrosshairLabelsPaint = (global::LiveChartsCore.Painting.Paint)Value;
+        }
+        private object get_168_CoreAxis_CrosshairLabelsBackground(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.CrosshairLabelsBackground;
+        }
+        private void set_168_CoreAxis_CrosshairLabelsBackground(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.CrosshairLabelsBackground = (global::System.Nullable<global::LiveChartsCore.Drawing.LvcColor>)Value;
+        }
+        private object get_169_CoreAxis_CrosshairPadding(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.CrosshairPadding;
+        }
+        private void set_169_CoreAxis_CrosshairPadding(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.CrosshairPadding = (global::LiveChartsCore.Drawing.Padding)Value;
+        }
+        private object get_170_CoreAxis_CrosshairSnapEnabled(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.CrosshairSnapEnabled;
+        }
+        private void set_170_CoreAxis_CrosshairSnapEnabled(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.CrosshairSnapEnabled = (global::System.Boolean)Value;
+        }
+        private object get_171_CoreAxis_AnimationsSpeed(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.AnimationsSpeed;
+        }
+        private void set_171_CoreAxis_AnimationsSpeed(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.AnimationsSpeed = (global::System.Nullable<global::System.TimeSpan>)Value;
+        }
+        private object get_172_CoreAxis_EasingFunction(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.EasingFunction;
+        }
+        private void set_172_CoreAxis_EasingFunction(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.EasingFunction = (global::System.Func<global::System.Single, global::System.Single>)Value;
+        }
+        private object get_173_CoreAxis_MinZoomDelta(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.MinZoomDelta;
+        }
+        private void set_173_CoreAxis_MinZoomDelta(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.MinZoomDelta = (global::System.Nullable<global::System.Double>)Value;
+        }
+        private object get_174_CoreAxis_InLineNamePlacement(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.InLineNamePlacement;
+        }
+        private void set_174_CoreAxis_InLineNamePlacement(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.InLineNamePlacement = (global::System.Boolean)Value;
+        }
+        private object get_175_CoreAxis_SharedWith(object instance)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            return that.SharedWith;
+        }
+        private void set_175_CoreAxis_SharedWith(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.CoreAxis<global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, global::LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>)instance;
+            that.SharedWith = (global::System.Collections.Generic.IEnumerable<global::LiveChartsCore.Kernel.Sketches.ICartesianAxis>)Value;
+        }
+        private object get_176_ChartElement_Tag(object instance)
+        {
+            var that = (global::LiveChartsCore.Kernel.ChartElement)instance;
+            return that.Tag;
+        }
+        private void set_176_ChartElement_Tag(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.Kernel.ChartElement)instance;
+            that.Tag = (global::System.Object)Value;
+        }
+        private object get_177_ChartElement_IsVisible(object instance)
+        {
+            var that = (global::LiveChartsCore.Kernel.ChartElement)instance;
+            return that.IsVisible;
+        }
+        private void set_177_ChartElement_IsVisible(object instance, object Value)
+        {
+            var that = (global::LiveChartsCore.Kernel.ChartElement)instance;
+            that.IsVisible = (global::System.Boolean)Value;
+        }
+        private object get_178_StatisticPage_YAxes(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            return that.YAxes;
+        }
+        private void set_178_StatisticPage_YAxes(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            that.YAxes = (global::System.Collections.ObjectModel.ObservableCollection<global::LiveChartsCore.SkiaSharpView.Axis>)Value;
+        }
+        private object get_179_StatisticPage_SalesList(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            return that.SalesList;
+        }
+        private void set_179_StatisticPage_SalesList(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.StatisticPage)instance;
+            that.SalesList = (global::System.Collections.ObjectModel.ObservableCollection<global::csc13001_plant_pos.View.SalesData>)Value;
+        }
+        private object get_180_SalesData_Name(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            return that.Name;
+        }
+        private void set_180_SalesData_Name(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            that.Name = (global::System.String)Value;
+        }
+        private object get_181_SalesData_Sales(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            return that.Sales;
+        }
+        private void set_181_SalesData_Sales(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            that.Sales = (global::System.String)Value;
+        }
+        private object get_182_SalesData_Refunds(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            return that.Refunds;
+        }
+        private void set_182_SalesData_Refunds(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            that.Refunds = (global::System.String)Value;
+        }
+        private object get_183_SalesData_Net(object instance)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            return that.Net;
+        }
+        private void set_183_SalesData_Net(object instance, object Value)
+        {
+            var that = (global::csc13001_plant_pos.View.SalesData)instance;
+            that.Net = (global::System.String)Value;
+        }
+        private object get_184_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_56_TreeViewNode_Content(object instance)
+        private object get_185_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_56_TreeViewNode_Content(object instance, object Value)
+        private void set_185_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_57_TreeViewNode_Depth(object instance)
+        private object get_186_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_58_TreeViewNode_HasChildren(object instance)
+        private object get_187_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_59_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_188_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_59_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_188_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_60_TreeViewNode_IsExpanded(object instance)
+        private object get_189_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_60_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_189_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_61_TreeViewNode_Parent(object instance)
+        private object get_190_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
@@ -1857,97 +4122,913 @@ namespace csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo
                 xamlMember.Getter = get_47_NavigationViewItemBase_IsSelected;
                 xamlMember.Setter = set_47_NavigationViewItemBase_IsSelected;
                 break;
+            case "csc13001_plant_pos.View.Authentication.FormLayout.Child":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.Authentication.FormLayout");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Child", "Microsoft.UI.Xaml.UIElement");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_48_FormLayout_Child;
+                xamlMember.Setter = set_48_FormLayout_Child;
+                break;
+            case "csc13001_plant_pos.View.AuthenticationPage.LoginForm":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.AuthenticationPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LoginForm", "csc13001_plant_pos.View.Authentication.FormLogin");
+                xamlMember.Getter = get_49_AuthenticationPage_LoginForm;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "csc13001_plant_pos.View.AuthenticationPage.ForgotPasswordForm":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.AuthenticationPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ForgotPasswordForm", "csc13001_plant_pos.View.Authentication.FormForgotPassword");
+                xamlMember.Getter = get_50_AuthenticationPage_ForgotPasswordForm;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "csc13001_plant_pos.View.AuthenticationPage.ResetPasswordForm":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.AuthenticationPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ResetPasswordForm", "csc13001_plant_pos.View.Authentication.FormResetPassword");
+                xamlMember.Getter = get_51_AuthenticationPage_ResetPasswordForm;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "csc13001_plant_pos.View.Authentication.FormTitle.Title":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.Authentication.FormTitle");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_52_FormTitle_Title;
+                xamlMember.Setter = set_52_FormTitle_Title;
+                break;
+            case "Microsoft.UI.Xaml.Media.AcrylicBrush.TintColor":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Media.AcrylicBrush");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TintColor", "Windows.UI.Color");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_53_AcrylicBrush_TintColor;
+                xamlMember.Setter = set_53_AcrylicBrush_TintColor;
+                break;
+            case "Microsoft.UI.Xaml.Media.AcrylicBrush.TintOpacity":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Media.AcrylicBrush");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TintOpacity", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_54_AcrylicBrush_TintOpacity;
+                xamlMember.Setter = set_54_AcrylicBrush_TintOpacity;
+                break;
+            case "Microsoft.UI.Xaml.Media.AcrylicBrush.TintLuminosityOpacity":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Media.AcrylicBrush");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TintLuminosityOpacity", "System.Nullable`1<Double>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_55_AcrylicBrush_TintLuminosityOpacity;
+                xamlMember.Setter = set_55_AcrylicBrush_TintLuminosityOpacity;
+                break;
+            case "Microsoft.UI.Xaml.Media.AcrylicBrush.AlwaysUseFallback":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Media.AcrylicBrush");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "AlwaysUseFallback", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_56_AcrylicBrush_AlwaysUseFallback;
+                xamlMember.Setter = set_56_AcrylicBrush_AlwaysUseFallback;
+                break;
+            case "Microsoft.UI.Xaml.Media.AcrylicBrush.TintTransitionDuration":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Media.AcrylicBrush");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TintTransitionDuration", "TimeSpan");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_57_AcrylicBrush_TintTransitionDuration;
+                xamlMember.Setter = set_57_AcrylicBrush_TintTransitionDuration;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.IsActive":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsActive", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_58_ProgressRing_IsActive;
+                xamlMember.Setter = set_58_ProgressRing_IsActive;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.IsIndeterminate":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsIndeterminate", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_59_ProgressRing_IsIndeterminate;
+                xamlMember.Setter = set_59_ProgressRing_IsIndeterminate;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.Maximum":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Maximum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_60_ProgressRing_Maximum;
+                xamlMember.Setter = set_60_ProgressRing_Maximum;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.Minimum":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Minimum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_61_ProgressRing_Minimum;
+                xamlMember.Setter = set_61_ProgressRing_Minimum;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.TemplateSettings":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings");
+                xamlMember.Getter = get_62_ProgressRing_TemplateSettings;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.Value":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Value", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_63_ProgressRing_Value;
+                xamlMember.Setter = set_63_ProgressRing_Value;
+                break;
             case "Microsoft.UI.Xaml.Controls.Expander.IsExpanded":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Expander");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_48_Expander_IsExpanded;
-                xamlMember.Setter = set_48_Expander_IsExpanded;
+                xamlMember.Getter = get_64_Expander_IsExpanded;
+                xamlMember.Setter = set_64_Expander_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.Expander.Header":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Expander");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Header", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_49_Expander_Header;
-                xamlMember.Setter = set_49_Expander_Header;
+                xamlMember.Getter = get_65_Expander_Header;
+                xamlMember.Setter = set_65_Expander_Header;
                 break;
             case "Microsoft.UI.Xaml.Controls.Expander.ExpandDirection":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Expander");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ExpandDirection", "Microsoft.UI.Xaml.Controls.ExpandDirection");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_50_Expander_ExpandDirection;
-                xamlMember.Setter = set_50_Expander_ExpandDirection;
+                xamlMember.Getter = get_66_Expander_ExpandDirection;
+                xamlMember.Setter = set_66_Expander_ExpandDirection;
                 break;
             case "Microsoft.UI.Xaml.Controls.Expander.HeaderTemplate":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Expander");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_51_Expander_HeaderTemplate;
-                xamlMember.Setter = set_51_Expander_HeaderTemplate;
+                xamlMember.Getter = get_67_Expander_HeaderTemplate;
+                xamlMember.Setter = set_67_Expander_HeaderTemplate;
                 break;
             case "Microsoft.UI.Xaml.Controls.Expander.HeaderTemplateSelector":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Expander");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "HeaderTemplateSelector", "Microsoft.UI.Xaml.Controls.DataTemplateSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_52_Expander_HeaderTemplateSelector;
-                xamlMember.Setter = set_52_Expander_HeaderTemplateSelector;
+                xamlMember.Getter = get_68_Expander_HeaderTemplateSelector;
+                xamlMember.Setter = set_68_Expander_HeaderTemplateSelector;
                 break;
             case "Microsoft.UI.Xaml.Controls.Expander.TemplateSettings":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Expander");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings");
-                xamlMember.Getter = get_53_Expander_TemplateSettings;
+                xamlMember.Getter = get_69_Expander_TemplateSettings;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "csc13001_plant_pos.View.CustomerProfilePage.ViewModel":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.CustomerProfilePage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ViewModel", "csc13001_plant_pos.ViewModel.CustomerProfilePageViewModel");
+                xamlMember.Getter = get_70_CustomerProfilePage_ViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "csc13001_plant_pos.View.DiscountManagementPage.ViewModel":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.DiscountManagementPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ViewModel", "csc13001_plant_pos.ViewModel.DiscountManagementPageViewModel");
+                xamlMember.Getter = get_71_DiscountManagementPage_ViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "csc13001_plant_pos.View.SalePage.ViewModel":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.SalePage");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ViewModel", "csc13001_plant_pos.ViewModel.SaleViewModel");
-                xamlMember.Getter = get_54_SalePage_ViewModel;
+                xamlMember.Getter = get_72_SalePage_ViewModel;
                 xamlMember.SetIsReadOnly();
+                break;
+            case "csc13001_plant_pos.View.StaffProfilePage.ViewModel":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.StaffProfilePage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ViewModel", "csc13001_plant_pos.ViewModel.StaffProfilePageViewModel");
+                xamlMember.Getter = get_73_StaffProfilePage_ViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.Series":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Series", "System.Collections.Generic.IEnumerable`1<LiveChartsCore.ISeries>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_74_CartesianChart_Series;
+                xamlMember.Setter = set_74_CartesianChart_Series;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.TooltipPosition":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TooltipPosition", "LiveChartsCore.Measure.TooltipPosition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_75_CartesianChart_TooltipPosition;
+                xamlMember.Setter = set_75_CartesianChart_TooltipPosition;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.XAxes":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "XAxes", "System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.Sketches.ICartesianAxis>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_76_CartesianChart_XAxes;
+                xamlMember.Setter = set_76_CartesianChart_XAxes;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.YAxes":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "YAxes", "System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.Sketches.ICartesianAxis>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_77_CartesianChart_YAxes;
+                xamlMember.Setter = set_77_CartesianChart_YAxes;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.CoreChart":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CoreChart", "LiveChartsCore.Chart");
+                xamlMember.Getter = get_78_CartesianChart_CoreChart;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.DrawMargin":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DrawMargin", "LiveChartsCore.Measure.Margin");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_79_CartesianChart_DrawMargin;
+                xamlMember.Setter = set_79_CartesianChart_DrawMargin;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.CoreCanvas":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CoreCanvas", "LiveChartsCore.Motion.CoreMotionCanvas");
+                xamlMember.Getter = get_80_CartesianChart_CoreCanvas;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.SyncContext":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SyncContext", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_81_CartesianChart_SyncContext;
+                xamlMember.Setter = set_81_CartesianChart_SyncContext;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.Title":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Title", "LiveChartsCore.VisualElements.VisualElement");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_82_CartesianChart_Title;
+                xamlMember.Setter = set_82_CartesianChart_Title;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.Sections":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Sections", "System.Collections.Generic.IEnumerable`1<LiveChartsCore.CoreSection>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_83_CartesianChart_Sections;
+                xamlMember.Setter = set_83_CartesianChart_Sections;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.VisualElements":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "VisualElements", "System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.ChartElement>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_84_CartesianChart_VisualElements;
+                xamlMember.Setter = set_84_CartesianChart_VisualElements;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.DrawMarginFrame":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DrawMarginFrame", "LiveChartsCore.CoreDrawMarginFrame");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_85_CartesianChart_DrawMarginFrame;
+                xamlMember.Setter = set_85_CartesianChart_DrawMarginFrame;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.ZoomMode":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ZoomMode", "LiveChartsCore.Measure.ZoomAndPanMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_86_CartesianChart_ZoomMode;
+                xamlMember.Setter = set_86_CartesianChart_ZoomMode;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.ZoomingSpeed":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ZoomingSpeed", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_87_CartesianChart_ZoomingSpeed;
+                xamlMember.Setter = set_87_CartesianChart_ZoomingSpeed;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.TooltipFindingStrategy":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TooltipFindingStrategy", "LiveChartsCore.Measure.TooltipFindingStrategy");
+                xamlMember.Getter = get_88_CartesianChart_TooltipFindingStrategy;
+                xamlMember.Setter = set_88_CartesianChart_TooltipFindingStrategy;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.FindingStrategy":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "FindingStrategy", "LiveChartsCore.Measure.FindingStrategy");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_89_CartesianChart_FindingStrategy;
+                xamlMember.Setter = set_89_CartesianChart_FindingStrategy;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.AnimationsSpeed":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "AnimationsSpeed", "TimeSpan");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_90_CartesianChart_AnimationsSpeed;
+                xamlMember.Setter = set_90_CartesianChart_AnimationsSpeed;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.EasingFunction":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "EasingFunction", "System.Func`2<Single, Single>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_91_CartesianChart_EasingFunction;
+                xamlMember.Setter = set_91_CartesianChart_EasingFunction;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.LegendPosition":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LegendPosition", "LiveChartsCore.Measure.LegendPosition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_92_CartesianChart_LegendPosition;
+                xamlMember.Setter = set_92_CartesianChart_LegendPosition;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.LegendBackgroundPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LegendBackgroundPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_93_CartesianChart_LegendBackgroundPaint;
+                xamlMember.Setter = set_93_CartesianChart_LegendBackgroundPaint;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.LegendTextPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LegendTextPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_94_CartesianChart_LegendTextPaint;
+                xamlMember.Setter = set_94_CartesianChart_LegendTextPaint;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.LegendTextSize":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LegendTextSize", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_95_CartesianChart_LegendTextSize;
+                xamlMember.Setter = set_95_CartesianChart_LegendTextSize;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.Legend":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Legend", "LiveChartsCore.Kernel.Sketches.IChartLegend");
+                xamlMember.Getter = get_96_CartesianChart_Legend;
+                xamlMember.Setter = set_96_CartesianChart_Legend;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.TooltipBackgroundPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TooltipBackgroundPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_97_CartesianChart_TooltipBackgroundPaint;
+                xamlMember.Setter = set_97_CartesianChart_TooltipBackgroundPaint;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.TooltipTextPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TooltipTextPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_98_CartesianChart_TooltipTextPaint;
+                xamlMember.Setter = set_98_CartesianChart_TooltipTextPaint;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.TooltipTextSize":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TooltipTextSize", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_99_CartesianChart_TooltipTextSize;
+                xamlMember.Setter = set_99_CartesianChart_TooltipTextSize;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.Tooltip":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Tooltip", "LiveChartsCore.Kernel.Sketches.IChartTooltip");
+                xamlMember.Getter = get_100_CartesianChart_Tooltip;
+                xamlMember.Setter = set_100_CartesianChart_Tooltip;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.AutoUpdateEnabled":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "AutoUpdateEnabled", "Boolean");
+                xamlMember.Getter = get_101_CartesianChart_AutoUpdateEnabled;
+                xamlMember.Setter = set_101_CartesianChart_AutoUpdateEnabled;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.UpdaterThrottler":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "UpdaterThrottler", "TimeSpan");
+                xamlMember.Getter = get_102_CartesianChart_UpdaterThrottler;
+                xamlMember.Setter = set_102_CartesianChart_UpdaterThrottler;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.UpdateStartedCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "UpdateStartedCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_103_CartesianChart_UpdateStartedCommand;
+                xamlMember.Setter = set_103_CartesianChart_UpdateStartedCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.PointerPressedCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "PointerPressedCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_104_CartesianChart_PointerPressedCommand;
+                xamlMember.Setter = set_104_CartesianChart_PointerPressedCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.PointerReleasedCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "PointerReleasedCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_105_CartesianChart_PointerReleasedCommand;
+                xamlMember.Setter = set_105_CartesianChart_PointerReleasedCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.PointerMoveCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "PointerMoveCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_106_CartesianChart_PointerMoveCommand;
+                xamlMember.Setter = set_106_CartesianChart_PointerMoveCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.DataPointerDownCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataPointerDownCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_107_CartesianChart_DataPointerDownCommand;
+                xamlMember.Setter = set_107_CartesianChart_DataPointerDownCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.HoveredPointsChangedCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "HoveredPointsChangedCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_108_CartesianChart_HoveredPointsChangedCommand;
+                xamlMember.Setter = set_108_CartesianChart_HoveredPointsChangedCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.ChartPointPointerDownCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ChartPointPointerDownCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_109_CartesianChart_ChartPointPointerDownCommand;
+                xamlMember.Setter = set_109_CartesianChart_ChartPointPointerDownCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.VisualElementsPointerDownCommand":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "VisualElementsPointerDownCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_110_CartesianChart_VisualElementsPointerDownCommand;
+                xamlMember.Setter = set_110_CartesianChart_VisualElementsPointerDownCommand;
+                break;
+            case "LiveChartsCore.SkiaSharpView.WinUI.CartesianChart.MatchAxesScreenDataRatio":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.SkiaSharpView.WinUI.CartesianChart");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "MatchAxesScreenDataRatio", "Boolean");
+                xamlMember.Getter = get_111_CartesianChart_MatchAxesScreenDataRatio;
+                xamlMember.Setter = set_111_CartesianChart_MatchAxesScreenDataRatio;
+                break;
+            case "csc13001_plant_pos.View.StatisticPage.Series":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.StatisticPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Series", "System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.ISeries>");
+                xamlMember.Getter = get_112_StatisticPage_Series;
+                xamlMember.Setter = set_112_StatisticPage_Series;
+                break;
+            case "LiveChartsCore.ISeries.SeriesId":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SeriesId", "Int32");
+                xamlMember.Getter = get_113_ISeries_SeriesId;
+                xamlMember.Setter = set_113_ISeries_SeriesId;
+                break;
+            case "LiveChartsCore.ISeries.SeriesProperties":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SeriesProperties", "LiveChartsCore.Kernel.SeriesProperties");
+                xamlMember.Getter = get_114_ISeries_SeriesProperties;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.ISeries.RequiresFindClosestOnPointerDown":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "RequiresFindClosestOnPointerDown", "Boolean");
+                xamlMember.Getter = get_115_ISeries_RequiresFindClosestOnPointerDown;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.ISeries.Name":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.Getter = get_116_ISeries_Name;
+                xamlMember.Setter = set_116_ISeries_Name;
+                break;
+            case "LiveChartsCore.ISeries.Values":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Values", "System.Collections.IEnumerable");
+                xamlMember.Getter = get_117_ISeries_Values;
+                xamlMember.Setter = set_117_ISeries_Values;
+                break;
+            case "LiveChartsCore.ISeries.IsHoverable":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsHoverable", "Boolean");
+                xamlMember.Getter = get_118_ISeries_IsHoverable;
+                xamlMember.Setter = set_118_ISeries_IsHoverable;
+                break;
+            case "LiveChartsCore.ISeries.IsVisibleAtLegend":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsVisibleAtLegend", "Boolean");
+                xamlMember.Getter = get_119_ISeries_IsVisibleAtLegend;
+                xamlMember.Setter = set_119_ISeries_IsVisibleAtLegend;
+                break;
+            case "LiveChartsCore.ISeries.MiniatureShapeSize":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "MiniatureShapeSize", "Double");
+                xamlMember.Getter = get_120_ISeries_MiniatureShapeSize;
+                xamlMember.Setter = set_120_ISeries_MiniatureShapeSize;
+                break;
+            case "LiveChartsCore.ISeries.DataPadding":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataPadding", "LiveChartsCore.Drawing.LvcPoint");
+                xamlMember.Getter = get_121_ISeries_DataPadding;
+                xamlMember.Setter = set_121_ISeries_DataPadding;
+                break;
+            case "LiveChartsCore.ISeries.ZIndex":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ZIndex", "Int32");
+                xamlMember.Getter = get_122_ISeries_ZIndex;
+                xamlMember.Setter = set_122_ISeries_ZIndex;
+                break;
+            case "LiveChartsCore.ISeries.Pivot":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Pivot", "Double");
+                xamlMember.Getter = get_123_ISeries_Pivot;
+                xamlMember.Setter = set_123_ISeries_Pivot;
+                break;
+            case "LiveChartsCore.ISeries.GeometrySvg":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "GeometrySvg", "String");
+                xamlMember.Getter = get_124_ISeries_GeometrySvg;
+                xamlMember.Setter = set_124_ISeries_GeometrySvg;
+                break;
+            case "LiveChartsCore.ISeries.AnimationsSpeed":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "AnimationsSpeed", "System.Nullable`1<TimeSpan>");
+                xamlMember.Getter = get_125_ISeries_AnimationsSpeed;
+                xamlMember.Setter = set_125_ISeries_AnimationsSpeed;
+                break;
+            case "LiveChartsCore.ISeries.EasingFunction":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "EasingFunction", "System.Func`2<Single, Single>");
+                xamlMember.Getter = get_126_ISeries_EasingFunction;
+                xamlMember.Setter = set_126_ISeries_EasingFunction;
+                break;
+            case "LiveChartsCore.ISeries.DataLabelsPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataLabelsPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_127_ISeries_DataLabelsPaint;
+                xamlMember.Setter = set_127_ISeries_DataLabelsPaint;
+                break;
+            case "LiveChartsCore.ISeries.DataLabelsSize":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataLabelsSize", "Double");
+                xamlMember.Getter = get_128_ISeries_DataLabelsSize;
+                xamlMember.Setter = set_128_ISeries_DataLabelsSize;
+                break;
+            case "LiveChartsCore.ISeries.DataLabelsRotation":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataLabelsRotation", "Double");
+                xamlMember.Getter = get_129_ISeries_DataLabelsRotation;
+                xamlMember.Setter = set_129_ISeries_DataLabelsRotation;
+                break;
+            case "LiveChartsCore.ISeries.DataLabelsPadding":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataLabelsPadding", "LiveChartsCore.Drawing.Padding");
+                xamlMember.Getter = get_130_ISeries_DataLabelsPadding;
+                xamlMember.Setter = set_130_ISeries_DataLabelsPadding;
+                break;
+            case "LiveChartsCore.ISeries.DataLabelsMaxWidth":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.ISeries");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataLabelsMaxWidth", "Double");
+                xamlMember.Getter = get_131_ISeries_DataLabelsMaxWidth;
+                xamlMember.Setter = set_131_ISeries_DataLabelsMaxWidth;
+                break;
+            case "csc13001_plant_pos.View.StatisticPage.XAxes":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.StatisticPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "XAxes", "System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.SkiaSharpView.Axis>");
+                xamlMember.Getter = get_132_StatisticPage_XAxes;
+                xamlMember.Setter = set_132_StatisticPage_XAxes;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.DataBounds":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DataBounds", "LiveChartsCore.Measure.Bounds");
+                xamlMember.Getter = get_133_CoreAxis_DataBounds;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.VisibleDataBounds":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "VisibleDataBounds", "LiveChartsCore.Measure.Bounds");
+                xamlMember.Getter = get_134_CoreAxis_VisibleDataBounds;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.Name":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.Getter = get_135_CoreAxis_Name;
+                xamlMember.Setter = set_135_CoreAxis_Name;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.NameTextSize":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "NameTextSize", "Double");
+                xamlMember.Getter = get_136_CoreAxis_NameTextSize;
+                xamlMember.Setter = set_136_CoreAxis_NameTextSize;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.NamePadding":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "NamePadding", "LiveChartsCore.Drawing.Padding");
+                xamlMember.Getter = get_137_CoreAxis_NamePadding;
+                xamlMember.Setter = set_137_CoreAxis_NamePadding;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.LabelsAlignment":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LabelsAlignment", "System.Nullable`1<LiveChartsCore.Drawing.Align>");
+                xamlMember.Getter = get_138_CoreAxis_LabelsAlignment;
+                xamlMember.Setter = set_138_CoreAxis_LabelsAlignment;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.Orientation":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Orientation", "LiveChartsCore.Measure.AxisOrientation");
+                xamlMember.Getter = get_139_CoreAxis_Orientation;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.Padding":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Padding", "LiveChartsCore.Drawing.Padding");
+                xamlMember.Getter = get_140_CoreAxis_Padding;
+                xamlMember.Setter = set_140_CoreAxis_Padding;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.LabelsDensity":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LabelsDensity", "Single");
+                xamlMember.Getter = get_141_CoreAxis_LabelsDensity;
+                xamlMember.Setter = set_141_CoreAxis_LabelsDensity;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.Labeler":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Labeler", "System.Func`2<Double, String>");
+                xamlMember.Getter = get_142_CoreAxis_Labeler;
+                xamlMember.Setter = set_142_CoreAxis_Labeler;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.MinStep":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "MinStep", "Double");
+                xamlMember.Getter = get_143_CoreAxis_MinStep;
+                xamlMember.Setter = set_143_CoreAxis_MinStep;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.ForceStepToMin":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ForceStepToMin", "Boolean");
+                xamlMember.Getter = get_144_CoreAxis_ForceStepToMin;
+                xamlMember.Setter = set_144_CoreAxis_ForceStepToMin;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.MinLimit":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "MinLimit", "System.Nullable`1<Double>");
+                xamlMember.Getter = get_145_CoreAxis_MinLimit;
+                xamlMember.Setter = set_145_CoreAxis_MinLimit;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.MaxLimit":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "MaxLimit", "System.Nullable`1<Double>");
+                xamlMember.Getter = get_146_CoreAxis_MaxLimit;
+                xamlMember.Setter = set_146_CoreAxis_MaxLimit;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.UnitWidth":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "UnitWidth", "Double");
+                xamlMember.Getter = get_147_CoreAxis_UnitWidth;
+                xamlMember.Setter = set_147_CoreAxis_UnitWidth;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.Position":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Position", "LiveChartsCore.Measure.AxisPosition");
+                xamlMember.Getter = get_148_CoreAxis_Position;
+                xamlMember.Setter = set_148_CoreAxis_Position;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.LabelsRotation":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LabelsRotation", "Double");
+                xamlMember.Getter = get_149_CoreAxis_LabelsRotation;
+                xamlMember.Setter = set_149_CoreAxis_LabelsRotation;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.TextSize":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TextSize", "Double");
+                xamlMember.Getter = get_150_CoreAxis_TextSize;
+                xamlMember.Setter = set_150_CoreAxis_TextSize;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.Labels":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Labels", "System.Collections.Generic.IList`1<String>");
+                xamlMember.Getter = get_151_CoreAxis_Labels;
+                xamlMember.Setter = set_151_CoreAxis_Labels;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.ShowSeparatorLines":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ShowSeparatorLines", "Boolean");
+                xamlMember.Getter = get_152_CoreAxis_ShowSeparatorLines;
+                xamlMember.Setter = set_152_CoreAxis_ShowSeparatorLines;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.CustomSeparators":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CustomSeparators", "System.Collections.Generic.IEnumerable`1<Double>");
+                xamlMember.Getter = get_153_CoreAxis_CustomSeparators;
+                xamlMember.Setter = set_153_CoreAxis_CustomSeparators;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.IsInverted":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsInverted", "Boolean");
+                xamlMember.Getter = get_154_CoreAxis_IsInverted;
+                xamlMember.Setter = set_154_CoreAxis_IsInverted;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.SeparatorsAtCenter":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SeparatorsAtCenter", "Boolean");
+                xamlMember.Getter = get_155_CoreAxis_SeparatorsAtCenter;
+                xamlMember.Setter = set_155_CoreAxis_SeparatorsAtCenter;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.TicksAtCenter":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TicksAtCenter", "Boolean");
+                xamlMember.Getter = get_156_CoreAxis_TicksAtCenter;
+                xamlMember.Setter = set_156_CoreAxis_TicksAtCenter;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.NamePaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "NamePaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_157_CoreAxis_NamePaint;
+                xamlMember.Setter = set_157_CoreAxis_NamePaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.LabelsPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "LabelsPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_158_CoreAxis_LabelsPaint;
+                xamlMember.Setter = set_158_CoreAxis_LabelsPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.SeparatorsPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SeparatorsPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_159_CoreAxis_SeparatorsPaint;
+                xamlMember.Setter = set_159_CoreAxis_SeparatorsPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.SubseparatorsPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SubseparatorsPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_160_CoreAxis_SubseparatorsPaint;
+                xamlMember.Setter = set_160_CoreAxis_SubseparatorsPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.SubseparatorsCount":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SubseparatorsCount", "Int32");
+                xamlMember.Getter = get_161_CoreAxis_SubseparatorsCount;
+                xamlMember.Setter = set_161_CoreAxis_SubseparatorsCount;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.DrawTicksPath":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "DrawTicksPath", "Boolean");
+                xamlMember.Getter = get_162_CoreAxis_DrawTicksPath;
+                xamlMember.Setter = set_162_CoreAxis_DrawTicksPath;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.TicksPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "TicksPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_163_CoreAxis_TicksPaint;
+                xamlMember.Setter = set_163_CoreAxis_TicksPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.SubticksPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SubticksPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_164_CoreAxis_SubticksPaint;
+                xamlMember.Setter = set_164_CoreAxis_SubticksPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.ZeroPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "ZeroPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_165_CoreAxis_ZeroPaint;
+                xamlMember.Setter = set_165_CoreAxis_ZeroPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.CrosshairPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CrosshairPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_166_CoreAxis_CrosshairPaint;
+                xamlMember.Setter = set_166_CoreAxis_CrosshairPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.CrosshairLabelsPaint":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CrosshairLabelsPaint", "LiveChartsCore.Painting.Paint");
+                xamlMember.Getter = get_167_CoreAxis_CrosshairLabelsPaint;
+                xamlMember.Setter = set_167_CoreAxis_CrosshairLabelsPaint;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.CrosshairLabelsBackground":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CrosshairLabelsBackground", "System.Nullable`1<LiveChartsCore.Drawing.LvcColor>");
+                xamlMember.Getter = get_168_CoreAxis_CrosshairLabelsBackground;
+                xamlMember.Setter = set_168_CoreAxis_CrosshairLabelsBackground;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.CrosshairPadding":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CrosshairPadding", "LiveChartsCore.Drawing.Padding");
+                xamlMember.Getter = get_169_CoreAxis_CrosshairPadding;
+                xamlMember.Setter = set_169_CoreAxis_CrosshairPadding;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.CrosshairSnapEnabled":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "CrosshairSnapEnabled", "Boolean");
+                xamlMember.Getter = get_170_CoreAxis_CrosshairSnapEnabled;
+                xamlMember.Setter = set_170_CoreAxis_CrosshairSnapEnabled;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.AnimationsSpeed":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "AnimationsSpeed", "System.Nullable`1<TimeSpan>");
+                xamlMember.Getter = get_171_CoreAxis_AnimationsSpeed;
+                xamlMember.Setter = set_171_CoreAxis_AnimationsSpeed;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.EasingFunction":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "EasingFunction", "System.Func`2<Single, Single>");
+                xamlMember.Getter = get_172_CoreAxis_EasingFunction;
+                xamlMember.Setter = set_172_CoreAxis_EasingFunction;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.MinZoomDelta":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "MinZoomDelta", "System.Nullable`1<Double>");
+                xamlMember.Getter = get_173_CoreAxis_MinZoomDelta;
+                xamlMember.Setter = set_173_CoreAxis_MinZoomDelta;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.InLineNamePlacement":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "InLineNamePlacement", "Boolean");
+                xamlMember.Getter = get_174_CoreAxis_InLineNamePlacement;
+                xamlMember.Setter = set_174_CoreAxis_InLineNamePlacement;
+                break;
+            case "LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>.SharedWith":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.CoreAxis`2<LiveChartsCore.SkiaSharpView.Drawing.Geometries.LabelGeometry, LiveChartsCore.SkiaSharpView.Drawing.Geometries.LineGeometry>");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SharedWith", "System.Collections.Generic.IEnumerable`1<LiveChartsCore.Kernel.Sketches.ICartesianAxis>");
+                xamlMember.Getter = get_175_CoreAxis_SharedWith;
+                xamlMember.Setter = set_175_CoreAxis_SharedWith;
+                break;
+            case "LiveChartsCore.Kernel.ChartElement.Tag":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.Kernel.ChartElement");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Tag", "Object");
+                xamlMember.Getter = get_176_ChartElement_Tag;
+                xamlMember.Setter = set_176_ChartElement_Tag;
+                break;
+            case "LiveChartsCore.Kernel.ChartElement.IsVisible":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LiveChartsCore.Kernel.ChartElement");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsVisible", "Boolean");
+                xamlMember.Getter = get_177_ChartElement_IsVisible;
+                xamlMember.Setter = set_177_ChartElement_IsVisible;
+                break;
+            case "csc13001_plant_pos.View.StatisticPage.YAxes":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.StatisticPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "YAxes", "System.Collections.ObjectModel.ObservableCollection`1<LiveChartsCore.SkiaSharpView.Axis>");
+                xamlMember.Getter = get_178_StatisticPage_YAxes;
+                xamlMember.Setter = set_178_StatisticPage_YAxes;
+                break;
+            case "csc13001_plant_pos.View.StatisticPage.SalesList":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.StatisticPage");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "SalesList", "System.Collections.ObjectModel.ObservableCollection`1<csc13001_plant_pos.View.SalesData>");
+                xamlMember.Getter = get_179_StatisticPage_SalesList;
+                xamlMember.Setter = set_179_StatisticPage_SalesList;
+                break;
+            case "csc13001_plant_pos.View.SalesData.Name":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.SalesData");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.Getter = get_180_SalesData_Name;
+                xamlMember.Setter = set_180_SalesData_Name;
+                break;
+            case "csc13001_plant_pos.View.SalesData.Sales":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.SalesData");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Sales", "String");
+                xamlMember.Getter = get_181_SalesData_Sales;
+                xamlMember.Setter = set_181_SalesData_Sales;
+                break;
+            case "csc13001_plant_pos.View.SalesData.Refunds":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.SalesData");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Refunds", "String");
+                xamlMember.Getter = get_182_SalesData_Refunds;
+                xamlMember.Setter = set_182_SalesData_Refunds;
+                break;
+            case "csc13001_plant_pos.View.SalesData.Net":
+                userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("csc13001_plant_pos.View.SalesData");
+                xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Net", "String");
+                xamlMember.Getter = get_183_SalesData_Net;
+                xamlMember.Setter = set_183_SalesData_Net;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_55_TreeViewNode_Children;
+                xamlMember.Getter = get_184_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_56_TreeViewNode_Content;
-                xamlMember.Setter = set_56_TreeViewNode_Content;
+                xamlMember.Getter = get_185_TreeViewNode_Content;
+                xamlMember.Setter = set_185_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_57_TreeViewNode_Depth;
+                xamlMember.Getter = get_186_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_58_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_187_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_59_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_59_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_188_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_188_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_60_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_60_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_189_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_189_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::csc13001_plant_pos.csc13001_plant_pos_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_61_TreeViewNode_Parent;
+                xamlMember.Getter = get_190_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             }

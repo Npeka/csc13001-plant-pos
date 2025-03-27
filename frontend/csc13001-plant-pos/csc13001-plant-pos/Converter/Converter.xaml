@@ -4,4 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:csc13001_plant_pos.Converter">
     <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <local:CurrencyConverter x:Key="CurrencyConverter" />
+    <local:BoolToForegroundConverter x:Key="BoolToForegroundConverter" />
+    <local:BoolToBackgroundConverter x:Key="BoolToBackgroundConverter" />
+    <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+    <local:DateToStringConverter x:Key="DateToStringConverter" />
+    <local:GenderConverter x:Key="GenderConverter" />
+    <local:PercentageConverter x:Key="PercentageConverter" />
+    <local:MembershipTypeToImageConverter x:Key="MembershipTypeToImageConverter" />
+    <local:DiscountStatusToTextConverter x:Key="DiscountStatusToTextConverter" />
+    <local:DiscountStatusToColorConverter x:Key="DiscountStatusToColorConverter" />
+    <local:MembershipTypeToBackgroundConverter x:Key="MembershipTypeToBackgroundConverter" />
 </ResourceDictionary>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="csc13001_plant_pos.View.Authentication.FormLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View.Authentication"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="15">
+        <local:FormTitle Title="Welcome to Plant Store" />
+
+        <!--  Username Input  -->
+        <TextBox x:ConnectionId='2'
+            x:Name="Username"
+            Height="40"
+            Padding="10"
+            BorderBrush="Gray"
+            CornerRadius="5"
+            PlaceholderText="Username"
+            Text="{Binding Username, Mode=TwoWay}" />
+
+        <!--  Password Input  -->
+        <PasswordBox x:ConnectionId='3'
+            x:Name="PasswordBox"
+            Height="40"
+            Padding="10"
+            BorderBrush="Gray"
+            CornerRadius="5"
+                                                      
+            PlaceholderText="Password" />
+
+        <Button x:ConnectionId='4'
+            x:Name="LoginButton"
+            Height="40"
+            HorizontalAlignment="Stretch"
+                                     
+            IsEnabled="{Binding !IsLoading}"
+            Style="{StaticResource AccentButtonStyle}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <ProgressRing x:ConnectionId='6'
+                        x:Name="ButtonProgressRing"
+                        Width="20"
+                        Height="20"
+                        IsActive="False"
+                        Visibility="Collapsed" />
+                    <TextBlock Text="Login" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Hyperlink x:ConnectionId='5'                                       >
+                Forgot your password?
+            </Hyperlink>
+        </TextBlock>
+    </StackPanel>
+</UserControl>
+

@@ -5,9 +5,236 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+    xmlns:conv="using:csc13001_plant_pos.Converters"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <conv:PercentageToForegroundConverter x:Key="PercentageToForegroundConverter"/>
+    </Page.Resources>
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-    <Grid />
+        <!-- Header with date range and export button -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Padding="8,5" BorderThickness="1" BorderBrush="#E0E0E0">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE787;" FontSize="12"/>
+                    <TextBlock Text="{Binding SelectedDateRange, Mode=TwoWay}" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Last 7 days" Click="OnDateRangeSelected"/>
+                        <MenuFlyoutItem Text="Last month" Click="OnDateRangeSelected"/>
+                        <MenuFlyoutItem Text="Pick a date..." Click="OnCustomDatePicked"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+
+
+
+
+            <Button Grid.Column="1" Content="Export" Padding="8,5"  BorderThickness="1" BorderBrush="#E0E0E0">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE8DE;" FontSize="12"/>
+                            <TextBlock Text="Export" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+        </Grid>
+
+        <!-- Statistics tiles -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Revenue Tile -->
+            <Grid Grid.Column="0"  Margin="0,0,10,0" Padding="20,15" CornerRadius="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Revenue" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Margin="10,0,0,0" FontSize="12" Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[0].Percentage)}">
+                        <Run Text="{x:Bind DashboardVM.Tiles[0].Percentage}"/>
+                        <Run Text="%"/>
+                    </TextBlock>
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Border Background="#FFE8D7" Width="32" Height="32" CornerRadius="16" Margin="0,0,10,0">
+                        <FontIcon Glyph="&#xE8CB;" FontSize="14" Foreground="#FF9C44"/>
+                    </Border>
+                    <TextBlock Text="$14,329" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Orders Tile -->
+            <Grid Grid.Column="1" Margin="5,0,5,0" Padding="20,15" CornerRadius="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Orders" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Margin="10,0,0,0" FontSize="12" Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[1].Percentage)}">
+                        <Run Text="{x:Bind DashboardVM.Tiles[1].Percentage}"/>
+                        <Run Text="%"/>
+                    </TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Border Background="#E8F5E9" Width="32" Height="32" CornerRadius="16" Margin="0,0,10,0">
+                        <FontIcon Glyph="&#xE8F3;" FontSize="14" Foreground="#4CAF50"/>
+                    </Border>
+                    <TextBlock Text="2,506" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Average Tile -->
+            <Grid Grid.Column="2"  Margin="10,0,0,0" Padding="20,15" CornerRadius="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Average" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Margin="10,0,0,0" FontSize="12" Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[2].Percentage)}">
+                        <Run Text="{x:Bind DashboardVM.Tiles[0].Percentage}"/>
+                        <Run Text="%"/>
+                    </TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Border Background="#FFF8E1" Width="32" Height="32" CornerRadius="16" Margin="0,0,10,0">
+                        <FontIcon Glyph="&#xE8D4;" FontSize="14" Foreground="#FFC107"/>
+                    </Border>
+                    <TextBlock Text="$2,047" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- Chart Section -->
+        <Grid Grid.Row="2" Padding="20" CornerRadius="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Sales chart" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15"/>
+
+            <Grid Grid.Row="1">
+                <lvc:CartesianChart 
+                Series="{Binding Series}"
+                XAxes="{Binding XAxes}"
+                YAxes="{Binding YAxes}"
+                TooltipPosition="Auto"/>
+
+
+                <!-- Tooltip Overlay (positioned by code-behind) -->
+                <Border 
+                    x:Name="ChartTooltip" 
+                    Background="#333333" 
+                    CornerRadius="4" 
+                    Padding="8,4" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Visibility="Collapsed">
+                    <TextBlock Text="966" Foreground="Black" FontSize="12"/>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0,20,0,0" Padding="20" CornerRadius="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Sản phẩm bán chạy -->
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Padding="10">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="Sản phẩm bán chạy" FontWeight="SemiBold"/>
+                        <Button Content="Xem thêm" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{x:Bind BestSellingProducts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="local:Product">
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.3*" />
+                                        <ColumnDefinition Width="0.4*" />
+                                        <ColumnDefinition Width="0.3*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ProductID}" FontWeight="Bold"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Bind Name}"/>
+                                    <TextBlock Grid.Column="2" Text="{x:Bind QuantitySold}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Sản phẩm sắp hết hàng -->
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Padding="10">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="Sản phẩm sắp hết hàng" FontWeight="SemiBold"/>
+                        <Button Content="Xem thêm" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{x:Bind LowStockProducts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="local:Product">
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.3*" />
+                                        <ColumnDefinition Width="0.4*" />
+                                        <ColumnDefinition Width="0.3*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ProductID}" FontWeight="Bold"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Bind Name}"/>
+                                    <TextBlock Grid.Column="2" Text="{x:Bind RemainingStock}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+    </Grid>
 </Page>

@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Data;
 using System;
 
-namespace csc13001_plant_pos.Converters;
+namespace csc13001_plant_pos.Converter;
 
 public class StringToVisibilityConverter : IValueConverter
 {

@@ -51,10 +51,11 @@
                     Icon="Tag"
                     Tag="DiscountManagementPage" />
 
-                <NavigationViewItem
-                    Content="Quản lý kho"
-                    Icon="Home"
-                    Tag="WarehouseManagementPage" />
+                <NavigationViewItem Content="Quản lý kho" Tag="WarehouseManagementPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEA0D;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>

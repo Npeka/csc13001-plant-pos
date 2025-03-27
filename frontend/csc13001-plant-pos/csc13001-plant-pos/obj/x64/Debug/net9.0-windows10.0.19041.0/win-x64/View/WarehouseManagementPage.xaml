@@ -50,14 +50,14 @@
                                 <FontIcon
                                     FontSize="20"
                                     Foreground="#4CAF50"
-                                    Glyph="💰" />
+                                    Glyph="&#xE8BE;" />
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="16"
                                             FontWeight="SemiBold"
-                                            Text="Mã đơn: " />
+                                            Text="Mã lô hàng: " />
                                         <TextBlock
                                             FontSize="16"
                                             FontWeight="SemiBold"
@@ -70,47 +70,11 @@
                                                 Margin="0,0,4,0"
                                                 FontSize="12"
                                                 Foreground="#666666"
-                                                Text="Mã nhân viên: " />
+                                                Text="Nhà cung cấp: " />
                                             <TextBlock
                                                 FontSize="12"
                                                 Foreground="#666666"
-                                                Text="NV001" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Margin="0,0,4,0"
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Tên nhân viên: " />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Nguyễn Văn B" />
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Margin="0,0,4,0"
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Mã khách hàng: " />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="1234" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Margin="0,0,4,0"
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Tên khách hàng: " />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Nguyễn Văn C" />
+                                                Text="Công ty TNHH Cây Xanh Miền Nam" />
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -128,22 +92,15 @@
                                     Foreground="#4CAF50"
                                     Text="1/1/2025" />
 
-                                <StackPanel Grid.Row="1" HorizontalAlignment="Right">
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock FontWeight="SemiBold" Text="Giá gốc:" />
-                                        <TextBlock
-                                            Margin="4,0,0,0"
-                                            Foreground="#555555"
-                                            Text="1234đ" />
-                                    </StackPanel>
-
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock FontWeight="SemiBold" Text="Giá bán:" />
-                                        <TextBlock
-                                            Margin="4,0,0,0"
-                                            Foreground="#555555"
-                                            Text="1234đ" />
-                                    </StackPanel>
+                                <StackPanel
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                                    <TextBlock FontWeight="SemiBold" Text="Tổng tiền:" />
+                                    <TextBlock
+                                        Margin="4,0,0,0"
+                                        Foreground="#555555"
+                                        Text="1234đ" />
                                 </StackPanel>
                             </Grid>
 
@@ -193,7 +150,7 @@
                                             <TextBlock
                                                 FontSize="12"
                                                 Foreground="#666666"
-                                                Text="Giá:" />
+                                                Text="Giá nhập:" />
                                             <TextBlock
                                                 Margin="4,0,0,0"
                                                 FontSize="12"
@@ -252,14 +209,14 @@
                                 <FontIcon
                                     FontSize="20"
                                     Foreground="#4CAF50"
-                                    Glyph="💰" />
+                                    Glyph="&#xE8BE;" />
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="16"
                                             FontWeight="SemiBold"
-                                            Text="Mã đơn: " />
+                                            Text="Mã lô hàng: " />
                                         <TextBlock
                                             FontSize="16"
                                             FontWeight="SemiBold"
@@ -272,47 +229,11 @@
                                                 Margin="0,0,4,0"
                                                 FontSize="12"
                                                 Foreground="#666666"
-                                                Text="Mã nhân viên: " />
+                                                Text="Nhà cung cấp: " />
                                             <TextBlock
                                                 FontSize="12"
                                                 Foreground="#666666"
-                                                Text="NV001" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Margin="0,0,4,0"
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Tên nhân viên: " />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Nguyễn Văn B" />
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Margin="0,0,4,0"
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Mã khách hàng: " />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="1234" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Margin="0,0,4,0"
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Tên khách hàng: " />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="#666666"
-                                                Text="Nguyễn Văn C" />
+                                                Text="Vườn Cây Mỹ Đình" />
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -330,22 +251,15 @@
                                     Foreground="#4CAF50"
                                     Text="1/1/2025" />
 
-                                <StackPanel Grid.Row="1" HorizontalAlignment="Right">
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock FontWeight="SemiBold" Text="Giá gốc:" />
-                                        <TextBlock
-                                            Margin="5,0,0,0"
-                                            Foreground="#555555"
-                                            Text="1234đ" />
-                                    </StackPanel>
-
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock FontWeight="SemiBold" Text="Giá bán:" />
-                                        <TextBlock
-                                            Margin="5,0,0,0"
-                                            Foreground="#555555"
-                                            Text="1234đ" />
-                                    </StackPanel>
+                                <StackPanel
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                                    <TextBlock FontWeight="SemiBold" Text="Tổng tiền:" />
+                                    <TextBlock
+                                        Margin="4,0,0,0"
+                                        Foreground="#555555"
+                                        Text="1234đ" />
                                 </StackPanel>
                             </Grid>
 
