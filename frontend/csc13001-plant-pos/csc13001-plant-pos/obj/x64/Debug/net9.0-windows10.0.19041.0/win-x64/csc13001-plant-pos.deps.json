@@ -10,6 +10,7 @@
       "csc13001-plant-pos/1.0.0": {
         "dependencies": {
           "CommunityToolkit.Mvvm": "8.4.0",
+          "CommunityToolkit.WinUI.UI.Controls.DataGrid": "7.1.2",
           "Fody": "6.9.2",
           "LiveChartsCore.SkiaSharpView.WinUI": "2.0.0-rc5.3",
           "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742",
@@ -770,6 +771,17 @@
           }
         }
       },
+      "CommunityToolkit.WinUI.UI.Controls.DataGrid/7.1.2": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK": "1.7.250310001"
+        },
+        "runtime": {
+          "lib/net5.0-windows10.0.18362/CommunityToolkit.WinUI.UI.Controls.DataGrid.dll": {
+            "assemblyVersion": "7.1.0.0",
+            "fileVersion": "7.1.2.1"
+          }
+        }
+      },
       "Fody/6.9.2": {},
       "HarfBuzzSharp/7.3.0.3": {
         "dependencies": {
@@ -1045,6 +1057,13 @@
       "sha512": "sha512-tqVU8yc/ADO9oiTRyTnwhFN68hCwvkliMierptWOudIAvWY1mWCh5VFh+guwHJmpMwfg0J0rY+yyd5Oy7ty9Uw==",
       "path": "communitytoolkit.mvvm/8.4.0",
       "hashPath": "communitytoolkit.mvvm.8.4.0.nupkg.sha512"
+    },
+    "CommunityToolkit.WinUI.UI.Controls.DataGrid/7.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-F73oYdYza8zhDwGHdXCZJJMeiDJ6nR97WPe180o7jOX3U90ZIqvU/GtYZdN3/x8DOS48t5GQG70LqxfyIGeaxw==",
+      "path": "communitytoolkit.winui.ui.controls.datagrid/7.1.2",
+      "hashPath": "communitytoolkit.winui.ui.controls.datagrid.7.1.2.nupkg.sha512"
     },
     "Fody/6.9.2": {
       "type": "package",

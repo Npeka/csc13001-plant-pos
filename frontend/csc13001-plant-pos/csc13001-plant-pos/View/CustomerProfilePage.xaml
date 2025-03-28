@@ -57,7 +57,7 @@
                                         FontWeight="SemiBold"
                                         Text="{x:Bind OrderId, Mode=OneWay}" />
                                 </StackPanel>
-                                <!--<StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         Margin="0,0,4,0"
                                         FontSize="12"
@@ -78,7 +78,7 @@
                                         FontSize="12"
                                         Foreground="#666666"
                                         Text="{x:Bind Staff.Fullname, Mode=OneWay}" />
-                                </StackPanel>-->
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
 
@@ -384,7 +384,7 @@
                             Grid.Row="7"
                             Grid.Column="1"
                             Foreground="#555555"
-                            Text="{x:Bind ViewModel.TotalSpending, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
+                            Text="{x:Bind ViewModel.TotalSpent, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
                     </Grid>
                 </StackPanel>
             </Border>

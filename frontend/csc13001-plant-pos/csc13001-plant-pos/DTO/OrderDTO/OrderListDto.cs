@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using csc13001_plant_pos.Model;
+using csc13001_plant_pos.Converter.JsonConverter;
 
 namespace csc13001_plant_pos.DTO.OrderDTO
 {
@@ -13,8 +13,8 @@ namespace csc13001_plant_pos.DTO.OrderDTO
 
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
-        //[JsonPropertyName("staff")]
-        //public StaffUser Staff { get; set; }
+        [JsonPropertyName("staff")]
+        public StaffUser Staff { get; set; }
 
         [JsonPropertyName("orderDate")]
         [JsonConverter(typeof(CustomDateTimeConverter))]
@@ -29,22 +29,7 @@ namespace csc13001_plant_pos.DTO.OrderDTO
         [JsonPropertyName("finalPrice")]
         public decimal FinalPrice { get; set; }
 
-        [JsonPropertyName("orderItems")]
+        [JsonPropertyName("items")]
         public List<OrderItem> OrderItems { get; set; }
-
-        [JsonPropertyName("customerId")]
-        public int CustomerId { get; set; }
-    }
-    public class CustomDateTimeConverter : JsonConverter<DateTime>
-    {
-        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            return DateTime.Parse(reader.GetString());
-        }
-
-        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(value.ToString("yyyy-MM-dd HH:mm:ss"));
-        }
     }
 }

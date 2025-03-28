@@ -18,9 +18,6 @@ namespace csc13001_plant_pos.Model
 
         [JsonPropertyName("purchasePrice")]
         public decimal PurchasePrice { get; set; }
-
-        [JsonPropertyName("discountProgram")]
-        public DiscountProgram? DiscountProgram { get; set; }
-        public decimal TotalItemPrice => Quantity * SalePrice;
+        public decimal TotalItemPrice => Quantity * PurchasePrice;
     }
 }

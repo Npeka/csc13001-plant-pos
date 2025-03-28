@@ -164,7 +164,7 @@
         </Grid.ColumnDefinitions>
 
         <!--  Product Panel  -->
-        <Grid Grid.Column="0" Margin="0,0,0,40">
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -191,7 +191,7 @@
             <GridView
                 Grid.Row="1"
                 Margin="0,10,0,0"
-                Padding="0,0,0,250"
+                HorizontalAlignment="Stretch"
                 ItemTemplate="{StaticResource ProductItemTemplate}"
                 ItemsSource="{x:Bind ViewModel.FilteredProducts, Mode=OneWay}"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"

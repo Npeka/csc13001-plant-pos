@@ -598,6 +598,9 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\communitytoolkit.mvvm\8.4.0\lib\net8.0-windows10.0.17763\CommunityToolkit.Mvvm.dll">
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\communitytoolkit.winui.ui.controls.datagrid\7.1.2\lib\net5.0-windows10.0.18362\CommunityToolkit.WinUI.UI.Controls.DataGrid.dll">
+      <PackagePath>CommunityToolkit.WinUI.UI.Controls.DataGrid.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\harfbuzzsharp\7.3.0.3\lib\net6.0\HarfBuzzSharp.dll">
       <PackagePath>HarfBuzzSharp.dll</PackagePath>
     </AppxPackagedFile>
@@ -717,6 +720,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="G:\GithubRepo\csc13001-plant-pos\frontend\csc13001-plant-pos\csc13001-plant-pos\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\csc13001-plant-pos.deps.json">
       <PackagePath>csc13001-plant-pos.deps.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\communitytoolkit.winui.ui.controls.datagrid\7.1.2\lib\net5.0-windows10.0.18362\CommunityToolkit.WinUI.UI.Controls.DataGrid.pri">
+      <PackagePath>CommunityToolkit.WinUI.UI.Controls.DataGrid.pri</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\livechartscore.skiasharpview.winui\2.0.0-rc5.3\lib\net8.0-windows10.0.19041\LiveChartsCore.SkiaSharpView.WinUI.pri">
       <PackagePath>LiveChartsCore.SkiaSharpView.WinUI.pri</PackagePath>

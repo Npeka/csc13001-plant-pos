@@ -56,10 +56,6 @@
                         <FontIcon Glyph="&#xEA0D;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem
-                    Content="Quản lý kho"
-                    Icon="Home"
-                    Tag="WarehouseManagementPage" />
 
                 <NavigationViewItem
                     Content="Sản phẩm bán chạy"

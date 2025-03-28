@@ -46,7 +46,7 @@ namespace csc13001_plant_pos.Model
         [JsonPropertyName("environmentType")]
         public string EnvironmentType { get; set; }
 
-        [JsonPropertyName("categoryId")]
-        public int CategoryId { get; set; }
+        [JsonPropertyName("category")]
+        public Category Category { get; set; }
     }
 }

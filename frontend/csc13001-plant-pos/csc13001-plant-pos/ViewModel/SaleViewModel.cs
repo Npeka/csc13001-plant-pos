@@ -26,7 +26,7 @@ namespace csc13001_plant_pos.ViewModel
         }
 
         public IEnumerable<Product> FilteredProducts =>
-            SelectedCategory == null ? Products : Products.Where(p => p.CategoryId == SelectedCategory.CategoryId);
+            SelectedCategory == null ? Products : Products.Where(p => p.Category.CategoryId == SelectedCategory.CategoryId);
 
         public int TotalItems => CurrentOrders.Sum(i => i.Quantity);
         public decimal SubTotal => CurrentOrders.Sum(i => i.Quantity * i.Price);
