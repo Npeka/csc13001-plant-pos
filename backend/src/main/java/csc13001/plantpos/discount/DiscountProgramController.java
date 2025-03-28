@@ -20,6 +20,12 @@ public class DiscountProgramController {
         return HttpResponse.ok("Get discount programs successfully", discountPrograms);
     }
 
+    @GetMapping("/customer/{phone}")
+    public ResponseEntity<?> getDiscountProgramsByCustomerPhone(@PathVariable String phone) {
+        List<DiscountProgram> discountPrograms = discountProgramService.getDiscountProgramsByCustomerPhone(phone);
+        return HttpResponse.ok("Get discount programs by customer phone successfully", discountPrograms);
+    }
+
     @PostMapping
     public ResponseEntity<?> createDiscountProgram(
             @RequestBody DiscountProgram discountProgram,

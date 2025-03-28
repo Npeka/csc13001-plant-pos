@@ -6,7 +6,9 @@ import csc13001.plantpos.customer.CustomerType;
 import csc13001.plantpos.customer.exception.CustomerException;
 import csc13001.plantpos.discount.DiscountProgram;
 import csc13001.plantpos.discount.DiscountProgramRepository;
+import csc13001.plantpos.discount.DiscountUsageRepository;
 import csc13001.plantpos.discount.exception.DiscountException;
+import csc13001.plantpos.discount.models.DiscountUsage;
 import csc13001.plantpos.inventory.InventoryItemRepository;
 import csc13001.plantpos.inventory.exception.InventoryException;
 import csc13001.plantpos.inventory.models.InventoryItem;
@@ -29,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,6 +44,7 @@ public class OrderService {
     private final OrderItemRepository orderItemReopsitory;
     private final ProductRepository productRepository;
     private final DiscountProgramRepository discountProgramRepository;
+    private final DiscountUsageRepository discountUsageRepository;
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
@@ -60,12 +64,34 @@ public class OrderService {
         if (createOrderDTO.getDiscountId() != null) {
             discountProgram = discountProgramRepository.findById(createOrderDTO.getDiscountId())
                     .orElseThrow(DiscountException.DiscountNotFoundException::new);
-        }
 
-        // check if discount is applicable
-        if (discountProgram != null && discountProgram.getApplicableCustomerType() != CustomerType.All
-                && (customer != null && customer.getLoyaltyCardType() != discountProgram.getApplicableCustomerType())) {
-            throw new DiscountException.DiscountNotApplicableException();
+            // check if discount is already applied
+            if (discountUsageRepository.existsByCustomer_CustomerIdAndDiscountProgram_DiscountId(
+                    customer.getCustomerId(),
+                    discountProgram.getDiscountId())) {
+                throw new DiscountException.DiscountAlreadyAppliedException();
+            }
+
+            // check if discount is active
+            if (discountProgram.isActive()) {
+                throw new DiscountException.DiscountNotActiveException();
+            }
+
+            // check if discount is applicable
+            if (discountProgram.getApplicableCustomerType() != CustomerType.All) {
+                if (customer != null && customer.getLoyaltyCardType()
+                        .isLowerThan(discountProgram.getApplicableCustomerType())) {
+                    throw new DiscountException.DiscountNotApplicableException();
+                }
+            }
+
+            DiscountUsage usage = DiscountUsage.builder()
+                    .customer(customer)
+                    .discountProgram(discountProgram)
+                    .usedAt(new Date())
+                    .build();
+
+            discountUsageRepository.save(usage);
         }
 
         // check if staff exists
@@ -97,6 +123,12 @@ public class OrderService {
         savedOrder.setTotalPrice(totalPrice);
         savedOrder.setFinalPrice(finalPrice);
         orderRepository.save(savedOrder);
+
+        // earn points for customer
+        if (customer != null) {
+            customer.addLoyaltyPointsBySpending(finalPrice);
+            customerRepository.save(customer);
+        }
 
         return savedOrder;
     }

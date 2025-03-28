@@ -1,5 +1,8 @@
 package csc13001.plantpos.discount;
 
+import csc13001.plantpos.customer.Customer;
+import csc13001.plantpos.customer.CustomerRepository;
+import csc13001.plantpos.customer.exception.CustomerException;
 import csc13001.plantpos.discount.exception.DiscountException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,9 +14,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DiscountProgramService {
     private final DiscountProgramRepository discountProgramRepository;
+    private final DiscountUsageRepository discountUsageRepository;
+    private final CustomerRepository customerRepository;
 
     public List<DiscountProgram> getDiscountPrograms() {
         return discountProgramRepository.findAll();
+    }
+
+    public List<DiscountProgram> getDiscountProgramsByCustomerPhone(String phone) {
+        Customer customer = customerRepository.findByPhone(phone)
+                .orElseThrow(CustomerException.CustomerNotFoundException::new);
+
+        List<DiscountProgram> discountPrograms = discountProgramRepository
+                .findAll().stream()
+                .filter(discountProgram -> customer.getLoyaltyCardType()
+                        .isHigherThanOrEqualTo(discountProgram.getApplicableCustomerType())
+                        && !discountUsageRepository.existsByCustomer_CustomerIdAndDiscountProgram_DiscountId(
+                                customer.getCustomerId(),
+                                discountProgram.getDiscountId()))
+                .toList();
+
+        return discountPrograms;
     }
 
     public DiscountProgram createDiscountProgram(DiscountProgram discountProgram) {
@@ -49,4 +70,5 @@ public class DiscountProgramService {
         }
         discountProgramRepository.deleteById(id);
     }
+
 }

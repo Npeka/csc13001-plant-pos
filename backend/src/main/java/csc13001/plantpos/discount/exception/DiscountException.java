@@ -33,4 +33,28 @@ public class DiscountException extends RuntimeException {
             super(DiscountErrorMessages.DISCOUNT_NOT_APPLICABLE);
         }
     }
+
+    public static class DiscountHasExpiredException extends DiscountException {
+        public DiscountHasExpiredException() {
+            super(DiscountErrorMessages.DISCOUNT_HAS_EXPIRED);
+        }
+    }
+
+    public static class DiscountNotActiveException extends DiscountException {
+        public DiscountNotActiveException() {
+            super(DiscountErrorMessages.DISCOUNT_NOT_ACTIVE);
+        }
+    }
+
+    public static class DiscountRateInvalidException extends DiscountException {
+        public DiscountRateInvalidException() {
+            super(DiscountErrorMessages.DISCOUNT_RATE_INVALID);
+        }
+    }
+
+    public static class DiscountAlreadyAppliedException extends DiscountException {
+        public DiscountAlreadyAppliedException() {
+            super(DiscountErrorMessages.DISCOUNT_ALREADY_APPLIED);
+        }
+    }
 }

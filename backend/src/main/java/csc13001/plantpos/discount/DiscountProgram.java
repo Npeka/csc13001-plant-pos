@@ -50,4 +50,13 @@ public class DiscountProgram {
 
     @Column(name = "applicable_customer_type")
     private CustomerType applicableCustomerType;
+
+    public boolean isActive() {
+        Date now = new Date();
+        return now.after(startDate) && now.before(endDate);
+    }
+
+    public boolean isApplicableToCustomerType(CustomerType customerType) {
+        return applicableCustomerType == null || applicableCustomerType == customerType;
+    }
 }
