@@ -1,49 +1,57 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using csc13001_plant_pos.DTO.AuthDTO;
+using csc13001_plant_pos.ViewModel.Authentication;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 
-namespace csc13001_plant_pos.View.Authentication
+namespace csc13001_plant_pos.View.Authentication;
+
+public sealed partial class FormLogin : UserControl
 {
-    public sealed partial class FormLogin : UserControl
+    public LoginViewModel ViewModel
     {
-        public FormLogin()
-        {
-            this.InitializeComponent();
-        }
+        get;
+    }
 
-        private void Password_PasswordChanged(object sender, RoutedEventArgs e)
+    public FormLogin()
+    {
+        this.InitializeComponent();
+        this.DataContext = ViewModel = App.GetService<LoginViewModel>();
+    }
+
+    private void Password_PasswordChanged(object sender, RoutedEventArgs e)
+    {
+    }
+    private async void LoginButton_Click(object sender, RoutedEventArgs e)
+    {
+        await ViewModel.LoginAsync();
+        if (ViewModel.LoginResponseDTO != null)
         {
-        }
-        private async void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
+            var user = ViewModel.LoginResponseDTO.User;
+
             var mainWindow = (App.Current as App)?.GetMainWindow();
             if (mainWindow?.Content is Frame frame)
             {
-                frame.Navigate(typeof(RoleSelectionPage));
+                if (user.IsAdmin)
+                {
+                    frame.Navigate(typeof(AdminDashBoard));
+                }
+                else
+                {
+                    frame.Navigate(typeof(SaleDashBoard));
+                }
             }
         }
+    }
 
 
-        private void NavigateToForgotPassword_Click(object sender, RoutedEventArgs e)
+    private void NavigateToForgotPassword_Click(object sender, RoutedEventArgs e)
+    {
+        var mainWindow = (App.Current as App)?.GetMainWindow();
+        if (mainWindow?.Content is Frame frame && frame.Content is AuthenticationPage authenticationPage)
         {
-            var mainWindow = (App.Current as App)?.GetMainWindow();
-            if (mainWindow?.Content is Frame frame && frame.Content is AuthenticationPage authenticationPage)
-            {
-                authenticationPage.NavigateToForgotPassword();
-            }
+            authenticationPage.NavigateToForgotPassword();
         }
     }
 }
