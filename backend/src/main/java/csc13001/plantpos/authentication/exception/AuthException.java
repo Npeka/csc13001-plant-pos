@@ -27,4 +27,16 @@ public class AuthException extends RuntimeException {
             super(AuthErrorMessages.USER_NOT_FOUND);
         }
     }
+
+    public static class InvalidOtpException extends AuthException {
+        public InvalidOtpException() {
+            super(AuthErrorMessages.INVALID_OTP);
+        }
+    }
+
+    public static class OtpExpiredException extends AuthException {
+        public OtpExpiredException() {
+            super(AuthErrorMessages.OTP_EXPIRED);
+        }
+    }
 }

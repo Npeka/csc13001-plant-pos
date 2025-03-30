@@ -22,4 +22,14 @@ public class AuthExceptionHandler {
     public ResponseEntity<?> handleInvalidPassword(AuthException.InvalidPasswordException ex) {
         return HttpResponse.badRequest(AuthErrorMessages.INVALID_PASSWORD);
     }
+
+    @ExceptionHandler(AuthException.InvalidOtpException.class)
+    public ResponseEntity<?> handleInvalidOtp(AuthException.InvalidOtpException ex) {
+        return HttpResponse.badRequest(AuthErrorMessages.INVALID_OTP);
+    }
+
+    @ExceptionHandler(AuthException.OtpExpiredException.class)
+    public ResponseEntity<?> handleOtpExpired(AuthException.OtpExpiredException ex) {
+        return HttpResponse.badRequest(AuthErrorMessages.OTP_EXPIRED);
+    }
 }

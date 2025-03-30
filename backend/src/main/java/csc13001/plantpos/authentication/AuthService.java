@@ -74,11 +74,11 @@ public class AuthService {
     public boolean verifyOtp(String username, String otp) {
         String key = "otp:" + username + ":otp";
         String storedOtp = redisTemplate.opsForValue().get(key);
+
         if (storedOtp == null || !storedOtp.equals(otp)) {
-            return false;
+            throw new AuthException.InvalidOtpException();
         }
 
-        redisTemplate.delete(key);
         return true;
     }
 
@@ -96,5 +96,8 @@ public class AuthService {
 
         user.setPassword(bCryptPasswordEncoder.encode(newPassword));
         userRepository.save(user);
+
+        String key = "otp:" + username + ":otp";
+        redisTemplate.delete(key);
     }
 }

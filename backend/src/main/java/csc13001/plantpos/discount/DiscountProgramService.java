@@ -27,8 +27,9 @@ public class DiscountProgramService {
 
         List<DiscountProgram> discountPrograms = discountProgramRepository
                 .findAll().stream()
-                .filter(discountProgram -> customer.getLoyaltyCardType()
-                        .isHigherThanOrEqualTo(discountProgram.getApplicableCustomerType())
+                .filter(discountProgram -> discountProgram.isActive()
+                        && customer.getLoyaltyCardType()
+                                .isHigherThanOrEqualTo(discountProgram.getApplicableCustomerType())
                         && !discountUsageRepository.existsByCustomer_CustomerIdAndDiscountProgram_DiscountId(
                                 customer.getCustomerId(),
                                 discountProgram.getDiscountId()))
