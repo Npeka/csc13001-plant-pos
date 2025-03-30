@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -13,6 +10,7 @@ namespace csc13001_plant_pos.ViewModel.Authentication;
 public partial class LoginViewModel : ObservableRecipient
 {
     private readonly IAuthenticationService _authService;
+    private readonly UserSessionService _userSession;
 
     [ObservableProperty]
     private string username = string.Empty;
@@ -21,7 +19,7 @@ public partial class LoginViewModel : ObservableRecipient
     private string password = string.Empty;
 
     [ObservableProperty]
-    private bool isLoading = false;
+    private bool isNotLoading = true;
 
     [ObservableProperty]
     private string error = string.Empty;
@@ -29,9 +27,10 @@ public partial class LoginViewModel : ObservableRecipient
     [ObservableProperty]
     private LoginResponseDTO loginResponseDTO = null;
 
-    public LoginViewModel(IAuthenticationService authService)
+    public LoginViewModel(IAuthenticationService authService, UserSessionService userSession)
     {
         _authService = authService;
+        _userSession = userSession;
     }
 
     public async Task RegisterAsync()
@@ -42,9 +41,9 @@ public partial class LoginViewModel : ObservableRecipient
             return;
         }
 
-        IsLoading = true;
+        IsNotLoading = false;
         var response = await _authService.RegisterAsync(Username, Password);
-        IsLoading = false;
+        IsNotLoading = true;
 
         if (response == null)
         {
@@ -65,30 +64,32 @@ public partial class LoginViewModel : ObservableRecipient
     [RelayCommand]
     public async Task<LoginResponseDTO?> LoginAsync()
     {
-        IsLoading = true;
+        IsNotLoading = false;
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
             Error = "Username and password are required!";
-            IsLoading = false;
+            IsNotLoading = true;
             return null;
         }
 
-        var loginResponseDTO = await _authService.LoginAsync(Username, Password);
-        IsLoading = false;
+        var apiResponse = await _authService.LoginAsync(Username, Password);
+        loginResponseDTO = apiResponse?.Data;
+        IsNotLoading = true;
 
         if (loginResponseDTO == null)
         {
             Error = "Login failed!";
             return null;
         }
-
-        if (loginResponseDTO.Status == "success" && loginResponseDTO.Data != null)
+        if (apiResponse.Status == "success" && apiResponse.Data != null)
         {
-            return loginResponseDTO.Data;
+            Error = string.Empty;
+            _userSession.SetUser(loginResponseDTO.User);
+            return apiResponse.Data;
         }
         else
         {
-            Error = loginResponseDTO.Message;
+            Error = apiResponse.Message;
             return null;
         }
     }

@@ -1,25 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.Extensions.Hosting;
 using System.Net.Http;
 using csc13001_plant_pos.Service;
 using Microsoft.Extensions.DependencyInjection;
 using csc13001_plant_pos.ViewModel.Authentication;
+using csc13001_plant_pos.ViewModel;
 
 namespace csc13001_plant_pos;
 
@@ -29,6 +15,17 @@ public partial class App : Application
     {
         get;
     }
+
+    public static T GetService<T>()
+       where T : class
+    {
+        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+        {
+            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+        }
+        return service;
+    }
+
 
     public App()
     {
@@ -46,10 +43,13 @@ public partial class App : Application
                 BaseAddress = new Uri(baseAddress ?? "http://localhost:8080/api/")
             };
             services.AddSingleton(httpClient);
+            services.AddSingleton<UserSessionService>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
             // Views and ViewModels
             services.AddTransient<LoginViewModel>();
+            services.AddTransient<AuthenticationViewModel>();
+            services.AddTransient<StaffProfileViewModel>();
 
         }).
         Build();

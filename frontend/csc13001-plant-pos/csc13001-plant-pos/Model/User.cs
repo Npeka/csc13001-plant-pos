@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace csc13001_plant_pos.Model
 {
-    public class StaffUser
+    public class User
     {
         [JsonPropertyName("userId")]
         public int UserId { get; set; }

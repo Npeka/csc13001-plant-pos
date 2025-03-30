@@ -1,5 +1,5 @@
 using System;
-using csc13001_plant_pos.DTO.AuthDTO;
+using csc13001_plant_pos.Service;
 using csc13001_plant_pos.ViewModel.Authentication;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -13,15 +13,17 @@ public sealed partial class FormLogin : UserControl
     {
         get;
     }
+    private readonly UserSessionService _userSessionService;
 
     public FormLogin()
     {
         this.InitializeComponent();
-        this.DataContext = ViewModel = App.GetService<LoginViewModel>();
+        ViewModel = App.GetService<LoginViewModel>();
     }
 
     private void Password_PasswordChanged(object sender, RoutedEventArgs e)
     {
+        ViewModel.Password = PasswordBox.Password;
     }
     private async void LoginButton_Click(object sender, RoutedEventArgs e)
     {
@@ -29,17 +31,17 @@ public sealed partial class FormLogin : UserControl
         if (ViewModel.LoginResponseDTO != null)
         {
             var user = ViewModel.LoginResponseDTO.User;
-
             var mainWindow = (App.Current as App)?.GetMainWindow();
             if (mainWindow?.Content is Frame frame)
             {
+                var userSessionService = App.GetService<UserSessionService>();
                 if (user.IsAdmin)
                 {
-                    frame.Navigate(typeof(AdminDashBoard));
+                    frame.Navigate(typeof(AdminDashBoard), userSessionService);
                 }
                 else
                 {
-                    frame.Navigate(typeof(SaleDashBoard));
+                    frame.Navigate(typeof(SaleDashBoard), userSessionService);
                 }
             }
         }

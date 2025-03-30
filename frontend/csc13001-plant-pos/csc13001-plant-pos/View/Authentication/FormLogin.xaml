@@ -19,7 +19,7 @@
             BorderBrush="Gray"
             CornerRadius="5"
             PlaceholderText="Username"
-            Text="{Binding Username, Mode=TwoWay}" />
+            Text="{x:Bind ViewModel.Username, Mode=TwoWay}" />
 
         <!--  Password Input  -->
         <PasswordBox
@@ -31,12 +31,20 @@
             PasswordChanged="Password_PasswordChanged"
             PlaceholderText="Password" />
 
+        <!--  Error Message  -->
+        <TextBlock
+            Margin="0,0,0,0"
+            FontSize="14"
+            Foreground="Red"
+            Text="{x:Bind ViewModel.Error, Mode=OneWay}"
+            Visibility="{x:Bind ViewModel.Error, Mode=OneWay, Converter={StaticResource ErrorToVisibilityConverter}}" />
+
         <Button
             x:Name="LoginButton"
             Height="40"
             HorizontalAlignment="Stretch"
             Click="LoginButton_Click"
-            IsEnabled="{Binding !IsLoading}"
+            IsEnabled="{x:Bind ViewModel.IsNotLoading}"
             Style="{StaticResource AccentButtonStyle}">
             <Button.Content>
                 <StackPanel Orientation="Horizontal" Spacing="8">

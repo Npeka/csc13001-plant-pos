@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8e7e372-dca9-4f33-92f3-75feb62b7dfe" name="Changes" comment="" />
+    <list default="true" id="f8e7e372-dca9-4f33-92f3-75feb62b7dfe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/ProjectEvaluation/csc13001-plant-pos.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/ProjectEvaluation/csc13001-plant-pos.metadata.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/ProjectEvaluation/csc13001-plant-pos.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/ProjectEvaluation/csc13001-plant-pos.projects.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/ProjectEvaluation/csc13001-plant-pos.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/ProjectEvaluation/csc13001-plant-pos.strings.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/CodeChunks.db" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/CodeChunks.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/SemanticSymbols.db" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/SemanticSymbols.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/SemanticSymbols.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/SemanticSymbols.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/SemanticSymbols.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/CopilotIndices/17.12.53.23981/SemanticSymbols.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/FileContentIndex/64ed5894-e446-4251-904c-00702eab5aaf.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/FileContentIndex/6606c18d-5c8d-4b19-9cc0-45c6bd57c4ba.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/FileContentIndex/b84b65c0-7996-42d5-afa7-f1b0c36c9f3e.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/DocumentLayout.backup.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/.vs/csc13001-plant-pos/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/Service/AuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/Service/AuthenticationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/AuthenticationPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/AuthenticationPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/ProductManagementPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/ProductManagementPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/ProductManagementPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/ProductManagementPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StaffManagementPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StaffManagementPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StatisticPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StatisticPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StatisticPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StatisticPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/bin/x64/Debug/net9.0-windows10.0.19041.0/win-x64/AppX/csc13001-plant-pos.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/bin/x64/Debug/net9.0-windows10.0.19041.0/win-x64/AppX/csc13001-plant-pos.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/bin/x64/Debug/net9.0-windows10.0.19041.0/win-x64/AppX/csc13001-plant-pos.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/bin/x64/Debug/net9.0-windows10.0.19041.0/win-x64/AppX/csc13001-plant-pos.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/bin/x64/Debug/net9.0-windows10.0.19041.0/win-x64/AppX/vs.appxrecipe" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/bin/x64/Debug/net9.0-windows10.0.19041.0/win-x64/AppX/vs.appxrecipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/csc13001-plant-pos.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/csc13001-plant-pos.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/csc13001-plant-pos.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/csc13001-plant-pos.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/csc13001-plant-pos.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/csc13001-plant-pos.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/csc13001-plant-pos.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/csc13001-plant-pos.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/x64/Debug/net9.0-windows10.0.19041.0/win-x64/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/x64/Debug/net9.0-windows10.0.19041.0/win-x64/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/x64/Debug/net9.0-windows10.0.19041.0/win-x64/csc13001-plant-pos.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/x64/Debug/net9.0-windows10.0.19041.0/win-x64/csc13001-plant-pos.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/x64/Debug/net9.0-windows10.0.19041.0/win-x64/intermediatexaml/csc13001-plant-pos.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/obj/x64/Debug/net9.0-windows10.0.19041.0/win-x64/intermediatexaml/csc13001-plant-pos.dll" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,6 +151,7 @@
       <workItem from="1743103846823" duration="1518000" />
       <workItem from="1743148972306" duration="9000" />
       <workItem from="1743149259805" duration="1373000" />
+      <workItem from="1743236176340" duration="7660000" />
     </task>
     <servers />
   </component>

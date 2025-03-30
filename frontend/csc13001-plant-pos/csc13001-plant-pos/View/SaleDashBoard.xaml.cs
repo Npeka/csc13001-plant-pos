@@ -1,34 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using csc13001_plant_pos.Service;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 namespace csc13001_plant_pos.View
 {
     public sealed partial class SaleDashBoard : Page
     {
+        private readonly UserSessionService _userSessionService;
         public SaleDashBoard()
         {
             this.InitializeComponent();
             this.Loaded += SaleDashBoard_Loaded;
+            _userSessionService = App.GetService<UserSessionService>();
         }
 
         private void SaleDashBoard_Loaded(object sender, RoutedEventArgs e)
         {
             saleFrame.Navigate(typeof(SalePage));
         }
-        private void navigation_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private async void navigation_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
@@ -37,14 +28,33 @@ namespace csc13001_plant_pos.View
 
             // Lấy item được chọn
             var item = sender.SelectedItem as NavigationViewItem;
-
             if (item != null && item.Tag != null)
             {
                 string tag = item.Tag.ToString();
 
                 if (tag == "Logout")
                 {
-                    Frame.Navigate(typeof(RoleSelectionPage));
+                    ContentDialog dialog = new ContentDialog
+                    {
+                        XamlRoot = this.XamlRoot,
+                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                        Title = "Xác nhận đăng xuất",
+                        Content = "Bạn có chắc chắn muốn đăng xuất?",
+                        CloseButtonText = "Không",
+                        PrimaryButtonText = "Có",
+                        DefaultButton = ContentDialogButton.Primary,
+                    };
+
+                    var result = await dialog.ShowAsync();
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        var mainWindow = (App.Current as App)?.GetMainWindow();
+                        if (mainWindow?.Content is Frame frame)
+                        {
+                            _userSessionService.ClearUser();
+                            frame.Navigate(typeof(AuthenticationPage));
+                        }
+                    }
                 }
 
                 // Điều hướng trang con

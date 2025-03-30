@@ -14,7 +14,7 @@ namespace csc13001_plant_pos
         {
             if (mainFrame.Content == null)
             {
-                mainFrame.Navigate(typeof(RoleSelectionPage));
+                mainFrame.Navigate(typeof(AuthenticationPage));
             }
         }
     }

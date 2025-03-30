@@ -19,7 +19,7 @@ public interface IAuthenticationService
     Task<ApiResponse<object>?> ResetPasswordAsync(string username, string newPassword, string confirmPassword);
 }
 
-public class AuthenticationService
+public class AuthenticationService : IAuthenticationService
 {
     private readonly HttpClient _httpClient;
 

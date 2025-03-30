@@ -14,7 +14,7 @@ namespace csc13001_plant_pos.DTO.OrderDTO
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
         [JsonPropertyName("staff")]
-        public StaffUser Staff { get; set; }
+        public User Staff { get; set; }
 
         [JsonPropertyName("orderDate")]
         [JsonConverter(typeof(CustomDateTimeConverter))]

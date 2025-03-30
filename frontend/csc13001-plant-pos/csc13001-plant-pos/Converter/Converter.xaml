@@ -15,4 +15,5 @@
     <local:DiscountStatusToTextConverter x:Key="DiscountStatusToTextConverter" />
     <local:DiscountStatusToColorConverter x:Key="DiscountStatusToColorConverter" />
     <local:MembershipTypeToBackgroundConverter x:Key="MembershipTypeToBackgroundConverter" />
+    <local:ErrorToVisibilityConverter x:Key="ErrorToVisibilityConverter" />
 </ResourceDictionary>

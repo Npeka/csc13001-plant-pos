@@ -6,10 +6,11 @@ namespace csc13001_plant_pos.View
 {
     public sealed partial class StaffProfilePage : Page
     {
-        public StaffProfileViewModel ViewModel = new StaffProfileViewModel();
+        public StaffProfileViewModel ViewModel { get; }
         public StaffProfilePage()
         {
             this.InitializeComponent();
+            ViewModel = App.GetService<StaffProfileViewModel>();
         }
 
     }

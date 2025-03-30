@@ -1,80 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Net.Http;
 using System.Text.Json;
+using CommunityToolkit.Mvvm.ComponentModel;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.DTO.StaffDTO;
 using csc13001_plant_pos.Model;
+using csc13001_plant_pos.Service;
 
-namespace csc13001_plant_pos.ViewModel
+public partial class StaffProfileViewModel : ObservableObject
 {
-    public class StaffProfileViewModel : INotifyPropertyChanged
+    private readonly UserSessionService _userSessionService;
+    private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
+
+    [ObservableProperty]
+    private User staffUser;
+
+    [ObservableProperty]
+    private int totalOrders;
+
+    [ObservableProperty]
+    private decimal totalRevenue;
+
+    public ObservableCollection<OrderListDto> StaffOrders { get; } = new();
+
+    public StaffProfileViewModel(UserSessionService userSessionService)
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        _userSessionService = userSessionService;
+        LoadStaffDataAsync();
+        LoadStaffOrdersAsync();
+    }
 
-        public StaffUser StaffUser { get; set; }
-        public int TotalOrders { get; set; }
-        public decimal TotalRevenue { get; set; }
-        public ObservableCollection<OrderListDto> StaffOrders { get; set; } = new ObservableCollection<OrderListDto>();
-
-        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
-
-        public StaffProfileViewModel()
+    private async void LoadStaffDataAsync()
+    {
+        try
         {
-            LoadStaffDataAsync();
-            LoadStaffOrdersAsync();
-        }
+            var userId = _userSessionService.CurrentUser?.UserId ?? 0;
+            if (userId == 0) return;
 
-        private async void LoadStaffDataAsync()
-        {
-            try
-            {
-                string json = await _httpClient.GetStringAsync("api/staff/2");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<StaffUserDto>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+            string json = await _httpClient.GetStringAsync($"api/staff/{userId}");
+            var apiResponse = JsonSerializer.Deserialize<ApiResponse<StaffUserDto>>(json);
 
-                if (apiResponse?.Data != null)
-                {
-                    StaffUser = apiResponse.Data.User;
-                    TotalOrders = apiResponse.Data.TotalOrders;
-                    TotalRevenue = apiResponse.Data.TotalRevenue;
-                }
-            }
-            catch (Exception ex)
+            System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+
+            if (apiResponse?.Data != null)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                StaffUser = apiResponse.Data.User;
+                TotalOrders = apiResponse.Data.TotalOrders;
+                TotalRevenue = apiResponse.Data.TotalRevenue;
             }
         }
-
-        private async void LoadStaffOrdersAsync()
+        catch (Exception ex)
         {
-            try
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+    private async void LoadStaffOrdersAsync()
+    {
+        try
+        {
+            var userId = _userSessionService.CurrentUser?.UserId ?? 0;
+            if (userId == 0) return;
+
+            string json = await _httpClient.GetStringAsync($"api/orders/staff/{userId}");
+            var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<OrderListDto>>>(json);
+
+            System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+
+            if (apiResponse?.Data != null)
             {
-                string json = await _httpClient.GetStringAsync("api/orders/staff/2");
-
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<OrderListDto>>>(json);
-
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
-                if (apiResponse?.Data != null)
+                StaffOrders.Clear();
+                foreach (var order in apiResponse.Data)
                 {
-                    StaffOrders.Clear();
-                    foreach (var order in apiResponse.Data)
-                    {
-                        StaffOrders.Add(order);
-                    }
+                    StaffOrders.Add(order);
                 }
             }
-            catch (JsonException jex)
-            {
-                Console.WriteLine($"Deserialize Error: {jex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
+        }
+        catch (JsonException jex)
+        {
+            Console.WriteLine($"Deserialize Error: {jex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 }

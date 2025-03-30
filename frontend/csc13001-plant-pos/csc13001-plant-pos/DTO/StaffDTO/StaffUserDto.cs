@@ -7,7 +7,7 @@ namespace csc13001_plant_pos.DTO.StaffDTO
     public class StaffUserDto
     {
         [JsonPropertyName("user")]
-        public StaffUser User { get; set; }
+        public User User { get; set; }
 
         [JsonPropertyName("totalOrders")]
         public int TotalOrders { get; set; }
