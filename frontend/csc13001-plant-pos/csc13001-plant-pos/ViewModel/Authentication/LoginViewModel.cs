@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.DTO.AuthDTO;
+using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 
 namespace csc13001_plant_pos.ViewModel.Authentication;
@@ -11,21 +13,12 @@ public partial class LoginViewModel : ObservableRecipient
 {
     private readonly IAuthenticationService _authService;
     private readonly UserSessionService _userSession;
+    public event EventHandler<NavigateEventArgs> NavigateToDashboard;
 
-    [ObservableProperty]
-    private string username = string.Empty;
-
-    [ObservableProperty]
-    private string password = string.Empty;
-
-    [ObservableProperty]
-    private bool isNotLoading = true;
-
-    [ObservableProperty]
-    private string error = string.Empty;
-
-    [ObservableProperty]
-    private LoginResponseDTO loginResponseDTO = null;
+    [ObservableProperty] public partial string Username { get; set; } = string.Empty;
+    [ObservableProperty] public partial string Password { get; set; } = string.Empty;
+    [ObservableProperty] public partial string Error { get; set; } = string.Empty;
+    [ObservableProperty] public partial bool IsEnableLoginButton { get; set; } = true;
 
     public LoginViewModel(IAuthenticationService authService, UserSessionService userSession)
     {
@@ -33,64 +26,44 @@ public partial class LoginViewModel : ObservableRecipient
         _userSession = userSession;
     }
 
-    public async Task RegisterAsync()
+    [RelayCommand]
+    public async Task Login()
     {
+
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
             Error = "Username and password are required!";
             return;
         }
 
-        IsNotLoading = false;
-        var response = await _authService.RegisterAsync(Username, Password);
-        IsNotLoading = true;
+        IsEnableLoginButton = false;
+        var response = await _authService.LoginAsync(Username, Password);
+        IsEnableLoginButton = true;
 
         if (response == null)
         {
-            Error = "Registration failed!";
-            return;
+            Error = "Login failed!";
         }
-
-        if (response.Status == "success")
+        else if (response.IsSuccess() && response.Data != null)
         {
-            Error = "Registration successful!";
+            Error = string.Empty;
+            var user = response.Data.User;
+            _userSession.SetUser(user);
+            NavigateToDashboard?.Invoke(this, new NavigateEventArgs(user));
         }
         else
         {
             Error = response.Message;
         }
     }
+}
 
-    [RelayCommand]
-    public async Task<LoginResponseDTO?> LoginAsync()
+public class NavigateEventArgs : EventArgs
+{
+    public User User { get; }
+
+    public NavigateEventArgs(User user)
     {
-        IsNotLoading = false;
-        if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
-        {
-            Error = "Username and password are required!";
-            IsNotLoading = true;
-            return null;
-        }
-
-        var apiResponse = await _authService.LoginAsync(Username, Password);
-        loginResponseDTO = apiResponse?.Data;
-        IsNotLoading = true;
-
-        if (loginResponseDTO == null)
-        {
-            Error = "Login failed!";
-            return null;
-        }
-        if (apiResponse.Status == "success" && apiResponse.Data != null)
-        {
-            Error = string.Empty;
-            _userSession.SetUser(loginResponseDTO.User);
-            return apiResponse.Data;
-        }
-        else
-        {
-            Error = apiResponse.Message;
-            return null;
-        }
+        User = user;
     }
 }
