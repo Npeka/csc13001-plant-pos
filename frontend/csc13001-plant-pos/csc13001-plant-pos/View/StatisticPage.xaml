@@ -7,8 +7,7 @@
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
-    xmlns:conv="using:csc13001_plant_pos.Converters"
+    xmlns:conv="using:csc13001_plant_pos.Converter"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Resources>
