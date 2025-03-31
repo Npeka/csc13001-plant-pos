@@ -8,7 +8,7 @@
              mc:Ignorable="d">
 
     <StackPanel Spacing="15">
-        <local:FormTitle Title="Welcome to Plant Store" />
+        <local:FormTitle Title="Chào mừng đến với cửa hàng cây cảnh" />
 
         <!--  Username Input  -->
         <TextBox x:Name="Username"
@@ -16,7 +16,7 @@
                  Padding="10"
                  BorderBrush="Gray"
                  CornerRadius="5"
-                 PlaceholderText="Username"
+                 PlaceholderText="Tên đăng nhập"
                  Text="{x:Bind ViewModel.Username, Mode=TwoWay}" />
 
         <!--  Password Input  -->
@@ -26,7 +26,7 @@
                      BorderBrush="Gray"
                      CornerRadius="5"
                      PasswordChanged="Password_PasswordChanged"
-                     PlaceholderText="Password" />
+                     PlaceholderText="Mật khẩu" />
 
         <!--  Error Message  -->
         <TextBlock x:Name="TextBoxError"
@@ -50,7 +50,7 @@
                                   Height="20"
                                   IsActive="False"
                                   Visibility="Collapsed" />
-                    <TextBlock Text="Login" />
+                    <TextBlock Text="Đăng nhập" />
                 </StackPanel>
             </Button.Content>
         </Button>
@@ -58,7 +58,7 @@
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center">
             <Hyperlink Click="NavigateToForgotPassword_Click">
-                Forgot your password?
+                Quên mật khẩu?
             </Hyperlink>
         </TextBlock>
     </StackPanel>
