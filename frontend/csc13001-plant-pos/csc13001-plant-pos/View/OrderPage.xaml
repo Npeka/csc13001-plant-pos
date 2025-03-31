@@ -75,7 +75,10 @@
                                             Text="{x:Bind Staff.Fullname, Mode=OneWay}" />
                                     </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="8"
+                                    Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock
                                             Margin="0,0,4,0"
@@ -87,7 +90,7 @@
                                             Foreground="#666666"
                                             Text="{x:Bind Customer.CustomerId, Mode=OneWay}" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="12"
@@ -139,7 +142,8 @@
                             Margin="0,16,0,4"
                             Padding="12"
                             Background="{x:Bind DiscountProgram.ApplicableCustomerType, Mode=OneWay, Converter={StaticResource MembershipTypeToBackgroundConverter}}"
-                            CornerRadius="8">
+                            CornerRadius="8"
+                            Visibility="{x:Bind DiscountProgram, Converter={StaticResource DiscountVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -251,6 +255,12 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        <Button
+                            Margin="8"
+                            HorizontalAlignment="Right"
+                            Click="ViewBillButton_Click"
+                            Content="Xem hoá đơn"
+                            CornerRadius="4" />
                     </StackPanel>
                 </Expander.Content>
             </Expander>
@@ -267,8 +277,11 @@
             Margin="10"
             Orientation="Horizontal"
             Spacing="10">
-            <TextBox Width="500" PlaceholderText="Tìm kiếm..." />
-            <CalendarDatePicker PlaceholderText="Chọn ngày" />
+            <TextBox
+                Width="500"
+                PlaceholderText="Tìm kiếm theo mã đơn, nhân viên, khách hàng..."
+                Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
         </StackPanel>
         <ScrollViewer
             Grid.Row="1"
@@ -277,7 +290,7 @@
             <ItemsControl
                 Padding="5,0,5,0"
                 ItemTemplate="{StaticResource OrderItemTemplate}"
-                ItemsSource="{x:Bind ViewModel.Orders, Mode=OneWay}" />
+                ItemsSource="{x:Bind ViewModel.FilteredOrders, Mode=OneWay}" />
         </ScrollViewer>
     </Grid>
 </Page>

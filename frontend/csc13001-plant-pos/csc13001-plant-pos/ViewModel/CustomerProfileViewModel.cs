@@ -1,74 +1,120 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Text.Json;
-using csc13001_plant_pos.DTO;
-using csc13001_plant_pos.DTO.CustomerDTO;
+using System.Linq;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Model;
+using csc13001_plant_pos.Service;
 
 namespace csc13001_plant_pos.ViewModel
 {
-    public class CustomerProfileViewModel : INotifyPropertyChanged
+    public partial class CustomerProfileViewModel : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public Customer Customer { get; set; }
-        public int TotalOrders { get; set; }
-        public decimal TotalSpent { get; set; }
-        public ObservableCollection<OrderListDto> CustomerOrders { get; set; } = new ObservableCollection<OrderListDto>();
+        [ObservableProperty]
+        private Customer customer;
 
-        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
+        [ObservableProperty]
+        private int totalOrders;
 
-        public CustomerProfileViewModel()
+        [ObservableProperty]
+        private decimal totalSpent;
+
+        [ObservableProperty]
+        private ObservableCollection<OrderListDto> customerOrders = new ObservableCollection<OrderListDto>();
+
+        [ObservableProperty]
+        private string searchQuery;
+
+        [ObservableProperty]
+        private DateTimeOffset? selectedDate;
+
+        [ObservableProperty]
+        private ObservableCollection<OrderListDto> filteredCustomerOrders = new ObservableCollection<OrderListDto>();
+
+        private readonly ICustomerService _customerService;
+        private ObservableCollection<OrderListDto> allCustomerOrders = new ObservableCollection<OrderListDto>();
+
+        public CustomerProfileViewModel(ICustomerService customerService)
         {
-            LoadCustomerDataAsync();
-            LoadCustomerOrdersAsync();
+            _customerService = customerService;
         }
 
-        private async void LoadCustomerDataAsync()
+        public async Task LoadCustomerDataAsync(string customerId)
         {
-            try
+            var response = await _customerService.GetCustomerByIdAsync(customerId);
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
             {
-                string json = await _httpClient.GetStringAsync("api/customers/1");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<CustomerDto>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
-
-                if (apiResponse?.Data != null)
-                {
-                    Customer = apiResponse.Data.Customer;
-                    TotalOrders = apiResponse.Data.TotalOrders;
-                    TotalSpent = apiResponse.Data.TotalSpent;
-                }
+                Customer = response.Data.Customer;
+                TotalOrders = response.Data.TotalOrders;
+                TotalSpent = response.Data.TotalSpent;
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine($"Error loading customer: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Failed to load customer {customerId}: {response?.Message}");
             }
         }
 
-        private async void LoadCustomerOrdersAsync()
+        public async Task LoadCustomerOrdersAsync(string customerId)
         {
-            try
+            var response = await _customerService.GetCustomerOrdersAsync(customerId);
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
             {
-                string json = await _httpClient.GetStringAsync("api/orders/customer/1");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<OrderListDto>>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+                allCustomerOrders.Clear();
+                CustomerOrders.Clear();
+                FilteredCustomerOrders.Clear();
 
-                if (apiResponse?.Data != null)
+                foreach (var order in response.Data)
                 {
-                    CustomerOrders.Clear();
-                    foreach (var order in apiResponse.Data)
-                    {
-                        CustomerOrders.Add(order);
-                    }
+                    allCustomerOrders.Add(order);
+                    CustomerOrders.Add(order);
+                    FilteredCustomerOrders.Add(order);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine($"Error loading customer orders: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Failed to load customer orders {customerId}: {response?.Message}");
             }
+
+            UpdateFilteredOrders();
+        }
+
+        private void UpdateFilteredOrders()
+        {
+            FilteredCustomerOrders.Clear();
+            var filtered = allCustomerOrders.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(SearchQuery))
+            {
+                var query = SearchQuery.ToLower();
+                filtered = filtered.Where(order =>
+                    order.OrderId.ToString().Contains(query) ||
+                    (order.Staff?.UserId.ToString().Contains(query) ?? false) ||
+                    (order.Staff?.Fullname?.ToLower().Contains(query) ?? false));
+            }
+
+            if (SelectedDate.HasValue)
+            {
+                var selectedDateOnly = SelectedDate.Value.Date;
+                filtered = filtered.Where(order => order.OrderDate.Date == selectedDateOnly);
+            }
+
+            foreach (var order in filtered)
+            {
+                FilteredCustomerOrders.Add(order);
+            }
+        }
+
+        partial void OnSearchQueryChanged(string value)
+        {
+            UpdateFilteredOrders();
+        }
+
+        partial void OnSelectedDateChanged(DateTimeOffset? value)
+        {
+            UpdateFilteredOrders();
         }
     }
 }

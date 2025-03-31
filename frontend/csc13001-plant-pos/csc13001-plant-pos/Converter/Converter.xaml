@@ -16,4 +16,6 @@
     <local:DiscountStatusToColorConverter x:Key="DiscountStatusToColorConverter" />
     <local:MembershipTypeToBackgroundConverter x:Key="MembershipTypeToBackgroundConverter" />
     <local:ErrorToVisibilityConverter x:Key="ErrorToVisibilityConverter" />
+    <local:DiscountVisibilityConverter x:Key="DiscountVisibilityConverter" />
+    <local:CustomerVisibilityConverter x:Key="CustomerVisibilityConverter" />
 </ResourceDictionary>

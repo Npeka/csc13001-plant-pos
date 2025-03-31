@@ -15,54 +15,68 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <Border
-            Grid.Column="2"
-            Padding="20"
-            Background="White">
+        <Border Padding="20" Background="White">
             <StackPanel>
+                <!--  Thông báo lỗi  -->
+                <InfoBar
+                    Title="Lỗi"
+                    Margin="0,0,0,20"
+                    IsOpen="{x:Bind ViewModel.IsErrorVisible, Mode=OneWay}"
+                    Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
+                    Severity="Error" />
+
                 <TextBlock
                     Margin="0,0,0,30"
                     FontSize="24"
                     FontWeight="SemiBold"
                     Text="Thêm khách hàng" />
 
-                <!--  Name Fields  -->
+                <!--  Name Field  -->
                 <StackPanel Margin="0,0,0,20">
-                    <TextBlock Margin="0,0,0,5" Text="Tên khách hàng" />
+                    <TextBlock Margin="0,0,0,5" Text="Tên khách hàng *" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
                         BorderThickness="0"
-                        PlaceholderText="Nhập tên khách hàng..." />
+                        PlaceholderText="Nhập tên khách hàng..."
+                        Text="{x:Bind ViewModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!--  Gender Selection  -->
                 <StackPanel>
                     <TextBlock Margin="0,0,0,5" Text="Giới tính" />
                     <StackPanel Margin="0,0,0,20" Orientation="Horizontal">
-                        <RadioButton Content="Nam" IsChecked="True" />
-                        <RadioButton Content="Nữ" />
+                        <RadioButton
+                            Content="Nam"
+                            GroupName="GenderGroup"
+                            IsChecked="{x:Bind ViewModel.IsMaleChecked, Mode=TwoWay}" />
+                        <RadioButton
+                            Content="Nữ"
+                            GroupName="GenderGroup"
+                            IsChecked="{x:Bind ViewModel.IsFemaleChecked, Mode=TwoWay}" />
                     </StackPanel>
                 </StackPanel>
 
                 <!--  Email  -->
                 <StackPanel Margin="0,0,0,20">
-                    <TextBlock Margin="0,0,0,5" Text="Email" />
+                    <TextBlock Margin="0,0,0,5" Text="Email *" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
                         BorderThickness="0"
-                        PlaceholderText="Nhập địa chỉ email..." />
+                        PlaceholderText="Nhập địa chỉ email..."
+                        Text="{x:Bind ViewModel.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!--  Address  -->
                 <StackPanel Margin="0,0,0,20">
-                    <TextBlock Margin="0,0,0,5" Text="Địa chỉ" />
+                    <TextBlock Margin="0,0,0,5" Text="Địa chỉ *" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
                         BorderThickness="0"
-                        PlaceholderText="Nhập địa chỉ nhà..." />
+                        PlaceholderText="Nhập địa chỉ nhà..."
+                        Text="{x:Bind ViewModel.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!--  Phone and DOB  -->
@@ -74,23 +88,19 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Margin="0,0,0,5" Text="Số điện thoại" />
+                        <TextBlock Margin="0,0,0,5" Text="Số điện thoại *" />
                         <TextBox
                             Padding="10"
                             Background="#F5F5F5"
                             BorderThickness="0"
-                            PlaceholderText="Nhập số điện thoại" />
+                            PlaceholderText="Nhập số điện thoại"
+                            Text="{x:Bind ViewModel.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Margin="0,0,0,5" Text="Ngày tháng năm sinh" />
-                        <TextBox
-                            Padding="10"
-                            Background="#F5F5F5"
-                            BorderThickness="0"
-                            PlaceholderText="dd/mm/yyyy" />
+                        <CalendarDatePicker Date="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Chọn ngày sinh" />
                     </StackPanel>
-
                 </Grid>
 
                 <!--  Buttons  -->
@@ -107,6 +117,7 @@
                         HorizontalAlignment="Stretch"
                         Background="Transparent"
                         BorderBrush="#0ABB6A"
+                        Command="{x:Bind ViewModel.ResetFormCommand}"
                         Content="Đặt lại"
                         CornerRadius="10"
                         FontWeight="SemiBold"
@@ -118,12 +129,12 @@
                         HorizontalAlignment="Stretch"
                         Background="#0ABB6A"
                         BorderThickness="0"
+                        Click="AddCustomerButton_Click"
                         Content="Thêm khách hàng"
                         CornerRadius="10"
                         FontWeight="SemiBold"
                         Foreground="White" />
                 </Grid>
-
             </StackPanel>
         </Border>
     </Grid>

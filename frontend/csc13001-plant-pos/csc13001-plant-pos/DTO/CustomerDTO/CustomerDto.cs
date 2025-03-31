@@ -8,7 +8,7 @@ using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.DTO.CustomerDTO
 {
-    class CustomerDto
+    public class CustomerDto
     {
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }

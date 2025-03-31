@@ -1,53 +1,98 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Text.Json;
-using csc13001_plant_pos.DTO;
+using System.Linq;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using csc13001_plant_pos.DTO.OrderDTO;
+using csc13001_plant_pos.Service;
+using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos.ViewModel
 {
-    public class OrderViewModel : INotifyPropertyChanged
+    public partial class OrderViewModel : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        [ObservableProperty]
+        private ObservableCollection<OrderListDto> orders = new ObservableCollection<OrderListDto>();
 
-        public ObservableCollection<OrderListDto> Orders { get; set; } = new ObservableCollection<OrderListDto>();
+        [ObservableProperty]
+        private string searchQuery;
 
-        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
+        [ObservableProperty]
+        private DateTimeOffset? selectedDate;
 
-        public OrderViewModel()
+        [ObservableProperty]
+        private ObservableCollection<OrderListDto> filteredOrders = new ObservableCollection<OrderListDto>();
+
+        private readonly IOrderService _orderService;
+        private ObservableCollection<OrderListDto> allOrders = new ObservableCollection<OrderListDto>();
+
+        public OrderViewModel(IOrderService orderService)
         {
+            _orderService = orderService;
             LoadOrdersAsync();
         }
 
-        private async void LoadOrdersAsync()
+        public async void LoadOrdersAsync()
         {
-            try
+            var response = await _orderService.GetAllOrdersAsync();
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
             {
-                string json = await _httpClient.GetStringAsync("api/orders");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<OrderListDto>>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+                allOrders.Clear();
+                Orders.Clear();
+                FilteredOrders.Clear();
 
-                if (apiResponse?.Data != null)
+                foreach (var order in response.Data)
                 {
-                    Orders.Clear();
-                    foreach (var order in apiResponse.Data)
-                    {
-                        Orders.Add(order);
-                    }
+                    allOrders.Add(order);
+                    Orders.Add(order);
+                    FilteredOrders.Add(order);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine($"Error loading orders: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Failed to load orders: {response?.Message}");
+            }
+
+            UpdateFilteredOrders();
+        }
+
+        private void UpdateFilteredOrders()
+        {
+            FilteredOrders.Clear();
+            var filtered = allOrders.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(SearchQuery))
+            {
+                var query = SearchQuery.ToLower();
+                filtered = filtered.Where(order =>
+                    order.OrderId.ToString().Contains(query) ||
+                    (order.Staff?.UserId.ToString().Contains(query) ?? false) ||
+                    (order.Staff?.Fullname?.ToLower().Contains(query) ?? false) ||
+                    (order.Customer?.CustomerId.ToString().Contains(query) ?? false) ||
+                    (order.Customer?.Name?.ToLower().Contains(query) ?? false));
+            }
+
+            if (SelectedDate.HasValue)
+            {
+                var selectedDateOnly = SelectedDate.Value.Date;
+                filtered = filtered.Where(order => order.OrderDate.Date == selectedDateOnly);
+            }
+
+            foreach (var order in filtered)
+            {
+                FilteredOrders.Add(order);
             }
         }
 
-        protected void OnPropertyChanged(string propertyName)
+        partial void OnSearchQueryChanged(string value)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            UpdateFilteredOrders();
+        }
+
+        partial void OnSelectedDateChanged(DateTimeOffset? value)
+        {
+            UpdateFilteredOrders();
         }
     }
 }

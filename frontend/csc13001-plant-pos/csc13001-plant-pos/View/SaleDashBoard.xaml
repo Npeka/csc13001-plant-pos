@@ -31,11 +31,6 @@
                     Content="Thêm khách hàng"
                     Icon="People"
                     Tag="AddCustomerPage" />
-
-                <NavigationViewItem
-                    Content="Hồ sơ khách hàng"
-                    Icon="People"
-                    Tag="CustomerProfilePage" />
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>

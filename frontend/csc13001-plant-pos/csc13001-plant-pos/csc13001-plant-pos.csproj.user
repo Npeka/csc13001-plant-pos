@@ -5,6 +5,9 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="View\BillPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Authentication\FormTitle.xaml">
       <SubType>Designer</SubType>
     </Page>

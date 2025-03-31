@@ -1,91 +1,116 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Text.Json;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.OrderDTO;
-using csc13001_plant_pos.DTO.StaffDTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 
-public partial class StaffProfileViewModel : ObservableObject
+namespace csc13001_plant_pos.ViewModel
 {
-    private readonly UserSessionService _userSessionService;
-    private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
-
-    [ObservableProperty]
-    private User staffUser;
-
-    [ObservableProperty]
-    private int totalOrders;
-
-    [ObservableProperty]
-    private decimal totalRevenue;
-
-    public ObservableCollection<OrderListDto> StaffOrders { get; } = new();
-
-    public StaffProfileViewModel(UserSessionService userSessionService)
+    public partial class StaffProfileViewModel : ObservableObject
     {
-        _userSessionService = userSessionService;
-        LoadStaffDataAsync();
-        LoadStaffOrdersAsync();
-    }
+        [ObservableProperty]
+        private User staffUser;
 
-    private async void LoadStaffDataAsync()
-    {
-        try
+        [ObservableProperty]
+        private int totalOrders;
+
+        [ObservableProperty]
+        private decimal totalRevenue;
+
+        [ObservableProperty]
+        private ObservableCollection<OrderListDto> staffOrders = new ObservableCollection<OrderListDto>();
+
+        [ObservableProperty]
+        private string searchQuery;
+
+        [ObservableProperty]
+        private DateTimeOffset? selectedDate;
+
+        [ObservableProperty]
+        private ObservableCollection<OrderListDto> filteredStaffOrders = new ObservableCollection<OrderListDto>();
+
+        private readonly IStaffService _staffService;
+        private readonly UserSessionService _userSessionService;
+        private ObservableCollection<OrderListDto> allStaffOrders = new ObservableCollection<OrderListDto>();
+
+        public StaffProfileViewModel(IStaffService staffService, UserSessionService userSessionService)
+        {
+            _staffService = staffService;
+            _userSessionService = userSessionService;
+            LoadStaffDataAsync();
+            LoadStaffOrdersAsync();
+        }
+
+        public async void LoadStaffDataAsync()
         {
             var userId = _userSessionService.CurrentUser?.UserId ?? 0;
             if (userId == 0) return;
 
-            string json = await _httpClient.GetStringAsync($"api/staff/{userId}");
-            var apiResponse = JsonSerializer.Deserialize<ApiResponse<StaffUserDto>>(json);
-
-            System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
-
-            if (apiResponse?.Data != null)
+            var response = await _staffService.GetStaffByIdAsync(userId);
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
             {
-                StaffUser = apiResponse.Data.User;
-                TotalOrders = apiResponse.Data.TotalOrders;
-                TotalRevenue = apiResponse.Data.TotalRevenue;
+                StaffUser = response.Data.User;
+                TotalOrders = response.Data.TotalOrders;
+                TotalRevenue = response.Data.TotalRevenue;
             }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-    }
 
-    private async void LoadStaffOrdersAsync()
-    {
-        try
+        public async void LoadStaffOrdersAsync()
         {
             var userId = _userSessionService.CurrentUser?.UserId ?? 0;
             if (userId == 0) return;
 
-            string json = await _httpClient.GetStringAsync($"api/orders/staff/{userId}");
-            var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<OrderListDto>>>(json);
-
-            System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
-
-            if (apiResponse?.Data != null)
+            var response = await _staffService.GetStaffOrdersAsync(userId);
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
             {
+                allStaffOrders.Clear();
                 StaffOrders.Clear();
-                foreach (var order in apiResponse.Data)
+                FilteredStaffOrders.Clear();
+
+                foreach (var order in response.Data)
                 {
+                    allStaffOrders.Add(order);
                     StaffOrders.Add(order);
+                    FilteredStaffOrders.Add(order);
                 }
             }
+
+            UpdateFilteredOrders();
         }
-        catch (JsonException jex)
+        private void UpdateFilteredOrders()
         {
-            Console.WriteLine($"Deserialize Error: {jex.Message}");
+            FilteredStaffOrders.Clear();
+            var filtered = allStaffOrders.AsEnumerable();
+            if (!string.IsNullOrWhiteSpace(SearchQuery))
+            {
+                var query = SearchQuery.ToLower();
+                filtered = filtered.Where(order =>
+                    order.OrderId.ToString().Contains(query) ||
+                    (order.Customer?.CustomerId.ToString().Contains(query) ?? false) ||
+                    (order.Customer?.Name?.ToLower().Contains(query) ?? false));
+            }
+            if (SelectedDate.HasValue)
+            {
+                var selectedDateOnly = SelectedDate.Value.Date;
+                filtered = filtered.Where(order => order.OrderDate.Date == selectedDateOnly);
+            }
+            foreach (var order in filtered)
+            {
+                FilteredStaffOrders.Add(order);
+            }
         }
-        catch (Exception ex)
+        partial void OnSearchQueryChanged(string value)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            UpdateFilteredOrders();
+        }
+        partial void OnSelectedDateChanged(DateTimeOffset? value)
+        {
+            UpdateFilteredOrders();
         }
     }
 }

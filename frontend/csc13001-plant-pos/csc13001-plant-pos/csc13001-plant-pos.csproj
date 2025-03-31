@@ -22,6 +22,7 @@
     <None Remove="View\Authentication\FormLogin.xaml" />
     <None Remove="View\Authentication\FormResetPassword.xaml" />
     <None Remove="View\Authentication\FormTitle.xaml" />
+    <None Remove="View\BillPage.xaml" />
     <None Remove="View\CustomerProfilePage.xaml" />
     <None Remove="View\DiscountManagementPage.xaml" />
     <None Remove="View\OrderPage.xaml" />
@@ -69,6 +70,7 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageReference Include="Syncfusion.Pdf.NET" Version="29.1.33" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\SalePage.xaml">
@@ -82,6 +84,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Authentication\" />
+    <Folder Include="Assets\Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\BillPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\Authentication\FormTitle.xaml">

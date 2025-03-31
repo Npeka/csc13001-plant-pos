@@ -10,9 +10,8 @@ namespace csc13001_plant_pos.View {
         public SaleViewModel ViewModel { get; }
         public SalePage()
         {
-            ViewModel = new SaleViewModel();
-            DataContext = ViewModel;
             this.InitializeComponent();
+            this.DataContext = ViewModel = App.GetService<SaleViewModel>();
         }
         private void ProductItem_Tapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
@@ -53,6 +52,51 @@ namespace csc13001_plant_pos.View {
             if (result == ContentDialogResult.Primary)
             {
                 orderItem.Note = textBox.Text;
+            }
+        }
+        private async void PhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ViewModel != null)
+            {
+                await ViewModel.LoadDiscountsAsync(PhoneNumberTextBox.Text);
+            }
+        }
+
+        private async void CreateOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel != null)
+            {
+                if (ViewModel.CurrentOrders.Count == 0)
+                {
+                    var noProductDialog = new ContentDialog
+                    {
+                        Title = "Thông báo",
+                        Content = "Vui lòng thêm ít nhất một sản phẩm vào đơn hàng!",
+                        CloseButtonText = "Đóng",
+                        DefaultButton = ContentDialogButton.Close,
+                        XamlRoot = this.XamlRoot
+                    };
+
+                    await noProductDialog.ShowAsync();
+                    return;
+                }
+                var orderId = await ViewModel.CreateOrderAsync();
+                if (orderId != null)
+                {
+                    Frame.Navigate(typeof(BillPage), orderId);
+                }
+                else
+                {
+                    var notFoundCustomerPhone = new ContentDialog
+                    {
+                        Title = "Thông báo",
+                        Content = "Số điện thoại khách hàng không tồn tại!",
+                        CloseButtonText = "Đóng",
+                        DefaultButton = ContentDialogButton.Close,
+                        XamlRoot = this.XamlRoot
+                    };
+                    await notFoundCustomerPhone.ShowAsync();
+                }
             }
         }
     }

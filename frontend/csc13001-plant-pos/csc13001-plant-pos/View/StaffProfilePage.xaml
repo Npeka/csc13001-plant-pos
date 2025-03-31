@@ -59,7 +59,7 @@
                                 </StackPanel>
 
                                 <!--  Mã khách hàng  -->
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
                                     <TextBlock
                                         Margin="0,0,4,0"
                                         FontSize="12"
@@ -72,7 +72,7 @@
                                 </StackPanel>
 
                                 <!--  Tên khách hàng  -->
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
                                     <TextBlock
                                         Margin="0,0,4,0"
                                         FontSize="12"
@@ -125,7 +125,8 @@
                             Margin="32,16,16,4"
                             Padding="12"
                             Background="{x:Bind DiscountProgram.ApplicableCustomerType, Converter={StaticResource MembershipTypeToBackgroundConverter}}"
-                            CornerRadius="8">
+                            CornerRadius="8"
+                            Visibility="{x:Bind DiscountProgram, Converter={StaticResource DiscountVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -243,6 +244,12 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        <Button
+                            Margin="8"
+                            HorizontalAlignment="Right"
+                            Click="ViewBillButton_Click"
+                            Content="Xem hoá đơn"
+                            CornerRadius="4" />
                     </StackPanel>
                 </Expander.Content>
             </Expander>
@@ -447,15 +454,18 @@
                         Margin="10"
                         Orientation="Horizontal"
                         Spacing="10">
-                        <TextBox Width="500" PlaceholderText="Tìm kiếm..." />
-                        <CalendarDatePicker PlaceholderText="Chọn ngày" />
+                        <TextBox
+                            Width="500"
+                            PlaceholderText="Tìm kiếm theo mã khách hàng, tên khách hàng, mã đơn,..."
+                            Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
                     </StackPanel>
 
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl
                             x:Name="OrdersItemsControl"
                             ItemTemplate="{StaticResource OrderItemTemplate}"
-                            ItemsSource="{x:Bind ViewModel.StaffOrders}" />
+                            ItemsSource="{x:Bind ViewModel.FilteredStaffOrders, Mode=OneWay}" />
                     </ScrollViewer>
                 </Grid>
             </Border>

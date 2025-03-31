@@ -2,116 +2,157 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using csc13001_plant_pos.DTO;
+using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Model;
+using csc13001_plant_pos.Service;
+using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos.ViewModel
 {
     public partial class SaleViewModel : ObservableRecipient
     {
-        #region Properties
-        public ObservableCollection<Category> Categories { get; set; } = new ObservableCollection<Category>();
-        public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
-        public ObservableCollection<CurrentOrder> CurrentOrders { get; set; } = new ObservableCollection<CurrentOrder>();
+        [ObservableProperty]
+        private ObservableCollection<Category> categories = new ObservableCollection<Category>();
 
-        private Category _selectedCategory;
-        public Category SelectedCategory
-        {
-            get => _selectedCategory;
-            set => SetProperty(ref _selectedCategory, value);
-        }
+        [ObservableProperty]
+        private ObservableCollection<Product> products = new ObservableCollection<Product>();
+
+        [ObservableProperty]
+        private ObservableCollection<CurrentOrder> currentOrders = new ObservableCollection<CurrentOrder>();
+
+        [ObservableProperty]
+        private Category? selectedCategory;
+
+        [ObservableProperty]
+        private string phoneNumber = string.Empty;
+
+        [ObservableProperty]
+        private ObservableCollection<DiscountProgram> availableDiscounts = new ObservableCollection<DiscountProgram>();
+
+        [ObservableProperty]
+        private DiscountProgram? selectedDiscount;
+
+        [ObservableProperty]
+        private int totalItems;
+
+        [ObservableProperty]
+        private decimal subTotal;
+
+        [ObservableProperty]
+        private decimal discountAmount;
+
+        [ObservableProperty]
+        private decimal total;
 
         public IEnumerable<Product> FilteredProducts =>
             SelectedCategory == null ? Products : Products.Where(p => p.Category.CategoryId == SelectedCategory.CategoryId);
 
-        public int TotalItems => CurrentOrders.Sum(i => i.Quantity);
-        public decimal SubTotal => CurrentOrders.Sum(i => i.Quantity * i.Price);
-        public decimal DiscountAmount => SubTotal * 0.1m;  // Giảm giá 10%
-        public decimal Total => SubTotal - DiscountAmount;
+        private readonly IOrderService _orderService;
+        private readonly IDiscountProgramService _discountProgramService;
+        private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
+        private readonly UserSessionService _userSession;
 
-        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
-
-        #endregion
-
-        #region Constructor
-
-        public SaleViewModel()
+        public SaleViewModel(
+            IOrderService orderService,
+            IDiscountProgramService discountProgramService,
+            IProductService productService,
+            ICategoryService categoryService,
+            UserSessionService userSession)
         {
+            _orderService = orderService;
+            _discountProgramService = discountProgramService;
+            _productService = productService;
+            _categoryService = categoryService;
+            _userSession = userSession;
+
             LoadCategoriesAsync();
             LoadProductsAsync();
-
-            // Gọi UpdateOrderSummary khi danh sách thay đổi
-            CurrentOrders.CollectionChanged += (s, e) => UpdateOrderSummary();
+            CurrentOrders.CollectionChanged += (s, e) => CalculateOrderSummary();
+            AvailableDiscounts.Add(new DiscountProgram
+            {
+                DiscountId = -1,
+                Name = "Không áp dụng giảm giá",
+                DiscountRate = 0,
+                ApplicableCustomerType = null,
+            });
+            SelectedDiscount = AvailableDiscounts.First();
         }
 
-        #endregion
-
-        #region Helper Method
-
-        private void UpdateOrderSummary()
+        private void CalculateOrderSummary()
         {
-            OnPropertyChanged(nameof(TotalItems));
-            OnPropertyChanged(nameof(SubTotal));
-            OnPropertyChanged(nameof(DiscountAmount));
-            OnPropertyChanged(nameof(Total));
+            TotalItems = CurrentOrders.Sum(i => i.Quantity);
+            SubTotal = CurrentOrders.Sum(i => i.Quantity * i.Price);
+            DiscountAmount = SelectedDiscount != null ? SubTotal * ((int)SelectedDiscount.DiscountRate / 100m) : 0;
+            Total = SubTotal - DiscountAmount;
         }
 
-        #endregion
+        public async Task LoadDiscountsAsync(string phoneNumber)
+        {
+            AvailableDiscounts.Clear();
+            AvailableDiscounts.Add(new DiscountProgram
+            {
+                DiscountId = -1,
+                Name = "Không áp dụng giảm giá",
+                DiscountRate = 0,
+                ApplicableCustomerType = null,
+            });
 
-        #region API Calls
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                SelectedDiscount = AvailableDiscounts.First();
+                CalculateOrderSummary();
+                return;
+            }
+
+            var apiResponse = await _discountProgramService.GetDiscountsByPhoneAsync(phoneNumber);
+            if (apiResponse?.Status == "success" && apiResponse.Data != null)
+            {
+                foreach (var discount in apiResponse.Data)
+                {
+                    AvailableDiscounts.Add(discount);
+                }
+                SelectedDiscount = AvailableDiscounts.First();
+            }
+            else
+            {
+                SelectedDiscount = AvailableDiscounts.First();
+            }
+            CalculateOrderSummary();
+        }
 
         private async void LoadCategoriesAsync()
         {
-            try
-            {
-                string json = await _httpClient.GetStringAsync("api/categories");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<Category>>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+            var apiResponse = await _categoryService.GetCategoriesAsync();
+            System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
 
-                if (apiResponse?.Data != null)
-                {
-                    Categories.Clear();
-                    foreach (var category in apiResponse.Data)
-                    {
-                        Categories.Add(category);
-                    }
-                }
-            }
-            catch (Exception ex)
+            if (apiResponse?.Data != null)
             {
-                System.Diagnostics.Debug.WriteLine($"Error loading categories: {ex.Message}");
+                Categories.Clear();
+                foreach (var category in apiResponse.Data)
+                {
+                    Categories.Add(category);
+                }
             }
         }
 
         private async void LoadProductsAsync()
         {
-            try
+            var apiResponse = await _productService.GetProductsAsync();
+            System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+
+            if (apiResponse?.Data != null)
             {
-                string json = await _httpClient.GetStringAsync("api/products");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<Product>>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
-                if (apiResponse?.Data != null)
+                Products.Clear();
+                foreach (var product in apiResponse.Data)
                 {
-                    Products.Clear();
-                    foreach (var product in apiResponse.Data)
-                    {
-                        Products.Add(product);
-                    }
+                    Products.Add(product);
                 }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error loading products: {ex.Message}");
-            }
         }
-
-        #endregion
-
-        #region Commands
 
         [RelayCommand]
         private void SelectCategory(Category category)
@@ -156,7 +197,7 @@ namespace csc13001_plant_pos.ViewModel
             }
 
             product.Stock--;
-            UpdateOrderSummary();  // Cập nhật UI
+            CalculateOrderSummary();
         }
 
         [RelayCommand]
@@ -168,7 +209,7 @@ namespace csc13001_plant_pos.ViewModel
                 item.Quantity++;
                 product.Stock--;
             }
-            UpdateOrderSummary();  // Cập nhật UI
+            CalculateOrderSummary();
         }
 
         [RelayCommand]
@@ -184,8 +225,7 @@ namespace csc13001_plant_pos.ViewModel
             {
                 CurrentOrders.Remove(item);
             }
-
-            UpdateOrderSummary();  // Cập nhật UI
+            CalculateOrderSummary();
         }
 
         [RelayCommand]
@@ -194,10 +234,30 @@ namespace csc13001_plant_pos.ViewModel
             var product = Products.First(p => p.ProductId == item.Id);
             product.Stock += item.Quantity;
             CurrentOrders.Remove(item);
-
-            UpdateOrderSummary();  // Cập nhật UI
+            CalculateOrderSummary();
         }
 
-        #endregion
+        [RelayCommand]
+        public async Task<string?> CreateOrderAsync()
+        {
+            if (CurrentOrders.Count == 0)
+            {
+                return null;
+            }
+            var orderRequest = new OrderCreateDto
+            {
+                CustomerPhone = string.IsNullOrWhiteSpace(PhoneNumber) ? null : PhoneNumber,
+                TotalPrice = Total,
+                DiscountId = SelectedDiscount.DiscountId == -1 ? null : SelectedDiscount.DiscountId,
+                StaffId = _userSession.CurrentUser.UserId,
+                Items = CurrentOrders.Select(item => new OrderItemRequest
+                {
+                    ProductId = item.Id,
+                    Quantity = item.Quantity
+                }).ToList()
+            };
+            var orderId = await _orderService.CreateOrderAsync(orderRequest);
+            return orderId;
+        }
     }
 }

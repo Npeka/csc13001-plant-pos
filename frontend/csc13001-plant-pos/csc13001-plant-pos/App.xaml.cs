@@ -1,23 +1,24 @@
 ﻿using System;
+using System.IO;
 using Microsoft.UI.Xaml;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 using csc13001_plant_pos.Service;
-using Microsoft.Extensions.DependencyInjection;
 using csc13001_plant_pos.ViewModel.Authentication;
 using csc13001_plant_pos.ViewModel;
+using Syncfusion.Licensing;
 
 namespace csc13001_plant_pos;
 
 public partial class App : Application
 {
-    public IHost Host
-    {
-        get;
-    }
+    public IHost Host { get; }
 
-    public static T GetService<T>()
-       where T : class
+    public IConfiguration Configuration { get; }
+
+    public static T GetService<T>() where T : class
     {
         if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
         {
@@ -26,39 +27,63 @@ public partial class App : Application
         return service;
     }
 
-
     public App()
     {
         this.InitializeComponent();
         this.RequestedTheme = ApplicationTheme.Light;
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-        Host = Microsoft.Extensions.Hosting.Host.
-        CreateDefaultBuilder().
-        UseContentRoot(AppContext.BaseDirectory).
-        ConfigureServices((context, services) =>
-        {
-            var baseAddress = context.Configuration.GetSection("ApiSettings:BaseAddress").Value;
-            var httpClient = new HttpClient
+        Configuration = builder.Build();
+
+        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
+            .UseContentRoot(AppContext.BaseDirectory)
+            .ConfigureServices((context, services) =>
             {
-                BaseAddress = new Uri(baseAddress ?? "http://localhost:8080/api/")
-            };
-            services.AddSingleton(httpClient);
-            services.AddSingleton<UserSessionService>();
-            services.AddSingleton<IAuthenticationService, AuthenticationService>();
+                var licenseKey = Configuration["Syncfusion:LicenseKey"];
+                if (!string.IsNullOrEmpty(licenseKey))
+                {
+                    SyncfusionLicenseProvider.RegisterLicense(licenseKey);
+                }
 
-            // Views and ViewModels
-            services.AddTransient<LoginViewModel>();
-            services.AddTransient<AuthenticationViewModel>();
-            services.AddTransient<StaffProfileViewModel>();
+                var baseAddress = Configuration["ApiSettings:BaseAddress"] ?? "http://localhost:8080/api/";
+                var httpClient = new HttpClient { BaseAddress = new Uri(baseAddress) };
 
-        }).
-        Build();
+                // Services
+                services.AddSingleton(httpClient);
+                services.AddSingleton<UserSessionService>();
+                services.AddSingleton<IAuthenticationService, AuthenticationService>();
+                services.AddSingleton<ICategoryService, CategoryService>();
+                services.AddSingleton<ICustomerService, CustomerService>();
+                services.AddSingleton<IDiscountProgramService, DiscountProgramService>();
+                services.AddSingleton<IInventoryService, InventoryService>();
+                services.AddSingleton<IOrderService, OrderService>();
+                services.AddSingleton<IProductService, ProductService>();
+                services.AddSingleton<IStaffService, StaffService>();
+
+                // Views and ViewModels
+                services.AddTransient<LoginViewModel>();
+                services.AddTransient<AuthenticationViewModel>();
+                services.AddTransient<StaffProfileViewModel>();
+                services.AddTransient<SaleViewModel>();
+                services.AddTransient<BillViewModel>();
+                services.AddTransient<StaffProfileViewModel>();
+                services.AddSingleton<AddCustomerViewModel>();
+                services.AddSingleton<CustomerProfileViewModel>();
+                services.AddSingleton<OrderViewModel>();
+                services.AddSingleton<WarehouseManagementViewModel>();
+                services.AddSingleton<DiscountManagementViewModel>();
+            })
+            .Build();
     }
+
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
         m_window = new MainWindow();
         m_window.Activate();
     }
+
     public MainWindow? GetMainWindow()
     {
         return m_window as MainWindow;

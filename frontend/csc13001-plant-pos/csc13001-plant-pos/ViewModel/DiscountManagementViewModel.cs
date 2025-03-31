@@ -1,46 +1,95 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Text.Json;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using csc13001_plant_pos.Model;
-using csc13001_plant_pos.DTO;
-using System.Collections.Generic;
+using csc13001_plant_pos.Service;
 
 namespace csc13001_plant_pos.ViewModel
 {
-    public partial class DiscountManagementViewModel : ObservableRecipient
+    public partial class DiscountManagementViewModel : ObservableObject
     {
-        public ObservableCollection<DiscountProgram> Discounts { get; set; } = new ObservableCollection<DiscountProgram>();
+        [ObservableProperty]
+        private ObservableCollection<DiscountProgram> discounts = new ObservableCollection<DiscountProgram>();
 
-        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8080/") };
+        [ObservableProperty]
+        private string searchQuery;
 
-        public DiscountManagementViewModel()
+        [ObservableProperty]
+        private DateTimeOffset? selectedDate;
+
+        [ObservableProperty]
+        private ObservableCollection<DiscountProgram> filteredDiscounts = new ObservableCollection<DiscountProgram>();
+
+        private readonly IDiscountProgramService _discountProgramService;
+        private ObservableCollection<DiscountProgram> allDiscounts = new ObservableCollection<DiscountProgram>();
+
+        public DiscountManagementViewModel(IDiscountProgramService discountService)
         {
+            _discountProgramService = discountService;
             LoadDiscountsAsync();
         }
 
-        private async void LoadDiscountsAsync()
+        public async void LoadDiscountsAsync()
         {
-            try
+            var response = await _discountProgramService.GetAllDiscountsAsync();
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
             {
-                string json = await _httpClient.GetStringAsync("api/discounts");
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<DiscountProgram>>>(json);
-                System.Diagnostics.Debug.WriteLine($"Status: {apiResponse?.Status}, Message: {apiResponse?.Message}");
+                allDiscounts.Clear();
+                Discounts.Clear();
+                FilteredDiscounts.Clear();
 
-                if (apiResponse?.Data != null)
+                foreach (var discount in response.Data)
                 {
-                    Discounts.Clear();
-                    foreach (var discount in apiResponse.Data)
-                    {
-                        Discounts.Add(discount);
-                    }
+                    allDiscounts.Add(discount);
+                    Discounts.Add(discount);
+                    FilteredDiscounts.Add(discount);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine($"Error loading discounts: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Failed to load discounts: {response?.Message}");
             }
+
+            UpdateFilteredDiscounts();
+        }
+
+        private void UpdateFilteredDiscounts()
+        {
+            FilteredDiscounts.Clear();
+            var filtered = allDiscounts.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(SearchQuery))
+            {
+                var query = SearchQuery.ToLower();
+                filtered = filtered.Where(discount =>
+                    discount.DiscountId.ToString().Contains(query) ||
+                    (discount.Name?.ToLower().Contains(query) ?? false));
+            }
+
+            if (SelectedDate.HasValue)
+            {
+                var selectedDateOnly = SelectedDate.Value.Date;
+                filtered = filtered.Where(discount =>
+                    discount.StartDate.Date <= selectedDateOnly && discount.EndDate.Date >= selectedDateOnly);
+            }
+
+            foreach (var discount in filtered)
+            {
+                FilteredDiscounts.Add(discount);
+            }
+        }
+
+        partial void OnSearchQueryChanged(string value)
+        {
+            UpdateFilteredDiscounts();
+        }
+
+        partial void OnSelectedDateChanged(DateTimeOffset? value)
+        {
+            UpdateFilteredDiscounts();
         }
     }
 }

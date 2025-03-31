@@ -67,13 +67,12 @@
                             Foreground="#666666">
                             <HyperlinkButton.Resources>
                                 <SolidColorBrush x:Key="HyperlinkButtonBackgroundPointerOver" Color="#E0E0E0" />
-                                <!--  Màu khi hover  -->
                             </HyperlinkButton.Resources>
                         </HyperlinkButton>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
                             FontSize="18"
@@ -117,8 +116,11 @@
             Margin="10"
             Orientation="Horizontal"
             Spacing="10">
-            <TextBox Width="500" PlaceholderText="Tìm kiếm..." />
-            <CalendarDatePicker PlaceholderText="Chọn ngày" />
+            <TextBox
+                Width="500"
+                PlaceholderText="Tìm kiếm theo mã, tên chương trình..."
+                Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
             <Button
                 Padding="8,8"
                 Content="Thêm chương trình"
@@ -132,7 +134,7 @@
             VerticalScrollBarVisibility="Hidden">
             <ListView
                 ItemTemplate="{StaticResource DiscountItemTemplate}"
-                ItemsSource="{x:Bind ViewModel.Discounts, Mode=OneWay}"
+                ItemsSource="{x:Bind ViewModel.FilteredDiscounts, Mode=OneWay}"
                 SelectionMode="None" />
         </ScrollViewer>
     </Grid>

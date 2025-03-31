@@ -225,23 +225,26 @@
                         Foreground="#0ABB6A"
                         Text="Đơn hàng hiện tại" />
                     <TextBox
+                        x:Name="PhoneNumberTextBox"
                         Margin="10,0,10,0"
                         Background="#F5F5F5"
                         BorderThickness="0"
                         FontSize="14"
-                        PlaceholderText="Nhập số điện thoại khách hàng" />
+                        PlaceholderText="Nhập số điện thoại khách hàng"
+                        Text="{x:Bind ViewModel.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        TextChanged="PhoneNumberTextBox_TextChanged" />
+
                     <ComboBox
+                        x:Name="DiscountComboBox"
                         Margin="10,0,10,0"
                         HorizontalAlignment="Stretch"
                         Background="#F5F5F5"
                         BorderThickness="0"
+                        DisplayMemberPath="Name"
                         FontSize="14"
+                        ItemsSource="{x:Bind ViewModel.AvailableDiscounts, Mode=OneWay}"
                         PlaceholderText="Chọn mã giảm giá"
-                        SelectedIndex="0">
-                        <ComboBoxItem Content="Giảm 10%" />
-                        <ComboBoxItem Content="Giảm 20%" />
-                        <ComboBoxItem Content="Giảm 30%" />
-                    </ComboBox>
+                        SelectedItem="{x:Bind ViewModel.SelectedDiscount, Mode=TwoWay}" />
                 </StackPanel>
             </Grid>
 
@@ -296,10 +299,17 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock
-                        FontSize="16"
-                        Foreground="Gray"
-                        Text="Giảm giá: 10%" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,0,4,0"
+                            FontSize="16"
+                            Foreground="Gray"
+                            Text="Giảm giá:" />
+                        <TextBlock
+                            FontSize="16"
+                            Foreground="Gray"
+                            Text="{x:Bind ViewModel.SelectedDiscount.DiscountRate, Mode=OneWay, Converter={StaticResource PercentageConverter}}" />
+                    </StackPanel>
                     <TextBlock
                         Grid.Column="1"
                         FontSize="16"
@@ -329,10 +339,12 @@
                 </Grid>
 
                 <Button
+                    x:Name="CreateOrderButton"
                     Padding="10"
                     HorizontalAlignment="Stretch"
                     Background="#0ABB6A"
-                    Content="Xuất hoá đơn"
+                    Click="CreateOrderButton_Click"
+                    Content="Tạo đơn"
                     CornerRadius="16"
                     FontSize="14"
                     FontWeight="Bold"
