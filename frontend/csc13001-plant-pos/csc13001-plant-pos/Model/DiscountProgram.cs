@@ -6,6 +6,7 @@ namespace csc13001_plant_pos.Model
     public class DiscountProgram
     {
         [JsonPropertyName("discountId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int DiscountId { get; set; }
 
         [JsonPropertyName("name")]

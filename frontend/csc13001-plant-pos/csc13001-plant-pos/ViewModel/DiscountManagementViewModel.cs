@@ -82,6 +82,26 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
+        public async Task<bool> CreateDiscountAsync(DiscountProgram discount)
+        {
+            bool success = await _discountProgramService.CreateDiscountAsync(discount);
+            if (success)
+            {
+                LoadDiscountsAsync();
+            }
+            return success;
+        }
+
+        public async Task<bool> UpdateDiscountAsync(DiscountProgram discount)
+        {
+            bool success = await _discountProgramService.UpdateDiscountAsync(discount.DiscountId, discount);
+            if (success)
+            {
+                LoadDiscountsAsync();
+            }
+            return success;
+        }
+
         partial void OnSearchQueryChanged(string value)
         {
             UpdateFilteredDiscounts();

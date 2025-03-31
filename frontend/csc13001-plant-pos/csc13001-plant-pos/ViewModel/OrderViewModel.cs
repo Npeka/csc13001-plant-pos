@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Service;
 using Microsoft.UI.Xaml.Controls;
@@ -83,6 +84,20 @@ namespace csc13001_plant_pos.ViewModel
             {
                 FilteredOrders.Add(order);
             }
+        }
+
+        public async Task<bool> DeleteOrderAsync(OrderListDto order)
+        {
+            if (order == null) return false;
+            bool success = await _orderService.DeleteOrderAsync(order.OrderId.ToString());
+            if (success)
+            {
+                allOrders.Remove(order);
+                Orders.Remove(order);
+                FilteredOrders.Remove(order);
+                System.Diagnostics.Debug.WriteLine($"Order {order.OrderId} deleted successfully.");
+            }
+            return success;
         }
 
         partial void OnSearchQueryChanged(string value)

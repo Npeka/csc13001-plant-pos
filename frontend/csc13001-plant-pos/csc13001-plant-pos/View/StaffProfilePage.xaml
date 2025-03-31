@@ -461,12 +461,29 @@
                         <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
                     </StackPanel>
 
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl
-                            x:Name="OrdersItemsControl"
-                            ItemTemplate="{StaticResource OrderItemTemplate}"
-                            ItemsSource="{x:Bind ViewModel.FilteredStaffOrders, Mode=OneWay}" />
-                    </ScrollViewer>
+                    <Grid Grid.Row="1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{x:Bind ViewModel.FilteredStaffOrders.Count, Mode=OneWay, Converter={StaticResource CountToVisibilityConverter}}">
+                            <ItemsControl
+                                x:Name="OrdersItemsControl"
+                                ItemTemplate="{StaticResource OrderItemTemplate}"
+                                ItemsSource="{x:Bind ViewModel.FilteredStaffOrders, Mode=OneWay}" />
+                        </ScrollViewer>
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical"
+                            Spacing="10"
+                            Visibility="{x:Bind ViewModel.FilteredStaffOrders.Count, Mode=OneWay, Converter={StaticResource CountToVisibilityConverter}, ConverterParameter='inverse'}">
+                            <FontIcon
+                                FontSize="48"
+                                Foreground="#666666"
+                                Glyph="" />
+                            <TextBlock
+                                FontSize="16"
+                                Foreground="#666666"
+                                Text="Hiện chưa có đơn hàng nào" />
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>

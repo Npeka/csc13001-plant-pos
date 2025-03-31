@@ -18,4 +18,5 @@
     <local:ErrorToVisibilityConverter x:Key="ErrorToVisibilityConverter" />
     <local:DiscountVisibilityConverter x:Key="DiscountVisibilityConverter" />
     <local:CustomerVisibilityConverter x:Key="CustomerVisibilityConverter" />
+    <local:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
 </ResourceDictionary>

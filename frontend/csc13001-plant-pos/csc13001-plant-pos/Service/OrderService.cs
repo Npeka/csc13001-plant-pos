@@ -14,6 +14,7 @@ public interface IOrderService
     Task<ApiResponse<OrderListDto>?> GetOrderByIdAsync(string orderId);
     Task<string?> CreateOrderAsync(OrderCreateDto orderRequest);
     Task<ApiResponse<List<OrderListDto>>?> GetAllOrdersAsync();
+    Task<bool> DeleteOrderAsync(string orderId);
 }
 
 public class OrderService : IOrderService
@@ -61,5 +62,21 @@ public class OrderService : IOrderService
         var response = await _httpClient.GetAsync("orders");
         var json = await response.Content.ReadAsStringAsync();
         return JsonUtils.Deserialize<ApiResponse<List<OrderListDto>>>(json);
+    }
+
+    public async Task<bool> DeleteOrderAsync(string orderId)
+    {
+        try
+        {
+            var response = await _httpClient.DeleteAsync($"orders/{orderId}");
+            var json = await response.Content.ReadAsStringAsync();
+            var apiResponse = JsonUtils.Deserialize<ApiResponse<object>>(json);
+            return apiResponse?.Status == "success";
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error deleting order {orderId}: {ex.Message}");
+            return false;
+        }
     }
 }

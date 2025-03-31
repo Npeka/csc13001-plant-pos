@@ -255,12 +255,20 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <Button
-                            Margin="8"
-                            HorizontalAlignment="Right"
-                            Click="ViewBillButton_Click"
-                            Content="Xem hoá đơn"
-                            CornerRadius="4" />
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button
+                                Margin="8"
+                                Background="Red"
+                                Click="DeleteOrderButton_Click"
+                                Content="Xoá đơn hàng"
+                                CornerRadius="4"
+                                Foreground="White" />
+                            <Button
+                                Margin="8"
+                                Click="ViewBillButton_Click"
+                                Content="Xem hoá đơn"
+                                CornerRadius="4" />
+                        </StackPanel>
                     </StackPanel>
                 </Expander.Content>
             </Expander>
