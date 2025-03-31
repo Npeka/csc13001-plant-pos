@@ -21,7 +21,7 @@ public class InventoryController {
     @GetMapping
     public ResponseEntity<?> getAllInventoryItems() {
         List<Inventory> inventories = inventoryService.getAllInventories();
-        return HttpResponse.ok("Get all inventory items successful", inventories);
+        return HttpResponse.ok("Lấy danh sách kho hàng thành công", inventories);
     }
 
     @PostMapping
@@ -32,6 +32,6 @@ public class InventoryController {
             return HttpResponse.badRequest(bindingResult);
         }
         Inventory createdInventory = inventoryService.createInventory(inventoryDTO);
-        return HttpResponse.ok("Create inventory item successful", createdInventory);
+        return HttpResponse.ok("Tạo kho hàng thành công", createdInventory);
     }
 }

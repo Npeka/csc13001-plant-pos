@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.AuthDTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
@@ -32,7 +33,7 @@ public partial class LoginViewModel : ObservableRecipient
 
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
-            Error = "Username and password are required!";
+            Error = "Vui lòng nhập tên người dùng và mật khẩu!";
             return;
         }
 
@@ -42,7 +43,7 @@ public partial class LoginViewModel : ObservableRecipient
 
         if (response == null)
         {
-            Error = "Login failed!";
+            Error = ApiResponseHelper.MessageServerError();
         }
         else if (response.IsSuccess() && response.Data != null)
         {

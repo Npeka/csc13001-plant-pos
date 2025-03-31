@@ -19,7 +19,7 @@ public class CategoryController {
     @GetMapping
     public ResponseEntity<?> getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();
-        return HttpResponse.ok("Get all categories successful", categories);
+        return HttpResponse.ok("Lấy danh sách danh mục thành công", categories);
     }
 
     @PostMapping
@@ -30,16 +30,16 @@ public class CategoryController {
             return HttpResponse.badRequest(bindingResult);
         }
         Category createdCategory = categoryService.createCategory(category);
-        return HttpResponse.ok("Create category successful", createdCategory);
+        return HttpResponse.ok("Tạo danh mục thành công", createdCategory);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
         Category category = categoryService.getCategoryById(id);
         if (category == null) {
-            return HttpResponse.notFound("Category not found");
+            return HttpResponse.notFound("Không tìm thấy danh mục");
         }
-        return HttpResponse.ok("Get category successful", category);
+        return HttpResponse.ok("Lấy thông tin danh mục thành công", category);
     }
 
     @PutMapping("/{id}")
@@ -52,12 +52,12 @@ public class CategoryController {
         }
         category.setCategoryId(categoryId);
         categoryService.updateCategory(category);
-        return HttpResponse.ok("Update category successful");
+        return HttpResponse.ok("Cập nhật danh mục thành công");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
-        return HttpResponse.ok("Delete category successful");
+        return HttpResponse.ok("Xóa danh mục thành công");
     }
 }

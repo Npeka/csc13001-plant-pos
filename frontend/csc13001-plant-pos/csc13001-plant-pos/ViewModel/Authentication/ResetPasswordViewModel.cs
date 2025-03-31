@@ -30,12 +30,12 @@ namespace csc13001_plant_pos.ViewModel.Authentication
         {
             if (string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(ConfirmPassword))
             {
-                Error = "All fields are required!";
+                Error = "Tất cả các trường là bắt buộc!";
             }
 
             else if (NewPassword != ConfirmPassword)
             {
-                Error = "Passwords do not match!";
+                Error = "Mật khẩu không khớp!";
                 return;
             }
 

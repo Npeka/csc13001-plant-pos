@@ -25,13 +25,13 @@ public class AuthInterceptor implements HandlerInterceptor {
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            jsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Missing or invalid Authorization header");
+            jsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Thiếu hoặc không hợp lệ header Authorization");
             return false;
         }
 
         String token = authHeader.substring(7);
         if (!jwtUtil.validateToken(token)) {
-            jsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired token");
+            jsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Token không hợp lệ hoặc đã hết hạn");
             return false;
         }
 
@@ -39,7 +39,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         String role = claims.get("role", String.class);
 
         if (request.getRequestURI().contains("admin") && !"admin".equals(role)) {
-            jsonResponse(response, HttpServletResponse.SC_FORBIDDEN, "Access Denied");
+            jsonResponse(response, HttpServletResponse.SC_FORBIDDEN, "Truy cập bị từ chối");
             return false;
         }
 

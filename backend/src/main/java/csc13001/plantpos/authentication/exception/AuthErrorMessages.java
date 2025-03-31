@@ -1,10 +1,10 @@
 package csc13001.plantpos.authentication.exception;
 
 public class AuthErrorMessages {
-    public static final String USERNAME_EXISTS = "Username already exists.";
-    public static final String USER_NOT_FOUND = "User not found.";
-    public static final String INVALID_PASSWORD = "Password and confirmation password do not match.";
-    public static final String INVALID_OTP = "Invalid OTP.";
-    public static final String OTP_EXPIRED = "OTP has expired.";
-    public static final String INVALID_TOKEN = "Invalid token.";
+    public static final String USERNAME_EXISTS = "Tên đăng nhập đã tồn tại.";
+    public static final String USER_NOT_FOUND = "Không tìm thấy người dùng.";
+    public static final String INVALID_PASSWORD = "Mật khẩu và xác nhận mật khẩu không khớp.";
+    public static final String INVALID_OTP = "Mã OTP không hợp lệ.";
+    public static final String OTP_EXPIRED = "Mã OTP đã hết hạn.";
+    public static final String INVALID_TOKEN = "Token không hợp lệ.";
 }

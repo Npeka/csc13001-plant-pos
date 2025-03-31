@@ -22,7 +22,7 @@ public class OrderCreatedListener {
     // staffService.updateSales(event.getStaffId());
     //
     // // Gửi email thông báo
-    // emailService.sendEmail("admin@plantpos.com", "New Order Created", "Order ID:
-    // " + event.getOrderId());
+    // emailService.sendEmail("admin@plantpos.com", "Đơn hàng mới được tạo", "Mã đơn
+    // hàng: " + event.getOrderId());
     // }
 }

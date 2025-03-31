@@ -24,7 +24,7 @@ public class NotificationService {
     @Async
     @EventListener
     public void handlerOtpEven(OtpEvent event) {
-        sendEmail(event.getEmail(), "OTP Verification", event.getOtp());
+        sendEmail(event.getEmail(), "Xác thực OTP", event.getOtp());
     }
 
     private void sendEmail(String to, String subject, String text) {

@@ -36,33 +36,33 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
-    @NotBlank(message = "Fullname is required")
-    @Size(min = 5, max = 256, message = "Fullname must be between 5 and 256 characters")
+    @NotBlank(message = "Họ tên là bắt buộc")
+    @Size(min = 5, max = 256, message = "Họ tên phải từ 5 đến 256 ký tự")
     @Column(name = "fullname", length = 256)
     private String fullname;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @NotBlank(message = "Username is required")
-    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
+    @NotBlank(message = "Tên đăng nhập là bắt buộc")
+    @Size(min = 5, max = 50, message = "Tên đăng nhập phải từ 5 đến 50 ký tự")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Email(message = "Email is invalid")
+    @Email(message = "Email không hợp lệ")
     @Column(name = "email", nullable = true, unique = true)
     private String email;
 
-    @Size(min = 10, max = 20, message = "Phone must be between 10 and 20 characters")
+    @Size(min = 10, max = 20, message = "Số điện thoại phải từ 10 đến 20 ký tự")
     @Column(name = "phone", length = 20)
     private String phone;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @NotBlank(message = "Password is required")
-    @Size(min = 5, max = 255, message = "Password must be between 5 and 255 characters")
+    @NotBlank(message = "Mật khẩu là bắt buộc")
+    @Size(min = 5, max = 255, message = "Mật khẩu phải từ 5 đến 255 ký tự")
     @Column(name = "password", nullable = false)
     private String password;
 
     @JsonProperty("isAdmin")
-    @NotNull(message = "isAdmin is required")
+    @NotNull(message = "isAdmin là bắt buộc")
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin;
 

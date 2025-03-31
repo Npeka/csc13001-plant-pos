@@ -22,7 +22,7 @@ public partial class ForgotPasswordViewModel : ObservableRecipient
     [ObservableProperty] public partial SolidColorBrush ErrorUsernameColor { get; set; } = new SolidColorBrush(Colors.Red);
     [ObservableProperty] public partial string Otp { get; set; } = string.Empty;
     [ObservableProperty] public partial bool IsSendOTPEnabled { get; set; } = true;
-    [ObservableProperty] public partial string SendOTPButtonText { get; set; } = "Send OTP";
+    [ObservableProperty] public partial string SendOTPButtonText { get; set; } = "Gửi OTP";
     [ObservableProperty] public partial string ErrorColor { get; set; } = "Red";
     [ObservableProperty] public partial string ErrorOtp { get; set; } = string.Empty;
     [ObservableProperty] public partial bool IsErrorVisible { get; set; } = false;
@@ -42,7 +42,7 @@ public partial class ForgotPasswordViewModel : ObservableRecipient
     {
         if (string.IsNullOrWhiteSpace(Username))
         {
-            ErrorUsername = "Please enter your username!";
+            ErrorUsername = "Vui lòng nhập tên người dùng!";
             ErrorUsernameColor = new SolidColorBrush(Colors.Red);
             return;
         }
@@ -59,7 +59,7 @@ public partial class ForgotPasswordViewModel : ObservableRecipient
         }
         else if (response.IsSuccess())
         {
-            ErrorUsername = "OTP sent successfully!";
+            ErrorUsername = "OTP đã được gửi thành công!";
             ErrorUsernameColor = new SolidColorBrush(Colors.Green);
             _cooldownTimer.Start();
         }
@@ -80,21 +80,20 @@ public partial class ForgotPasswordViewModel : ObservableRecipient
             _cooldownTimer.Stop();
             _cooldownSeconds = 60;
             IsSendOTPEnabled = true;
-            SendOTPButtonText = "Resend OTP";
+            SendOTPButtonText = "Gửi lại OTP";
         }
         else
         {
-            SendOTPButtonText = $"Wait {_cooldownSeconds}s";
+            SendOTPButtonText = $"Chờ {_cooldownSeconds}s";
         }
     }
-
 
     [RelayCommand]
     public async Task VerifyOTP()
     {
         if (string.IsNullOrWhiteSpace(Otp))
         {
-            ErrorOtp = "Please enter the OTP!";
+            ErrorOtp = "Vui lòng nhập OTP!";
             return;
         }
 

@@ -1,7 +1,7 @@
 package csc13001.plantpos.category.exception;
 
 public class CategoryErrorMessages {
-    public static final String CATEGORY_NOT_FOUND = "Category not found.";
-    public static final String CATEGORY_EXISTS = "Category already exists.";
-    public static final String CATEGORY_UPDATE_FAILED = "Category update failed.";
+    public static final String CATEGORY_NOT_FOUND = "Không tìm thấy danh mục.";
+    public static final String CATEGORY_EXISTS = "Danh mục đã tồn tại.";
+    public static final String CATEGORY_UPDATE_FAILED = "Cập nhật danh mục thất bại.";
 }

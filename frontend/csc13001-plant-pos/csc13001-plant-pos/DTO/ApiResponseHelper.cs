@@ -4,7 +4,7 @@
     {
         public static string MessageServerError()
         {
-            return "Server error! Please try again.";
+            return "Lỗi máy chủ, vui lòng thử lại sau!";
         }
     }
 }

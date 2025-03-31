@@ -26,11 +26,11 @@ public class Inventory {
     @Column(name = "inventory_id")
     private Long inventoryId;
 
-    @NotBlank(message = "Supplier is required")
+    @NotBlank(message = "Nhà cung cấp là bắt buộc")
     @Column(name = "supplier", nullable = false)
     private String supplier;
 
-    @Min(value = 0, message = "Total price must be positive")
+    @Min(value = 0, message = "Tổng giá phải lớn hơn 0")
     @Column(name = "total_price", nullable = false)
     private BigDecimal totalPrice;
 
