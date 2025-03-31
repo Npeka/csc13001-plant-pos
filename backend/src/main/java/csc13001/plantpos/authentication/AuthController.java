@@ -50,6 +50,16 @@ public class AuthController {
         return HttpResponse.ok("Login successful", loginResponseDTO);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
+        String tokenPrefix = "Bearer ";
+        if (token.startsWith(tokenPrefix)) {
+            token = token.substring(tokenPrefix.length());
+        }
+        authService.logout(token);
+        return HttpResponse.ok("Logout successful");
+    }
+
     @Operation(summary = "Forgot password", description = "Send password reset instructions to the user's email")
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(

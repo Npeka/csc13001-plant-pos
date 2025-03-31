@@ -32,4 +32,9 @@ public class AuthExceptionHandler {
     public ResponseEntity<?> handleOtpExpired(AuthException.OtpExpiredException ex) {
         return HttpResponse.badRequest(AuthErrorMessages.OTP_EXPIRED);
     }
+
+    @ExceptionHandler(AuthException.InvalidTokenException.class)
+    public ResponseEntity<?> handleInvalidToken(AuthException.InvalidTokenException ex) {
+        return HttpResponse.badRequest(AuthErrorMessages.INVALID_TOKEN);
+    }
 }

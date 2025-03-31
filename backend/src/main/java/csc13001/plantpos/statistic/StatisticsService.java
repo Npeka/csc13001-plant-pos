@@ -11,12 +11,18 @@ import org.springframework.stereotype.Service;
 import csc13001.plantpos.order.OrderItemRepository;
 import csc13001.plantpos.order.OrderRepository;
 import csc13001.plantpos.order.models.Order;
+import csc13001.plantpos.order.models.OrderItem;
+import csc13001.plantpos.product.Product;
+import csc13001.plantpos.product.ProductRepository;
+import csc13001.plantpos.product.dtos.ProductStatisticsDTO;
+import csc13001.plantpos.statistic.dtos.ProductsStatisticsDTO;
 import csc13001.plantpos.statistic.dtos.SalesStatisticsDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class StatisticsService {
+    private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
 
@@ -115,5 +121,42 @@ public class StatisticsService {
     private BigDecimal calculateGrowthRate(BigDecimal current, BigDecimal previous) {
         return previous.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO
                 : current.subtract(previous).divide(previous, 4, RoundingMode.HALF_UP);
+    }
+
+    public List<ProductStatisticsDTO> topSellingProducts(Integer limit) {
+        List<Product> products = productRepository.findAll();
+
+        return products.stream()
+                .map(product -> {
+                    List<OrderItem> orderItems = orderItemRepository.findByProduct_ProductId(product.getProductId());
+
+                    int salesQuantity = orderItems.stream()
+                            .mapToInt(OrderItem::getQuantity)
+                            .sum();
+
+                    BigDecimal totalRevenue = orderItems.stream()
+                            .map(item -> item.getSalePrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                            .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+                    return new ProductStatisticsDTO(product, salesQuantity, totalRevenue);
+                })
+                .sorted((p1, p2) -> Integer.compare(p2.getSalesQuantity(), p1.getSalesQuantity()))
+                .limit(limit != null ? limit : Long.MAX_VALUE)
+                .collect(Collectors.toList());
+    }
+
+    public ProductsStatisticsDTO getProductStatisticsReview() {
+        List<Product> products = productRepository.findAll();
+
+        List<ProductStatisticsDTO> topSellingProducts = topSellingProducts(4);
+        List<Product> lowStockProducts = products.stream()
+                .sorted((p1, p2) -> Integer.compare(p1.getStock(), p2.getStock()))
+                .limit(4)
+                .collect(Collectors.toList());
+
+        return ProductsStatisticsDTO.builder()
+                .topSellingProducts(topSellingProducts)
+                .lowStockProducts(lowStockProducts)
+                .build();
     }
 }

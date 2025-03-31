@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import csc13001.plantpos.user.enums.Gender;
 import csc13001.plantpos.user.enums.WorkingStatus;
+import csc13001.plantpos.user.models.WorkLog;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,6 +18,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -74,6 +76,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
+
+    @OneToMany
+    private List<WorkLog> workLogs;
 
     public User(String fullname, String username, String password) {
         this.fullname = fullname;

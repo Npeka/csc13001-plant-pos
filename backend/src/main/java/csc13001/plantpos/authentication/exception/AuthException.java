@@ -39,4 +39,10 @@ public class AuthException extends RuntimeException {
             super(AuthErrorMessages.OTP_EXPIRED);
         }
     }
+
+    public static class InvalidTokenException extends AuthException {
+        public InvalidTokenException() {
+            super(AuthErrorMessages.INVALID_TOKEN);
+        }
+    }
 }
