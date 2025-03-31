@@ -21,7 +21,7 @@ public class OrderController {
     @GetMapping()
     public ResponseEntity<?> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();
-        return HttpResponse.ok("Orders retrieved successfully", orders);
+        return HttpResponse.ok("Lấy danh sách đơn hàng thành công", orders);
     }
 
     @PostMapping()
@@ -33,30 +33,30 @@ public class OrderController {
         }
 
         Order order = orderService.createOrder(createOrderDTO);
-        return HttpResponse.ok("Order created successfully", order);
+        return HttpResponse.ok("Tạo đơn hàng thành công", order);
     }
 
     @GetMapping("/{orderId}")
     public ResponseEntity<?> getOrder(@PathVariable Long orderId) {
         Order order = orderService.getOrderById(orderId);
-        return HttpResponse.ok("Order retrieved successfully", order);
+        return HttpResponse.ok("Lấy thông tin đơn hàng thành công", order);
     }
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<?> getOrdersByCustomerId(@PathVariable Long customerId) {
         List<Order> orders = orderService.getOrdersByCustomerId(customerId);
-        return HttpResponse.ok("Orders retrieved successfully for customer", orders);
+        return HttpResponse.ok("Lấy danh sách đơn hàng của khách hàng thành công", orders);
     }
 
     @GetMapping("/staff/{staffId}")
     public ResponseEntity<?> getOrdersByStaffId(@PathVariable Long staffId) {
         List<Order> orders = orderService.getOrdersByStaffId(staffId);
-        return HttpResponse.ok("Orders retrieved successfully for staff", orders);
+        return HttpResponse.ok("Lấy danh sách đơn hàng của nhân viên thành công", orders);
     }
 
     @DeleteMapping("/{orderId}")
     public ResponseEntity<?> deleteOrder(@PathVariable Long orderId) {
         orderService.deleteOrder(orderId);
-        return HttpResponse.ok("Order deleted successfully");
+        return HttpResponse.ok("Xóa đơn hàng thành công");
     }
 }

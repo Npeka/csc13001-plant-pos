@@ -14,31 +14,31 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class InventoryDTO {
-    @NotBlank(message = "Supplier is required")
+    @NotBlank(message = "Nhà cung cấp là bắt buộc")
     private String supplier;
 
-    @NotNull(message = "Total price is required")
-    @Min(value = 0, message = "Total price must be positive")
+    @NotNull(message = "Tổng giá là bắt buộc")
+    @Min(value = 0, message = "Tổng giá phải lớn hơn 0")
     private BigDecimal totalPrice;
 
-    @NotNull(message = "Purchase date is required")
+    @NotNull(message = "Ngày mua là bắt buộc")
     private Date purchaseDate;
 
-    @NotEmpty(message = "At least one product is required")
+    @NotEmpty(message = "Phải có ít nhất một sản phẩm")
     private List<InventoryItemDTO> items;
 
     @Data
     @NoArgsConstructor
     public static class InventoryItemDTO {
-        @NotNull(message = "Product ID is required")
+        @NotNull(message = "ID sản phẩm là bắt buộc")
         private Long productId;
 
-        @NotNull(message = "Quantity is required")
-        @Min(value = 1, message = "Quantity must be at least 1")
+        @NotNull(message = "Số lượng là bắt buộc")
+        @Min(value = 1, message = "Số lượng phải ít nhất là 1")
         private Integer quantity;
 
-        @NotNull(message = "Purchase price is required")
-        @Min(value = 0, message = "Purchase price must be positive")
+        @NotNull(message = "Giá mua là bắt buộc")
+        @Min(value = 0, message = "Giá mua phải lớn hơn 0")
         private BigDecimal purchasePrice;
     }
 }

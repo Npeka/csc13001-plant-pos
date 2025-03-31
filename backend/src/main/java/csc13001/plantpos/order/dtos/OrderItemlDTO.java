@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class OrderItemlDTO extends JsonModel {
     private Long productId;
 
-    @Min(value = 1, message = "Quantity must be greater than 0")
+    @Min(value = 1, message = "Số lượng phải lớn hơn 0")
     private int quantity;
 }

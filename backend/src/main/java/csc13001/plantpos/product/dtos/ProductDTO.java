@@ -18,32 +18,32 @@ import java.math.BigDecimal;
 public class ProductDTO extends JsonModel {
     private Long productId;
 
-    @NotBlank(message = "Product name cannot be blank")
+    @NotBlank(message = "Tên sản phẩm không được để trống")
     private String name;
 
     private String description;
 
     private String imageUrl;
 
-    @NotNull(message = "Price cannot be null")
+    @NotNull(message = "Giá bán không được để trống")
     private BigDecimal salePrice;
 
     private int stock;
 
-    @Min(value = 0, message = "Care level must be at least 0")
+    @Min(value = 0, message = "Mức độ chăm sóc phải ít nhất là 0")
     private int careLevel;
 
     private String environmentType;
 
     private int size;
 
-    @Min(value = 0, message = "Light requirement must be at least 0")
+    @Min(value = 0, message = "Yêu cầu ánh sáng phải ít nhất là 0")
     private int lightRequirement;
 
-    @Min(value = 0, message = "Watering schedule must be at least 0")
+    @Min(value = 0, message = "Lịch tưới nước phải ít nhất là 0")
     private int wateringSchedule;
 
-    @NotNull(message = "Category name cannot be null")
+    @NotNull(message = "Tên danh mục không được để trống")
     private Category category;
 
     public ProductDTO(Product product) {

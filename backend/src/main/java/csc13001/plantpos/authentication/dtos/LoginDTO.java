@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class LoginDTO extends JsonModel {
     @Schema(example = "admin")
-    @NotBlank(message = "Username is required")
-    @Size(min = 5, max = 50, message = "Username or password is invalid")
+    @NotBlank(message = "Tên đăng nhập là bắt buộc")
+    @Size(min = 5, max = 50, message = "Tên đăng nhập hoặc mật khẩu không hợp lệ")
     private String username;
 
     @Schema(example = "admin")
-    @NotBlank(message = "Password is required")
-    @Size(min = 5, max = 50, message = "Username or password is invalid")
+    @NotBlank(message = "Mật khẩu là bắt buộc")
+    @Size(min = 5, max = 50, message = "Tên đăng nhập hoặc mật khẩu không hợp lệ")
     private String password;
 }

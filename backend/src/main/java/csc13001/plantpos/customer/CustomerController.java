@@ -50,12 +50,12 @@ public class CustomerController {
         }
         customer.setCustomerId(customerId);
         customerService.updateCustomer(customer);
-        return HttpResponse.ok("Update customer successful");
+        return HttpResponse.ok("Cập nhật thông tin khách hàng thành công");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
-        return HttpResponse.ok("Delete customer successful");
+        return HttpResponse.ok("Xóa khách hàng thành công");
     }
 }

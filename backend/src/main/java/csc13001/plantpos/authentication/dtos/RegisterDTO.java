@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class RegisterDTO extends JsonModel {
-    @NotBlank(message = "Fullname is required")
-    @Size(min = 5, max = 256, message = "Fullname must be between 5 and 256 characters")
+    @NotBlank(message = "Họ tên là bắt buộc")
+    @Size(min = 5, max = 256, message = "Họ tên phải từ 5 đến 256 ký tự")
     private String fullname;
 
-    @NotBlank(message = "Username is required")
-    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
+    @NotBlank(message = "Tên đăng nhập là bắt buộc")
+    @Size(min = 5, max = 50, message = "Tên đăng nhập phải từ 5 đến 50 ký tự")
     private String username;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 5, max = 50, message = "Password must be between 5 and 50 characters")
+    @NotBlank(message = "Mật khẩu là bắt buộc")
+    @Size(min = 5, max = 50, message = "Mật khẩu phải từ 5 đến 50 ký tự")
     private String password;
 }

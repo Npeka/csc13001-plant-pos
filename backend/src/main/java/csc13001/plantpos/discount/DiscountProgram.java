@@ -30,20 +30,20 @@ public class DiscountProgram {
     @Column(name = "discount_id")
     private Long discountId;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Tên chương trình khuyến mãi là bắt buộc")
     @Column(name = "name")
     private String name;
 
-    @NotNull(message = "Discount rate is mandatory")
+    @NotNull(message = "Tỷ lệ giảm giá là bắt buộc")
     @Column(name = "discount_rate")
     private Double discountRate;
 
-    @NotNull(message = "Start date is mandatory")
+    @NotNull(message = "Ngày bắt đầu là bắt buộc")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;
 
-    @NotNull(message = "End date is mandatory")
+    @NotNull(message = "Ngày kết thúc là bắt buộc")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "end_date")
     private Date endDate;

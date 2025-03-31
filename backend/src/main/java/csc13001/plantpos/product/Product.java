@@ -34,7 +34,7 @@ public class Product extends JsonModel {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @NotBlank(message = "Product name cannot be blank")
+    @NotBlank(message = "Tên sản phẩm không được để trống")
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -44,35 +44,35 @@ public class Product extends JsonModel {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @NotNull(message = "Sale price cannot be null")
+    @NotNull(message = "Giá bán không được để trống")
     @Column(name = "sale_price", columnDefinition = "decimal(18,2)", nullable = false)
     private BigDecimal salePrice;
 
     @Column(name = "purchase_price", columnDefinition = "decimal(18,2)")
     private BigDecimal purchasePrice;
 
-    @PositiveOrZero(message = "Stock must be a non-negative number")
+    @PositiveOrZero(message = "Số lượng tồn kho phải là số không âm")
     @Column(name = "stock", nullable = false)
     private int stock;
 
     @Builder.Default
-    @Min(value = 1, message = "Size must be at least 1")
-    @Max(value = 5, message = "Size must be at most 5")
+    @Min(value = 1, message = "Kích thước phải ít nhất là 1")
+    @Max(value = 5, message = "Kích thước phải nhiều nhất là 5")
     @Column(name = "size")
     private int size = 1;
 
-    @Min(value = 1, message = "Care level must be at least 1")
-    @Max(value = 5, message = "Care level must be at most 5")
+    @Min(value = 1, message = "Mức độ chăm sóc phải ít nhất là 1")
+    @Max(value = 5, message = "Mức độ chăm sóc phải nhiều nhất là 5")
     @Column(name = "care_level")
     private int careLevel;
 
-    @Min(value = 1, message = "Light requirement must be at least 1")
-    @Max(value = 5, message = "Light requirement must be at most 5")
+    @Min(value = 1, message = "Yêu cầu ánh sáng phải ít nhất là 1")
+    @Max(value = 5, message = "Yêu cầu ánh sáng phải nhiều nhất là 5")
     @Column(name = "light_requirement")
     private int lightRequirement;
 
-    @Min(value = 1, message = "Watering schedule must be at least 1")
-    @Max(value = 5, message = "Watering schedule must be at most 5")
+    @Min(value = 1, message = "Lịch tưới nước phải ít nhất là 1")
+    @Max(value = 5, message = "Lịch tưới nước phải nhiều nhất là 5")
     @Column(name = "watering_schedule")
     private int wateringSchedule;
 

@@ -23,11 +23,11 @@ public class Customer {
     @Column(name = "customer_id")
     private Long customerId;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Tên khách hàng là bắt buộc")
     @Column(name = "name", length = 256)
     private String name;
 
-    @NotBlank(message = "Phone number is required")
+    @NotBlank(message = "Số điện thoại là bắt buộc")
     @Column(name = "phone", length = 20, unique = true)
     private String phone;
 
@@ -68,7 +68,7 @@ public class Customer {
 
     public void addLoyaltyPointsBySpending(BigDecimal spending) {
         if (spending == null || spending.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Spending must be greater than zero.");
+            throw new IllegalArgumentException("Số tiền chi tiêu phải lớn hơn 0.");
         }
         loyaltyPoints += spending.divide(BigDecimal.valueOf(1000)).intValue();
         this.loyaltyCardType = determineCustomerType(this.loyaltyPoints);

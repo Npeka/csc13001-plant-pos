@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class LoginResponseDTO extends JsonModel {
 
-    @Schema(description = "User details after login")
+    @Schema(description = "Thông tin người dùng sau khi đăng nhập")
     private User user;
 
     @Schema(example = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")

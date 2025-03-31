@@ -27,25 +27,25 @@ public class StatisticsController {
             @RequestBody StatisticsRequestDTO statisticsRequestDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return HttpResponse.badRequest("Invalid request data");
+            return HttpResponse.badRequest("Dữ liệu yêu cầu không hợp lệ");
         }
 
         SalesStatisticsDTO salesStatistics = statisticsService.getSalesStatistics(
                 statisticsRequestDTO.getTimeType(),
                 statisticsRequestDTO.getStartDate(),
                 statisticsRequestDTO.getEndDate());
-        return HttpResponse.ok("Get all statistics successful", salesStatistics);
+        return HttpResponse.ok("Lấy thống kê doanh số thành công", salesStatistics);
     }
 
     @GetMapping("/products-review")
     public ResponseEntity<?> getProductStatisticsReview() {
         ProductsStatisticsDTO productStatistics = statisticsService.getProductStatisticsReview();
-        return HttpResponse.ok("Get product statistics successful", productStatistics);
+        return HttpResponse.ok("Lấy thống kê sản phẩm thành công", productStatistics);
     }
 
     @GetMapping("/products")
     public ResponseEntity<?> getProductStatistics() {
         List<ProductStatisticsDTO> productStatistics = statisticsService.topSellingProducts(null);
-        return HttpResponse.ok("Get product statistics successful", productStatistics);
+        return HttpResponse.ok("Lấy thống kê sản phẩm thành công", productStatistics);
     }
 }

@@ -26,12 +26,12 @@ public class Category {
     @Column(name = "category_id")
     private Long categoryId;
 
-    @NotBlank(message = "Category is required")
-    @Size(max = 100, message = "Category name should not exceed 100 characters")
+    @NotBlank(message = "Tên danh mục là bắt buộc")
+    @Size(max = 100, message = "Tên danh mục không được vượt quá 100 ký tự")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Size(max = 255, message = "Category description should not exceed 255 characters")
+    @Size(max = 255, message = "Mô tả danh mục không được vượt quá 255 ký tự")
     @Column(name = "description")
     private String description;
 

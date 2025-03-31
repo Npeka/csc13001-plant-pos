@@ -22,7 +22,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @Operation(summary = "Register a new account", description = "Create a new account with registration details")
+    @Operation(summary = "Đăng ký tài khoản mới", description = "Tạo tài khoản mới với thông tin đăng ký")
     @PostMapping("/register")
     public ResponseEntity<?> register(
             @RequestBody @Validated RegisterDTO registerDTO,
@@ -33,10 +33,10 @@ public class AuthController {
 
         authService.register(registerDTO);
 
-        return HttpResponse.ok("Registration successful");
+        return HttpResponse.ok("Đăng ký thành công");
     }
 
-    @Operation(summary = "Login to the system", description = "Authenticate user with login credentials")
+    @Operation(summary = "Đăng nhập vào hệ thống", description = "Xác thực người dùng với thông tin đăng nhập")
     @PostMapping("/login")
     public ResponseEntity<?> login(
             @RequestBody @Validated LoginDTO loginDTO,
@@ -47,7 +47,7 @@ public class AuthController {
 
         LoginResponseDTO loginResponseDTO = authService.login(loginDTO);
 
-        return HttpResponse.ok("Login successful", loginResponseDTO);
+        return HttpResponse.ok("Đăng nhập thành công", loginResponseDTO);
     }
 
     @PostMapping("/logout")
@@ -57,26 +57,26 @@ public class AuthController {
             token = token.substring(tokenPrefix.length());
         }
         authService.logout(token);
-        return HttpResponse.ok("Logout successful");
+        return HttpResponse.ok("Đăng xuất thành công");
     }
 
-    @Operation(summary = "Forgot password", description = "Send password reset instructions to the user's email")
+    @Operation(summary = "Quên mật khẩu", description = "Gửi hướng dẫn đặt lại mật khẩu đến email của người dùng")
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(
-            @Parameter(description = "Username of the account") @RequestBody @Validated ForgotPassworDTO forgotPassworDTO,
+            @Parameter(description = "Tên đăng nhập của tài khoản") @RequestBody @Validated ForgotPassworDTO forgotPassworDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
 
         authService.forgotPassword(forgotPassworDTO.getUsername());
-        return HttpResponse.ok("Password reset instructions sent to your email");
+        return HttpResponse.ok("Hướng dẫn đặt lại mật khẩu đã được gửi đến email của bạn");
     }
 
-    @Operation(summary = "Verify OTP", description = "Verify the OTP sent to the user's email")
+    @Operation(summary = "Xác thực OTP", description = "Xác thực mã OTP đã gửi đến email của người dùng")
     @PostMapping("/verify-otp")
     public ResponseEntity<?> verifyOtp(
-            @Parameter(description = "Username of the account") @RequestBody @Validated VerifyOtpDTO verifyOtpDTO,
+            @Parameter(description = "Tên đăng nhập của tài khoản") @RequestBody @Validated VerifyOtpDTO verifyOtpDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
@@ -86,10 +86,10 @@ public class AuthController {
         String otp = verifyOtpDTO.getOtp();
         authService.verifyOtp(username, otp);
 
-        return HttpResponse.ok("OTP verified successfully");
+        return HttpResponse.ok("Xác thực OTP thành công");
     }
 
-    @Operation(summary = "Reset password", description = "Reset the user's password using the provided details")
+    @Operation(summary = "Đặt lại mật khẩu", description = "Đặt lại mật khẩu của người dùng bằng thông tin được cung cấp")
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(
             @RequestBody @Validated ResetPassworDTO resetPassworDTO,
@@ -100,6 +100,6 @@ public class AuthController {
 
         authService.resetPassword(resetPassworDTO);
 
-        return HttpResponse.ok("Password reset successfully");
+        return HttpResponse.ok("Đặt lại mật khẩu thành công");
     }
 }

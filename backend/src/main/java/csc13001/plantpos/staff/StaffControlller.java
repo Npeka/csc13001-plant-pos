@@ -22,13 +22,13 @@ public class StaffControlller {
 
     @GetMapping
     public ResponseEntity<?> getAllStaff() {
-        return HttpResponse.ok("Get all staff successful", staffService.getAllStaff());
+        return HttpResponse.ok("Lấy danh sách nhân viên thành công", staffService.getAllStaff());
     }
 
     @GetMapping("/{staffId}")
     public ResponseEntity<?> getAllProducts(@PathVariable Long staffId) {
         StaffDTO staffDTO = staffService.getStaffById(staffId);
-        return HttpResponse.ok("Get all staff successful", staffDTO);
+        return HttpResponse.ok("Lấy thông tin nhân viên thành công", staffDTO);
     }
 
     @PutMapping("/{staffId}")
@@ -41,6 +41,6 @@ public class StaffControlller {
 
         staff.setUserId(staffId);
         staffService.updateStaff(staff);
-        return HttpResponse.ok("Update staff successful");
+        return HttpResponse.ok("Cập nhật thông tin nhân viên thành công");
     }
 }

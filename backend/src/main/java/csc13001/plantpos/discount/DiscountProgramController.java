@@ -17,13 +17,14 @@ public class DiscountProgramController {
     @GetMapping
     public ResponseEntity<?> getDiscountPrograms() {
         List<DiscountProgram> discountPrograms = discountProgramService.getDiscountPrograms();
-        return HttpResponse.ok("Get discount programs successfully", discountPrograms);
+        return HttpResponse.ok("Lấy danh sách chương trình giảm giá thành công", discountPrograms);
     }
 
     @GetMapping("/customer/{phone}")
     public ResponseEntity<?> getDiscountProgramsByCustomerPhone(@PathVariable String phone) {
         List<DiscountProgram> discountPrograms = discountProgramService.getDiscountProgramsByCustomerPhone(phone);
-        return HttpResponse.ok("Get discount programs by customer phone successfully", discountPrograms);
+        return HttpResponse.ok("Lấy danh sách chương trình giảm giá theo số điện thoại khách hàng thành công",
+                discountPrograms);
     }
 
     @PostMapping
@@ -35,7 +36,7 @@ public class DiscountProgramController {
         }
 
         DiscountProgram createdDiscountProgram = discountProgramService.createDiscountProgram(discountProgram);
-        return HttpResponse.ok("Create discount program successfully", createdDiscountProgram);
+        return HttpResponse.ok("Tạo chương trình giảm giá thành công", createdDiscountProgram);
     }
 
     @PutMapping("/{id}")
@@ -48,12 +49,12 @@ public class DiscountProgramController {
         }
 
         discountProgramService.updateDiscountProgram(id, discountProgram);
-        return HttpResponse.ok("Update discount program successfully");
+        return HttpResponse.ok("Cập nhật chương trình giảm giá thành công");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteDiscountProgram(@PathVariable Long id) {
         discountProgramService.deleteDiscountProgram(id);
-        return HttpResponse.ok("Delete discount program successfully");
+        return HttpResponse.ok("Xóa chương trình giảm giá thành công");
     }
 }

@@ -13,21 +13,21 @@ import lombok.AllArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 public class HttpResponse<T> {
-    @Schema(description = "Status of the response", example = "success")
+    @Schema(description = "Trạng thái của phản hồi", example = "thành công")
     private final Status status;
 
-    @Schema(description = "Message of the response", example = "Get all products successful")
+    @Schema(description = "Thông báo của phản hồi", example = "Lấy danh sách sản phẩm thành công")
     private final String message;
 
-    @Schema(description = "Data of the response")
+    @Schema(description = "Dữ liệu của phản hồi")
     private final T data;
 
     public static <T> HttpResponse<T> success(String message, T data) {
-        return new HttpResponse<>(Status.success, message, data);
+        return new HttpResponse<>(Status.thành_công, message, data);
     }
 
     public static <T> HttpResponse<T> error(String message) {
-        return new HttpResponse<>(Status.error, message, null);
+        return new HttpResponse<>(Status.lỗi, message, null);
     }
 
     // 200 - OK
@@ -46,7 +46,7 @@ public class HttpResponse<T> {
 
     // 400 - Custom Bad Request
     public static <T> ResponseEntity<?> invalidInputData() {
-        return ResponseEntity.badRequest().body(error("Invalid input data"));
+        return ResponseEntity.badRequest().body(error("Dữ liệu đầu vào không hợp lệ"));
     }
 
     public static <T> ResponseEntity<?> invalidInputData(String message) {
@@ -63,11 +63,11 @@ public class HttpResponse<T> {
     }
 
     public static <T> ResponseEntity<?> notFound() {
-        return ResponseEntity.status(404).body(error("Resource not found"));
+        return ResponseEntity.status(404).body(error("Không tìm thấy tài nguyên"));
     }
 
     public enum Status {
-        success,
-        error
+        thành_công,
+        lỗi
     }
 }

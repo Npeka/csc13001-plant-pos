@@ -25,13 +25,13 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
         List<ProductDTO> products = productService.getAllProducts();
-        return HttpResponse.ok("Get all products successful", products);
+        return HttpResponse.ok("Lấy danh sách sản phẩm thành công", products);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
-        return HttpResponse.ok("Get product successful", product);
+        return HttpResponse.ok("Lấy thông tin sản phẩm thành công", product);
     }
 
     @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
@@ -48,7 +48,7 @@ public class ProductController {
         validateImage(image);
 
         Product createdProduct = productService.createProduct(productDTO, image);
-        return HttpResponse.ok("Create product successful", createdProduct);
+        return HttpResponse.ok("Tạo sản phẩm thành công", createdProduct);
     }
 
     @PutMapping(path = "/{id}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
@@ -66,13 +66,13 @@ public class ProductController {
         validateImage(image);
 
         productService.updateProduct(id, productDTO, image);
-        return HttpResponse.ok("Update product successful");
+        return HttpResponse.ok("Cập nhật sản phẩm thành công");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
-        return HttpResponse.ok("Delete product successful");
+        return HttpResponse.ok("Xóa sản phẩm thành công");
     }
 
     private void validateImage(MultipartFile image) {
