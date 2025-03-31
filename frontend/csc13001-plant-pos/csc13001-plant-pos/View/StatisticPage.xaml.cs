@@ -1,40 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
+using System.ComponentModel;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using LiveChartsCore.Defaults;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SkiaSharp;
-using LiveChartsCore.Kernel;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using SkiaSharp;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using System.ComponentModel;
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace csc13001_plant_pos.View
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-
     public class DashboardTile
     {
         public string Title { get; set; }
         public string Value { get; set; }
         public int Percentage { get; set; }
     }
-    public class Product
+    public class Product1
     {
         public string ProductID { get; set; }
         public string Name { get; set; }
@@ -78,18 +63,18 @@ namespace csc13001_plant_pos.View
         }
         public ObservableCollection<Axis> XAxes { get; set; }
         public ObservableCollection<Axis> YAxes { get; set; }
-        public ObservableCollection<Product> BestSellingProducts { get; } = new()
+        public ObservableCollection<Product1> BestSellingProducts { get; } = new()
     {
-        new Product { ProductID = "SP001", Name = "Laptop", QuantitySold = 50 },
-        new Product { ProductID = "SP002", Name = "Phone", QuantitySold = 30 },
-        new Product { ProductID = "SP003", Name = "Tablet", QuantitySold = 20 }
+        new Product1 { ProductID = "SP001", Name = "Laptop", QuantitySold = 50 },
+        new Product1 { ProductID = "SP002", Name = "Phone", QuantitySold = 30 },
+        new Product1 { ProductID = "SP003", Name = "Tablet", QuantitySold = 20 }
     };
 
-        public ObservableCollection<Product> LowStockProducts { get; } = new()
+        public ObservableCollection<Product1> LowStockProducts { get; } = new()
     {
-        new Product { ProductID = "SP004", Name = "Mouse", RemainingStock = 5 },
-        new Product { ProductID = "SP005", Name = "Keyboard", RemainingStock = 3 },
-        new Product { ProductID = "SP006", Name = "Monitor", RemainingStock = 2 }
+        new Product1 { ProductID = "SP004", Name = "Mouse", RemainingStock = 5 },
+        new Product1 { ProductID = "SP005", Name = "Keyboard", RemainingStock = 3 },
+        new Product1 { ProductID = "SP006", Name = "Monitor", RemainingStock = 2 }
     };
         public DashboardViewModel DashboardVM { get; set; }
         private string _selectedDateRange = "Last 7 days";

@@ -21,7 +21,6 @@ namespace csc13001_plant_pos.Converter
                     "Platinum" => ColorHelper.FromArgb(255, 229, 255, 246), 
                     _ => ColorHelper.FromArgb(255, 245, 227, 250)
                 };
-                System.Diagnostics.Debug.WriteLine($"MembershipTypeToBackgroundConverter: {membershipType} -> {backgroundColor}");
                 return new SolidColorBrush(backgroundColor);
             }
             return new SolidColorBrush(ColorHelper.FromArgb(255, 245, 227, 250));

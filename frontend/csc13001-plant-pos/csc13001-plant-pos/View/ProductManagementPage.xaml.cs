@@ -24,7 +24,7 @@ namespace csc13001_plant_pos.View
     /// </summary>
     public sealed partial class ProductManagementPage : Page
     {
-        public ObservableCollection<Product> Products { get; set; }
+        public ObservableCollection<Product1> Products { get; set; }
 
         public ProductManagementPage()
         {
