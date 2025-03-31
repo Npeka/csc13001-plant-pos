@@ -14,12 +14,10 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Cột ảnh -->
         <Border Grid.Column="0" CornerRadius="8" BorderBrush="Gray" BorderThickness="1">
             <Image Source="Assets/plant_image.png" Stretch="UniformToFill"/>
         </Border>
 
-        <!-- Cột thông tin -->
         <StackPanel Grid.Column="1" Padding="20" Spacing="10">
             <TextBlock Text="Cây phát tài núi 2 tầng chậu đá mài" 
                        FontSize="24" FontWeight="Bold" Foreground="DarkGreen"/>
@@ -47,19 +45,15 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Tên khoa học -->
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.ColumnSpan="3"/>
                 <TextBlock Text="Tên khoa học:" FontSize="16" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" Margin="5"/>
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="1"/>
                 <TextBlock Text="Dracaena draco L" FontSize="16" Grid.Row="0" Grid.Column="2" Margin="5"/>
 
-                <!-- Tên thông thường -->
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.ColumnSpan="3"/>
                 <TextBlock Text="Tên thông thường:" FontSize="16" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" Margin="5"/>
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1"/>
                 <TextBlock Text="Phát tài núi" FontSize="16" Grid.Row="1" Grid.Column="2" Margin="5"/>
-
-                <!-- Quy cách sản phẩm -->
 
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.ColumnSpan="3"/>
                 <TextBlock Text="Kích thước chậu:" FontSize="16" FontWeight="SemiBold" Grid.Row="3" Grid.Column="0" Margin="5"/>
@@ -71,44 +65,36 @@
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1"/>
                 <TextBlock Text="150 - 160 cm" FontSize="14" Grid.Row="4" Grid.Column="2" Margin="5"/>
 
-                <!-- Độ khó -->
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="5" Grid.ColumnSpan="3"/>
                 <TextBlock Text="Độ khó:" FontSize="16" FontWeight="SemiBold" Grid.Row="5" Grid.Column="0" Margin="5"/>
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="5" Grid.Column="1"/>
                 <TextBlock Text="Dễ chăm sóc" FontSize="16" Grid.Row="5" Grid.Column="2" Margin="5"/>
 
-                <!-- Yêu cầu ánh sáng -->
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="6" Grid.ColumnSpan="3"/>
                 <TextBlock Text="Yêu cầu ánh sáng:" FontSize="16" FontWeight="SemiBold" Grid.Row="6" Grid.Column="0" Margin="5"/>
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="6" Grid.Column="1"/>
                 <TextBlock Text="Nắng tán xa, chịu được nắng trực tiếp" FontSize="16" Grid.Row="6" Grid.Column="2" Margin="5"/>
 
-                <!-- Nhu cầu nước -->
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="7" Grid.ColumnSpan="3"/>
                 <TextBlock Text="Nhu cầu nước:" FontSize="16" FontWeight="SemiBold" Grid.Row="7" Grid.Column="0" Margin="5"/>
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="7" Grid.Column="1"/>
                 <TextBlock Text="Tưới nước 2 - 3 lần/tuần" FontSize="16" Grid.Row="7" Grid.Column="2" Margin="5"/>
             </Grid>
 
-
-
-            <!-- Bộ chọn số lượng -->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
                 <Button Content="-" Width="30" Click="DecreaseQuantity"/>
                 <TextBlock Text="1" FontSize="18" VerticalAlignment="Center"/>
                 <Button Content="+" Width="30" Click="IncreaseQuantity"/>
             </StackPanel>
 
-            <!-- Nút Thêm vào giỏ hàng -->
             <Button Content="ADD TO CART" Background="Green" Foreground="White" Padding="10,5"
                     Click="AddToCart_Click" HorizontalAlignment="Left"/>
-            <!-- Thể loại -->
+
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10" Margin="0,10,0,0">
                 <TextBlock Text="Thể loại:" FontSize="16" FontWeight="SemiBold"/>
                 <TextBlock Text="Cây cảnh trong nhà" FontSize="16" Foreground="DarkGreen"/>
             </StackPanel>
 
-            <!-- Tags -->
             <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
                 <TextBlock Text="Tags:" FontSize="16" FontWeight="SemiBold"/>
                 <Border Background="LightGray" Padding="5,2" CornerRadius="5">

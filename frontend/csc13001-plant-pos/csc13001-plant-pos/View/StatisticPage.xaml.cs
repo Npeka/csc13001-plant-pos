@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using csc13001_plant_pos.ViewModel;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
@@ -42,18 +43,12 @@ namespace csc13001_plant_pos.View
         }
     }
 
-    public class SalesViewModel
-    {
-
-
-        public SalesViewModel()
-        {
-
-        }
-    }
 
     public sealed partial class StatisticPage : Page, INotifyPropertyChanged
     {
+
+        public StatisticViewModel ViewModel { get; }
+
         public ObservableCollection<ISeries> Series { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -93,7 +88,7 @@ namespace csc13001_plant_pos.View
 
         public StatisticPage()
         {
-
+            ViewModel = App.GetService<StatisticViewModel>();
             this.InitializeComponent();
             DashboardVM = new DashboardViewModel();
             // Initialize chart data
@@ -169,7 +164,7 @@ namespace csc13001_plant_pos.View
             var months = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames
                          .Where(m => !string.IsNullOrEmpty(m))
                          .ToList();
-            var years = Enumerable.Range(1900, DateTime.Now.Year - 1899).Reverse().ToList();
+            var years = Enumerable.Range(2000, DateTime.Now.Year - 1999).Reverse().ToList();
 
             var monthComboBox = new ComboBox { ItemsSource = months, SelectedIndex = DateTime.Now.Month - 1 };
             var yearComboBox = new ComboBox { ItemsSource = years, SelectedItem = DateTime.Now.Year };

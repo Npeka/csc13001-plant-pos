@@ -5,6 +5,7 @@ using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.DTO.StaffDTO;
 using csc13001_plant_pos.Utils;
+using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.Service;
 
@@ -12,6 +13,8 @@ public interface IStaffService
 {
     Task<ApiResponse<StaffUserDto>?> GetStaffByIdAsync(int staffId);
     Task<ApiResponse<List<OrderListDto>>?> GetStaffOrdersAsync(int staffId);
+
+    Task<ApiResponse<List<User>>?> GetListStaffAsync();
 }
 
 public class StaffService : IStaffService
@@ -35,5 +38,12 @@ public class StaffService : IStaffService
         var response = await _httpClient.GetAsync($"orders/staff/{staffId}");
         var json = await response.Content.ReadAsStringAsync();
         return JsonUtils.Deserialize<ApiResponse<List<OrderListDto>>>(json);
+    }
+
+    public async Task<ApiResponse<List<User>>?> GetListStaffAsync()
+    {
+        var response = await _httpClient.GetAsync("staff");
+        var json = await response.Content.ReadAsStringAsync();
+        return JsonUtils.Deserialize<ApiResponse<List<User>>>(json);
     }
 }

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using csc13001_plant_pos.Model;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.CustomerDTO;
 using csc13001_plant_pos.DTO.OrderDTO;
@@ -14,6 +15,10 @@ public interface ICustomerService
     Task<string?> AddCustomerAsync(CustomerCreateDto customerDto);
     Task<ApiResponse<CustomerDto>?> GetCustomerByIdAsync(string customerId);
     Task<ApiResponse<List<OrderListDto>>?> GetCustomerOrdersAsync(string customerId);
+
+    Task<ApiResponse<List<Customer>>?> GetListCustomersAsync();
+
+    Task<bool?> DeleteCustomerAsync(string customerId);
 }
 
 public class CustomerService : ICustomerService
@@ -51,5 +56,25 @@ public class CustomerService : ICustomerService
         var response = await _httpClient.GetAsync($"orders/customer/{customerId}");
         var json = await response.Content.ReadAsStringAsync();
         return JsonUtils.Deserialize<ApiResponse<List<OrderListDto>>>(json);
+    }
+
+    public async Task<ApiResponse<List<Customer>>?> GetListCustomersAsync()
+    {
+        var response = await _httpClient.GetAsync("customers");
+        var json = await response.Content.ReadAsStringAsync();
+        return JsonUtils.Deserialize<ApiResponse<List<Customer>>>(json);
+    }
+
+    public async Task<bool?> DeleteCustomerAsync(string customerId)
+    {
+        var response = await _httpClient.DeleteAsync($"customers/{customerId}");
+        var json = await response.Content.ReadAsStringAsync();
+        var jsonDoc = JsonDocument.Parse(json);
+        var root = jsonDoc.RootElement;
+        if (root.GetProperty("status").GetString() == "success")
+        {
+            return true;
+        }
+        return false;
     }
 }

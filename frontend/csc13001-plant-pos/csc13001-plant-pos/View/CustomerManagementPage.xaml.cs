@@ -73,7 +73,6 @@ namespace csc13001_plant_pos.View
         {
             this.InitializeComponent();
 
-            // Khởi tạo dữ liệu mẫu
             Customers = new ObservableCollection<Customer>
             {
                 new Customer("Nguyễn Văn A", "01", 1000, "Vàng", new DateTime(2023, 1, 10), "0908123456" ),

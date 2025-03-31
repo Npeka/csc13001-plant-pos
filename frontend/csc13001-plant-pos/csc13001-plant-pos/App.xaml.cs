@@ -76,6 +76,7 @@ public partial class App : Application
                 services.AddSingleton<OrderViewModel>();
                 services.AddSingleton<WarehouseManagementViewModel>();
                 services.AddSingleton<DiscountManagementViewModel>();
+                services.AddSingleton<StatisticViewModel>();
             })
             .Build();
     }
