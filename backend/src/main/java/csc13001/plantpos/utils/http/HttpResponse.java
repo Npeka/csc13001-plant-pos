@@ -23,11 +23,11 @@ public class HttpResponse<T> {
     private final T data;
 
     public static <T> HttpResponse<T> success(String message, T data) {
-        return new HttpResponse<>(Status.thành_công, message, data);
+        return new HttpResponse<>(Status.success, message, data);
     }
 
     public static <T> HttpResponse<T> error(String message) {
-        return new HttpResponse<>(Status.lỗi, message, null);
+        return new HttpResponse<>(Status.error, message, null);
     }
 
     // 200 - OK
@@ -67,7 +67,7 @@ public class HttpResponse<T> {
     }
 
     public enum Status {
-        thành_công,
-        lỗi
+        success,
+        error,
     }
 }
