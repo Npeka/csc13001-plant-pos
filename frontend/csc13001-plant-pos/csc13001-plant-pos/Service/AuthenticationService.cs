@@ -71,17 +71,12 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<ApiResponse<object>?> ResetPasswordAsync(string username, string newPassword, string confirmPassword)
     {
-        if (newPassword != confirmPassword)
+        var payload = new
         {
-            return new ApiResponse<object>
-            {
-                Status = "error",
-                Message = "Passwords do not match",
-                Data = null
-            };
-        }
-
-        var payload = new { Username = username, NewPassword = newPassword };
+            username = username,
+            newPassword = newPassword,
+            confirmPassword = confirmPassword,
+        };
         var content = JsonUtils.ToJsonContent(payload);
 
         var response = await _httpClient.PostAsync("auth/reset-password", content);

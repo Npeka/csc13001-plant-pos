@@ -5,12 +5,12 @@ import org.springframework.context.ApplicationEvent;
 
 @Getter
 public class OtpEvent extends ApplicationEvent {
-    private final String recipient;
-    private final String message;
+    private final String email;
+    private final String otp;
 
-    public OtpEvent(String recipient, String message) {
-        super(recipient);
-        this.recipient = recipient;
-        this.message = message;
+    public OtpEvent(String email, String otp) {
+        super(email);
+        this.email = email;
+        this.otp = otp;
     }
 }

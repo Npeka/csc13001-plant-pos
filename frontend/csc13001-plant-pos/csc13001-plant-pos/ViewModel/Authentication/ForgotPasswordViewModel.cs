@@ -1,103 +1,117 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.Service;
+using Microsoft.UI;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 
 namespace csc13001_plant_pos.ViewModel.Authentication;
 
 public partial class ForgotPasswordViewModel : ObservableRecipient
 {
     private readonly IAuthenticationService _authService;
+    private DispatcherTimer _cooldownTimer;
+    private int _cooldownSeconds = 60;
+    public event EventHandler NavigateToResetPassword;
 
-    [ObservableProperty]
-    private string username = string.Empty;
-
-    [ObservableProperty]
-    private string otp = string.Empty;
-
-    [ObservableProperty]
-    private bool isSendOTPEnabled = true;
-
-    [ObservableProperty]
-    private string sendOTPButtonText = "Send OTP";
-
-    [ObservableProperty]
-    private string error = string.Empty;
-
-    [ObservableProperty]
-    private string errorColor = "Red";
-
-    [ObservableProperty]
-    private string errorOtp = string.Empty;
-
-    [ObservableProperty]
-    private bool isErrorVisible = false;
+    [ObservableProperty] public partial string Username { get; set; } = string.Empty;
+    [ObservableProperty] public partial string ErrorUsername { get; set; } = string.Empty;
+    [ObservableProperty] public partial SolidColorBrush ErrorUsernameColor { get; set; } = new SolidColorBrush(Colors.Red);
+    [ObservableProperty] public partial string Otp { get; set; } = string.Empty;
+    [ObservableProperty] public partial bool IsSendOTPEnabled { get; set; } = true;
+    [ObservableProperty] public partial string SendOTPButtonText { get; set; } = "Send OTP";
+    [ObservableProperty] public partial string ErrorColor { get; set; } = "Red";
+    [ObservableProperty] public partial string ErrorOtp { get; set; } = string.Empty;
+    [ObservableProperty] public partial bool IsErrorVisible { get; set; } = false;
 
     public ForgotPasswordViewModel(IAuthenticationService authService)
     {
         _authService = authService;
+        _cooldownTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1)
+        };
+        _cooldownTimer.Tick += CooldownTimer_Tick;
     }
 
     [RelayCommand]
-    public async Task<bool> SendOTP()
+    public async Task SendOTP()
     {
-        ErrorColor = "Red";
         if (string.IsNullOrWhiteSpace(Username))
         {
-            Error = "Please enter your username!";
-            return false;
+            ErrorUsername = "Please enter your username!";
+            ErrorUsernameColor = new SolidColorBrush(Colors.Red);
+            return;
         }
 
         IsSendOTPEnabled = false;
         var response = await _authService.ForgotPasswordAsync(Username);
+        Console.WriteLine(response);
 
         if (response == null)
         {
-            Error = "Server error! Please try again.";
+            ErrorUsername = ApiResponseHelper.MessageServerError();
+            ErrorUsernameColor = new SolidColorBrush(Colors.Red);
             IsSendOTPEnabled = true;
-            return false;
         }
-
-        if (response.Status == "success")
+        else if (response.IsSuccess())
         {
-            Error = "OTP sent successfully!";
-            ErrorColor = "Green";
-            return true;
+            ErrorUsername = "OTP sent successfully!";
+            ErrorUsernameColor = new SolidColorBrush(Colors.Green);
+            _cooldownTimer.Start();
         }
         else
         {
-            Error = response.Message;
             IsSendOTPEnabled = true;
-            return false;
+            ErrorUsername = response.Message;
+            ErrorUsernameColor = new SolidColorBrush(Colors.Red);
         }
     }
 
+    private void CooldownTimer_Tick(object sender, object e)
+    {
+        _cooldownSeconds--;
+
+        if (_cooldownSeconds <= 0)
+        {
+            _cooldownTimer.Stop();
+            _cooldownSeconds = 60;
+            IsSendOTPEnabled = true;
+            SendOTPButtonText = "Resend OTP";
+        }
+        else
+        {
+            SendOTPButtonText = $"Wait {_cooldownSeconds}s";
+        }
+    }
+
+
     [RelayCommand]
-    public async Task<bool> VerifyOTP()
+    public async Task VerifyOTP()
     {
         if (string.IsNullOrWhiteSpace(Otp))
         {
             ErrorOtp = "Please enter the OTP!";
-            return false;
+            return;
         }
 
         var response = await _authService.VerifyOTPAsync(Username, Otp);
 
         if (response == null)
         {
-            ErrorOtp = "Server error! Please try again.";
-            return false;
+            ErrorOtp = ApiResponseHelper.MessageServerError();
         }
-
-        if (response.Status == "success")
+        else if (response.IsSuccess())
         {
-            ErrorOtp = "";
-            return true;
+            ErrorOtp = string.Empty;
+            NavigateToResetPassword?.Invoke(this, EventArgs.Empty);
         }
         else
         {
-            ErrorOtp = response.Message; // Hiển thị lỗi từ API
-            return false;
+            ErrorOtp = response.Message;
         }
     }
 }

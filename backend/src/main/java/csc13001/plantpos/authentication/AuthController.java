@@ -1,9 +1,11 @@
 package csc13001.plantpos.authentication;
 
+import csc13001.plantpos.authentication.dtos.ForgotPassworDTO;
 import csc13001.plantpos.authentication.dtos.LoginDTO;
 import csc13001.plantpos.authentication.dtos.LoginResponseDTO;
 import csc13001.plantpos.authentication.dtos.RegisterDTO;
 import csc13001.plantpos.authentication.dtos.ResetPassworDTO;
+import csc13001.plantpos.authentication.dtos.VerifyOtpDTO;
 import csc13001.plantpos.utils.http.HttpResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -48,26 +50,43 @@ public class AuthController {
         return HttpResponse.ok("Login successful", loginResponseDTO);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
+        String tokenPrefix = "Bearer ";
+        if (token.startsWith(tokenPrefix)) {
+            token = token.substring(tokenPrefix.length());
+        }
+        authService.logout(token);
+        return HttpResponse.ok("Logout successful");
+    }
+
     @Operation(summary = "Forgot password", description = "Send password reset instructions to the user's email")
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(
-            @Parameter(description = "Username of the account") @RequestParam String username) {
-        authService.forgotPassword(username);
+            @Parameter(description = "Username of the account") @RequestBody @Validated ForgotPassworDTO forgotPassworDTO,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return HttpResponse.badRequest(bindingResult);
+        }
+
+        authService.forgotPassword(forgotPassworDTO.getUsername());
         return HttpResponse.ok("Password reset instructions sent to your email");
     }
 
     @Operation(summary = "Verify OTP", description = "Verify the OTP sent to the user's email")
     @PostMapping("/verify-otp")
     public ResponseEntity<?> verifyOtp(
-            @Parameter(description = "Username of the account") @RequestParam String username,
-            @Parameter(description = "OTP sent to the user's email") @RequestParam String otp) {
-        boolean result = authService.verifyOtp(username, otp);
-
-        if (!result) {
-            return HttpResponse.badRequest("Invalid Username or OTP");
+            @Parameter(description = "Username of the account") @RequestBody @Validated VerifyOtpDTO verifyOtpDTO,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return HttpResponse.badRequest(bindingResult);
         }
 
-        return HttpResponse.ok("OTP verified successfully", result);
+        String username = verifyOtpDTO.getUsername();
+        String otp = verifyOtpDTO.getOtp();
+        authService.verifyOtp(username, otp);
+
+        return HttpResponse.ok("OTP verified successfully");
     }
 
     @Operation(summary = "Reset password", description = "Reset the user's password using the provided details")

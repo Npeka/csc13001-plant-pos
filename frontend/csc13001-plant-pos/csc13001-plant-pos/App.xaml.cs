@@ -64,6 +64,8 @@ public partial class App : Application
 
                 // Views and ViewModels
                 services.AddTransient<LoginViewModel>();
+                services.AddTransient<ForgotPasswordViewModel>();
+                services.AddTransient<ResetPasswordViewModel>();
                 services.AddTransient<AuthenticationViewModel>();
                 services.AddTransient<StaffProfileViewModel>();
                 services.AddTransient<SaleViewModel>();
