@@ -53,7 +53,7 @@ public class Customer {
         this.gender = gender;
         this.email = email;
         this.loyaltyPoints = 0;
-        this.loyaltyCardType = CustomerType.None;
+        this.loyaltyCardType = CustomerType.All;
     }
 
     public Customer(Long customerId, String name, String phone, String email, Gender gender) {
@@ -63,7 +63,7 @@ public class Customer {
         this.gender = gender;
         this.email = email;
         this.loyaltyPoints = 0;
-        this.loyaltyCardType = CustomerType.None;
+        this.loyaltyCardType = CustomerType.All;
     }
 
     public void addLoyaltyPointsBySpending(BigDecimal spending) {

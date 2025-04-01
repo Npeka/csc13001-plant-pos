@@ -47,8 +47,8 @@ public class DiscountProgramController {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
-
-        discountProgramService.updateDiscountProgram(id, discountProgram);
+        discountProgram.setDiscountId(id);
+        discountProgramService.updateDiscountProgram(discountProgram);
         return HttpResponse.ok("Cập nhật chương trình giảm giá thành công");
     }
 

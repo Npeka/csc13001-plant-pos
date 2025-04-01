@@ -52,9 +52,10 @@ public class DiscountProgramService {
                 .orElseThrow(DiscountException.DiscountNotFoundException::new);
     }
 
-    public void updateDiscountProgram(Long id, DiscountProgram discountProgram) {
-        DiscountProgram existingDiscount = discountProgramRepository.findById(id)
-                .orElseThrow(DiscountException.DiscountNotFoundException::new);
+    public void updateDiscountProgram(DiscountProgram discountProgram) {
+        if (!discountProgramRepository.existsById(discountProgram.getDiscountId())) {
+            throw new DiscountException.DiscountNotFoundException();
+        }
 
         Date startDate = discountProgram.getStartDate();
         Date endDate = discountProgram.getEndDate();
@@ -62,7 +63,7 @@ public class DiscountProgramService {
             throw new DiscountException.DiscountInvalidDateException();
         }
 
-        discountProgramRepository.save(existingDiscount);
+        discountProgramRepository.save(discountProgram);
     }
 
     public void deleteDiscountProgram(Long id) {
