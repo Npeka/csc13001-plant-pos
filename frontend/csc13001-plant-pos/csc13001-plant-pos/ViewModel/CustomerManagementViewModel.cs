@@ -7,25 +7,26 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using csc13001_plant_pos.DTO.CustomerDTO;
 
 namespace csc13001_plant_pos.ViewModel
 {
     public partial class CustomerManagementViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<Customer> customerList;
+        private ObservableCollection<CustomerDto> customerList;
 
         [ObservableProperty]
-        private ObservableCollection<Customer> filteredCustomerList;
+        public ObservableCollection<CustomerDto> filteredCustomerList;
 
         [ObservableProperty]
-        private int newCustomersThisMonth;
+        public int newCustomersThisMonth;
 
         [ObservableProperty]
-        private int premiumCustomers;
+        public int premiumCustomers;
 
         [ObservableProperty]
-        private int totalCustomers;
+        public int totalCustomers;
 
         [ObservableProperty]
         private string searchQuery;
@@ -44,21 +45,6 @@ namespace csc13001_plant_pos.ViewModel
             LoadCustomersDataAsync();
         }
 
-        public async void LoadCustomersDataAsync()
-        {
-
-            var response = await _customerService.GetListCustomersAsync();
-            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
-            if (response?.Status == "success" && response.Data != null)
-            {
-                customerList = new ObservableCollection<Customer>(response.Data);
-                filteredCustomerList = new ObservableCollection<Customer>(response.Data);
-                totalCustomers = customerList.Count;
-                //newCustomersThisMonth = customerList.Count(c => c.CreatedAt.Month == DateTime.Now.Month);
-                premiumCustomers = customerList.Count(c => c.LoyaltyCardType == "Premium");
-                searchQuery = "";
-            }
-        }
         public void UpdateStatistics()
         {
             // Cập nhật tổng số khách hàng
@@ -76,7 +62,20 @@ namespace csc13001_plant_pos.ViewModel
 
             // Cập nhật số khách hàng cao cấp (Vàng, Bạch Kim, Kim Cương)
             PremiumCustomers = customerList.Count(c =>
-                c.LoyaltyCardType == "Vàng" || c.LoyaltyCardType == "Bạch Kim" || c.LoyaltyCardType == "Kim Cương");
+                c.Customer.LoyaltyCardType == "Gold" || c.Customer.LoyaltyCardType == "Platinum" || c.Customer.LoyaltyCardType == "Diamond");
+        }
+        public async void LoadCustomersDataAsync()
+        {
+
+            var response = await _customerService.GetListCustomersAsync();
+            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
+            if (response?.Status == "success" && response.Data != null)
+            {
+                customerList = new ObservableCollection<CustomerDto>(response.Data);
+                filteredCustomerList = new ObservableCollection<CustomerDto>(response.Data);
+                searchQuery = "";
+                UpdateStatistics();
+            }
         }
 
         public void ApplyFilters()
@@ -86,8 +85,8 @@ namespace csc13001_plant_pos.ViewModel
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 filtered = filtered.Where(emp =>
-                emp.Name.ToLower().Contains(searchQuery) ||
-                emp.CustomerId.ToString().ToLower().Contains(searchQuery));
+                emp.Customer.Name.ToLower().Contains(searchQuery) ||
+                emp.Customer.CustomerId.ToString().ToLower().Contains(searchQuery));
             }
 
             //if (startDateQuery != null)
@@ -97,7 +96,7 @@ namespace csc13001_plant_pos.ViewModel
 
             if (!string.IsNullOrEmpty(rankQuery))
             {
-                filtered = filtered.Where(emp => emp.LoyaltyCardType.ToLower() == rankQuery);
+                filtered = filtered.Where(emp => emp.Customer.LoyaltyCardType.ToLower() == rankQuery);
             }
         }
 
@@ -114,17 +113,17 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
-        public void RankFilter_SelectionChanged(string value)
+        public void RankFilter_SelectionChanged()
         {
             ApplyFilters();
         }
 
-        public void DateFilter_DateChanged(DateTime value)
+        public void DateFilter_DateChanged()
         {
             ApplyFilters();
         }
 
-        public void SearchBox_TextChanged(string value)
+        public void SearchBox_TextChanged()
         {
             ApplyFilters();
         }
@@ -188,14 +187,14 @@ namespace csc13001_plant_pos.ViewModel
             //ShowUpdateCustomerDialog(customer);
         }
 
-        public async void DeleteCustomer_Click(Customer customer)
+        public async void DeleteCustomer_Click(CustomerDto customer)
         {
 
             // Confirm deletion with the user
             ContentDialog confirmDialog = new ContentDialog
             {
                 Title = "Xác nhận xóa khách hàng",
-                Content = $"Bạn có chắc chắn muốn xóa khách hàng {customer.Name} (ID: {customer.CustomerId})?",
+                Content = $"Bạn có chắc chắn muốn xóa khách hàng {customer.Customer.Name} (ID: {customer.Customer.CustomerId})?",
                 PrimaryButtonText = "Xóa",
                 CloseButtonText = "Hủy",
                 DefaultButton = ContentDialogButton.Close,

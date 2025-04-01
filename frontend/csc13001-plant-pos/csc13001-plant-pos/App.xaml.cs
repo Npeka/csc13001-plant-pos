@@ -61,6 +61,7 @@ public partial class App : Application
                 services.AddSingleton<IOrderService, OrderService>();
                 services.AddSingleton<IProductService, ProductService>();
                 services.AddSingleton<IStaffService, StaffService>();
+               
 
                 // Views and ViewModels
                 services.AddTransient<LoginViewModel>();
@@ -77,6 +78,8 @@ public partial class App : Application
                 services.AddSingleton<WarehouseManagementViewModel>();
                 services.AddSingleton<DiscountManagementViewModel>();
                 services.AddSingleton<StatisticViewModel>();
+                services.AddSingleton<StaffManagementViewModel>();
+                services.AddSingleton<CustomerManagementViewModel>();
             })
             .Build();
     }

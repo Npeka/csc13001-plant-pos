@@ -13,10 +13,10 @@ namespace csc13001_plant_pos.ViewModel
     public partial class StaffManagementViewModel: ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<User> staffList;
+        public ObservableCollection<User> staffList;
 
         [ObservableProperty]
-        private ObservableCollection<User> filteredStaffList;
+        public ObservableCollection<User> filteredStaffList;
 
         [ObservableProperty]
         private string searchQuery;
@@ -27,6 +27,8 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private string statusQuery;
 
+        public string FilteredStaffCount => $"{filteredStaffList?.Count ?? 0} nhân viên";
+
         private readonly IStaffService _staffService;
 
         public StaffManagementViewModel(IStaffService staffService)
@@ -34,7 +36,15 @@ namespace csc13001_plant_pos.ViewModel
             _staffService = staffService;
             LoadStaffsDataAsync();
         }
-
+        public void PrintFilteredStaffList()
+        {
+            // Print each user's details in the filteredStaffList to debug
+            System.Diagnostics.Debug.WriteLine("Filtered Staff List:");
+            foreach (var user in filteredStaffList)
+            {
+                System.Diagnostics.Debug.WriteLine($"ID: {user.UserId}, FullName: {user.Fullname}, StartDate: {user.StartDate}, Status: {user.Status}");
+            }
+        }
         public async void LoadStaffsDataAsync()
         {
 
@@ -44,6 +54,7 @@ namespace csc13001_plant_pos.ViewModel
             {
                 staffList = new ObservableCollection<User>(response.Data);
                 filteredStaffList = new ObservableCollection<User>(response.Data);
+                PrintFilteredStaffList();
             }
         }
 
@@ -123,17 +134,17 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
-        public void SearchBox_TextChanged(string value)
+        public void SearchBox_TextChanged()
         {
             ApplyFilters();
         }
 
-        public void DateFilter_DateChanged(Date value)
+        public void DateFilter_DateChanged()
         {
             ApplyFilters();
         }
 
-        public void StatusFilter_SelectionChanged(string value)
+        public void StatusFilter_SelectionChanged()
         {
             ApplyFilters();
         }

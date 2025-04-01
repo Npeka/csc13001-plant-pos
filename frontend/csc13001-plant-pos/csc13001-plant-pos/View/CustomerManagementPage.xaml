@@ -29,7 +29,7 @@
             <Border Background="#0078D7" CornerRadius="8" Margin="0,0,5,0">
                 <StackPanel Padding="15">
                     <TextBlock Text="Tổng số khách hàng" Foreground="White" FontSize="14"/>
-                    <TextBlock x:Name="TotalCustomersCount" Text="{x:Bind TotalCustomers, Mode=OneWay}" 
+                    <TextBlock x:Name="TotalCustomersCount" Text="{x:Bind ViewModel.totalCustomers, Mode=OneWay}" 
                            Foreground="White" FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
@@ -38,7 +38,7 @@
             <Border Background="#107C10" CornerRadius="8" Grid.Column="1" Margin="5,0,5,0">
                 <StackPanel Padding="15">
                     <TextBlock Text="Khách hàng mới trong tháng" Foreground="White" FontSize="14"/>
-                    <TextBlock x:Name="NewCustomersCount" Text="{x:Bind NewCustomersThisMonth, Mode=OneWay}" 
+                    <TextBlock x:Name="NewCustomersCount" Text="{x:Bind ViewModel.newCustomersThisMonth, Mode=OneWay}" 
                            Foreground="White" FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
@@ -47,7 +47,7 @@
             <Border Background="#5C2D91" CornerRadius="8" Grid.Column="2" Margin="5,0,0,0">
                 <StackPanel Padding="15">
                     <TextBlock Text="Khách hàng cao cấp" Foreground="White" FontSize="14"/>
-                    <TextBlock x:Name="PremiumCustomersCount" Text="{x:Bind PremiumCustomers, Mode=OneWay}" 
+                    <TextBlock x:Name="PremiumCustomersCount" Text="{x:Bind ViewModel.premiumCustomers, Mode=OneWay}" 
                            Foreground="White" FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
@@ -67,8 +67,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox x:Name="SearchBox" Grid.Column="0" PlaceholderText="Tìm kiếm theo tên, ID..." 
-                     TextChanged="SearchBox_TextChanged"/>
+                <TextBox x:Name="SearchBox" Grid.Column="0" PlaceholderText="Tìm kiếm theo tên, ID..."
+                         Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay}"
+                            TextChanged="{x:Bind ViewModel.SearchBox_TextChanged, Mode=OneWay}"/>
 
                 <Button x:Name="AddNewCustomer" Grid.Column="1" Margin="10,0,0,0"
                     Content="+ Thêm khách hàng"/>
@@ -87,26 +88,25 @@
                 <!-- Bộ lọc ngày -->
                 <CalendarDatePicker x:Name="DateFilter"
                 PlaceholderText="Ngày đăng ký"
-                DateChanged="DateFilter_DateChanged"
+                DateChanged="{x:Bind ViewModel.DateFilter_DateChanged}"
                 Width="180"
                 VerticalAlignment="Center"
                 Grid.Column="0"/>
 
                 <!-- Bộ lọc hạng -->
                 <ComboBox x:Name="RankFilter" Width="150" PlaceholderText="Chọn hạng"
-                      SelectionChanged="RankFilter_SelectionChanged"
+                      SelectionChanged="{x:Bind ViewModel.RankFilter_SelectionChanged}"
                       VerticalAlignment="Center"
                       Grid.Column="1" Margin="10,0,0,0">
-                    <ComboBoxItem Content="Tất cả"/>
-                    <ComboBoxItem Content="Đồng"/>
-                    <ComboBoxItem Content="Bạc"/>
-                    <ComboBoxItem Content="Vàng"/>
-                    <ComboBoxItem Content="Bạch Kim"/>
-                    <ComboBoxItem Content="Kim Cương"/>
+                    <ComboBoxItem Content="All"/>
+                    <ComboBoxItem Content="None"/>
+                    <ComboBoxItem Content="Bronze"/>
+                    <ComboBoxItem Content="Silver"/>
+                    <ComboBoxItem Content="Gold"/>
+                    <ComboBoxItem Content="Platinum"/>
                 </ComboBox>
                 <!-- Bộ lọc trạng thái -->
                 <ComboBox x:Name="StatusFilter" Width="150" PlaceholderText="Trạng thái"
-                      SelectionChanged="StatusFilter_SelectionChanged"
                       VerticalAlignment="Center"
                       Grid.Column="2" Margin="10,0,0,0">
                     <ComboBoxItem Content="Tất cả"/>
@@ -115,7 +115,7 @@
                 </ComboBox>
 
                 <!-- Nút Đặt lại -->
-                <Button Content="Đặt lại bộ lọc" Click="ResetFilter_Click" 
+                <Button Content="Đặt lại bộ lọc" Click="{x:Bind ViewModel.ResetFilter_Click}"
                     VerticalAlignment="Center"
                     Grid.Column="4"/>
             </Grid>
@@ -123,35 +123,35 @@
 
         <!-- Danh sách khách hàng -->
         <Grid Grid.Row="2">
-            <controls:DataGrid x:Name="CustomersGrid" ItemsSource="{x:Bind FilteredUsers, Mode=OneWay}" 
+            <controls:DataGrid x:Name="CustomersGrid" ItemsSource="{x:Bind ViewModel.filteredCustomerList, Mode=OneWay}" 
                            AutoGenerateColumns="False" HeadersVisibility="Column" 
                            SelectionMode="Single" IsReadOnly="True"
                            GridLinesVisibility="Horizontal"
                            >
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="70"/>
-                    <controls:DataGridTextColumn Header="Họ và tên" Binding="{Binding Name}" Width="*"/>
-                    <controls:DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="130"/>
-                    <controls:DataGridTextColumn Header="Điểm số" Binding="{Binding Points}" Width="80"/>
+                    <controls:DataGridTextColumn Header="ID" Binding="{Binding Custmer.CustomerId}" Width="70"/>
+                    <controls:DataGridTextColumn Header="Họ và tên" Binding="{Binding Custmer.Name}" Width="*"/>
+                    <controls:DataGridTextColumn Header="Số điện thoại" Binding="{Binding Custmer.Phone}" Width="130"/>
+                    <controls:DataGridTextColumn Header="Điểm số" Binding="{Binding Custmer.LoyaltyPoints}" Width="80"/>
                     <controls:DataGridTemplateColumn Header="Hạng thẻ" Width="120">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Border Padding="5" CornerRadius="10" BorderThickness="0"
          Margin="5,2">
-                                    <TextBlock Text="{Binding Rank}" FontWeight="SemiBold" 
-               Foreground="{Binding RankColor}" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Custmer.LoyaltyCardType}" FontWeight="SemiBold" 
+                HorizontalAlignment="Center"/>
                                 </Border>
                             </DataTemplate>
 
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
-                    <controls:DataGridTextColumn Header="Ngày đăng ký" Binding="{Binding CreatedAt}" Width="150"/>
+                    
                     <controls:DataGridTemplateColumn Header="Thao tác" Width="180">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <!-- Button Cập nhật -->
-                                    <Button Click="UpdateCustomer_Click" Margin="0,0,5,0"
+                                    <Button  Margin="0,0,5,0"
             Background="#2196F3" Foreground="White" Padding="8,4">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Sửa" Margin="0,0,5,0" VerticalAlignment="Center"/>
@@ -160,7 +160,7 @@
                                     </Button>
 
                                     <!-- Button Xóa -->
-                                    <Button Click="DeleteCustomer_Click" Margin="5,0,0,0"
+                                    <Button Margin="5,0,0,0"
             Background="#757575" Foreground="White" Padding="8,4">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Xóa" Margin="0,0,5,0" VerticalAlignment="Center"/>

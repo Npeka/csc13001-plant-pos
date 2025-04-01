@@ -16,7 +16,7 @@ public interface ICustomerService
     Task<ApiResponse<CustomerDto>?> GetCustomerByIdAsync(string customerId);
     Task<ApiResponse<List<OrderListDto>>?> GetCustomerOrdersAsync(string customerId);
 
-    Task<ApiResponse<List<Customer>>?> GetListCustomersAsync();
+    Task<ApiResponse<List<CustomerDto>>?> GetListCustomersAsync();
 
     Task<bool?> DeleteCustomerAsync(string customerId);
 }
@@ -58,11 +58,11 @@ public class CustomerService : ICustomerService
         return JsonUtils.Deserialize<ApiResponse<List<OrderListDto>>>(json);
     }
 
-    public async Task<ApiResponse<List<Customer>>?> GetListCustomersAsync()
+    public async Task<ApiResponse<List<CustomerDto>>?> GetListCustomersAsync()
     {
         var response = await _httpClient.GetAsync("customers");
         var json = await response.Content.ReadAsStringAsync();
-        return JsonUtils.Deserialize<ApiResponse<List<Customer>>>(json);
+        return JsonUtils.Deserialize<ApiResponse<List<CustomerDto>>>(json);
     }
 
     public async Task<bool?> DeleteCustomerAsync(string customerId)
