@@ -65,13 +65,13 @@
                     <MenuFlyout>
                         <MenuFlyoutItem
                             Click="OnDateRangeSelected"
-                            Text="Last 7 days" />
+                            Text="Tuần trước" />
                         <MenuFlyoutItem
                             Click="OnDateRangeSelected"
-                            Text="Last month" />
+                            Text="Tháng trước" />
                         <MenuFlyoutItem
                             Click="OnCustomDatePicked"
-                            Text="Pick a date..." />
+                            Text="Chọn ngày..." />
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
@@ -95,7 +95,7 @@
                                 Glyph="&#xE8DE;" />
                             <TextBlock
                                 VerticalAlignment="Center"
-                                Text="Export" />
+                                Text="Xuất báo cáo" />
                         </StackPanel>
                     </DataTemplate>
                 </Button.ContentTemplate>
@@ -136,7 +136,7 @@
                         VerticalAlignment="Center"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Text="Revenue" />
+                        Text="Lợi nhuận" />
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
@@ -194,7 +194,7 @@
                         VerticalAlignment="Center"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Text="Orders" />
+                        Text="Số đơn hàng" />
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
@@ -251,7 +251,7 @@
                         VerticalAlignment="Center"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Text="Average" />
+                        Text="Doang thu" />
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
@@ -305,7 +305,7 @@
                 Margin="0,0,0,15"
                 FontSize="16"
                 FontWeight="SemiBold"
-                Text="Sales chart" />
+                Text="Biểu đồ doanh thu" />
 
             <Grid
                 Grid.Row="1">

@@ -60,16 +60,16 @@ namespace csc13001_plant_pos.View
         public ObservableCollection<Axis> YAxes { get; set; }
         public ObservableCollection<Product1> BestSellingProducts { get; } = new()
     {
-        new Product1 { ProductID = "SP001", Name = "Laptop", QuantitySold = 50 },
-        new Product1 { ProductID = "SP002", Name = "Phone", QuantitySold = 30 },
-        new Product1 { ProductID = "SP003", Name = "Tablet", QuantitySold = 20 }
+        new Product1 { ProductID = "1", Name = "Cây Lưỡi Hổ", QuantitySold = 50 },
+        new Product1 { ProductID = "2", Name = "Cây Kim Tiền", QuantitySold = 30 },
+        new Product1 { ProductID = "3", Name = "Cây Trầu Bà", QuantitySold = 20 }
     };
 
         public ObservableCollection<Product1> LowStockProducts { get; } = new()
     {
-        new Product1 { ProductID = "SP004", Name = "Mouse", RemainingStock = 5 },
-        new Product1 { ProductID = "SP005", Name = "Keyboard", RemainingStock = 3 },
-        new Product1 { ProductID = "SP006", Name = "Monitor", RemainingStock = 2 }
+        new Product1 { ProductID = "SP004", Name = "Cây Sen Đá", RemainingStock = 5 },
+    new Product1 { ProductID = "SP005", Name = "Cây Phát Lộc", RemainingStock = 3 },
+    new Product1 { ProductID = "SP006", Name = "Cây Lan Ý", RemainingStock = 2 }
     };
         public DashboardViewModel DashboardVM { get; set; }
         private string _selectedDateRange = "Last 7 days";
