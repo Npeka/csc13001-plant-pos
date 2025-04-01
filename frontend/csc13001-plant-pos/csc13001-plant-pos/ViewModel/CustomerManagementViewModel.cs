@@ -56,6 +56,7 @@ namespace csc13001_plant_pos.ViewModel
                 totalCustomers = customerList.Count;
                 //newCustomersThisMonth = customerList.Count(c => c.CreatedAt.Month == DateTime.Now.Month);
                 premiumCustomers = customerList.Count(c => c.LoyaltyCardType == "Premium");
+                searchQuery = "";
             }
         }
         public void UpdateStatistics()
@@ -98,8 +99,6 @@ namespace csc13001_plant_pos.ViewModel
             {
                 filtered = filtered.Where(emp => emp.LoyaltyCardType.ToLower() == rankQuery);
             }
-
-
         }
 
         public void ResetFilter_Click()
