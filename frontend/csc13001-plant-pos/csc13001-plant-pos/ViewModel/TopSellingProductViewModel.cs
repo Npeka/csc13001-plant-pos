@@ -8,16 +8,18 @@ using csc13001_plant_pos.Service;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using csc13001_plant_pos.DTO.CustomerDTO;
+using csc13001_plant_pos.DTO.ProductDTO;
 
 namespace csc13001_plant_pos.ViewModel
 {
     public partial class TopSellingProductViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private ObservableCollection<Product> topSellingProducts;
 
         [ObservableProperty]
-        private ObservableCollection<Product> filteredSellingProducts;
+        private ObservableCollection<ProductDto> topSellingProducts;
+
+        [ObservableProperty]
+        private ObservableCollection<ProductDto> filteredSellingProducts;
 
         [ObservableProperty]
         private string searchQuery = "";
@@ -48,8 +50,8 @@ namespace csc13001_plant_pos.ViewModel
             System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
-                topSellingProducts = new ObservableCollection<Product>(response.Data);
-                filteredSellingProducts = new ObservableCollection<Product>(response.Data);
+                topSellingProducts = new ObservableCollection<ProductDto>(response.Data);
+                filteredSellingProducts = new ObservableCollection<ProductDto>(response.Data);
             }
         }
 
@@ -86,11 +88,10 @@ namespace csc13001_plant_pos.ViewModel
         {
             // do nothing
         }
-        //partial void OnSearchQueryChanged(string value)
-        //{
-        //    Debug.WriteLine($"SearchQuery to '{value}'");
-        //    ApplyFilters();
-        //}
+        partial void OnSearchQueryChanged(string value)
+        {
+            Debug.WriteLine($"SearchQuery to '{value}'");
+        }
 
 
     }

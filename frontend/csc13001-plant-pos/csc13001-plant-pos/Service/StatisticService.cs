@@ -6,12 +6,13 @@ using csc13001_plant_pos.DTO.StaffDTO;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.Utils;
 using csc13001_plant_pos.Model;
+using csc13001_plant_pos.DTO.ProductDTO;
 
 namespace csc13001_plant_pos.Service;
 
 public interface IStatisticService
 {
-    Task<ApiResponse<List<Product>>?> GetProductsAsync();
+    Task<ApiResponse<List<ProductDto>>?> GetProductsAsync();
 
     Task<ApiResponse<StatisticReviewDto?>> GetListReview();
 }
@@ -25,11 +26,11 @@ public class StatisticService : IStatisticService
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponse<List<Product>>?> GetProductsAsync()
+    public async Task<ApiResponse<List<ProductDto>>?> GetProductsAsync()
     {
         var response = await _httpClient.GetAsync("statistics/products");
         var json = await response.Content.ReadAsStringAsync();
-        return JsonUtils.Deserialize<ApiResponse<List<Product>>>(json);
+        return JsonUtils.Deserialize<ApiResponse<List<ProductDto>>>(json);
     }
 
     public async Task<ApiResponse<StatisticReviewDto?>> GetListReview()
