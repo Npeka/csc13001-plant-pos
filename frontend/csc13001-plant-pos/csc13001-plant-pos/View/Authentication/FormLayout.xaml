@@ -27,6 +27,7 @@
         BorderBrush="{StaticResource AccentAAFillColorDisabled}"
         BorderThickness="1"
         CornerRadius="15">
-        <ContentPresenter Content="{x:Bind Child, Mode=OneWay}" />
+        <ContentPresenter
+            Content="{x:Bind Child, Mode=OneWay}" />
     </Border>
 </UserControl>

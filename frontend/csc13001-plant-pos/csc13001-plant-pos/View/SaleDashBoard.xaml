@@ -14,6 +14,7 @@
             x:Name="navigation"
             IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False"
+            OpenPaneLength="200"
             ItemInvoked="navigation_ItemInvoked"
             SelectionChanged="navigation_SelectionChanged">
 
@@ -28,9 +29,12 @@
                     Icon="Contact"
                     Tag="StaffProfilePage" />
 
-                <NavigationViewItem Content="Quản lý kho" Tag="WarehouseManagementPage">
+                <NavigationViewItem
+                    Content="Quản lý kho"
+                    Tag="WarehouseManagementPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEA0D;" />
+                        <FontIcon
+                            Glyph="&#xEA0D;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
@@ -41,14 +45,18 @@
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Đăng xuất" Tag="Logout">
+                <NavigationViewItem
+                    Content="Đăng xuất"
+                    Tag="Logout">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8DE;" />
+                        <FontIcon
+                            Glyph="&#xE8DE;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>
 
-            <Frame x:Name="saleFrame" />
+            <Frame
+                x:Name="saleFrame" />
         </NavigationView>
     </Grid>
 </Page>

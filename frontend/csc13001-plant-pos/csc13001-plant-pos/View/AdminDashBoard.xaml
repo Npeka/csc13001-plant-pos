@@ -15,7 +15,8 @@
             IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False"
             ItemInvoked="navigation_ItemInvoked"
-            SelectionChanged="navigation_SelectionChanged">
+                        OpenPaneLength="200"
+                        SelectionChanged="navigation_SelectionChanged">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Thống kê" Tag="StatisticPage">

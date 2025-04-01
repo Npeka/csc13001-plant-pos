@@ -7,25 +7,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid
-        Width="1200"
-        Height="600"
-        Padding="20">
+        Padding="24"
+        RowSpacing="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
         </Grid.RowDefinitions>
 
+        <ui:PageTitle
+            Title="Quản lý Khách hàng"
+            Grid.Row="0" />
+
         <!--  Thông tin tổng quan (Dashboard)  -->
-        <Grid Grid.Row="0" Margin="0,0,0,15">
+        <Grid
+            Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
-                <ColumnDefinition Width="250" />
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition
+                    Width="250" />
+                <ColumnDefinition
+                    Width="250" />
+                <ColumnDefinition
+                    Width="250" />
             </Grid.ColumnDefinitions>
 
             <!--  Tổng số khách hàng  -->
@@ -33,7 +46,8 @@
                 Margin="0,0,5,0"
                 Background="#0078D7"
                 CornerRadius="8">
-                <StackPanel Padding="15">
+                <StackPanel
+                    Padding="15">
                     <TextBlock
                         FontSize="14"
                         Foreground="White"
@@ -54,7 +68,8 @@
                 Margin="5,0,5,0"
                 Background="#107C10"
                 CornerRadius="8">
-                <StackPanel Padding="15">
+                <StackPanel
+                    Padding="15">
                     <TextBlock
                         FontSize="14"
                         Foreground="White"
@@ -75,7 +90,8 @@
                 Margin="5,0,0,0"
                 Background="#5C2D91"
                 CornerRadius="8">
-                <StackPanel Padding="15">
+                <StackPanel
+                    Padding="15">
                     <TextBlock
                         FontSize="14"
                         Foreground="White"
@@ -92,17 +108,24 @@
         </Grid>
 
         <!--  Khu vực tìm kiếm và lọc  -->
-        <Grid Grid.Row="1" Margin="0,0,0,10">
+        <Grid
+            Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
             </Grid.RowDefinitions>
 
             <!--  Hàng 1: Thanh tìm kiếm  -->
-            <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid
+                Grid.Row="0"
+                Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBox
@@ -120,13 +143,19 @@
             </Grid>
 
             <!--  Hàng 2: Các bộ lọc  -->
-            <Grid Grid.Row="1">
+            <Grid
+                Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <!--  Bộ lọc ngày  -->
@@ -147,12 +176,18 @@
                     VerticalAlignment="Center"
                     PlaceholderText="Chọn hạng"
                     SelectionChanged="{x:Bind ViewModel.RankFilter_SelectionChanged}">
-                    <ComboBoxItem Content="All" />
-                    <ComboBoxItem Content="None" />
-                    <ComboBoxItem Content="Bronze" />
-                    <ComboBoxItem Content="Silver" />
-                    <ComboBoxItem Content="Gold" />
-                    <ComboBoxItem Content="Platinum" />
+                    <ComboBoxItem
+                        Content="All" />
+                    <ComboBoxItem
+                        Content="None" />
+                    <ComboBoxItem
+                        Content="Bronze" />
+                    <ComboBoxItem
+                        Content="Silver" />
+                    <ComboBoxItem
+                        Content="Gold" />
+                    <ComboBoxItem
+                        Content="Platinum" />
                 </ComboBox>
                 <!--  Bộ lọc trạng thái  -->
                 <ComboBox
@@ -162,9 +197,12 @@
                     Margin="10,0,0,0"
                     VerticalAlignment="Center"
                     PlaceholderText="Trạng thái">
-                    <ComboBoxItem Content="Tất cả" />
-                    <ComboBoxItem Content="Hoạt động" />
-                    <ComboBoxItem Content="Đã khóa" />
+                    <ComboBoxItem
+                        Content="Tất cả" />
+                    <ComboBoxItem
+                        Content="Hoạt động" />
+                    <ComboBoxItem
+                        Content="Đã khóa" />
                 </ComboBox>
 
                 <!--  Nút Đặt lại  -->
@@ -177,7 +215,8 @@
         </Grid>
 
         <!--  Danh sách khách hàng  -->
-        <Grid Grid.Row="2">
+        <Grid
+            Grid.Row="3">
             <controls:DataGrid
                 x:Name="CustomersGrid"
                 AutoGenerateColumns="False"
@@ -203,7 +242,9 @@
                         Width="80"
                         Binding="{Binding Customer.LoyaltyPoints}"
                         Header="Điểm số" />
-                    <controls:DataGridTemplateColumn Width="120" Header="Hạng thẻ">
+                    <controls:DataGridTemplateColumn
+                        Width="120"
+                        Header="Hạng thẻ">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Border
@@ -221,22 +262,29 @@
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
 
-                    <controls:DataGridTemplateColumn Width="180" Header="Thao tác">
+                    <controls:DataGridTemplateColumn
+                        Width="180"
+                        Header="Thao tác">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
                                     <!--  Button Cập nhật  -->
                                     <Button
                                         Margin="0,0,5,0"
                                         Padding="8,4"
                                         Background="#2196F3"
                                         Foreground="White">
-                                        <StackPanel Orientation="Horizontal">
+                                        <StackPanel
+                                            Orientation="Horizontal">
                                             <TextBlock
                                                 Margin="0,0,5,0"
                                                 VerticalAlignment="Center"
                                                 Text="Sửa" />
-                                            <FontIcon VerticalAlignment="Center" Glyph="&#xE70F;" />
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                Glyph="&#xE70F;" />
                                         </StackPanel>
                                     </Button>
 
@@ -246,12 +294,15 @@
                                         Padding="8,4"
                                         Background="#757575"
                                         Foreground="White">
-                                        <StackPanel Orientation="Horizontal">
+                                        <StackPanel
+                                            Orientation="Horizontal">
                                             <TextBlock
                                                 Margin="0,0,5,0"
                                                 VerticalAlignment="Center"
                                                 Text="Xóa" />
-                                            <FontIcon VerticalAlignment="Center" Glyph="&#xE74D;" />
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                Glyph="&#xE74D;" />
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>

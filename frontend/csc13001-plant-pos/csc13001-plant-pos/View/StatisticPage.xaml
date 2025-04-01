@@ -8,24 +8,41 @@
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Resources>
-        <conv:PercentageToForegroundConverter x:Key="PercentageToForegroundConverter" />
+        <conv:PercentageToForegroundConverter
+            x:Key="PercentageToForegroundConverter" />
     </Page.Resources>
-    <Grid Padding="20">
+    <Grid
+        Padding="24"
+        RowSpacing="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
         </Grid.RowDefinitions>
 
+        <ui:PageTitle
+            Title="Thống kê"
+            Grid.Column="0" />
+
         <!--  Header with date range and export button  -->
-        <Grid Grid.Row="0" Margin="0,0,0,20">
+        <Grid
+            Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Button
@@ -33,16 +50,28 @@
                 Padding="8,5"
                 BorderBrush="#E0E0E0"
                 BorderThickness="1">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon FontSize="12" Glyph="&#xE787;" />
-                    <TextBlock VerticalAlignment="Center" Text="{Binding SelectedDateRange, Mode=TwoWay}" />
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <FontIcon
+                        FontSize="12"
+                        Glyph="&#xE787;" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Text="{Binding SelectedDateRange, Mode=TwoWay}" />
                 </StackPanel>
 
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Click="OnDateRangeSelected" Text="Last 7 days" />
-                        <MenuFlyoutItem Click="OnDateRangeSelected" Text="Last month" />
-                        <MenuFlyoutItem Click="OnCustomDatePicked" Text="Pick a date..." />
+                        <MenuFlyoutItem
+                            Click="OnDateRangeSelected"
+                            Text="Last 7 days" />
+                        <MenuFlyoutItem
+                            Click="OnDateRangeSelected"
+                            Text="Last month" />
+                        <MenuFlyoutItem
+                            Click="OnCustomDatePicked"
+                            Text="Pick a date..." />
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
@@ -58,9 +87,15 @@
                 Content="Export">
                 <Button.ContentTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <FontIcon FontSize="12" Glyph="&#xE8DE;" />
-                            <TextBlock VerticalAlignment="Center" Text="Export" />
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <FontIcon
+                                FontSize="12"
+                                Glyph="&#xE8DE;" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="Export" />
                         </StackPanel>
                     </DataTemplate>
                 </Button.ContentTemplate>
@@ -68,11 +103,15 @@
         </Grid>
 
         <!--  Statistics tiles  -->
-        <Grid Grid.Row="1" Margin="0,0,0,20">
+        <Grid
+            Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
             </Grid.ColumnDefinitions>
 
             <!--  Revenue Tile  -->
@@ -83,8 +122,10 @@
                 Background="White"
                 CornerRadius="14">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <StackPanel
@@ -100,14 +141,18 @@
                         Margin="10,0,0,0"
                         FontSize="12"
                         Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[0].Percentage)}">
-                        <Run Text="{x:Bind DashboardVM.Tiles[0].Percentage}" />
-                        <Run Text="%" />
+                        <Run
+                            Text="{x:Bind DashboardVM.Tiles[0].Percentage}" />
+                        <Run
+                            Text="%" />
                     </TextBlock>
 
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel
+                    Grid.Row="1"
+                    Orientation="Horizontal">
                     <Border
                         Width="32"
                         Height="32"
@@ -135,8 +180,10 @@
                 Background="White"
                 CornerRadius="14">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <StackPanel
@@ -152,13 +199,17 @@
                         Margin="10,0,0,0"
                         FontSize="12"
                         Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[1].Percentage)}">
-                        <Run Text="{x:Bind DashboardVM.Tiles[1].Percentage}" />
-                        <Run Text="%" />
+                        <Run
+                            Text="{x:Bind DashboardVM.Tiles[1].Percentage}" />
+                        <Run
+                            Text="%" />
                     </TextBlock>
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel
+                    Grid.Row="1"
+                    Orientation="Horizontal">
                     <Border
                         Width="32"
                         Height="32"
@@ -186,8 +237,10 @@
                 Background="White"
                 CornerRadius="14">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <StackPanel
@@ -203,13 +256,17 @@
                         Margin="10,0,0,0"
                         FontSize="12"
                         Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[2].Percentage)}">
-                        <Run Text="{x:Bind DashboardVM.Tiles[0].Percentage}" />
-                        <Run Text="%" />
+                        <Run
+                            Text="{x:Bind DashboardVM.Tiles[0].Percentage}" />
+                        <Run
+                            Text="%" />
                     </TextBlock>
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel
+                    Grid.Row="1"
+                    Orientation="Horizontal">
                     <Border
                         Width="32"
                         Height="32"
@@ -232,13 +289,15 @@
 
         <!--  Chart Section  -->
         <Grid
-            Grid.Row="2"
+            Grid.Row="3"
             Padding="20"
             Background="White"
             CornerRadius="14">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="*" />
             </Grid.RowDefinitions>
 
             <TextBlock
@@ -248,7 +307,8 @@
                 FontWeight="SemiBold"
                 Text="Sales chart" />
 
-            <Grid Grid.Row="1">
+            <Grid
+                Grid.Row="1">
                 <lvc:CartesianChart
                     Series="{Binding Series}"
                     TooltipPosition="Auto"
@@ -274,14 +334,15 @@
         </Grid>
 
         <Grid
-            Grid.Row="3"
-            Margin="0,16,0,0"
-            Padding="20"
+            Grid.Row="4"
             CornerRadius="8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="20" />
+                <ColumnDefinition
+                    Width="*" />
             </Grid.ColumnDefinitions>
 
             <!--  Sản phẩm bán chạy  -->
@@ -293,26 +354,40 @@
                 CornerRadius="14">
                 <StackPanel>
                     <Grid>
-                        <TextBlock FontWeight="SemiBold" Text="Sản phẩm bán chạy" />
-                        <Button HorizontalAlignment="Right" Content="Xem thêm" />
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Sản phẩm bán chạy" />
+                        <Button
+                            HorizontalAlignment="Right"
+                            Content="Xem thêm" />
                     </Grid>
 
-                    <ItemsControl ItemsSource="{x:Bind BestSellingProducts}">
+                    <ItemsControl
+                        ItemsSource="{x:Bind BestSellingProducts}">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="local:Product1">
-                                <Grid Margin="5">
+                            <DataTemplate
+                                x:DataType="local:Product1">
+                                <Grid
+                                    Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.3*" />
-                                        <ColumnDefinition Width="0.4*" />
-                                        <ColumnDefinition Width="0.3*" />
+                                        <ColumnDefinition
+                                            Width="0.3*" />
+                                        <ColumnDefinition
+                                            Width="0.4*" />
+                                        <ColumnDefinition
+                                            Width="0.3*" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock
                                         Grid.Column="0"
                                         FontWeight="Bold"
                                         Text="{x:Bind ProductID}" />
-                                    <TextBlock Grid.Column="1" Text="{x:Bind Name}" />
-                                    <TextBlock Grid.Column="2" Text="{x:Bind QuantitySold}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Text="{x:Bind Name}" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="{x:Bind QuantitySold}" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -329,26 +404,40 @@
                 CornerRadius="14">
                 <StackPanel>
                     <Grid>
-                        <TextBlock FontWeight="SemiBold" Text="Sản phẩm sắp hết hàng" />
-                        <Button HorizontalAlignment="Right" Content="Xem thêm" />
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Sản phẩm sắp hết hàng" />
+                        <Button
+                            HorizontalAlignment="Right"
+                            Content="Xem thêm" />
                     </Grid>
 
-                    <ItemsControl ItemsSource="{x:Bind LowStockProducts}">
+                    <ItemsControl
+                        ItemsSource="{x:Bind LowStockProducts}">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="local:Product1">
-                                <Grid Margin="5">
+                            <DataTemplate
+                                x:DataType="local:Product1">
+                                <Grid
+                                    Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.3*" />
-                                        <ColumnDefinition Width="0.4*" />
-                                        <ColumnDefinition Width="0.3*" />
+                                        <ColumnDefinition
+                                            Width="0.3*" />
+                                        <ColumnDefinition
+                                            Width="0.4*" />
+                                        <ColumnDefinition
+                                            Width="0.3*" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock
                                         Grid.Column="0"
                                         FontWeight="Bold"
                                         Text="{x:Bind ProductID}" />
-                                    <TextBlock Grid.Column="1" Text="{x:Bind Name}" />
-                                    <TextBlock Grid.Column="2" Text="{x:Bind RemainingStock}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Text="{x:Bind Name}" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="{x:Bind RemainingStock}" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
