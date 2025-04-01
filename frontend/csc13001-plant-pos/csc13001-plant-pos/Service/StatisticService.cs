@@ -11,7 +11,7 @@ namespace csc13001_plant_pos.Service;
 
 public interface IStatisticService
 {
-    Task<ApiResponse<List<Product>>?> GetStaffOrdersAsync(int staffId);
+    Task<ApiResponse<List<Product>>?> GetProductsAsync();
 
     Task<ApiResponse<StatisticReviewDto?>> GetListReview();
 }
@@ -25,7 +25,7 @@ public class StatisticService : IStatisticService
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponse<List<Product>>?> GetStaffOrdersAsync(int staffId)
+    public async Task<ApiResponse<List<Product>>?> GetProductsAsync()
     {
         var response = await _httpClient.GetAsync("statistics/products");
         var json = await response.Content.ReadAsStringAsync();

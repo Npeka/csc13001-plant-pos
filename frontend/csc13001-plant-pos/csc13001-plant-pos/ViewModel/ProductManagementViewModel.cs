@@ -18,7 +18,7 @@ namespace csc13001_plant_pos.ViewModel
         private ObservableCollection<Product> productList;
 
         [ObservableProperty]
-        private ObservableCollection<Product> filteredProductList;
+        public ObservableCollection<Product> filteredProductList;
 
         [ObservableProperty]
         private string searchQuery = "";

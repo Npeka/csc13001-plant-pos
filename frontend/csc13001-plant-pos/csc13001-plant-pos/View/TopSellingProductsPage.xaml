@@ -42,7 +42,7 @@
                 <TextBox x:Name="SearchBox" 
                  Grid.Column="0"
                  PlaceholderText="Tìm kiếm theo tên hoặc mã sản phẩm..." 
-                 TextChanged="SearchBox_TextChanged">
+                 Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.Resources>
                         <ResourceDictionary>
                             <ResourceDictionary.ThemeDictionaries>
@@ -58,7 +58,7 @@
                     <ComboBox x:Name="PositionFilter" 
                           HorizontalAlignment="Stretch"
                               SelectedIndex="0"
-                          SelectionChanged="PositionFilter_SelectionChanged">
+                         >
                         <ComboBoxItem Content="Tất cả"/>
                         <ComboBoxItem Content="Mã sản phẩm"/>
                         <ComboBoxItem Content="Số lượng bán ra"/>
@@ -97,7 +97,7 @@
                    FontSize="18"
                    VerticalAlignment="Center"/>
 
-                <TextBlock x:Name="EmployeeCount"
+                <TextBlock x:Name="ProductCount"
                    Grid.Column="1"
                    Text="0 sản phẩm"
                    Opacity="0.7"
@@ -110,7 +110,7 @@
             <controls:DataGrid x:Name="EmployeesGrid"
                        IsReadOnly="True"
                        Grid.Row="1"
-                       ItemsSource="{Binding FilteredEmployees}"
+                       ItemsSource="{Binding ViewModel.FilteredSellingProducts}"
                        AutoGenerateColumns="False"
                        HeadersVisibility="Column"
                        GridLinesVisibility="All"
@@ -131,7 +131,7 @@
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
-                    <controls:DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding ID}" Width="120">
+                    <controls:DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding ProductId}" Width="120">
                         <controls:DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -142,7 +142,7 @@
 
                     <controls:DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding Name}" Width="*" />
 
-                    <controls:DataGridTextColumn Header="Số lượng bán" Binding="{Binding SoldQuantity}" Width="120">
+                    <controls:DataGridTextColumn Header="Số lượng bán" Binding="{Binding Stock}" Width="120">
                         <controls:DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -151,7 +151,7 @@
                         </controls:DataGridTextColumn.ElementStyle>
                     </controls:DataGridTextColumn>
 
-                    <controls:DataGridTextColumn Header="Tồn kho" Binding="{Binding StockQuantity}" Width="110">
+                    <controls:DataGridTextColumn Header="Tồn kho" Binding="{Binding Stock}" Width="110">
                         <controls:DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -160,7 +160,7 @@
                         </controls:DataGridTextColumn.ElementStyle>
                     </controls:DataGridTextColumn>
 
-                    <controls:DataGridTextColumn Header="Doanh thu" Binding="{Binding Revenue}" Width="140">
+                    <controls:DataGridTextColumn Header="Mức độ quan tâm" Binding="{Binding CareLevel}" Width="140">
                         <controls:DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -174,21 +174,21 @@
 
             <!-- Phân trang -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,8">
-                <Button Click="PreviousPage_Click" Padding="8">
+                <Button Padding="8">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE96F;"/>
                 </Button>
 
-                <TextBlock Text="{x:Bind CurrentPage, Mode=OneWay}" 
+                <TextBlock Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" 
                FontSize="16" FontWeight="SemiBold" Margin="8,0" 
                VerticalAlignment="Center"/>
                 <TextBlock Text="/" 
                FontSize="16" Margin="4,0" 
                VerticalAlignment="Center"/>
-                <TextBlock Text="{x:Bind TotalPages, Mode=OneWay}" 
+                <TextBlock Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" 
                FontSize="16" FontWeight="SemiBold" Margin="8,0" 
                VerticalAlignment="Center"/>
 
-                <Button Click="NextPage_Click" Padding="8">
+                <Button Padding="8">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE970;"/>
                 </Button>
             </StackPanel>

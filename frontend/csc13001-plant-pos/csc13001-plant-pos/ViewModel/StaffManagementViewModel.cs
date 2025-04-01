@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 using System.Collections.ObjectModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -84,6 +84,12 @@ namespace csc13001_plant_pos.ViewModel
             {
                 filteredStaffList.Add(user);
             }
+        }
+
+        partial void OnSearchQueryChanged(string value)
+        {
+            Debug.WriteLine($"SearchQuery to '{value}'");
+            ApplyFilters();
         }
 
         public void ResetFilters()

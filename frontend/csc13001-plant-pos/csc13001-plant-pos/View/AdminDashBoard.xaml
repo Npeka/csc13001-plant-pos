@@ -58,11 +58,6 @@
                         <FontIcon Glyph="&#xEA0D;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
-                <NavigationViewItem
-                    Content="Sản phẩm bán chạy"
-                    Icon="Home"
-                    Tag="TopSellingProductsPage" />
                 <NavigationViewItem Content="Sản phẩm bán chạy" Tag="TopSellingProductsPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE9D2;" />
