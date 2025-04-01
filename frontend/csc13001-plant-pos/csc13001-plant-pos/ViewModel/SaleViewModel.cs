@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +7,6 @@ using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
-using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos.ViewModel
 {

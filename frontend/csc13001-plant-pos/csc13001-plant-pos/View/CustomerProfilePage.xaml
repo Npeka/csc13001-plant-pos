@@ -235,9 +235,12 @@
                         <Button
                             Margin="8"
                             HorizontalAlignment="Right"
+                            Background="#D3F9D8"
                             Click="ViewBillButton_Click"
                             Content="Xem hoá đơn"
-                            CornerRadius="4" />
+                            CornerRadius="4"
+                            Foreground="#666666"
+                            Style="{StaticResource AccentButtonStyle}" />
                     </StackPanel>
                 </Expander.Content>
             </Expander>

@@ -80,6 +80,7 @@ public partial class App : Application
                 services.AddSingleton<StatisticViewModel>();
                 services.AddSingleton<StaffManagementViewModel>();
                 services.AddSingleton<CustomerManagementViewModel>();
+                services.AddSingleton<AddStockReceiptViewModel>();
             })
             .Build();
     }

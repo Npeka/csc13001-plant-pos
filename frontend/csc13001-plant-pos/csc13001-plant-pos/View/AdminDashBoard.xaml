@@ -13,13 +13,14 @@
         <NavigationView
             x:Name="navigation"
             IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
             ItemInvoked="navigation_ItemInvoked"
             SelectionChanged="navigation_SelectionChanged">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Thống kê" Tag="StatisticPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE9D2;" />
+                        <FontIcon Glyph="&#xE9D9;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
@@ -61,6 +62,11 @@
                     Content="Sản phẩm bán chạy"
                     Icon="Home"
                     Tag="TopSellingProductsPage" />
+                <NavigationViewItem Content="Sản phẩm bán chạy" Tag="TopSellingProductsPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE9D2;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>

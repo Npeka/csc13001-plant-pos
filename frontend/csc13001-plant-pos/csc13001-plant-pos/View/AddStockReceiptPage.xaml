@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="csc13001_plant_pos.View.AddStockReceiptPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:csc13001_plant_pos.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:csc13001_plant_pos.Model"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
+    x:Name="PageRoot"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="DatePicker">
+            <Setter Property="MinHeight" Value="50" />
+        </Style>
+
+        <DataTemplate x:Key="StockReceiptItemTemplate" x:DataType="model:StockReceiptItem">
+            <StackPanel PointerPressed="PageGrid_PointerPressed">
+                <Border
+                    Padding="10"
+                    HorizontalAlignment="Stretch"
+                    Background="White"
+                    BorderBrush="{x:Bind Quantity, Mode=OneWay, Converter={StaticResource QuantityToBorderBrushConverter}}"
+                    BorderThickness="2"
+                    CornerRadius="15">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Image
+                            Width="92"
+                            Height="92"
+                            Source="{x:Bind Product.ImageUrl, Mode=OneWay}" />
+                        <StackPanel Spacing="4">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Text="{x:Bind Product.Name, Mode=OneWay}"
+                                TextWrapping="Wrap" />
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Bold"
+                                    Text="Giá bán: " />
+                                <TextBlock
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    Text="{x:Bind Product.SalePrice, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Bold"
+                                    Text="Giá (₫): " />
+                                <TextBox
+                                    Width="150"
+                                    FontSize="12"
+                                    InputScope="Number"
+                                    PlaceholderText="Nhập giá nhập..."
+                                    Text="{x:Bind PurchasePrice, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalConverter}}"
+                                    TextChanged="PriceTextBox_TextChanged" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    Command="{Binding DataContext.DecreaseQuantityCommand, ElementName=PageRoot}"
+                                    CommandParameter="{x:Bind}"
+                                    Content="-"
+                                    CornerRadius="10"
+                                    FontSize="10"
+                                    IsEnabled="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource GreaterThanZeroConverter}}" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="{x:Bind Quantity, Mode=OneWay}" />
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    Command="{Binding DataContext.IncreaseQuantityCommand, ElementName=PageRoot}"
+                                    CommandParameter="{x:Bind}"
+                                    Content="+"
+                                    CornerRadius="10"
+                                    FontSize="10"
+                                    IsEnabled="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource GreaterThanZeroConverter}}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid
+        Padding="24,8,24,24"
+        PointerPressed="PageGrid_PointerPressed"
+        RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Spacing="8">
+            <Button
+                Margin="-8,0,0,0"
+                Padding="4"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="BackButton_Click"
+                Style="{StaticResource AccentButtonStyle}">
+                <FontIcon
+                    FontSize="16"
+                    Foreground="Black"
+                    Glyph="&#xE830;" />
+            </Button>
+            <ui:PageTitle Title="Thêm phiếu nhập hàng" />
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                <TextBlock Margin="0,0,0,5" Text="Tên nhà cung cấp *:" />
+                <TextBox
+                    Padding="10"
+                    PlaceholderText="Nhập tên nhà cung cấp..."
+                    Text="{x:Bind ViewModel.SupplierName, Mode=TwoWay}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="0,0,20,0">
+                <TextBlock Margin="0,0,0,5" Text="Ngày nhập hàng *:" />
+                <CalendarDatePicker
+                    Height="40"
+                    Date="{x:Bind ViewModel.PurchaseDate, Mode=TwoWay}"
+                    PlaceholderText="Chọn ngày nhập hàng" />
+            </StackPanel>
+        </Grid>
+        <GridView
+            Grid.Row="2"
+            HorizontalAlignment="Stretch"
+            ItemTemplate="{StaticResource StockReceiptItemTemplate}"
+            ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            SelectionMode="None">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="8" />
+                </Style>
+            </GridView.ItemContainerStyle>
+        </GridView>
+        <StackPanel Grid.Row="3">
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Text="Tổng sản phẩm:" />
+                    <TextBlock
+                        FontSize="16"
+                        Foreground="Gray"
+                        Text="{x:Bind ViewModel.TotalItems, Mode=OneWay}" />
+                </StackPanel>
+                <TextBlock
+                    Grid.Column="1"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Text="{x:Bind ViewModel.Total, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Padding="20,10"
+                    HorizontalAlignment="Stretch"
+                    Background="Transparent"
+                    BorderBrush="#0ABB6A"
+                    Command="{x:Bind ViewModel.ResetFormCommand}"
+                    Content="Đặt lại"
+                    CornerRadius="10"
+                    FontWeight="SemiBold"
+                    Foreground="#0ABB6A" />
+                <Button
+                    Grid.Column="2"
+                    Padding="20,10"
+                    HorizontalAlignment="Stretch"
+                    Background="#0ABB6A"
+                    BorderBrush="#0ABB6A"
+                    Click="AddStockReceiptButton_Click"
+                    Content="Thêm phiếu nhập hàng"
+                    CornerRadius="10"
+                    FontWeight="SemiBold"
+                    Foreground="White" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

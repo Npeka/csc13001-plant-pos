@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
@@ -25,15 +26,11 @@
                     Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
                     Severity="Error" />
 
-                <TextBlock
-                    Margin="0,0,0,30"
-                    FontSize="24"
-                    FontWeight="SemiBold"
-                    Text="Thêm khách hàng" />
+                <ui:PageTitle Title="Thêm khách hàng" />
 
                 <!--  Name Field  -->
                 <StackPanel Margin="0,0,0,20">
-                    <TextBlock Margin="0,0,0,5" Text="Tên khách hàng *" />
+                    <TextBlock Margin="0,0,0,5" Text="Tên khách hàng (*):" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
@@ -59,7 +56,7 @@
 
                 <!--  Email  -->
                 <StackPanel Margin="0,0,0,20">
-                    <TextBlock Margin="0,0,0,5" Text="Email *" />
+                    <TextBlock Margin="0,0,0,5" Text="Email (*):" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
@@ -70,7 +67,7 @@
 
                 <!--  Address  -->
                 <StackPanel Margin="0,0,0,20">
-                    <TextBlock Margin="0,0,0,5" Text="Địa chỉ *" />
+                    <TextBlock Margin="0,0,0,5" Text="Địa chỉ (*):" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
@@ -88,7 +85,7 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Margin="0,0,0,5" Text="Số điện thoại *" />
+                        <TextBlock Margin="0,0,0,5" Text="Số điện thoại (*):" />
                         <TextBox
                             Padding="10"
                             Background="#F5F5F5"
@@ -98,8 +95,12 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
-                        <TextBlock Margin="0,0,0,5" Text="Ngày tháng năm sinh" />
-                        <CalendarDatePicker Date="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Chọn ngày sinh" />
+                        <TextBlock Margin="0,0,0,5" Text="Ngày tháng năm sinh:" />
+                        <CalendarDatePicker
+                            Height="40"
+                            Background="#F5F5F5"
+                            Date="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}"
+                            PlaceholderText="Chọn ngày sinh" />
                     </StackPanel>
                 </Grid>
 
@@ -121,19 +122,21 @@
                         Content="Đặt lại"
                         CornerRadius="10"
                         FontWeight="SemiBold"
-                        Foreground="#0ABB6A" />
+                        Foreground="#0ABB6A"
+                        Style="{StaticResource AccentButtonStyle}" />
 
                     <Button
                         Grid.Column="2"
                         Padding="20,10"
                         HorizontalAlignment="Stretch"
                         Background="#0ABB6A"
-                        BorderThickness="0"
+                        BorderBrush="#0ABB6A"
                         Click="AddCustomerButton_Click"
                         Content="Thêm khách hàng"
                         CornerRadius="10"
                         FontWeight="SemiBold"
-                        Foreground="White" />
+                        Foreground="White"
+                        Style="{StaticResource AccentButtonStyle}" />
                 </Grid>
             </StackPanel>
         </Border>
