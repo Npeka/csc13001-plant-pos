@@ -16,7 +16,6 @@ namespace csc13001_plant_pos.View
             this.InitializeComponent();
         }
 
-
         private SolidColorBrush GetRankColor(string rank) => rank switch
         {
             "Đồng" => new SolidColorBrush(Colors.Brown),

@@ -131,9 +131,8 @@
                 <TextBox
                     x:Name="SearchBox"
                     Grid.Column="0"
-                    PlaceholderText="Tìm kiếm theo tên, ID..."
-                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay}"
-                    TextChanged="{x:Bind ViewModel.SearchBox_TextChanged, Mode=OneWay}" />
+                    PlaceholderText="Tìm kiếm theo tên hoặc ID"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Button
                     x:Name="AddNewCustomer"
@@ -175,7 +174,8 @@
                     Margin="10,0,0,0"
                     VerticalAlignment="Center"
                     PlaceholderText="Chọn hạng"
-                    SelectionChanged="{x:Bind ViewModel.RankFilter_SelectionChanged}">
+                    SelectedValue="{x:Bind ViewModel.RankQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    >
                     <ComboBoxItem
                         Content="All" />
                     <ComboBoxItem
@@ -235,11 +235,11 @@
                         Binding="{Binding Customer.Name}"
                         Header="Họ và tên" />
                     <controls:DataGridTextColumn
-                        Width="130"
+                        Width="150"
                         Binding="{Binding Customer.Phone}"
                         Header="Số điện thoại" />
                     <controls:DataGridTextColumn
-                        Width="80"
+                        Width="150"
                         Binding="{Binding Customer.LoyaltyPoints}"
                         Header="Điểm số" />
                     <controls:DataGridTemplateColumn
@@ -263,7 +263,7 @@
                     </controls:DataGridTemplateColumn>
 
                     <controls:DataGridTemplateColumn
-                        Width="180"
+                        Width="200"
                         Header="Thao tác">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -272,37 +272,38 @@
                                     Orientation="Horizontal">
                                     <!--  Button Cập nhật  -->
                                     <Button
-                                        Margin="0,0,5,0"
-                                        Padding="8,4"
-                                        Background="#2196F3"
-                                        Foreground="White">
+                                        Padding="6,4"
+                                        Background="#E3F2FD"
+                                        CornerRadius="4"
+                                        Foreground="#1976D2"
+                                        Tag="{Binding}">
                                         <StackPanel
                                             Orientation="Horizontal">
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                Glyph="&#xE70F;" />
                                             <TextBlock
                                                 Margin="0,0,5,0"
                                                 VerticalAlignment="Center"
                                                 Text="Sửa" />
-                                            <FontIcon
-                                                VerticalAlignment="Center"
-                                                Glyph="&#xE70F;" />
                                         </StackPanel>
                                     </Button>
 
                                     <!--  Button Xóa  -->
                                     <Button
-                                        Margin="5,0,0,0"
-                                        Padding="8,4"
-                                        Background="#757575"
-                                        Foreground="White">
+                                        Padding="6,4"
+                                        Background="#FFEBEE"
+                                        CornerRadius="4"
+                                        Foreground="#C62828">
                                         <StackPanel
                                             Orientation="Horizontal">
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                Glyph="&#xE74D;" />
                                             <TextBlock
                                                 Margin="0,0,5,0"
                                                 VerticalAlignment="Center"
                                                 Text="Xóa" />
-                                            <FontIcon
-                                                VerticalAlignment="Center"
-                                                Glyph="&#xE74D;" />
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>

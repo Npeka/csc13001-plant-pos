@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using csc13001_plant_pos.DTO.CustomerDTO;
+using Windows.System;
+using System.Diagnostics;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -29,13 +31,13 @@ namespace csc13001_plant_pos.ViewModel
         public int totalCustomers;
 
         [ObservableProperty]
-        private string searchQuery;
+        public string searchQuery;
 
         [ObservableProperty]
-        private DateTime startDateQuery;
+        public DateTime startDateQuery;
 
         [ObservableProperty]
-        private string rankQuery;
+        public string rankQuery;
 
         private readonly ICustomerService _customerService;
 
@@ -73,7 +75,6 @@ namespace csc13001_plant_pos.ViewModel
             {
                 customerList = new ObservableCollection<CustomerDto>(response.Data);
                 filteredCustomerList = new ObservableCollection<CustomerDto>(response.Data);
-                searchQuery = "";
                 UpdateStatistics();
             }
         }
@@ -94,9 +95,13 @@ namespace csc13001_plant_pos.ViewModel
             //    filtered = filtered.Where(emp => emp.CreatedAt.Date >= startDateQuery.Date);
             //}
 
-            if (!string.IsNullOrEmpty(rankQuery))
+            if (!string.IsNullOrEmpty(rankQuery) && rankQuery != "All")
             {
-                filtered = filtered.Where(emp => emp.Customer.LoyaltyCardType.ToLower() == rankQuery);
+                filtered = filtered.Where(emp => emp.Customer.LoyaltyCardType.ToLower() == rankQuery.ToLower());
+            }
+            foreach (var customer in filtered)
+            {
+                filteredCustomerList.Add(customer);
             }
         }
 
@@ -104,7 +109,7 @@ namespace csc13001_plant_pos.ViewModel
         {
             SearchQuery = "";
             startDateQuery = default(DateTime);
-            RankQuery = "All";
+            rankQuery = "";
 
             filteredCustomerList.Clear();
             foreach (var customer in customerList)
@@ -113,18 +118,20 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
-        public void RankFilter_SelectionChanged()
-        {
-            ApplyFilters();
-        }
-
         public void DateFilter_DateChanged()
         {
             ApplyFilters();
         }
 
-        public void SearchBox_TextChanged()
+        partial void OnSearchQueryChanged(string value)
         {
+            Debug.WriteLine($"SearchQuery to '{value}'");
+            ApplyFilters();
+        }
+
+        partial void OnRankQueryChanged(string value)
+        {
+            Debug.WriteLine($"SearchQuery to '{value}'");
             ApplyFilters();
         }
         //public async void ShowUpdateCustomerDialog(Customer customer, XamlRoot xamlroot)

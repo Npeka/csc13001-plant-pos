@@ -8,9 +8,9 @@ namespace csc13001_plant_pos.DTO.StatisticDTO
     public class StatisticReviewDto
     {
         [JsonPropertyName("topSellingProducts")]
-        public List<Product> topSellingProducts { get; set; }
+        public List<Product> TopSellingProducts { get; set; }
 
         [JsonPropertyName("lowStockProducts")]
-        public List<Product> lowStockProducts { get; set; }
+        public List<Product> LowStockProducts { get; set; }
     }
 }

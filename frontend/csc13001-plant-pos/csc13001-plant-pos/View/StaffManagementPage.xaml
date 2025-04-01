@@ -52,8 +52,8 @@
                     x:Name="SearchBox"
                     Grid.Column="0"
                     PlaceholderText="Tìm kiếm theo tên hoặc ID nhân viên..."
-                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay}"
-                    TextChanged="{x:Bind ViewModel.SearchBox_TextChanged, Mode=OneWay}">
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    >
                     <TextBox.Resources>
                         <ResourceDictionary>
                             <ResourceDictionary.ThemeDictionaries>
@@ -205,7 +205,7 @@
                 CanUserReorderColumns="False"
                 GridLinesVisibility="Horizontal"
                 HeadersVisibility="Column"
-                ItemsSource="{Binding ViewModel.productList}">
+                ItemsSource="{x:Bind ViewModel.filteredStaffList}">
                 <controls:DataGrid.Resources>
                     <SolidColorBrush
                         x:Key="DataGridColumnHeaderBackgroundColor"
@@ -233,7 +233,7 @@
                         Binding="{Binding Phone}"
                         Header="Số điện thoại" />
                     <controls:DataGridTextColumn
-                        Width="130"
+                        Width="180"
                         Binding="{Binding StartDate}"
                         Header="Ngày bắt đầu" />
                     <controls:DataGridTextColumn

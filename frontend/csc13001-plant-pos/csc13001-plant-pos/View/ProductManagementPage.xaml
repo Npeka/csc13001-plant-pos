@@ -101,7 +101,7 @@
                         x:Name="SearchBox"
                         Grid.Column="1"
                         PlaceholderText="Tìm kiếm sản phẩm..."
-                        TextChanged="SearchBox_TextChanged" />
+                        Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
                 </Grid>
 
                 <ComboBox
@@ -110,15 +110,15 @@
                     PlaceholderText="Chọn danh mục"
                     Width="180"
                     Margin="8,0"
-                    SelectionChanged="CategoryFilter_SelectionChanged">
+                    >
                     <ComboBoxItem
                         Content="Tất cả" />
                     <ComboBoxItem
-                        Content="Điện thoại" />
+                        Content="Cây" />
                     <ComboBoxItem
-                        Content="Laptop" />
+                        Content="Phụ kiện chăm sóc" />
                     <ComboBoxItem
-                        Content="Phụ kiện" />
+                        Content="Chậu" />
                 </ComboBox>
 
                 <ComboBox
@@ -168,7 +168,7 @@
                     Grid.Column="1"
                     Style="{StaticResource ActionButtonStyle}"
                     Margin="4,0"
-                    Click="SortByPrice_Click">
+                   >
                     <StackPanel
                         Orientation="Horizontal">
                         <FontIcon
@@ -201,7 +201,7 @@
                 VerticalScrollBarVisibility="Auto">
                 <GridView
                     x:Name="ProductGridView"
-                    ItemsSource="{x:Bind Products, Mode=OneWay}"
+                    ItemsSource="{x:Bind ViewModel.filteredProductList, Mode=OneWay}"
                     Padding="0"
                     SelectionMode="Single">
                     <GridView.ItemsPanel>
@@ -289,14 +289,15 @@
                                             Orientation="Horizontal"
                                             Margin="0,4">
                                             <TextBlock
-                                                Text="{Binding OriginalPrice}"
+                                                Text="{Binding SalePrice}"
                                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                                 TextDecorations="Strikethrough"
                                                 FontSize="14"
                                                 Margin="0,0,8,0"
-                                                Visibility="{Binding IsDiscounted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                Visibility="{Binding SalePrice, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                />
                                             <TextBlock
-                                                Text="{Binding Price}"
+                                                Text="{Binding PurchasePrice}"
                                                 Foreground="{ThemeResource SystemAccentColor}"
                                                 FontWeight="Bold"
                                                 FontSize="16" />
