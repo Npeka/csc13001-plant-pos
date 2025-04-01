@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Microsoft.UI.Xaml;
+﻿using csc13001_plant_pos.ViewModel;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
-using csc13001_plant_pos.Model;
-using csc13001_plant_pos.ViewModel;
 
 namespace csc13001_plant_pos.View
 {
@@ -16,7 +9,7 @@ namespace csc13001_plant_pos.View
 
         public StaffManagementPage()
         {
-            ViewModel = App.GetService<StaffManagementViewModel>();
+            this.DataContext = ViewModel = App.GetService<StaffManagementViewModel>();
             this.InitializeComponent();
         }
     }
