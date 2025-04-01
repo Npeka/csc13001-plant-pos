@@ -77,6 +77,7 @@ public partial class App : Application
                 services.AddSingleton<WarehouseManagementViewModel>();
                 services.AddSingleton<DiscountManagementViewModel>();
                 services.AddSingleton<StatisticViewModel>();
+                services.AddSingleton<AddStockReceiptViewModel>();
             })
             .Build();
     }

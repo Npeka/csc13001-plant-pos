@@ -13,6 +13,7 @@
         <NavigationView
             x:Name="navigation"
             IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
             ItemInvoked="navigation_ItemInvoked"
             SelectionChanged="navigation_SelectionChanged">
 
@@ -26,6 +27,12 @@
                     Content="Hồ sơ cá nhân"
                     Icon="Contact"
                     Tag="StaffProfilePage" />
+
+                <NavigationViewItem Content="Quản lý kho" Tag="WarehouseManagementPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEA0D;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
 
                 <NavigationViewItem
                     Content="Thêm khách hàng"

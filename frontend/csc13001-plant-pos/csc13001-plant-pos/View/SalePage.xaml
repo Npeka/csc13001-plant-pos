@@ -189,13 +189,14 @@
 
             <!--  Products  -->
             <GridView
+                x:Name="ProductGridView"
                 Grid.Row="1"
                 Margin="0,10,0,0"
                 HorizontalAlignment="Stretch"
                 ItemTemplate="{StaticResource ProductItemTemplate}"
                 ItemsSource="{x:Bind ViewModel.FilteredProducts, Mode=OneWay}"
-                ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                SelectionMode="None">
+                LostFocus="ProductGridView_LostFocus"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" />

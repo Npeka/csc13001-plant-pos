@@ -12,8 +12,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Color x:Key="SystemAccentColor">#FF4CAF50</Color>
-            <SolidColorBrush x:Key="SystemAccentColorBrush"
-                             Color="{StaticResource SystemAccentColor}" />
+            <SolidColorBrush x:Key="SystemAccentColorBrush" Color="{StaticResource SystemAccentColor}" />
 
             <Color x:Key="SystemAccentColorLight1">#FF81C784</Color>
             <Color x:Key="SystemAccentColorLight2">#FFB9F6CA</Color>

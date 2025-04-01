@@ -8,6 +8,7 @@
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:csc13001_plant_pos.Model"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
@@ -170,32 +171,37 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid>
+    <Grid Padding="24,24,24,24" RowSpacing="12">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <ui:PageTitle Title="Quản lý đơn hàng" Grid.Row="0" />
         <StackPanel
-            Grid.Row="0"
-            Margin="10"
+            Grid.Row="1"
             Orientation="Horizontal"
             Spacing="10">
             <TextBox
                 Width="500"
                 PlaceholderText="Tìm kiếm theo mã lô, nhà cung cấp..."
                 Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
+            <CalendarDatePicker
+                Background="#B3FFFFFF"
+                Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}"
+                Foreground="#666666"
+                PlaceholderText="Chọn ngày" />
             <Button
                 Padding="8,8"
-                Content="Thêm lô hàng"
+                Background="#B3FFFFFF"
+                Click="AddStockReceiptButton_Click"
+                Content="Thêm phiếu nhập hàng"
                 CornerRadius="5"
                 FontSize="14"
-                Foreground="#666666" />
+                Foreground="#666666"
+                Style="{StaticResource AccentButtonStyle}" />
         </StackPanel>
-        <ScrollViewer
-            Grid.Row="1"
-            Padding="20,0,20,20"
-            VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <ItemsControl
                 Padding="5,0,5,0"
                 ItemTemplate="{StaticResource InventoryItemTemplate}"

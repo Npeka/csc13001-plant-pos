@@ -8,6 +8,7 @@
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:csc13001_plant_pos.Model"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
     x:Name="Root"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
@@ -104,17 +105,15 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid
-        x:Name="ContentArea"
-        Padding="20"
-        Background="White">
+    <Grid Padding="24,24,24,24" RowSpacing="12">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <ui:PageTitle Title="Quản lý chương trình giảm giá" Grid.Row="0" />
         <StackPanel
-            Grid.Row="0"
-            Margin="10"
+            Grid.Row="1"
             Orientation="Horizontal"
             Spacing="10">
             <TextBox
@@ -124,17 +123,17 @@
             <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
             <Button
                 Padding="8,8"
+                Background="#B3FFFFFF"
                 Click="AddDiscountButton_Click"
                 Content="Thêm chương trình"
                 CornerRadius="5"
                 FontSize="14"
-                Foreground="#666666" />
+                Foreground="#666666"
+                Style="{StaticResource AccentButtonStyle}" />
         </StackPanel>
-        <ScrollViewer
-            Grid.Row="1"
-            HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <ListView
+                Margin="-14,0,0,0"
                 ItemTemplate="{StaticResource DiscountItemTemplate}"
                 ItemsSource="{x:Bind ViewModel.FilteredDiscounts, Mode=OneWay}"
                 SelectionMode="None" />

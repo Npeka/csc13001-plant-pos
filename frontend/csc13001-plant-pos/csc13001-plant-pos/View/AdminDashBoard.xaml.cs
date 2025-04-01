@@ -11,6 +11,7 @@ namespace csc13001_plant_pos.View
         public AdminDashBoard() 
         {
             this.InitializeComponent();
+            this.Loaded += AdminDashBoard_Loaded;
             _userSessionService = App.GetService<UserSessionService>();
         }
 

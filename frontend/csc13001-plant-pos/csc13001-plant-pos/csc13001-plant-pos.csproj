@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Remove="Converter\Converter.xaml" />
     <None Remove="View\AddCustomerPage.xaml" />
+    <None Remove="View\AddStockReceiptPage.xaml" />
     <None Remove="View\AdminDashBoard.xaml" />
     <None Remove="View\AuthenticationPage.xaml" />
     <None Remove="View\Authentication\FormForgotPassword.xaml" />
@@ -92,6 +93,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="View\AddStockReceiptPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="View\UI\PageTitle.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
