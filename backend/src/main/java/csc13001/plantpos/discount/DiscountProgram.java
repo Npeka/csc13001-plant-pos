@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import csc13001.plantpos.customer.CustomerType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -35,6 +37,8 @@ public class DiscountProgram {
     private String name;
 
     @NotNull(message = "Tỷ lệ giảm giá là bắt buộc")
+    @Min(value = 0, message = "Tỷ lệ giảm giá không được nhỏ hơn 0")
+    @Max(value = 100, message = "Tỷ lệ giảm giá không được lớn hơn 100")
     @Column(name = "discount_rate")
     private Double discountRate;
 

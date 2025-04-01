@@ -73,7 +73,7 @@ public class OrderService {
             }
 
             // check if discount is active
-            if (discountProgram.isActive()) {
+            if (!discountProgram.isActive()) {
                 throw new DiscountException.DiscountNotActiveException();
             }
 

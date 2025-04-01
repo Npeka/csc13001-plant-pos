@@ -4,6 +4,7 @@ import csc13001.plantpos.utils.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class DiscountProgramController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateDiscountProgram(
             @PathVariable Long id,
-            @RequestBody DiscountProgram discountProgram,
+            @RequestBody @Validated DiscountProgram discountProgram,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
