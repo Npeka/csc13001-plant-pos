@@ -80,7 +80,8 @@
                 Grid.Column="0"
                 Margin="0,0,10,0"
                 Padding="20,15"
-                CornerRadius="8">
+                Background="White"
+                CornerRadius="14">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -131,7 +132,8 @@
                 Grid.Column="1"
                 Margin="5,0,5,0"
                 Padding="20,15"
-                CornerRadius="8">
+                Background="White"
+                CornerRadius="14">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -181,7 +183,8 @@
                 Grid.Column="2"
                 Margin="10,0,0,0"
                 Padding="20,15"
-                CornerRadius="8">
+                Background="White"
+                CornerRadius="14">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -231,7 +234,8 @@
         <Grid
             Grid.Row="2"
             Padding="20"
-            CornerRadius="8">
+            Background="White"
+            CornerRadius="14">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -271,11 +275,12 @@
 
         <Grid
             Grid.Row="3"
-            Margin="0,20,0,0"
+            Margin="0,16,0,0"
             Padding="20"
             CornerRadius="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -283,8 +288,9 @@
             <Border
                 Grid.Column="0"
                 Padding="10"
-                BorderBrush="Black"
-                BorderThickness="2">
+                Background="White"
+                BorderThickness="2"
+                CornerRadius="14">
                 <StackPanel>
                     <Grid>
                         <TextBlock FontWeight="SemiBold" Text="Sản phẩm bán chạy" />
@@ -316,10 +322,11 @@
 
             <!--  Sản phẩm sắp hết hàng  -->
             <Border
-                Grid.Column="1"
+                Grid.Column="2"
                 Padding="10"
-                BorderBrush="Black"
-                BorderThickness="2">
+                Background="White"
+                BorderThickness="2"
+                CornerRadius="14">
                 <StackPanel>
                     <Grid>
                         <TextBlock FontWeight="SemiBold" Text="Sản phẩm sắp hết hàng" />
