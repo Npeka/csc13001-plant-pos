@@ -1,0 +1,139 @@
+[
+  {
+    "customerPhone": "0901234567",
+    "staffId": 2,
+    "discountId": 1,
+    "items": [
+      { "productId": 1, "quantity": 2 },
+      { "productId": 3, "quantity": 5 }
+    ]
+  },
+  {
+    "customerPhone": "0912345678",
+    "staffId": 2,
+    "discountId": 4,
+    "items": [
+      { "productId": 2, "quantity": 2 },
+      { "productId": 5, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0923456789",
+    "staffId": 3,
+    "discountId": 1,
+    "items": [
+      { "productId": 4, "quantity": 2 },
+      { "productId": 13, "quantity": 2 }
+    ]
+  },
+  {
+    "customerPhone": "0934567890",
+    "staffId": 2,
+    "discountId": 3,
+    "items": [
+      { "productId": 6, "quantity": 3 },
+      { "productId": 10, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0945678901",
+    "staffId": 4,
+    "discountId": 4,
+    "items": [
+      { "productId": 5, "quantity": 3 },
+      { "productId": 14, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0956789012",
+    "staffId": 2,
+    "discountId": 6,
+    "items": [
+      { "productId": 7, "quantity": 2 },
+      { "productId": 8, "quantity": 2 }
+    ]
+  },
+  {
+    "customerPhone": "0901234567",
+    "staffId": 3,
+    "discountId": 2,
+    "items": [
+      { "productId": 9, "quantity": 2 },
+      { "productId": 11, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0912345678",
+    "staffId": 4,
+    "discountId": 3,
+    "items": [
+      { "productId": 5, "quantity": 1 },
+      { "productId": 2, "quantity": 2 },
+      { "productId": 4, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0934567890",
+    "staffId": 2,
+    "discountId": 2,
+    "items": [
+      { "productId": 3, "quantity": 5 },
+      { "productId": 12, "quantity": 5 }
+    ]
+  },
+  {
+    "customerPhone": "0945678901",
+    "staffId": 3,
+    "discountId": 5,
+    "items": [
+      { "productId": 1, "quantity": 2 },
+      { "productId": 2, "quantity": 1 },
+      { "productId": 14, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0912345678",
+    "discountId": 2,
+    "staffId": 4,
+    "items": [
+      { "productId": 5, "quantity": 3 },
+      { "productId": 8, "quantity": 1 },
+      { "productId": 9, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0923456789",
+    "staffId": 2,
+    "discountId": 2,
+    "items": [
+      { "productId": 13, "quantity": 3 },
+      { "productId": 10, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0901234567",
+    "staffId": 3,
+    "items": [
+      { "productId": 6, "quantity": 2 },
+      { "productId": 12, "quantity": 3 }
+    ]
+  },
+  {
+    "customerPhone": "0934567890",
+    "staffId": 4,
+    "discountId": 5,
+    "items": [
+      { "productId": 5, "quantity": 2 },
+      { "productId": 11, "quantity": 1 }
+    ]
+  },
+  {
+    "customerPhone": "0912345678",
+    "staffId": 2,
+    "discountId": 1,
+    "items": [
+      { "productId": 1, "quantity": 2 },
+      { "productId": 7, "quantity": 2 }
+    ]
+  }
+]

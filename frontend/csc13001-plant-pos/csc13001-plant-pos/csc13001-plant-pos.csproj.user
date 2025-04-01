@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <None Update="App.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <Page Update="View\AddStockReceiptPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UI\PageTitle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\BillPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormTitle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormResetPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormForgotPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Authentication\FormLayout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AuthenticationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\WarehouseManagementPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\CustomerProfilePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\StaffProfilePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\StatisticPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\DiscountManagementPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminDashBoard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AddCustomerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Converter\Converter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <None Update="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <Page Update="View\SaleDashBoard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\OrderPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SalePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RoleSelectionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

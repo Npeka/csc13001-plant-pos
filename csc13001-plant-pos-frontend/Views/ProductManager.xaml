@@ -1,0 +1,90 @@
+<Page
+    x:Class="csc13001_plant_pos_frontend.Views.ProductManager"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:csc13001_plant_pos_frontend.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+    <StackPanel Padding="20" Spacing="15">
+
+        <!-- Thanh tìm kiếm + Bộ lọc -->
+        <Grid VerticalAlignment="Center" ColumnDefinitions="*,Auto,Auto" Margin="10">
+            <TextBox x:Name="SearchBox" PlaceholderText="Tìm kiếm sản phẩm..." 
+             Grid.Column="0" Margin="5" TextChanged="SearchBox_TextChanged"/>
+
+            <ComboBox x:Name="CategoryFilter" PlaceholderText="Chọn danh mục" 
+              Grid.Column="1" Width="150" Margin="5" SelectionChanged="CategoryFilter_SelectionChanged">
+                <ComboBoxItem Content="Tất cả"/>
+                <ComboBoxItem Content="Điện thoại"/>
+                <ComboBoxItem Content="Laptop"/>
+                <ComboBoxItem Content="Phụ kiện"/>
+            </ComboBox>
+
+            <ComboBox x:Name="StockFilter" PlaceholderText="Trạng thái"  
+              Grid.Column="2" Width="150" Margin="5" SelectionChanged="StockFilter_SelectionChanged">
+                <ComboBoxItem Content="Tất cả"/>
+                <ComboBoxItem Content="Còn hàng"/>
+                <ComboBoxItem Content="Hết hàng"/>
+            </ComboBox>
+        </Grid>
+
+
+        <!-- Hàng chứa các nút -->
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Thêm sản phẩm" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="5" Click="AddProduct_Click"/>
+            <Button Content="Sắp xếp theo giá"  Foreground="White" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" Click="SortByPrice_Click"/>
+            <Button Content="Cập nhật danh mục"  Foreground="White" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5" Click="UpdateCategories_Click"/>
+        </Grid>
+
+        <!-- Danh sách sản phẩm theo dạng lưới (Tối đa 4 sản phẩm trên hàng) -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="600">
+            <GridView x:Name="ProductGridView" ItemsSource="{x:Bind Products, Mode=OneWay}" Margin="10">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Padding="10" Margin="10" Width="220">
+                            <StackPanel HorizontalAlignment="Center">
+                                <!-- Ảnh sản phẩm -->
+                                <Image Source="{Binding ImageUrl}" Width="150" Height="150" Stretch="UniformToFill"/>
+
+                                <!-- Thông tin sản phẩm -->
+                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding OriginalPrice}" Foreground="Gray" TextDecorations="Strikethrough"
+                                               Visibility="{Binding IsDiscounted, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    <TextBlock Text="{Binding Price}" Foreground="Red" FontWeight="Bold" Margin="5,0,0,0"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Stock}" Foreground="{Binding StockColor}" TextAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
+
+    </StackPanel>
+    <ContentDialog x:Name="AddProductDialog" Title="Thêm sản phẩm"
+               PrimaryButtonText="Thêm"
+               SecondaryButtonText="Hủy"
+               PrimaryButtonClick="AddProductDialog_PrimaryButtonClick"
+               CloseButtonClick="AddProductDialog_CloseButtonClick">
+        <StackPanel Spacing="10">
+            <TextBox x:Name="ProductNameBox" Header="Tên sản phẩm"/>
+            <TextBox x:Name="ProductPriceBox" Header="Giá sản phẩm" InputScope="Number"/>
+            <TextBox x:Name="ProductImageBox" Header="Link ảnh sản phẩm"/>
+            <TextBox x:Name="ProductStockBox" Header="Số lượng sản phẩm" InputScope="Number"/>
+        </StackPanel>
+    </ContentDialog>
+    </Grid>
+</Page>

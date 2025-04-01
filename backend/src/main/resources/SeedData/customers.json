@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Nguyễn Văn An",
+    "phone": "0901234567",
+    "email": "annguyen@gmail.com",
+    "gender": "Male",
+    "address": "123 Lê Lợi, Quận 1, TP.HCM",
+    "loyaltyPoints": 5432,
+    "loyaltyCardType": "Silver"
+  },
+  {
+    "name": "Trần Thị Bình",
+    "phone": "0912345678",
+    "email": "binhtt@gmail.com",
+    "gender": "Female",
+    "address": "456 Nguyễn Huệ, Quận 3, TP.HCM",
+    "loyaltyPoints": 15325,
+    "loyaltyCardType": "Gold"
+  },
+  {
+    "name": "Lê Hoàng Chương",
+    "phone": "0923456789",
+    "email": "chuonglh@gmail.com",
+    "gender": "Male",
+    "address": "789 Trần Hưng Đạo, Quận 5, TP.HCM",
+    "loyaltyPoints": 1234,
+    "loyaltyCardType": "Bronze"
+  },
+  {
+    "name": "Phạm Thùy Dung",
+    "phone": "0934567890",
+    "email": "dungpt@gmail.com",
+    "gender": "Female",
+    "address": "321 Phan Xích Long, Quận Phú Nhuận, TP.HCM",
+    "loyaltyPoints": 6482,
+    "loyaltyCardType": "Silver"
+  },
+  {
+    "name": "Hoàng Minh Đức",
+    "phone": "0945678901",
+    "email": "duchm@gmail.com",
+    "gender": "Male",
+    "address": "654 Điện Biên Phủ, Quận Bình Thạnh, TP.HCM",
+    "loyaltyPoints": 25555,
+    "loyaltyCardType": "Gold"
+  },
+  {
+    "name": "Vũ Ngọc Giang",
+    "phone": "0956789012",
+    "email": "giangvn@gmail.com",
+    "gender": "Female",
+    "address": "987 Lý Thường Kiệt, Quận Tân Bình, TP.HCM",
+    "loyaltyPoints": 48000,
+    "loyaltyCardType": "Platinum"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "username": "admin",
+    "password": "admin",
+    "fullname": "Administrator",
+    "isAdmin": true,
+    "startDate": null,
+    "phone": "123-456-7890",
+    "email": "admin@example.com"
+  },
+  {
+    "username": "staff1",
+    "password": "staff1",
+    "fullname": "Trần Văn Bán",
+    "isAdmin": true,
+    "status": "Working",
+    "gender": "Male",
+    "startDate": "2019-05-20",
+    "phone": "234-567-8901",
+    "email": "staff1@example.com"
+  },
+  {
+    "username": "staff2",
+    "password": "staff2",
+    "fullname": "Phạm Văn Kho",
+    "isAdmin": false,
+    "status": "Working",
+    "gender": "Male",
+    "startDate": "2020-01-15",
+    "phone": "345-678-9012",
+    "email": "staff2@example.com"
+  },
+  {
+    "username": "staff3",
+    "password": "staff3",
+    "fullname": "Hoàng Thị Kế",
+    "isAdmin": false,
+    "status": "Working",
+    "gender": "Female",
+    "startDate": "2021-03-10",
+    "phone": "456-789-0123",
+    "email": "staff3@example.com"
+  },
+  {
+    "username": "staff4",
+    "password": "staff4",
+    "fullname": "Lê Thị Quản",
+    "isAdmin": false,
+    "status": "OnLeave",
+    "gender": "Female",
+    "startDate": "2019-07-22",
+    "phone": "567-890-1234",
+    "email": "staff4@example.com"
+  },
+  {
+    "username": "staff5",
+    "password": "staff5",
+    "fullname": "Vũ Minh Tư",
+    "isAdmin": false,
+    "status": "Resigned",
+    "gender": "Male",
+    "startDate": "2018-11-05",
+    "phone": "678-901-2345",
+    "email": "staff5@example.com"
+  }
+]

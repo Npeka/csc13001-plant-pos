@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:csc13001_plant_pos.Converter">
+    <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <local:CurrencyConverter x:Key="CurrencyConverter" />
+    <local:BoolToForegroundConverter x:Key="BoolToForegroundConverter" />
+    <local:BoolToBackgroundConverter x:Key="BoolToBackgroundConverter" />
+    <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+    <local:DateToStringConverter x:Key="DateToStringConverter" />
+    <local:GenderConverter x:Key="GenderConverter" />
+    <local:PercentageConverter x:Key="PercentageConverter" />
+    <local:MembershipTypeToImageConverter x:Key="MembershipTypeToImageConverter" />
+    <local:DiscountStatusToTextConverter x:Key="DiscountStatusToTextConverter" />
+    <local:DiscountStatusToColorConverter x:Key="DiscountStatusToColorConverter" />
+    <local:MembershipTypeToBackgroundConverter x:Key="MembershipTypeToBackgroundConverter" />
+    <local:ErrorToVisibilityConverter x:Key="ErrorToVisibilityConverter" />
+    <local:DiscountVisibilityConverter x:Key="DiscountVisibilityConverter" />
+    <local:CustomerVisibilityConverter x:Key="CustomerVisibilityConverter" />
+    <local:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+    <local:DecimalConverter x:Key="DecimalConverter" />
+    <local:GreaterThanZeroConverter x:Key="GreaterThanZeroConverter" />
+    <local:QuantityToBorderBrushConverter x:Key="QuantityToBorderBrushConverter" />
+</ResourceDictionary>

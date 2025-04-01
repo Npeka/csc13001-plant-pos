@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <None Update="App.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Converters\Converters.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSizes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Thickness.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AuthenticationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\FormForgotPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\FormLayout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\FormLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\FormResetPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\FormTitle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomerProfile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EmployeeManagerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EmployeeProfile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ListDetailsDetailControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ListEmployees.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ListUsers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\OrderPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ShellPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StatisticPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
