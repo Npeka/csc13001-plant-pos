@@ -15,13 +15,16 @@
             IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False"
             ItemInvoked="navigation_ItemInvoked"
-                        OpenPaneLength="200"
-                        SelectionChanged="navigation_SelectionChanged">
+            OpenPaneLength="275"
+            SelectionChanged="navigation_SelectionChanged">
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Thống kê" Tag="StatisticPage">
+                <NavigationViewItem
+                    Content="Thống kê"
+                    Tag="StatisticPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE9D9;" />
+                        <FontIcon
+                            Glyph="&#xE9D9;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
@@ -36,15 +39,21 @@
                     Tag="StaffManagementPage" />
 
 
-                <NavigationViewItem Content="Quản lý khách hàng" Tag="CustomerManagementPage">
+                <NavigationViewItem
+                    Content="Quản lý khách hàng"
+                    Tag="CustomerManagementPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE902;" />
+                        <FontIcon
+                            Glyph="&#xE902;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Quản lý sản phẩm" Tag="ProductManagementPage">
+                <NavigationViewItem
+                    Content="Quản lý sản phẩm"
+                    Tag="ProductManagementPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEC0A;" />
+                        <FontIcon
+                            Glyph="&#xEC0A;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
@@ -53,27 +62,37 @@
                     Icon="Tag"
                     Tag="DiscountManagementPage" />
 
-                <NavigationViewItem Content="Quản lý kho" Tag="WarehouseManagementPage">
+                <NavigationViewItem
+                    Content="Quản lý kho"
+                    Tag="WarehouseManagementPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEA0D;" />
+                        <FontIcon
+                            Glyph="&#xEA0D;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Sản phẩm bán chạy" Tag="TopSellingProductsPage">
+                <NavigationViewItem
+                    Content="Sản phẩm bán chạy"
+                    Tag="TopSellingProductsPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE9D2;" />
+                        <FontIcon
+                            Glyph="&#xE9D2;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Đăng xuất" Tag="Logout">
+                <NavigationViewItem
+                    Content="Đăng xuất"
+                    Tag="Logout">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8DE;" />
+                        <FontIcon
+                            Glyph="&#xE8DE;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>
 
-            <Frame x:Name="adminFrame" />
+            <Frame
+                x:Name="adminFrame" />
         </NavigationView>
     </Grid>
 </Page>

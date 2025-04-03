@@ -14,6 +14,6 @@ namespace csc13001_plant_pos.DTO.ProductDTO
         public int SalesQuantity { get; set; }
 
         [JsonPropertyName("revenue")]
-        public int Revenue { get; set; }
+        public decimal Revenue { get; set; }
     }
 }

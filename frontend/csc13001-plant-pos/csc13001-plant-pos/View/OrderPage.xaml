@@ -45,7 +45,7 @@
                             <FontIcon
                                 FontSize="20"
                                 Foreground="#4CAF50"
-                                Glyph="💰" />
+                                Glyph="&#xE8EC;" />
                             <StackPanel>
                                 <StackPanel
                                     Orientation="Horizontal">
