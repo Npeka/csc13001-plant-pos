@@ -137,6 +137,7 @@
                     <ComboBox
                         x:Name="PositionFilter"
                         HorizontalAlignment="Stretch"
+                         PlaceholderText="Chọn trạng thái"
                         SelectedValue="{x:Bind ViewModel.StatusQuery, Mode=TwoWay}"
                         SelectedValuePath="Tag">
                         <ComboBoxItem Content="Tất cả" Tag="All"/>

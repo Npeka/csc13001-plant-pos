@@ -17,9 +17,9 @@ public interface IStaffService
 
     Task<ApiResponse<List<User>>?> GetListStaffAsync();
 
-    Task<ApiResponse<Boolean?>> UpdateStaffAsync(User user);
+    Task<bool> UpdateStaffAsync(User user);
 
-    Task<ApiResponse<Boolean?>> AddStaffAsync(User user);
+    Task<bool> AddStaffAsync(User user);
 }
 
 public class StaffService : IStaffService
@@ -52,19 +52,21 @@ public class StaffService : IStaffService
         return JsonUtils.Deserialize<ApiResponse<List<User>>>(json);
     }
 
-    public async Task<ApiResponse<Boolean?>> UpdateStaffAsync(User user)
+    public async Task<bool> UpdateStaffAsync(User user)
     {
         var content = JsonUtils.ToJsonContent(user);
         var response = await _httpClient.PutAsync($"staff/{user.UserId}", content);
         var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonUtils.Deserialize<ApiResponse<Boolean?>>(responseJson);
+        var apiResponse = JsonUtils.Deserialize<ApiResponse<object>>(responseJson);
+        return apiResponse?.Status == "success";
     }
 
-    public async Task<ApiResponse<Boolean?>> AddStaffAsync(User user)
+    public async Task<bool> AddStaffAsync(User user)
     {
         var content = JsonUtils.ToJsonContent(user);
         var response = await _httpClient.PostAsync("staff", content);
         var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonUtils.Deserialize<ApiResponse<Boolean?>>(responseJson);
+        var apiResponse = JsonUtils.Deserialize<ApiResponse<object>>(responseJson);
+        return apiResponse?.Status == "success";
     }
 }

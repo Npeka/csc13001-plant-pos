@@ -95,7 +95,7 @@ namespace csc13001_plant_pos.ViewModel
         public async Task<bool> UpdateStaffAsync(User user)
         {
             var response = await _staffService.UpdateStaffAsync(user);
-            if (response?.Status == "success")
+            if (response)
             {
                 var existingUser = StaffList.FirstOrDefault(u => u.UserId == user.UserId);
                 if (existingUser != null)
@@ -114,7 +114,6 @@ namespace csc13001_plant_pos.ViewModel
                 }
 
                 ResetFilters();
-                Debug.WriteLine($"User updated: {user.Fullname}, {user.Status}, {user.Gender}, {user.IsAdmin}");
                 return true;
             }
             return false;
@@ -123,12 +122,12 @@ namespace csc13001_plant_pos.ViewModel
         public async Task<bool> AddStaffAsync(User user)
         {
             var response = await _staffService.AddStaffAsync(user);
-            if (response?.Status == "success")
+            if (response)
             {
                 StaffList.Add(user);
                 FilteredStaffList.Add(user);
                 ResetFilters();
-                return false;
+                return true;
             }
             return false;
         }

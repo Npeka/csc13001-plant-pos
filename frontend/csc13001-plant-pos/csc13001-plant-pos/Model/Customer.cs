@@ -21,10 +21,10 @@ namespace csc13001_plant_pos.Model
         public string Gender { get; set; }
 
         [JsonPropertyName("address")]
-        public string address { get; set; }
+        public string Address { get; set; }
 
         [JsonPropertyName("birthDate")]
-        public DateTime birthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [JsonPropertyName("loyaltyPoints")]
         public int LoyaltyPoints { get; set; }
@@ -32,7 +32,7 @@ namespace csc13001_plant_pos.Model
         [JsonPropertyName("loyaltyCardType")]
         public string LoyaltyCardType { get; set; }
 
-        [JsonPropertyName("createAt")]
-        public DateTime createAt { get; set; }
+        [JsonPropertyName("createdAt")]
+        public DateTime? CreateAt { get; set; }
     }
 }
