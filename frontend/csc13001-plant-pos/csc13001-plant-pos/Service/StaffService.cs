@@ -6,6 +6,7 @@ using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.DTO.StaffDTO;
 using csc13001_plant_pos.Utils;
 using csc13001_plant_pos.Model;
+using System;
 
 namespace csc13001_plant_pos.Service;
 
@@ -15,6 +16,10 @@ public interface IStaffService
     Task<ApiResponse<List<OrderListDto>>?> GetStaffOrdersAsync(int staffId);
 
     Task<ApiResponse<List<User>>?> GetListStaffAsync();
+
+    Task<ApiResponse<Boolean?>> UpdateStaffAsync(User user);
+
+    Task<ApiResponse<Boolean?>> AddStaffAsync(User user);
 }
 
 public class StaffService : IStaffService
@@ -45,5 +50,21 @@ public class StaffService : IStaffService
         var response = await _httpClient.GetAsync("staff");
         var json = await response.Content.ReadAsStringAsync();
         return JsonUtils.Deserialize<ApiResponse<List<User>>>(json);
+    }
+
+    public async Task<ApiResponse<Boolean?>> UpdateStaffAsync(User user)
+    {
+        var content = JsonUtils.ToJsonContent(user);
+        var response = await _httpClient.PutAsync($"staff/{user.UserId}", content);
+        var responseJson = await response.Content.ReadAsStringAsync();
+        return JsonUtils.Deserialize<ApiResponse<Boolean?>>(responseJson);
+    }
+
+    public async Task<ApiResponse<Boolean?>> AddStaffAsync(User user)
+    {
+        var content = JsonUtils.ToJsonContent(user);
+        var response = await _httpClient.PostAsync("staff", content);
+        var responseJson = await response.Content.ReadAsStringAsync();
+        return JsonUtils.Deserialize<ApiResponse<Boolean?>>(responseJson);
     }
 }

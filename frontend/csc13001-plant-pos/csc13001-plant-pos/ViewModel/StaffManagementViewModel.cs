@@ -7,6 +7,7 @@ using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -22,12 +23,12 @@ namespace csc13001_plant_pos.ViewModel
         private string searchQuery;
 
         [ObservableProperty]
-        private DateTime startDateQuery;
+        private DateTimeOffset? selectedDate;
 
         [ObservableProperty]
         private string statusQuery;
 
-        public string FilteredStaffCount => $"{filteredStaffList?.Count ?? 0} nhân viên";
+        public string FilteredStaffCount => $"{FilteredStaffList?.Count ?? 0} nhân viên";
 
         private readonly IStaffService _staffService;
 
@@ -36,15 +37,7 @@ namespace csc13001_plant_pos.ViewModel
             _staffService = staffService;
             LoadStaffsDataAsync();
         }
-        public void PrintFilteredStaffList()
-        {
-            // Print each user's details in the filteredStaffList to debug
-            System.Diagnostics.Debug.WriteLine("Filtered Staff List:");
-            foreach (var user in filteredStaffList)
-            {
-                System.Diagnostics.Debug.WriteLine($"ID: {user.UserId}, FullName: {user.Fullname}, StartDate: {user.StartDate}, Status: {user.Status}");
-            }
-        }
+
         public async void LoadStaffsDataAsync()
         {
 
@@ -52,38 +45,92 @@ namespace csc13001_plant_pos.ViewModel
             System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
-                staffList = new ObservableCollection<User>(response.Data);
-                filteredStaffList = new ObservableCollection<User>(response.Data);
-                PrintFilteredStaffList();
+                StaffList = new ObservableCollection<User>(response.Data);
+                FilteredStaffList = new ObservableCollection<User>(response.Data);
             }
         }
 
         public void ApplyFilters()
         {
-            filteredStaffList.Clear();
-            var filtered = staffList.AsEnumerable();
+            FilteredStaffList.Clear();
+            var filtered = StaffList.AsEnumerable();
 
-            if (!string.IsNullOrEmpty(searchQuery))
+            if (!string.IsNullOrEmpty(SearchQuery))
             {
                 filtered = filtered.Where(emp =>
-                emp.Fullname.ToLower().Contains(searchQuery) ||
-                emp.UserId.ToString().ToLower().Contains(searchQuery));
+                emp.Fullname.ToLower().Contains(SearchQuery) ||
+                emp.UserId.ToString().ToLower().Contains(SearchQuery));
             }
 
-            if (StartDateQuery != default(DateTime))
+            if (SelectedDate.HasValue)
             {
-                filtered = filtered.Where(emp => emp.StartDate.Date == StartDateQuery.Date);
+                filtered = filtered.Where(emp => emp.StartDate.Date == SelectedDate.Value.Date);
             }
 
-            if (!string.IsNullOrEmpty(statusQuery) && statusQuery != "All")
+            if (!string.IsNullOrEmpty(StatusQuery) && StatusQuery != "All")
             {
-                filtered = filtered.Where(emp => emp.Status == statusQuery);
+                filtered = filtered.Where(emp => emp.Status == StatusQuery);
             }
 
             foreach (var user in filtered)
             {
-                filteredStaffList.Add(user);
+                FilteredStaffList.Add(user);
             }
+            OnPropertyChanged(nameof(FilteredStaffCount));
+        }
+
+
+        public void ResetFilters()
+        {
+            SearchQuery = "";
+            SelectedDate = null;
+            StatusQuery = "All";
+            FilteredStaffList.Clear();
+            foreach (var user in StaffList)
+            {
+                FilteredStaffList.Add(user);
+            }
+        }
+
+        public async Task<bool> UpdateStaffAsync(User user)
+        {
+            var response = await _staffService.UpdateStaffAsync(user);
+            if (response?.Status == "success")
+            {
+                var existingUser = StaffList.FirstOrDefault(u => u.UserId == user.UserId);
+                if (existingUser != null)
+                {
+                    existingUser.Fullname = user.Fullname;
+                    existingUser.Email = user.Email;
+                    existingUser.Phone = user.Phone;
+                    existingUser.Status = user.Status;
+                    existingUser.Gender = user.Gender;
+                    existingUser.IsAdmin = user.IsAdmin;
+                }
+                else
+                {
+                    StaffList.Add(user);
+                    FilteredStaffList.Add(user);
+                }
+
+                ResetFilters();
+                Debug.WriteLine($"User updated: {user.Fullname}, {user.Status}, {user.Gender}, {user.IsAdmin}");
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> AddStaffAsync(User user)
+        {
+            var response = await _staffService.AddStaffAsync(user);
+            if (response?.Status == "success")
+            {
+                StaffList.Add(user);
+                FilteredStaffList.Add(user);
+                ResetFilters();
+                return false;
+            }
+            return false;
         }
 
         partial void OnSearchQueryChanged(string value)
@@ -92,66 +139,14 @@ namespace csc13001_plant_pos.ViewModel
             ApplyFilters();
         }
 
-        public void ResetFilters()
-        {
-            SearchQuery = "";
-            StartDateQuery = default(DateTime);
-            StatusQuery = "All";
-            filteredStaffList = new ObservableCollection<User>(staffList);
-        }
-
-        public void EditEmployee_Click(User user, XamlRoot xamlroot)
-        {   
-            ContentDialog dialog = new ContentDialog()
-            {
-                Title = "Thông báo",
-                Content = $"Đã chỉnh sửa nhân viên: {user.Fullname}",
-                CloseButtonText = "Đóng",
-                XamlRoot = xamlroot
-            };
-
-            _ = dialog.ShowAsync();
-            // Ham sua nhan vien
-        }
-
-        public async void ShowDeleteConfirmationDialog(User user, XamlRoot xamlroot)
-        {
-            ContentDialog deleteDialog = new ContentDialog()
-            {
-                Title = "Xác nhận xóa",
-                Content = $"Bạn có chắc chắn muốn xóa nhân viên '{user.Fullname}' không?",
-                PrimaryButtonText = "Xóa",
-                CloseButtonText = "Hủy",
-                DefaultButton = ContentDialogButton.Close,
-                XamlRoot = xamlroot
-            };
-
-            ContentDialogResult result = await deleteDialog.ShowAsync();
-
-            if (result == ContentDialogResult.Primary)
-            {
-                // Xóa nhân viên
-                staffList.Remove(user);
-                if (filteredStaffList.Contains(user))
-                {
-                    filteredStaffList.Remove(user);
-                }
-                // Ham xoa nhan vien
-            }
-        }
-
-        public void SearchBox_TextChanged()
+        partial void OnSelectedDateChanged(DateTimeOffset? value)
         {
             ApplyFilters();
         }
 
-        public void DateFilter_DateChanged()
+        partial void OnStatusQueryChanged(string value)
         {
-            ApplyFilters();
-        }
-
-        public void StatusFilter_SelectionChanged()
-        {
+            Debug.WriteLine($"SearchQuery to '{value}'");
             ApplyFilters();
         }
     }
