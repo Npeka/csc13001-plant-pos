@@ -1,6 +1,7 @@
 package csc13001.plantpos.customer;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import csc13001.plantpos.user.enums.Gender;
 import jakarta.persistence.*;
@@ -46,6 +47,10 @@ public class Customer {
 
     @Column(name = "loyalty_card_type")
     private CustomerType loyaltyCardType;
+
+    @Builder.Default
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Customer(String name, String phone, String email, Gender gender) {
         this.name = name;

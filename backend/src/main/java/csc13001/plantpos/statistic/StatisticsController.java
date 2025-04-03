@@ -1,20 +1,19 @@
 package csc13001.plantpos.statistic;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import csc13001.plantpos.utils.http.HttpResponse;
 import csc13001.plantpos.product.dtos.ProductStatisticsDTO;
 import csc13001.plantpos.statistic.dtos.ProductsStatisticsDTO;
 import csc13001.plantpos.statistic.dtos.SalesStatisticsDTO;
-import csc13001.plantpos.statistic.dtos.StatisticsRequestDTO;
 
 @RestController
 @RequestMapping("api/statistics")
@@ -24,16 +23,11 @@ public class StatisticsController {
 
     @GetMapping("/sales")
     public ResponseEntity<?> getMethodName(
-            @RequestBody StatisticsRequestDTO statisticsRequestDTO,
-            BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return HttpResponse.badRequest("Dữ liệu yêu cầu không hợp lệ");
-        }
-
-        SalesStatisticsDTO salesStatistics = statisticsService.getSalesStatistics(
-                statisticsRequestDTO.getTimeType(),
-                statisticsRequestDTO.getStartDate(),
-                statisticsRequestDTO.getEndDate());
+            @RequestParam TimeType timeType,
+            @RequestParam LocalDateTime startDate,
+            @RequestParam LocalDateTime endDate) {
+        SalesStatisticsDTO salesStatistics = statisticsService
+                .getSalesStatistics(timeType, startDate, endDate);
         return HttpResponse.ok("Lấy thống kê doanh số thành công", salesStatistics);
     }
 
