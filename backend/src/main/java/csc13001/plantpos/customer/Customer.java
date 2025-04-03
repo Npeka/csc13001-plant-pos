@@ -3,6 +3,8 @@ package csc13001.plantpos.customer;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import csc13001.plantpos.user.enums.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -50,6 +52,7 @@ public class Customer {
 
     @Builder.Default
     @Column(name = "created_at")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Customer(String name, String phone, String email, Gender gender) {
