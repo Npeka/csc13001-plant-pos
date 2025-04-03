@@ -2,6 +2,7 @@ package csc13001.plantpos.customer;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -40,9 +41,12 @@ public class Customer {
     @Column(name = "gender", length = 10)
     private Gender gender;
 
-    // type text
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "birth_date")
+    private Date birthDate;
 
     @Column(name = "loyalty_points")
     private int loyaltyPoints;
@@ -54,25 +58,6 @@ public class Customer {
     @Column(name = "created_at")
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    public Customer(String name, String phone, String email, Gender gender) {
-        this.name = name;
-        this.phone = phone;
-        this.gender = gender;
-        this.email = email;
-        this.loyaltyPoints = 0;
-        this.loyaltyCardType = CustomerType.All;
-    }
-
-    public Customer(Long customerId, String name, String phone, String email, Gender gender) {
-        this.customerId = customerId;
-        this.name = name;
-        this.phone = phone;
-        this.gender = gender;
-        this.email = email;
-        this.loyaltyPoints = 0;
-        this.loyaltyCardType = CustomerType.All;
-    }
 
     public void addLoyaltyPointsBySpending(BigDecimal spending) {
         if (spending == null || spending.compareTo(BigDecimal.ZERO) <= 0) {

@@ -1,29 +1,32 @@
-{
-  "properties": [
-    {
-      "name": "minio.url",
-      "type": "java.lang.String",
-      "description": "A description for 'minio.url'"
-    },
-    {
-      "name": "minio.accessKey",
-      "type": "java.lang.String",
-      "description": "A description for 'minio.accessKey'"
-    },
-    {
-      "name": "minio.secretKey",
-      "type": "java.lang.String",
-      "description": "A description for 'minio.secretKey'"
-    },
-    {
-      "name": "minio.bucket.product",
-      "type": "java.lang.String",
-      "description": "A description for 'minio.bucket.product'"
-    },
-    {
-      "name": "jwt.secret",
-      "type": "java.lang.String",
-      "description": "A description for 'jwt.secret'"
-    }
-  ]
-}
+{"properties": [
+  {
+    "name": "minio.url",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.url'"
+  },
+  {
+    "name": "minio.accessKey",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.accessKey'"
+  },
+  {
+    "name": "minio.secretKey",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.secretKey'"
+  },
+  {
+    "name": "minio.bucket.product",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.bucket.product'"
+  },
+  {
+    "name": "jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret'"
+  },
+  {
+    "name": "minio.bucket.staff",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.bucket.staff'"
+  }
+]}

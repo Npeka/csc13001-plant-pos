@@ -17,6 +17,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,6 +36,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @NotBlank(message = "Họ tên là bắt buộc")
     @Size(min = 5, max = 256, message = "Họ tên phải từ 5 đến 256 ký tự")
@@ -61,21 +65,21 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @JsonProperty("isAdmin")
-    @NotNull(message = "isAdmin là bắt buộc")
-    @Column(name = "is_admin", nullable = false)
-    private boolean isAdmin;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
+    private Gender gender;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "start_date", columnDefinition = "DATE")
-    private LocalDate startDate;
+    private Date startDate;
 
     @Column(name = "status")
     private WorkingStatus status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private Gender gender;
+    @JsonProperty("isAdmin")
+    @NotNull(message = "isAdmin là bắt buộc")
+    @Column(name = "is_admin", nullable = false)
+    private boolean isAdmin;
 
     @OneToMany
     private List<WorkLog> workLogs;
@@ -85,7 +89,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.isAdmin = false;
-        this.startDate = LocalDate.now();
     }
 
     public User(String fullname, String username, String password, boolean isAdmin) {
@@ -93,7 +96,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
-        this.startDate = LocalDate.now();
         this.status = WorkingStatus.Working;
     }
 

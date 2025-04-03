@@ -13,6 +13,21 @@ public class AuthExceptionHandler {
         return HttpResponse.badRequest(AuthErrorMessages.USERNAME_EXISTS);
     }
 
+    @ExceptionHandler(AuthException.EmailExistsException.class)
+    public ResponseEntity<?> handleEmailExists(AuthException.EmailExistsException ex) {
+        return HttpResponse.badRequest(AuthErrorMessages.EMAIL_EXISTS);
+    }
+
+    @ExceptionHandler(AuthException.PhoneExistsException.class)
+    public ResponseEntity<?> handlePhoneExists(AuthException.PhoneExistsException ex) {
+        return HttpResponse.badRequest(AuthErrorMessages.PHONE_EXISTS);
+    }
+
+    @ExceptionHandler(AuthException.UsernameEmailPhoneExistsException.class)
+    public ResponseEntity<?> handleUsernameEmailPhoneExists(AuthException.UsernameEmailPhoneExistsException ex) {
+        return HttpResponse.badRequest(AuthErrorMessages.USERNAME_EMAIL_PHONE_EXISTS);
+    }
+
     @ExceptionHandler(AuthException.UserNotFoundException.class)
     public ResponseEntity<?> handleUserNotFound(AuthException.UserNotFoundException ex) {
         return HttpResponse.badRequest(AuthErrorMessages.USER_NOT_FOUND);

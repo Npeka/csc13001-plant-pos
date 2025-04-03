@@ -1,6 +1,7 @@
 package csc13001.plantpos.global;
 
 import csc13001.plantpos.domain.enums.MinioBucket;
+import csc13001.plantpos.product.exception.ProductException;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -26,6 +27,9 @@ public class MinIOService {
 
     @Value("${minio.bucket.product}")
     private String productBucket;
+
+    @Value("${minio.bucket.staff}")
+    private String staffBucket;
 
     private void ensureBucketExists(String bucketName) {
         try {
@@ -56,12 +60,17 @@ public class MinIOService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public String uploadFile(MultipartFile file, MinioBucket minioBucket) {
+        validateImage(file);
+
         try {
             String bucketName;
 
             switch (minioBucket) {
                 case PRODUCT:
                     bucketName = productBucket;
+                    break;
+                case STAFF:
+                    bucketName = staffBucket;
                     break;
                 default:
                     throw new IllegalArgumentException("Loại ảnh không hợp lệ!");
@@ -81,7 +90,6 @@ public class MinIOService {
                             .contentType(file.getContentType())
                             .build());
 
-            // Trả về URL ảnh đã upload
             return minioUrl + "/" + bucketName + "/" + fileName;
 
         } catch (Exception e) {
@@ -115,6 +123,17 @@ public class MinIOService {
 
         } catch (Exception e) {
             throw new RuntimeException("Lỗi khi xóa file trên MinIO: " + fileUrl, e);
+        }
+    }
+
+    private void validateImage(MultipartFile image) {
+        if (image == null) {
+            return;
+        }
+
+        String contentType = image.getContentType();
+        if (contentType == null || !(contentType.startsWith("image/"))) {
+            throw new ProductException.ProductWrongTypeImageException();
         }
     }
 }

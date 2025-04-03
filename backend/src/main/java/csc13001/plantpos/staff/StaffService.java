@@ -4,7 +4,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import csc13001.plantpos.authentication.AuthService;
+import csc13001.plantpos.domain.enums.MinioBucket;
+import csc13001.plantpos.global.MinIOService;
 import csc13001.plantpos.order.OrderRepository;
 import csc13001.plantpos.order.models.Order;
 import csc13001.plantpos.staff.dtos.StaffDTO;
@@ -16,8 +21,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class StaffService {
+    private final AuthService authService;
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
+    private final MinIOService minIOService;
 
     public List<User> getAllStaff() {
         return userRepository.findByIsAdmin(false).get();
@@ -37,7 +44,18 @@ public class StaffService {
         return staffDTO;
     }
 
-    public void updateStaff(User staff) {
+    @Transactional
+    public void createStaff(User staff, MultipartFile image) {
+        User user = authService.register(staff);
+        if (image != null) {
+            String imageurl = minIOService.uploadFile(image, MinioBucket.STAFF);
+            user.setImageUrl(imageurl);
+        }
+
+        userRepository.save(user);
+    }
+
+    public void updateStaff(User staff, MultipartFile image) {
         User user = userRepository.findById(staff.getUserId())
                 .orElseThrow(StaffException.StaffNotFoundException::new);
 
@@ -47,6 +65,14 @@ public class StaffService {
         user.setStartDate(staff.getStartDate());
         user.setStatus(staff.getStatus());
         user.setGender(staff.getGender());
+
+        if (image != null) {
+            if (user.getImageUrl() != null) {
+                minIOService.deleteFile(user.getImageUrl());
+            }
+            String imageurl = minIOService.uploadFile(image, MinioBucket.STAFF);
+            user.setImageUrl(imageurl);
+        }
 
         userRepository.save(user);
     }

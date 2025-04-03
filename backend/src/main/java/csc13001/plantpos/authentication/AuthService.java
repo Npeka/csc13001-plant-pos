@@ -2,7 +2,6 @@ package csc13001.plantpos.authentication;
 
 import csc13001.plantpos.authentication.dtos.LoginDTO;
 import csc13001.plantpos.authentication.dtos.LoginResponseDTO;
-import csc13001.plantpos.authentication.dtos.RegisterDTO;
 import csc13001.plantpos.authentication.dtos.ResetPassworDTO;
 import csc13001.plantpos.authentication.exception.AuthException;
 import csc13001.plantpos.config.JwtUtil;
@@ -36,18 +35,22 @@ public class AuthService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    public void register(RegisterDTO registerDTO) {
-        String fullname = registerDTO.getFullname();
-        String username = registerDTO.getUsername();
-        String password = registerDTO.getPassword();
-
-        if (userRepository.findByUsername(username).isPresent()) {
+    public User register(User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
             throw new AuthException.UsernameExistsException();
         }
 
-        String hashedPassword = bCryptPasswordEncoder.encode(password);
-        User newUser = new User(fullname, username, hashedPassword);
-        userRepository.save(newUser);
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new AuthException.EmailExistsException();
+        }
+
+        if (userRepository.existsByPhone(user.getPhone())) {
+            throw new AuthException.PhoneExistsException();
+        }
+
+        String hashedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+        return userRepository.save(user);
     }
 
     public LoginResponseDTO login(LoginDTO loginDTO) {

@@ -45,7 +45,6 @@ public class ProductController {
 
         ObjectMapper objectMapper = new ObjectMapper();
         ProductDTO productDTO = objectMapper.readValue(productJson, ProductDTO.class);
-        validateImage(image);
 
         Product createdProduct = productService.createProduct(productDTO, image);
         return HttpResponse.ok("Tạo sản phẩm thành công", createdProduct);
@@ -63,7 +62,6 @@ public class ProductController {
 
         ObjectMapper objectMapper = new ObjectMapper();
         ProductDTO productDTO = objectMapper.readValue(productJson, ProductDTO.class);
-        validateImage(image);
 
         productService.updateProduct(id, productDTO, image);
         return HttpResponse.ok("Cập nhật sản phẩm thành công");
@@ -75,14 +73,4 @@ public class ProductController {
         return HttpResponse.ok("Xóa sản phẩm thành công");
     }
 
-    private void validateImage(MultipartFile image) {
-        if (image == null) {
-            return;
-        }
-
-        String contentType = image.getContentType();
-        if (contentType == null || !(contentType.startsWith("image/"))) {
-            throw new ProductException.ProductWrongTypeImageException();
-        }
-    }
 }

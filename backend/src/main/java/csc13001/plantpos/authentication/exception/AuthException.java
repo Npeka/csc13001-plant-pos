@@ -16,6 +16,24 @@ public class AuthException extends RuntimeException {
         }
     }
 
+    public static class EmailExistsException extends AuthException {
+        public EmailExistsException() {
+            super(AuthErrorMessages.EMAIL_EXISTS);
+        }
+    }
+
+    public static class PhoneExistsException extends AuthException {
+        public PhoneExistsException() {
+            super(AuthErrorMessages.PHONE_EXISTS);
+        }
+    }
+
+    public static class UsernameEmailPhoneExistsException extends AuthException {
+        public UsernameEmailPhoneExistsException() {
+            super(AuthErrorMessages.USERNAME_EMAIL_PHONE_EXISTS);
+        }
+    }
+
     public static class InvalidPasswordException extends AuthException {
         public InvalidPasswordException() {
             super(AuthErrorMessages.INVALID_PASSWORD);

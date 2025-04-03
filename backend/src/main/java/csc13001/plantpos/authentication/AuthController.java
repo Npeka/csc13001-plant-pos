@@ -3,9 +3,9 @@ package csc13001.plantpos.authentication;
 import csc13001.plantpos.authentication.dtos.ForgotPassworDTO;
 import csc13001.plantpos.authentication.dtos.LoginDTO;
 import csc13001.plantpos.authentication.dtos.LoginResponseDTO;
-import csc13001.plantpos.authentication.dtos.RegisterDTO;
 import csc13001.plantpos.authentication.dtos.ResetPassworDTO;
 import csc13001.plantpos.authentication.dtos.VerifyOtpDTO;
+import csc13001.plantpos.user.User;
 import csc13001.plantpos.utils.http.HttpResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,13 +25,13 @@ public class AuthController {
     @Operation(summary = "Đăng ký tài khoản mới", description = "Tạo tài khoản mới với thông tin đăng ký")
     @PostMapping("/register")
     public ResponseEntity<?> register(
-            @RequestBody @Validated RegisterDTO registerDTO,
+            @RequestBody @Validated User user,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
 
-        authService.register(registerDTO);
+        authService.register(user);
 
         return HttpResponse.ok("Đăng ký thành công");
     }
