@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace csc13001_plant_pos.Model
 {
@@ -19,10 +20,19 @@ namespace csc13001_plant_pos.Model
         [JsonPropertyName("gender")]
         public string Gender { get; set; }
 
+        [JsonPropertyName("address")]
+        public string address { get; set; }
+
+        [JsonPropertyName("birthDate")]
+        public DateTime birthDate { get; set; }
+
         [JsonPropertyName("loyaltyPoints")]
         public int LoyaltyPoints { get; set; }
 
         [JsonPropertyName("loyaltyCardType")]
         public string LoyaltyCardType { get; set; }
+
+        [JsonPropertyName("createAt")]
+        public DateTime createAt { get; set; }
     }
 }
