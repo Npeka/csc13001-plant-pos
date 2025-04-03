@@ -22,4 +22,6 @@
     <local:DecimalConverter x:Key="DecimalConverter" />
     <local:GreaterThanZeroConverter x:Key="GreaterThanZeroConverter" />
     <local:QuantityToBorderBrushConverter x:Key="QuantityToBorderBrushConverter" />
+    <local:PercentageToForegroundConverter x:Key="PercentageToForegroundConverter" />
+    <local:EnglishToVietnameseConverter x:Key="EnglishToVietnameseConverter" />
 </ResourceDictionary>

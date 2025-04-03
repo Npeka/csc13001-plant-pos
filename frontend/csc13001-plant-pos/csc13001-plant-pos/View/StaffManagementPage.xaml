@@ -7,9 +7,15 @@
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:csc13001_plant_pos.View.UI"
+    xmlns:conv="using:csc13001_plant_pos.Converter"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <conv:EnglishToVietnameseConverter
+     x:Key="EnglishToVietnameseConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid
         Padding="24"
         RowSpacing="12">
@@ -71,7 +77,8 @@
                 <Button
                     Grid.Column="1"
                     Margin="8,0,0,0"
-                    CornerRadius="4">
+                    CornerRadius="4"
+                    Click="AddNewStaff">
                     <StackPanel
                         Orientation="Horizontal">
                         <FontIcon
@@ -114,7 +121,8 @@
                     <CalendarDatePicker
                         x:Name="DateFilter"
                         HorizontalAlignment="Stretch"
-                        DateChanged="{x:Bind ViewModel.DateFilter_DateChanged, Mode=Oneway}" />
+                        Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày"/>
+                        
                 </StackPanel>
 
                 <!--  Bộ lọc vị trí  -->
@@ -128,16 +136,15 @@
                         Text="Trạng thái" />
                     <ComboBox
                         x:Name="PositionFilter"
-                        HorizontalAlignment="Stretch">
-                        <ComboBoxItem
-                            Content="Tất cả" />
-                        <ComboBoxItem
-                            Content="Working" />
-                        <ComboBoxItem
-                            Content="Resigned" />
-                        <ComboBoxItem
-                            Content="OnLeave" />
+                        HorizontalAlignment="Stretch"
+                        SelectedValue="{x:Bind ViewModel.StatusQuery, Mode=TwoWay}"
+                        SelectedValuePath="Tag">
+                        <ComboBoxItem Content="Tất cả" Tag="All"/>
+                        <ComboBoxItem Content="Đang làm việc" Tag="Working"/>
+                        <ComboBoxItem Content="Đang nghỉ phép" Tag="OnLeave"/>
+                        <ComboBoxItem Content="Đã nghỉ việc" Tag="Resigned"/>
                     </ComboBox>
+
                 </StackPanel>
 
                 <!--  Nút Reset  -->
@@ -153,7 +160,6 @@
                     Foreground="#D13438" />
             </Grid>
         </Grid>
-
         <Grid
             Grid.Row="2"
             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
@@ -204,6 +210,7 @@
                 AutoGenerateColumns="False"
                 CanUserReorderColumns="False"
                 GridLinesVisibility="Horizontal"
+                IsReadOnly="True"
                 HeadersVisibility="Column"
                 ItemsSource="{x:Bind ViewModel.filteredStaffList}">
                 <controls:DataGrid.Resources>
@@ -238,51 +245,31 @@
                         Header="Ngày bắt đầu" />
                     <controls:DataGridTextColumn
                         Width="180"
-                        Binding="{Binding Status}"
+                        Binding="{Binding Status,Converter={StaticResource EnglishToVietnameseConverter}}"
                         Header="Trạng thái" />
                     <controls:DataGridTemplateColumn
-                        Width="200"
+                        Width="100"
                         Header="Thao tác">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel
-                                    HorizontalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <Button
+                                <Button
                                         Padding="6,4"
                                         Background="#E3F2FD"
                                         CornerRadius="4"
                                         Foreground="#1976D2"
+                                        Click="EditStaffInformation"
                                         Tag="{Binding}">
-                                        <StackPanel
+                                    <StackPanel
                                             Orientation="Horizontal">
-                                            <FontIcon
+                                        <FontIcon
                                                 Margin="0,0,5,0"
                                                 FontFamily="Segoe MDL2 Assets"
                                                 Glyph="&#xE70F;" />
-                                            <TextBlock
+                                        <TextBlock
                                                 VerticalAlignment="Center"
                                                 Text="Sửa" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button
-                                        Padding="6,4"
-                                        Background="#FFEBEE"
-                                        CornerRadius="4"
-                                        Foreground="#C62828"
-                                        Tag="{Binding}">
-                                        <StackPanel
-                                            Orientation="Horizontal">
-                                            <FontIcon
-                                                Margin="0,0,5,0"
-                                                FontFamily="Segoe MDL2 Assets"
-                                                Glyph="&#xE74D;" />
-                                            <TextBlock
-                                                VerticalAlignment="Center"
-                                                Text="Xóa" />
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
+                                    </StackPanel>
+                                </Button>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
