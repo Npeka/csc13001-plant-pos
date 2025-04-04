@@ -1,4 +1,4 @@
-package csc13001.plantpos.domain.events;
+package csc13001.plantpos.global.events;
 
 import lombok.*;
 

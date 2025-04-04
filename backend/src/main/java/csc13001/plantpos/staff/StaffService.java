@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import csc13001.plantpos.authentication.AuthService;
-import csc13001.plantpos.domain.enums.MinioBucket;
 import csc13001.plantpos.global.MinIOService;
+import csc13001.plantpos.global.enums.MinioBucket;
 import csc13001.plantpos.order.OrderRepository;
 import csc13001.plantpos.order.models.Order;
 import csc13001.plantpos.staff.dtos.StaffDTO;

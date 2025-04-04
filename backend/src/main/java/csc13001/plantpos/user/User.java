@@ -18,7 +18,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

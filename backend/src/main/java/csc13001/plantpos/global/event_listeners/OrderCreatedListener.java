@@ -1,4 +1,4 @@
-package csc13001.plantpos.event_listeners;
+package csc13001.plantpos.global.event_listeners;
 
 //import csc13001.plantpos.application.services.EmailService;
 //import csc13001.plantpos.application.services.StaffService;

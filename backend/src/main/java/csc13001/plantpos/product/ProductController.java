@@ -3,8 +3,6 @@ package csc13001.plantpos.product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import csc13001.plantpos.product.dtos.ProductDTO;
-import csc13001.plantpos.product.exception.ProductException;
 import csc13001.plantpos.utils.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,7 +22,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
-        List<ProductDTO> products = productService.getAllProducts();
+        List<Product> products = productService.getAllProducts();
         return HttpResponse.ok("Lấy danh sách sản phẩm thành công", products);
     }
 
@@ -44,9 +42,9 @@ public class ProductController {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
-        ProductDTO productDTO = objectMapper.readValue(productJson, ProductDTO.class);
+        Product product = objectMapper.readValue(productJson, Product.class);
 
-        Product createdProduct = productService.createProduct(productDTO, image);
+        Product createdProduct = productService.createProduct(product, image);
         return HttpResponse.ok("Tạo sản phẩm thành công", createdProduct);
     }
 
@@ -61,9 +59,10 @@ public class ProductController {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
-        ProductDTO productDTO = objectMapper.readValue(productJson, ProductDTO.class);
+        Product product = objectMapper.readValue(productJson, Product.class);
+        product.setProductId(id);
 
-        productService.updateProduct(id, productDTO, image);
+        productService.updateProduct(product, image);
         return HttpResponse.ok("Cập nhật sản phẩm thành công");
     }
 

@@ -1,7 +1,7 @@
 package csc13001.plantpos.global;
 
-import csc13001.plantpos.domain.events.NotificationEvent;
-import csc13001.plantpos.domain.events.OtpEvent;
+import csc13001.plantpos.global.events.NotificationEvent;
+import csc13001.plantpos.global.events.OtpEvent;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.event.EventListener;

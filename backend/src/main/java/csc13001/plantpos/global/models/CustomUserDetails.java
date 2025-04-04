@@ -1,4 +1,4 @@
-package csc13001.plantpos.domain.models;
+package csc13001.plantpos.global.models;
 
 import csc13001.plantpos.user.User;
 import lombok.AllArgsConstructor;

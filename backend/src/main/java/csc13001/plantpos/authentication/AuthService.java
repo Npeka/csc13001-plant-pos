@@ -5,7 +5,7 @@ import csc13001.plantpos.authentication.dtos.LoginResponseDTO;
 import csc13001.plantpos.authentication.dtos.ResetPassworDTO;
 import csc13001.plantpos.authentication.exception.AuthException;
 import csc13001.plantpos.config.JwtUtil;
-import csc13001.plantpos.domain.events.OtpEvent;
+import csc13001.plantpos.global.events.OtpEvent;
 import csc13001.plantpos.user.User;
 import csc13001.plantpos.user.UserRepository;
 import csc13001.plantpos.user.WorkLogRepository;

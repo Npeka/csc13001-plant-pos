@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import csc13001.plantpos.product.Product;
-import csc13001.plantpos.product.dtos.ProductStatisticsDTO;
+import csc13001.plantpos.product.dtos.ProductDTO;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductsStatisticsDTO {
-    private List<ProductStatisticsDTO> topSellingProducts;
+    private List<ProductDTO> topSellingProducts;
     private List<Product> lowStockProducts;
 }

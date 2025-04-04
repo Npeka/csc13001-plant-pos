@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import csc13001.plantpos.utils.http.HttpResponse;
-import csc13001.plantpos.product.dtos.ProductStatisticsDTO;
+import csc13001.plantpos.product.dtos.ProductDTO;
 import csc13001.plantpos.statistic.dtos.ProductsStatisticsDTO;
 import csc13001.plantpos.statistic.dtos.SalesStatisticsDTO;
 
@@ -39,7 +39,7 @@ public class StatisticsController {
 
     @GetMapping("/products")
     public ResponseEntity<?> getProductStatistics() {
-        List<ProductStatisticsDTO> productStatistics = statisticsService.topSellingProducts(null);
+        List<ProductDTO> productStatistics = statisticsService.topSellingProducts(null);
         return HttpResponse.ok("Lấy thống kê sản phẩm thành công", productStatistics);
     }
 }

@@ -1,8 +1,5 @@
 package csc13001.plantpos.product;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import csc13001.plantpos.category.Category;
 import csc13001.plantpos.utils.http.JsonModel;
 import jakarta.persistence.*;
@@ -29,7 +26,6 @@ public class Product extends JsonModel {
     @Column(name = "product_id")
     private Long productId;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
@@ -96,23 +92,5 @@ public class Product extends JsonModel {
         this.lightRequirement = lightRequirement;
         this.wateringSchedule = wateringSchedule;
         this.category = category;
-    }
-
-    @JsonSetter("categoryId")
-    public void setCategoryId(Long categoryId) {
-        if (category == null) {
-            category = new Category();
-        }
-        category.setCategoryId(categoryId);
-    }
-
-    @JsonGetter("categoryId")
-    public Long getCategoryId() {
-        return (category != null) ? category.getCategoryId() : null;
-    }
-
-    // Alias methods for compatibility
-    public Long getProductId() {
-        return productId;
     }
 }

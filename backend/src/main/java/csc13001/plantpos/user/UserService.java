@@ -1,6 +1,6 @@
 package csc13001.plantpos.user;
 
-import csc13001.plantpos.domain.models.CustomUserDetails;
+import csc13001.plantpos.global.models.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,6 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        // Kiểm tra xem user có tồn tại trong database không?
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isEmpty()) {
             throw new UsernameNotFoundException(username);

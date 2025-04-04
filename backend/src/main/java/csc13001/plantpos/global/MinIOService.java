@@ -1,6 +1,6 @@
 package csc13001.plantpos.global;
 
-import csc13001.plantpos.domain.enums.MinioBucket;
+import csc13001.plantpos.global.enums.MinioBucket;
 import csc13001.plantpos.product.exception.ProductException;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
