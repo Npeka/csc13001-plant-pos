@@ -21,10 +21,13 @@ namespace csc13001_plant_pos.ViewModel
         public ObservableCollection<Product> filteredProductList;
 
         [ObservableProperty]
-        private string searchQuery = "";
+        private string searchQuery;
 
         [ObservableProperty]
-        private bool isAscending = true;
+        private string statusQuery;
+
+        [ObservableProperty]
+        private int isAscending = 0;
 
         private readonly IProductService _productService;
 
@@ -40,15 +43,11 @@ namespace csc13001_plant_pos.ViewModel
             System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
-                productList = new ObservableCollection<Product>(response.Data);
-                filteredProductList = new ObservableCollection<Product>(response.Data);
+                ProductList = new ObservableCollection<Product>(response.Data);
+                FilteredProductList = new ObservableCollection<Product>(response.Data);
             }
         }
 
-        public void SearchBox_TextChanged(string value)
-        {
-            //FilterProducts();
-        }
 
         public void StockFilter_SelectionChanged(string value)
         {
@@ -65,40 +64,78 @@ namespace csc13001_plant_pos.ViewModel
 
         public void SortByPrice_Click()
         {
-            if (productList == null || productList.Count == 0) return;
+            if (ProductList == null || ProductList.Count == 0) return;
 
-            var sortedList = isAscending
-                ? new ObservableCollection<Product>(filteredProductList.OrderByDescending(p => p.SalePrice))
-                : new ObservableCollection<Product>(filteredProductList.OrderBy(p => p.SalePrice));
-
-            filteredProductList.Clear();
+            ObservableCollection<Product> sortedList;
+            if (IsAscending == 0)
+            {
+                sortedList = new ObservableCollection<Product>(FilteredProductList.OrderByDescending(p => p.SalePrice));
+                IsAscending++;
+            }
+            else if (IsAscending == 1)
+            {
+                sortedList = new ObservableCollection<Product>(FilteredProductList.OrderBy(p => p.SalePrice));
+                IsAscending++;
+            }
+            else
+            {
+                sortedList = ProductList;
+                IsAscending = 0;
+            }
+                FilteredProductList.Clear();
             foreach (var product in sortedList)
             {
-                filteredProductList.Add(product);
+                FilteredProductList.Add(product);
             }
-
-            isAscending = !isAscending;
         }
 
         public void ApplyFilter()
         {
-            filteredProductList.Clear();
-            var filtered = productList.AsEnumerable();
-            if (!string.IsNullOrEmpty(searchQuery))
+            FilteredProductList.Clear();
+            var filtered = ProductList.AsEnumerable();
+            if (!string.IsNullOrEmpty(SearchQuery))
             {
                 filtered = filtered.Where(emp =>
-                emp.Name.ToLower().Contains(searchQuery) ||
-                emp.ProductId.ToString().ToLower().Contains(searchQuery));
+                emp.Name.ToLower().Contains(SearchQuery));
             }
-
-            //if (startDateQuery != null)
-            //{
-            //    filtered = filtered.Where(emp => emp.CreatedAt.Date >= startDateQuery.Date);
-            //}
+            if (!string.IsNullOrEmpty(StatusQuery) && StatusQuery != "All")
+            {
+                if (StatusQuery == "0")
+                {
+                    filtered = filtered.Where(emp => emp.Stock == 0);
+                }
+                else if (StatusQuery == "1")
+                {
+                    filtered = filtered.Where(emp => emp.Stock > 0);
+                }
+            }
             foreach (var product in filtered)
             {
-                filteredProductList.Add(product);
+                FilteredProductList.Add(product);
             }
         }
+
+        public void resetFilter()
+        {
+            FilteredProductList.Clear();
+            foreach (var product in ProductList)
+            {
+                FilteredProductList.Add(product);
+            }
+            SearchQuery = "";
+            IsAscending = 0;
+            StatusQuery = "All";
+        }
+
+        partial void OnSearchQueryChanged(string value)
+        {
+            ApplyFilter();
+        }
+
+        partial void OnStatusQueryChanged(string value)
+        {
+            ApplyFilter();
+        }
+
     }
 }
