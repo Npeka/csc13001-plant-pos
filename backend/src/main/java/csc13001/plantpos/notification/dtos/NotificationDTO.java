@@ -1,6 +1,6 @@
 package csc13001.plantpos.notification.dtos;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,8 +18,9 @@ public class NotificationDTO {
     private Long notificationUserId;
     private String title;
     private String content;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @JsonProperty("isRead")
     private boolean isRead;

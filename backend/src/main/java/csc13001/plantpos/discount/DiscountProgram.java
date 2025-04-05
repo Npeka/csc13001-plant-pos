@@ -15,7 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -43,21 +43,21 @@ public class DiscountProgram {
     private Double discountRate;
 
     @NotNull(message = "Ngày bắt đầu là bắt buộc")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "start_date")
-    private Date startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @Column(name = "start_date", columnDefinition = "DATE")
+    private LocalDate startDate;
 
     @NotNull(message = "Ngày kết thúc là bắt buộc")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "end_date")
-    private Date endDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @Column(name = "end_date", columnDefinition = "DATE")
+    private LocalDate endDate;
 
     @Column(name = "applicable_customer_type")
     private CustomerType applicableCustomerType;
 
     public boolean isActive() {
-        Date now = new Date();
-        return now.after(startDate) && now.before(endDate);
+        LocalDate today = LocalDate.now();
+        return (startDate == null || !startDate.isAfter(today)) && (endDate == null || !endDate.isBefore(today));
     }
 
     public boolean isApplicableToCustomerType(CustomerType customerType) {

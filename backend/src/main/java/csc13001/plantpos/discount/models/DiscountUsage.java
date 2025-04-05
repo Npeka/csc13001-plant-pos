@@ -16,7 +16,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import csc13001.plantpos.customer.Customer;
 import csc13001.plantpos.discount.DiscountProgram;
 
@@ -41,5 +42,5 @@ public class DiscountUsage {
 
     @Column(name = "used_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date usedAt;
+    private LocalDateTime usedAt;
 }

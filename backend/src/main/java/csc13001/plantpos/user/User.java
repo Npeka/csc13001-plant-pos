@@ -16,7 +16,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -63,9 +63,9 @@ public class User {
     @Column(name = "gender")
     private Gender gender;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "start_date", columnDefinition = "DATE")
-    private Date startDate;
+    private LocalDate startDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

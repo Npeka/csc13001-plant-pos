@@ -55,10 +55,10 @@ public class DatabaseSeeder {
             NotificationService notificationService) {
         return _ -> {
             String basePathSeedData = "SeedData/";
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
             // Create user accounts
             if (userRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
-                objectMapper.registerModule(new JavaTimeModule());
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "users.json")
                         .getInputStream()) {
                     List<User> users = objectMapper.readValue(inputStream, new TypeReference<List<User>>() {
@@ -72,7 +72,6 @@ public class DatabaseSeeder {
 
             // Create customers
             if (customerRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "customers.json")
                         .getInputStream()) {
                     List<Customer> customers = objectMapper.readValue(inputStream, new TypeReference<List<Customer>>() {
@@ -85,7 +84,6 @@ public class DatabaseSeeder {
 
             // Create categories
             if (categoryRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "categories.json")
                         .getInputStream()) {
                     List<Category> categories = objectMapper.readValue(inputStream,
@@ -99,7 +97,6 @@ public class DatabaseSeeder {
 
             // Create products
             if (productRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "products.json")
                         .getInputStream()) {
                     List<Product> products = objectMapper.readValue(inputStream, new TypeReference<List<Product>>() {
@@ -111,7 +108,6 @@ public class DatabaseSeeder {
             }
 
             if (discountProgramRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "discounts.json")
                         .getInputStream()) {
                     List<DiscountProgram> discountPrograms = objectMapper.readValue(inputStream,
@@ -124,7 +120,6 @@ public class DatabaseSeeder {
             }
 
             if (inventoryRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "inventories.json")
                         .getInputStream()) {
                     List<InventoryDTO> inventoriesDTO = objectMapper.readValue(inputStream,
@@ -139,7 +134,6 @@ public class DatabaseSeeder {
             }
 
             if (orderRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "orders.json")
                         .getInputStream()) {
                     List<CreateOrderDTO> orders = objectMapper.readValue(inputStream,
@@ -154,7 +148,6 @@ public class DatabaseSeeder {
             }
 
             if (notificationRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "notifications.json")
                         .getInputStream()) {
 
