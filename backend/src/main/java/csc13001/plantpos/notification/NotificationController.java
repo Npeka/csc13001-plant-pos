@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import csc13001.plantpos.notification.dtos.CreateNotificationDTO;
 import csc13001.plantpos.notification.dtos.NotificationDTO;
-import csc13001.plantpos.notification.models.NotificationUser;
 import csc13001.plantpos.utils.http.HttpResponse;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @GetMapping("{staffId}")
-    public ResponseEntity<?> getNotificationByStaffId(@PathVariable Long staffId) {
+    public ResponseEntity<?> getNotificationByStaffId(@Parameter(example = "2") @PathVariable Long staffId) {
         List<NotificationDTO> notificationUsers = notificationService.getNotificationByStaffId(staffId);
         return HttpResponse.ok("Lấy thông báo thành công", notificationUsers);
     }
@@ -45,7 +45,7 @@ public class NotificationController {
     }
 
     @PatchMapping("{notificationUserId}/read")
-    public ResponseEntity<?> markAsRead(@PathVariable Long notificationUserId) {
+    public ResponseEntity<?> markAsRead(@Parameter(example = "3") @PathVariable Long notificationUserId) {
         notificationService.markAsRead(notificationUserId);
         return HttpResponse.ok("Đánh dấu thông báo đã đọc thành công");
     }
