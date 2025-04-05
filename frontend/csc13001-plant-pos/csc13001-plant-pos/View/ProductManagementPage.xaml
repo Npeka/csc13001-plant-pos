@@ -82,60 +82,50 @@
                 <RowDefinition
                     Height="Auto" />
                 <RowDefinition
+    Height="Auto" />
+                <RowDefinition
                     Height="Auto" />
                 <RowDefinition
                     Height="*" />
             </Grid.RowDefinitions>
 
             <!-- Thanh tìm kiếm + Bộ lọc -->
-            <Grid
-                ColumnDefinitions="*,Auto,Auto"
-                Margin="0,0,0,10">
-                <Grid
-                    Grid.Column="0"
-                    ColumnDefinitions="Auto,*">
-                    <FontIcon
-                        Grid.Column="0"
-                        Glyph="&#xE721;"
-                        FontSize="16"
-                        Margin="4,0,8,0"
-                        VerticalAlignment="Center" />
-                    <TextBox
-                        x:Name="SearchBox"
-                        Grid.Column="1"
-                        PlaceholderText="Tìm kiếm sản phẩm..."
-                        Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                </Grid>
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+        x:Name="SearchBox"
+        Grid.Column="0"
+        PlaceholderText="Tìm kiếm sản phẩm..."
+        Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <ComboBox
-                    x:Name="CategoryFilter"
-                    Grid.Column="1"
-                    PlaceholderText="Chọn danh mục"
-                    Width="180"
-                    Margin="8,0"
-                    >
-                    <ComboBoxItem
-                        Content="Tất cả" />
-                    <ComboBoxItem
-                        Content="Cây" />
-                    <ComboBoxItem
-                        Content="Phụ kiện chăm sóc" />
-                    <ComboBoxItem
-                        Content="Chậu" />
+        x:Name="CategoryFilter"
+        Grid.Column="1"
+        PlaceholderText="Chọn danh mục"
+        Width="180"
+        Margin="8,0">
+                    <ComboBoxItem Content="Tất cả" />
+                    <ComboBoxItem Content="Cây" />
+                    <ComboBoxItem Content="Phụ kiện chăm sóc" />
+                    <ComboBoxItem Content="Chậu" />
                 </ComboBox>
 
                 <ComboBox
-                    x:Name="StockFilter"
-                    Grid.Column="2"
-                    PlaceholderText="Trạng thái"
-                    Width="160"
-                    SelectionChanged="StockFilter_SelectionChanged">
-                    <ComboBoxItem
-                        Content="Tất cả" />
-                    <ComboBoxItem
-                        Content="Còn hàng" />
-                    <ComboBoxItem
-                        Content="Hết hàng" />
+        x:Name="StockFilter"
+        Grid.Column="2"
+        PlaceholderText="Tình trạng"
+        Width="160"
+        Margin="8,0,0,0"
+        SelectedValue="{x:Bind ViewModel.StatusQuery, Mode=TwoWay}"
+        SelectedValuePath="Tag">
+                    <ComboBoxItem Content="Tất cả" Tag="All" />
+                    <ComboBoxItem Content="Còn hàng" Tag="1" />
+                    <ComboBoxItem Content="Hết hàng" Tag="0" />
                 </ComboBox>
             </Grid>
 
@@ -160,10 +150,10 @@
                     <StackPanel
                         Orientation="Horizontal">
                         <FontIcon
-                            Glyph="&#xE710;"
+                            Glyph="&#xE8CB;"
                             Margin="0,0,8,0" />
                         <TextBlock
-                            Text="Thêm sản phẩm" />
+                            Text="Sắp xếp theo thứ hạng" />
                     </StackPanel>
                 </Button>
 
@@ -171,6 +161,7 @@
                     Grid.Column="1"
                     Style="{StaticResource ActionButtonStyle}"
                     Margin="4,0"
+                    Click="{x:Bind ViewModel.SortByPrice_Click}"
                    >
                     <StackPanel
                         Orientation="Horizontal">
@@ -193,7 +184,66 @@
                             Glyph="&#xE70F;"
                             Margin="0,0,8,0" />
                         <TextBlock
-                            Text="Cập nhật danh mục" />
+                            Text="Xóa bộ lọc" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <!-- Hàng chứa các nút -->
+            <Grid
+    Grid.Row="2"
+    Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+            Width="*" />
+                    <ColumnDefinition
+            Width="*" />
+                    <ColumnDefinition
+            Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+        Grid.Column="0"
+        Style="{StaticResource ActionButtonStyle}"
+        Margin="0,0,8,0"
+        Click="AddProduct_Click">
+                    <StackPanel
+            Orientation="Horizontal">
+                        <FontIcon
+                Glyph="&#xE8CB;"
+                Margin="0,0,8,0" />
+                        <TextBlock
+                Text="Thêm sản phẩm" />
+                    </StackPanel>
+                </Button>
+
+                <Button
+        Grid.Column="1"
+        Style="{StaticResource ActionButtonStyle}"
+        Margin="4,0"
+        Click="{x:Bind ViewModel.SortByPrice_Click}"
+       >
+                    <StackPanel
+            Orientation="Horizontal">
+                        <FontIcon
+                Glyph="&#xE8CB;"
+                Margin="0,0,8,0" />
+                        <TextBlock
+                Text="Điều chỉnh thông tin sản phẩm" />
+                    </StackPanel>
+                </Button>
+
+                <Button
+        Grid.Column="2"
+        Style="{StaticResource ActionButtonStyle}"
+        Margin="8,0,0,0"
+        Click="UpdateCategories_Click">
+                    <StackPanel
+            Orientation="Horizontal">
+                        <FontIcon
+                Glyph="&#xE70F;"
+                Margin="0,0,8,0" />
+                        <TextBlock
+                Text="Thêm danh mục sản phẩm" />
                     </StackPanel>
                 </Button>
             </Grid>
@@ -204,7 +254,7 @@
                 VerticalScrollBarVisibility="Auto">
                 <GridView
                     x:Name="ProductGridView"
-                    ItemsSource="{x:Bind ViewModel.filteredProductList, Mode=OneWay}"
+                    ItemsSource="{x:Bind ViewModel.FilteredProductList, Mode=OneWay}"
                     Padding="0"
                     SelectionMode="Single">
                     <GridView.ItemsPanel>
@@ -259,20 +309,6 @@
                                             Height="180"
                                             Stretch="UniformToFill" />
 
-                                        <!-- Badge trạng thái -->
-                                        <Border
-                                            CornerRadius="4"
-                                            Padding="6,2"
-                                            HorizontalAlignment="Right"
-                                            Background="{Binding StockBadgeColor}"
-                                            VerticalAlignment="Top"
-                                            Margin="0,8,8,0">
-                                            <TextBlock
-                                                Text="{Binding StockStatus}"
-                                                Foreground="White"
-                                                FontSize="12"
-                                                FontWeight="SemiBold" />
-                                        </Border>
                                     </Grid>
 
                                     <!-- Thông tin sản phẩm -->
@@ -335,65 +371,6 @@
             </ScrollViewer>
         </Grid>
 
-        <!-- Dialog thêm sản phẩm -->
-        <ContentDialog
-            x:Name="AddProductDialog"
-            Title="Thêm sản phẩm mới"
-            PrimaryButtonText="Thêm"
-            SecondaryButtonText="Hủy"
-            PrimaryButtonClick="AddProductDialog_PrimaryButtonClick"
-            CloseButtonClick="AddProductDialog_CloseButtonClick">
-            <StackPanel
-                Spacing="16"
-                Width="400">
-                <TextBox
-                    x:Name="ProductNameBox"
-                    Header="Tên sản phẩm"
-                    PlaceholderText="Nhập tên sản phẩm" />
-
-                <Grid
-                    ColumnDefinitions="*,*"
-                    ColumnSpacing="12">
-                    <NumberBox
-                        x:Name="ProductPriceBox"
-                        Grid.Column="0"
-                        Header="Giá sản phẩm"
-                        PlaceholderText="VND"
-                        SpinButtonPlacementMode="Compact" />
-                    <NumberBox
-                        x:Name="ProductStockBox"
-                        Grid.Column="1"
-                        Header="Số lượng"
-                        PlaceholderText="Số lượng"
-                        SpinButtonPlacementMode="Compact"
-                        Minimum="0"
-                        SmallChange="1" />
-                </Grid>
-
-                <ComboBox
-                    Header="Danh mục"
-                    PlaceholderText="Chọn danh mục"
-                    HorizontalAlignment="Stretch">
-                    <ComboBoxItem
-                        Content="Điện thoại" />
-                    <ComboBoxItem
-                        Content="Laptop" />
-                    <ComboBoxItem
-                        Content="Phụ kiện" />
-                </ComboBox>
-
-                <TextBox
-                    x:Name="ProductImageBox"
-                    Header="Link ảnh sản phẩm"
-                    PlaceholderText="https://example.com/image.jpg" />
-
-                <TextBox
-                    Header="Mô tả sản phẩm"
-                    PlaceholderText="Nhập mô tả chi tiết sản phẩm"
-                    AcceptsReturn="True"
-                    TextWrapping="Wrap"
-                    Height="100" />
-            </StackPanel>
-        </ContentDialog>
+       
     </Grid>
 </Page>
