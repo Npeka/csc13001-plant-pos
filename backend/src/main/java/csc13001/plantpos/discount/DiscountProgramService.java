@@ -7,7 +7,7 @@ import csc13001.plantpos.discount.exception.DiscountException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -39,8 +39,8 @@ public class DiscountProgramService {
     }
 
     public DiscountProgram createDiscountProgram(DiscountProgram discountProgram) {
-        Date startDate = discountProgram.getStartDate();
-        Date endDate = discountProgram.getEndDate();
+        LocalDate startDate = discountProgram.getStartDate();
+        LocalDate endDate = discountProgram.getEndDate();
         if (startDate.compareTo(endDate) > 0) {
             throw new DiscountException.DiscountInvalidDateException();
         }
@@ -57,8 +57,8 @@ public class DiscountProgramService {
             throw new DiscountException.DiscountNotFoundException();
         }
 
-        Date startDate = discountProgram.getStartDate();
-        Date endDate = discountProgram.getEndDate();
+        LocalDate startDate = discountProgram.getStartDate();
+        LocalDate endDate = discountProgram.getEndDate();
         if (startDate.compareTo(endDate) > 0) {
             throw new DiscountException.DiscountInvalidDateException();
         }

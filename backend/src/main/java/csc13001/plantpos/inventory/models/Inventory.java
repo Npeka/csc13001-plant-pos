@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,9 +34,9 @@ public class Inventory {
     @Column(name = "total_price", nullable = false)
     private BigDecimal totalPrice;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "purchase_date", nullable = false)
-    private Date purchaseDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @Column(name = "purchase_date", columnDefinition = "DATE", nullable = false)
+    private LocalDate purchaseDate;
 
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
     private List<InventoryItem> items;

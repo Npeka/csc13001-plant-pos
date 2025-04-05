@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -22,7 +22,7 @@ public class InventoryDTO {
     private BigDecimal totalPrice;
 
     @NotNull(message = "Ngày mua là bắt buộc")
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
 
     @NotEmpty(message = "Phải có ít nhất một sản phẩm")
     private List<InventoryItemDTO> items;

@@ -1,8 +1,8 @@
 package csc13001.plantpos.customer;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -44,9 +44,9 @@ public class Customer {
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "birth_date")
-    private Date birthDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @Column(name = "birth_date", columnDefinition = "DATE")
+    private LocalDate birthDate;
 
     @Column(name = "loyalty_points")
     private int loyaltyPoints;

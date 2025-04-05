@@ -1,6 +1,8 @@
-package csc13001.plantpos.notification;
+package csc13001.plantpos.chat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import csc13001.plantpos.user.User;
 import jakarta.persistence.Column;
@@ -21,36 +23,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "notifications")
-public class Notification {
-
+@Table(name = "messages")
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "notification_id")
-    private Long notificationId;
+    @Column(name = "message_id")
+    private Long messageId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "message", columnDefinition = "TEXT")
+    private String message;
 
-    @Column(name = "content")
-    private String content;
-
-    @Column(name = "type")
-    private String type;
-
-    @Column(name = "status")
-    private String status;
-
-    @Column(name = "is_read")
-    private Boolean isRead;
-
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    private Date updatedAt;
+    @Builder.Default
+    @Column(name = "sent_at", nullable = false, updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime sentAt = LocalDateTime.now();
 }

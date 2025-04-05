@@ -14,6 +14,9 @@ import csc13001.plantpos.global.MinIOService;
 import csc13001.plantpos.inventory.InventoryRepository;
 import csc13001.plantpos.inventory.InventoryService;
 import csc13001.plantpos.inventory.dtos.InventoryDTO;
+import csc13001.plantpos.notification.NotificationRepository;
+import csc13001.plantpos.notification.NotificationService;
+import csc13001.plantpos.notification.dtos.CreateNotificationDTO;
 import csc13001.plantpos.order.OrderRepository;
 import csc13001.plantpos.order.OrderService;
 import csc13001.plantpos.order.dtos.CreateOrderDTO;
@@ -47,13 +50,15 @@ public class DatabaseSeeder {
             InventoryService inventoryService,
             OrderRepository orderRepository,
             OrderService orderService,
-            MinIOService minioService) {
+            MinIOService minioService,
+            NotificationRepository notificationRepository,
+            NotificationService notificationService) {
         return _ -> {
             String basePathSeedData = "SeedData/";
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
             // Create user accounts
             if (userRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
-                objectMapper.registerModule(new JavaTimeModule());
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "users.json")
                         .getInputStream()) {
                     List<User> users = objectMapper.readValue(inputStream, new TypeReference<List<User>>() {
@@ -67,7 +72,6 @@ public class DatabaseSeeder {
 
             // Create customers
             if (customerRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "customers.json")
                         .getInputStream()) {
                     List<Customer> customers = objectMapper.readValue(inputStream, new TypeReference<List<Customer>>() {
@@ -80,7 +84,6 @@ public class DatabaseSeeder {
 
             // Create categories
             if (categoryRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "categories.json")
                         .getInputStream()) {
                     List<Category> categories = objectMapper.readValue(inputStream,
@@ -94,7 +97,6 @@ public class DatabaseSeeder {
 
             // Create products
             if (productRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "products.json")
                         .getInputStream()) {
                     List<Product> products = objectMapper.readValue(inputStream, new TypeReference<List<Product>>() {
@@ -106,7 +108,6 @@ public class DatabaseSeeder {
             }
 
             if (discountProgramRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "discounts.json")
                         .getInputStream()) {
                     List<DiscountProgram> discountPrograms = objectMapper.readValue(inputStream,
@@ -119,7 +120,6 @@ public class DatabaseSeeder {
             }
 
             if (inventoryRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "inventories.json")
                         .getInputStream()) {
                     List<InventoryDTO> inventoriesDTO = objectMapper.readValue(inputStream,
@@ -134,7 +134,6 @@ public class DatabaseSeeder {
             }
 
             if (orderRepository.count() == 0) {
-                ObjectMapper objectMapper = new ObjectMapper();
                 try (InputStream inputStream = new ClassPathResource(basePathSeedData + "orders.json")
                         .getInputStream()) {
                     List<CreateOrderDTO> orders = objectMapper.readValue(inputStream,
@@ -142,6 +141,22 @@ public class DatabaseSeeder {
                             });
                     for (CreateOrderDTO order : orders) {
                         orderService.createOrder(order);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (notificationRepository.count() == 0) {
+                try (InputStream inputStream = new ClassPathResource(basePathSeedData + "notifications.json")
+                        .getInputStream()) {
+
+                    List<CreateNotificationDTO> notifications = objectMapper
+                            .readValue(inputStream, new TypeReference<List<CreateNotificationDTO>>() {
+                            });
+
+                    for (CreateNotificationDTO notification : notifications) {
+                        notificationService.createNotification(notification);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
