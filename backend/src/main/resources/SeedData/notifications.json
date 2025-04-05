@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Cập nhật hệ thống",
+    "content": "Hệ thống sẽ bảo trì vào lúc 22:00",
+    "to": [2, 3, 4, 5, 6]
+  },
+  {
+    "title": "Khuyến mãi đặc biệt",
+    "content": "Giảm giá 50% cho tất cả sản phẩm",
+    "to": [2, 3]
+  },
+  {
+    "title": "Thông báo lỗi",
+    "content": "Đã xảy ra lỗi trong hệ thống, chúng tôi đang khắc phục",
+    "to": [4, 5, 6]
+  }
+]

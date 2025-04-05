@@ -23,4 +23,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleGeneralException(Exception ex) {
         return HttpResponse.invalidInputData(ex.getMessage());
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException ex) {
+        return HttpResponse.invalidInputData(ex.getMessage());
+    }
 }

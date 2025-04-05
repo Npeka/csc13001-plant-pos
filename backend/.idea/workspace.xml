@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8e7e372-dca9-4f33-92f3-75feb62b7dfe" name="Changes" comment="" />
+    <list default="true" id="f8e7e372-dca9-4f33-92f3-75feb62b7dfe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/AddCustomerPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/AddCustomerPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StaffProfilePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/csc13001-plant-pos/csc13001-plant-pos/View/StaffProfilePage.xaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

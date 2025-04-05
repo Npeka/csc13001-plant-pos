@@ -1,6 +1,9 @@
-package csc13001.plantpos.notification;
+package csc13001.plantpos.notification.models;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import csc13001.plantpos.user.User;
 import jakarta.persistence.Column;
@@ -11,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,34 +27,26 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "notifications")
 public class Notification {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notification_id")
     private Long notificationId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
+    @NotBlank(message = "Tựa đề không được để trống")
     @Column(name = "title")
     private String title;
 
+    @NotBlank(message = "Nội dung không được để trống")
     @Column(name = "content")
     private String content;
 
-    @Column(name = "type")
-    private String type;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
-    @Column(name = "status")
-    private String status;
-
-    @Column(name = "is_read")
-    private Boolean isRead;
-
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    private Date updatedAt;
+    @Builder.Default
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt = new Date();
 }

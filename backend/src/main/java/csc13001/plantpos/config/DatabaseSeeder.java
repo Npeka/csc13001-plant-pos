@@ -14,6 +14,9 @@ import csc13001.plantpos.global.MinIOService;
 import csc13001.plantpos.inventory.InventoryRepository;
 import csc13001.plantpos.inventory.InventoryService;
 import csc13001.plantpos.inventory.dtos.InventoryDTO;
+import csc13001.plantpos.notification.NotificationRepository;
+import csc13001.plantpos.notification.NotificationService;
+import csc13001.plantpos.notification.dtos.CreateNotificationDTO;
 import csc13001.plantpos.order.OrderRepository;
 import csc13001.plantpos.order.OrderService;
 import csc13001.plantpos.order.dtos.CreateOrderDTO;
@@ -47,7 +50,9 @@ public class DatabaseSeeder {
             InventoryService inventoryService,
             OrderRepository orderRepository,
             OrderService orderService,
-            MinIOService minioService) {
+            MinIOService minioService,
+            NotificationRepository notificationRepository,
+            NotificationService notificationService) {
         return _ -> {
             String basePathSeedData = "SeedData/";
             // Create user accounts
@@ -142,6 +147,23 @@ public class DatabaseSeeder {
                             });
                     for (CreateOrderDTO order : orders) {
                         orderService.createOrder(order);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (notificationRepository.count() == 0) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                try (InputStream inputStream = new ClassPathResource(basePathSeedData + "notifications.json")
+                        .getInputStream()) {
+
+                    List<CreateNotificationDTO> notifications = objectMapper
+                            .readValue(inputStream, new TypeReference<List<CreateNotificationDTO>>() {
+                            });
+
+                    for (CreateNotificationDTO notification : notifications) {
+                        notificationService.createNotification(notification);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
