@@ -9,7 +9,9 @@
     "lightRequirement": 5,
     "wateringSchedule": 3,
     "environmentType": "Cây trên cạn",
-    "categoryId": 1,
+    "category": {
+      "categoryId": 1
+    },
     "description": "Cây Tùng Bông Lai là một loài cây mang vẻ đẹp trang nhã, với tán lá dầy xanh mướt trông giống như những đám mây và có kích thước nhỏ gọn nên rất thích hợp để bàn làm việc. Chúng là loài cây dễ trồng nên không cần phải tốn công chăm sóc, tuy nhiên cần đặt tại nơi có nhiều ánh sáng. *Giá bao gồm chậu, đĩa lót và sỏi rải mặt"
   },
   {
@@ -22,7 +24,9 @@
     "lightRequirement": 3,
     "wateringSchedule": 2,
     "environmentType": "Cây trên cạn",
-    "categoryId": 1,
+    "category": {
+      "categoryId": 1
+    },
     "description": "Cây phát tài bộ còn được biết đến với tên gọi khác là cây thiết mộc lan. Loài cây nội thất được đánh giá là đem lại nhiều sinh khí, may mắn và thịnh vượng cho gia chủ, nhất là khi cây nở hoa là dấu hiệu tiền tài đang đến với bạn. Hơn nữa, nếu bạn đặt cây theo hướng Đông hay Đông Nam của ngôi nhà thì sẽ đem tới nhiều may mắn bởi cây là đại diện cho hành Mộc."
   },
   {
@@ -35,7 +39,9 @@
     "lightRequirement": 4,
     "wateringSchedule": 3,
     "environmentType": "Cây trên cạn",
-    "categoryId": 1,
+    "category": {
+      "categoryId": 1
+    },
     "description": "Ngũ gia bì là loại cây mang lại tài vận, thịnh vượng và may mắn, trồng trong nhà sẽ mang đến một không gian thư thái, trong lành cho gia đình."
   },
   {
@@ -48,7 +54,9 @@
     "lightRequirement": 2,
     "wateringSchedule": 2,
     "environmentType": "Cây trên cạn",
-    "categoryId": 1,
+    "category": {
+      "categoryId": 1
+    },
     "description": "Cây Kim Ngân là loại cây cảnh trong nhà được trồng phổ biến trên khắp thế giới, nó có sức ảnh hưởng tới mức mà hầu như ai cũng tin rằng khi trồng có thể mang lại nhiều may mắn trong cuộc sống, công việc hoặc làm ăn."
   },
   {
@@ -61,7 +69,9 @@
     "lightRequirement": 2,
     "wateringSchedule": 3,
     "environmentType": "Cây trên cạn",
-    "categoryId": 1,
+    "category": {
+      "categoryId": 1
+    },
     "description": "Có tác dụng thanh lọc không khí trong nhà mà còn chứa đựng ý nghĩa phong thủy rất tốt, mang dáng vẻ thanh lịch và sang trọng."
   },
   {
@@ -74,7 +84,9 @@
     "lightRequirement": 4,
     "wateringSchedule": 5,
     "environmentType": "Cây trên cạn",
-    "categoryId": 1,
+    "category": {
+      "categoryId": 1
+    },
     "description": "Cây hoa giấy loài cây này có sức rống rất tốt, phù hợp với khí hậu của Việt nam, chịu hạn rất tốt, sức sống bền bỉ và dễ chăm sóc. Bông giấy Thái bonsai có dáng gọn gàng phù hợp đặt trên ban công, sân thượng hoặc trưng ngoài vườn giúp không gian trở nên sinh động hơn."
   },
   {
@@ -87,7 +99,9 @@
     "lightRequirement": 4,
     "wateringSchedule": 5,
     "environmentType": "Cây trên cạn",
-    "categoryId": 2,
+    "category": {
+      "categoryId": 2
+    },
     "description": "Cúc mâm xôi là một trong các loài hoa không thể thiếu vào dịp Tết cổ truyền. Chậu cúc mâm xôi có hình dáng tỏa ra theo dạng hình cầu, mang ý nghĩa vẹn tròn, cho một năm mới xuôn sẻ. Với màu vàng được xem là màu của sung túc, đầm ấm và nhiều tài lộc hơn. Do đó, người ta thường tặng cả cặp làm quà tặng cho ông bà, cha mẹ hoặc quý đối tác."
   },
   {
@@ -100,7 +114,9 @@
     "lightRequirement": 5,
     "wateringSchedule": 3,
     "environmentType": "Cây trên cạn",
-    "categoryId": 2,
+    "category": {
+      "categoryId": 2
+    },
     "description": "Cây hoa giấy Thái rất thích hợp với khí hậu tại VN, nó là loại cây ưa nắng ấm, cần nhiều ánh sáng."
   },
   {
@@ -113,7 +129,9 @@
     "lightRequirement": 3,
     "wateringSchedule": 5,
     "environmentType": "Cây trên cạn",
-    "categoryId": 2,
+    "category": {
+      "categoryId": 2
+    },
     "description": "Bàng Đài Loan cẩm thạch có lá nhỏ xinh và sắc xanh, viền trắng hồng rất khác biệt và nổi bật, giúp không gian trở nên độc đáo và sang trọng"
   },
   {
@@ -126,7 +144,9 @@
     "lightRequirement": 1,
     "wateringSchedule": 1,
     "environmentType": "Cây trên cạn",
-    "categoryId": 3,
+    "category": {
+      "categoryId": 3
+    },
     "description": "Cây phát tài Nhật tượng trưng cho sức sống bền bỉ, mạnh mẽ. Cây có thể thích nghi với mọi điều kiện thời tiết, tán lá vẫn xanh vẫn vươn thêm nhiều tầng mới. Vì thế mà cây mang lại nguồn sinh khí dồi dào, một tinh thần tích cực, cùng niềm vui và sự may mắn cho mọi người."
   },
   {
@@ -139,7 +159,9 @@
     "lightRequirement": 3,
     "wateringSchedule": 2,
     "environmentType": "Cây trên cạn",
-    "categoryId": 4,
+    "category": {
+      "categoryId": 4
+    },
     "description": "Lưỡi hổ là loại cây cảnh nội thất kinh điển nhất, bởi sức sống bền bỉ không cần tốn công chăm sóc, lại còn được NASA đánh giá là có khả năng thanh lọc không khí rất hiệu quả bằng một cơ chế hấp thu các loại chất khí độc hại trên bộ lá."
   },
   {
@@ -152,7 +174,9 @@
     "lightRequirement": 5,
     "wateringSchedule": 1,
     "environmentType": "Cây trên cạn",
-    "categoryId": 5,
+    "category": {
+      "categoryId": 5
+    },
     "description": "Cô tòng đuôi lươn sở hữu bộ lá nhiều màu sắc rực rỡ, cùng những đường viền hoa văn độc đáo, chúngthường được trồng trang trí cho bồn hoa, ban công hoặc trước hiên nhà. Loại cây này đôi lúc được trồng trong nhà, nhưng đòi hỏi phải trồng nơi có nhiều ánh sáng, gần cửa sổ."
   },
   {
@@ -165,7 +189,9 @@
     "lightRequirement": 4,
     "wateringSchedule": 3,
     "environmentType": "Cây trên cạn",
-    "categoryId": 5,
+    "category": {
+      "categoryId": 5
+    },
     "description": "Cây ngọc ngân là là cây trong nhà được đánh giá cao về phong thuỷ, người ta quan niệm rằng cây Ngọc ngân mang đến tài lộc, may mắn khi đặt trên bàn làm việc hay trang trí trong văn phòng. Về mặt tinh thần cây Ngọc ngân rất thích hợp làm quà tặng tình yêu."
   },
   {
@@ -178,7 +204,9 @@
     "lightRequirement": 3,
     "wateringSchedule": 1,
     "environmentType": "Cây trên cạn",
-    "categoryId": 5,
+    "category": {
+      "categoryId": 5
+    },
     "description": "Cây Phú Quý có ý nghĩa mang lại may mắn, phú quý, đại cát đại lợi, bình an cho chủ nhân. Để Trúc Phú Quý mang lại ý nghĩa trọn vẹn bạn lưu ý về vị trí đặt theo hướng hợp với bản mệnh của mình."
   }
 ]

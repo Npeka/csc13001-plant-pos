@@ -2,7 +2,6 @@ package csc13001.plantpos.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import csc13001.plantpos.user.enums.Gender;
 import csc13001.plantpos.user.enums.WorkingStatus;
@@ -20,16 +19,12 @@ import lombok.NoArgsConstructor;
 import java.sql.Date;
 import java.util.List;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,6 +67,7 @@ public class User {
     @Column(name = "start_date", columnDefinition = "DATE")
     private Date startDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private WorkingStatus status;
 

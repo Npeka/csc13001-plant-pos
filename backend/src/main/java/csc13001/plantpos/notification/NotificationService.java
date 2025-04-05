@@ -1,14 +1,14 @@
-package csc13001.plantpos.global;
+package csc13001.plantpos.notification;
 
-import csc13001.plantpos.global.events.NotificationEvent;
-import csc13001.plantpos.global.events.OtpEvent;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import csc13001.plantpos.notification.events.NotificationEvent;
+import csc13001.plantpos.notification.events.OtpEvent;
 
 @Service
 @RequiredArgsConstructor
