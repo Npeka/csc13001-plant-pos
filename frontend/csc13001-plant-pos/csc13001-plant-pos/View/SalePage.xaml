@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:csc13001_plant_pos.Model"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -48,7 +49,8 @@
                 <StackPanel Margin="4,4,4,8" VerticalAlignment="Bottom">
                     <TextBlock
                         HorizontalAlignment="Left"
-                        FontSize="12"
+                        FontSize="14"
+                        FontWeight="Bold"
                         Text="{x:Bind Name, Mode=OneWay}"
                         TextWrapping="Wrap" />
                     <TextBlock
@@ -338,18 +340,28 @@
                         FontWeight="Bold"
                         Text="{x:Bind ViewModel.Total, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
                 </Grid>
-
-                <Button
-                    x:Name="CreateOrderButton"
-                    Padding="10"
-                    HorizontalAlignment="Stretch"
-                    Background="#0ABB6A"
-                    Click="CreateOrderButton_Click"
-                    Content="Tạo đơn"
-                    CornerRadius="16"
-                    FontSize="14"
-                    FontWeight="Bold"
-                    Foreground="White" />
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Button
+                        x:Name="CreateOrderButton"
+                        Width="150"
+                        Padding="10"
+                        Click="CreateOrderButton_Click"
+                        Content="Tạo đơn"
+                        CornerRadius="16"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Style="{StaticResource AccentButtonStyle}" />
+                    <Button
+                        x:Name="ResetOrderButton"
+                        Width="150"
+                        Padding="10"
+                        Click="ResetOrderButton_Click"
+                        Content="Đặt lại"
+                        CornerRadius="16"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Style="{StaticResource RedAccentButtonStyle}" />
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

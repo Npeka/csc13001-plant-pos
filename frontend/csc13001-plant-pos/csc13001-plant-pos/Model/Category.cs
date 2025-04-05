@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace csc13001_plant_pos.Model
@@ -19,6 +20,13 @@ namespace csc13001_plant_pos.Model
         {
             get => _isSelected;
             set => SetProperty(ref _isSelected, value);
+        }
+
+        private ObservableCollection<Product> _products;
+        public ObservableCollection<Product> Products
+        {
+            get => _products;
+            set => SetProperty(ref _products, value);
         }
     }
 }

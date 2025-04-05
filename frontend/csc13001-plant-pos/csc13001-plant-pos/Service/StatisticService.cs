@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Net.Http;
-using csc13001_plant_pos.DTO.StatisticDTO;
-using csc13001_plant_pos.DTO.StaffDTO;
+using System.Threading.Tasks;
 using csc13001_plant_pos.DTO;
-using csc13001_plant_pos.Utils;
-using csc13001_plant_pos.Model;
 using csc13001_plant_pos.DTO.ProductDTO;
+using csc13001_plant_pos.DTO.StatisticDTO;
+using csc13001_plant_pos.Utils;
 
 namespace csc13001_plant_pos.Service;
 

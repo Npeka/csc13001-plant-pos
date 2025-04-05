@@ -118,5 +118,26 @@ namespace csc13001_plant_pos.View {
                 }
             }
         }
+
+        private async void ResetOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel != null)
+            {
+                var confirmDialog = new ContentDialog
+                {
+                    Title = "Xác nhận đặt lại",
+                    Content = "Bạn có chắc chắn muốn xoá các sản phẩm đã chọn hiện tại?",
+                    PrimaryButtonText = "Đồng ý",
+                    CloseButtonText = "Hủy",
+                    DefaultButton = ContentDialogButton.Primary,
+                    XamlRoot = this.XamlRoot
+                };
+                var result = await confirmDialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    ViewModel.ResetOrderCommand.Execute(null);
+                }
+            }
+        }
     }
 }

@@ -24,4 +24,5 @@
     <local:QuantityToBorderBrushConverter x:Key="QuantityToBorderBrushConverter" />
     <local:PercentageToForegroundConverter x:Key="PercentageToForegroundConverter" />
     <local:EnglishToVietnameseConverter x:Key="EnglishToVietnameseConverter" />
+    <local:StarColorConverter x:Key="StarColorConverter" />
 </ResourceDictionary>

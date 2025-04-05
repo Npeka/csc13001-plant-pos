@@ -64,7 +64,7 @@ namespace csc13001_plant_pos.ViewModel
 
             if (SelectedDate.HasValue)
             {
-                filtered = filtered.Where(emp => emp.StartDate.Date == SelectedDate.Value.Date);
+                filtered = filtered.Where(emp => emp.StartDate?.Date == SelectedDate.Value.Date);
             }
 
             if (!string.IsNullOrEmpty(StatusQuery) && StatusQuery != "All")
