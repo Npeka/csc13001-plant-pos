@@ -8,102 +8,156 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Padding="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
+    <Grid Padding="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" CornerRadius="8" BorderBrush="Gray" BorderThickness="1">
-            <Image Source="Assets/plant_image.png" Stretch="UniformToFill"/>
-        </Border>
+        <!-- Back Button -->
+        <Button Grid.Row="0" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" 
+                HorizontalAlignment="Left" Background="Transparent" 
+                Click="BackButton_Click"/>
 
-        <StackPanel Grid.Column="1" Padding="20" Spacing="10">
-            <TextBlock Text="Cây phát tài núi 2 tầng chậu đá mài" 
-                       FontSize="24" FontWeight="Bold" Foreground="DarkGreen"/>
-            <TextBlock Text="CPTN013" FontSize="18" Foreground="Gray"/>
-            <StackPanel Orientation="Horizontal" Spacing="10">
-                <TextBlock Text="1.900.000đ" FontSize="18" Foreground="Gray" TextDecorations="Strikethrough"/>
-                <TextBlock Text="1.750.000đ" FontSize="18" FontWeight="Bold" Foreground="Green"/>
-            </StackPanel>
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- Product Image -->
+            <Border Grid.Column="0" CornerRadius="12" Background="#F5F7F9" Margin="0,0,16,0">
+                <Grid>
+                    <Image Source="{x:Bind CurrentProduct.ImageUrl}" Stretch="Uniform" Margin="20"/>
+                    <Border VerticalAlignment="Top" HorizontalAlignment="Left" 
+                            Background="#4CAF50" CornerRadius="0,0,8,0" Padding="12,4">
+                        <TextBlock Text="Sale" Foreground="White" FontWeight="SemiBold"/>
+                    </Border>
+                </Grid>
+            </Border>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="2"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <!-- Product Details -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Padding="12,0,12,24" Spacing="16">
+                    <!-- Product Title and ID -->
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind CurrentProduct.Name}" 
+                                FontSize="28" FontWeight="SemiBold" Foreground="#1E3932"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.ProductId, Converter={StaticResource ProductIdConverter}}" 
+                                FontSize="16" Foreground="#666666" Margin="0,4,0,0"/>
+                    </StackPanel>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Tên khoa học:" FontSize="16" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="1"/>
-                <TextBlock Text="Dracaena draco L" FontSize="16" Grid.Row="0" Grid.Column="2" Margin="5"/>
+                    <!-- Price Section -->
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="{x:Bind CurrentProduct.PurchasePrice, Converter={StaticResource PriceConverter}}" 
+                                FontSize="16" Foreground="#666666" TextDecorations="Strikethrough"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.SalePrice, Converter={StaticResource PriceConverter}}" 
+                                FontSize="22" FontWeight="Bold" Foreground="#4CAF50"/>
+                    </StackPanel>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Tên thông thường:" FontSize="16" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1"/>
-                <TextBlock Text="Phát tài núi" FontSize="16" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    <!-- Stock Information -->
+                    <Border Background="#F5F7F9" CornerRadius="8" Padding="12,8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#4CAF50"/>
+                            <TextBlock Text="Số lượng tồn kho:" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind CurrentProduct.Stock}"/>
+                        </StackPanel>
+                    </Border>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Kích thước chậu:" FontSize="16" FontWeight="SemiBold" Grid.Row="3" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1"/>
-                <TextBlock Text="36x36cm (DxC)" FontSize="14" Grid.Row="3" Grid.Column="2" Margin="5"/>
+                    <!-- Product Specifications -->
+                    <Grid Background="#F5F7F9" CornerRadius="8" Padding="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Chiều cao tổng:" FontSize="16" FontWeight="SemiBold" Grid.Row="4" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1"/>
-                <TextBlock Text="150 - 160 cm" FontSize="14" Grid.Row="4" Grid.Column="2" Margin="5"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="5" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Độ khó:" FontSize="16" FontWeight="SemiBold" Grid.Row="5" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="5" Grid.Column="1"/>
-                <TextBlock Text="Dễ chăm sóc" FontSize="16" Grid.Row="5" Grid.Column="2" Margin="5"/>
+                        <!-- Row separators -->
+                        <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="2" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="3" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="4" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="5" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="6" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Yêu cầu ánh sáng:" FontSize="16" FontWeight="SemiBold" Grid.Row="6" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="6" Grid.Column="1"/>
-                <TextBlock Text="Nắng tán xa, chịu được nắng trực tiếp" FontSize="16" Grid.Row="6" Grid.Column="2" Margin="5"/>
+                        <!-- Specifications -->
+                        <TextBlock Text="Tên khoa học:" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="Dracaena draco L" Grid.Row="0" Grid.Column="1" Margin="0,12,0,12"/>
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="7" Grid.ColumnSpan="3"/>
-                <TextBlock Text="Nhu cầu nước:" FontSize="16" FontWeight="SemiBold" Grid.Row="7" Grid.Column="0" Margin="5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="7" Grid.Column="1"/>
-                <TextBlock Text="Tưới nước 2 - 3 lần/tuần" FontSize="16" Grid.Row="7" Grid.Column="2" Margin="5"/>
-            </Grid>
+                        <TextBlock Text="Tên thông thường:" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="Phát tài núi" Grid.Row="1" Grid.Column="1" Margin="0,12,0,12"/>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
-                <Button Content="-" Width="30" Click="DecreaseQuantity"/>
-                <TextBlock Text="1" FontSize="18" VerticalAlignment="Center"/>
-                <Button Content="+" Width="30" Click="IncreaseQuantity"/>
-            </StackPanel>
+                        <TextBlock Text="Kích thước chậu:" FontWeight="SemiBold" Grid.Row="2" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind SizeConverter(CurrentProduct.Size)}" Grid.Row="2" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
 
-            <Button Content="ADD TO CART" Background="Green" Foreground="White" Padding="10,5"
-                    Click="AddToCart_Click" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Chiều cao tổng:" FontWeight="SemiBold" Grid.Row="3" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="150 - 160 cm" Grid.Row="3" Grid.Column="1" Margin="0,12,0,12"/>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10" Margin="0,10,0,0">
-                <TextBlock Text="Thể loại:" FontSize="16" FontWeight="SemiBold"/>
-                <TextBlock Text="Cây cảnh trong nhà" FontSize="16" Foreground="DarkGreen"/>
-            </StackPanel>
+                        <TextBlock Text="Độ khó:" FontWeight="SemiBold" Grid.Row="4" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CareLevelConverter(CurrentProduct.CareLevel)}" Grid.Row="4" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
 
-            <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
-                <TextBlock Text="Tags:" FontSize="16" FontWeight="SemiBold"/>
-                <Border Background="LightGray" Padding="5,2" CornerRadius="5">
-                    <TextBlock Text="Cây thủy sinh" FontSize="14"/>
-                </Border>
-                <Border Background="LightGray" Padding="5,2" CornerRadius="5">
-                    <TextBlock Text="Cây phong thủy" FontSize="14"/>
-                </Border>
-            </StackPanel>
-        </StackPanel>
+                        <TextBlock Text="Yêu cầu ánh sáng:" FontWeight="SemiBold" Grid.Row="5" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind LightRequirementConverter(CurrentProduct.LightRequirement)}" Grid.Row="5" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
+
+                        <TextBlock Text="Nhu cầu nước:" FontWeight="SemiBold" Grid.Row="6" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind WateringScheduleConverter(CurrentProduct.WateringSchedule)}" Grid.Row="6" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
+                    </Grid>
+
+                    <!-- Add to Cart Button -->
+                    <Button Content="THÊM VÀO GIỎ HÀNG" Background="#4CAF50" Foreground="White" 
+                            CornerRadius="8" Padding="24,12" HorizontalAlignment="Left"
+                            Click="AddToCart_Click">
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                    </Button>
+
+                    <!-- Category and Tags -->
+                    <StackPanel Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="Thể loại:" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind CurrentProduct.Category.Name}" Foreground="#1E3932"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="Môi trường:" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind CurrentProduct.EnvironmentType}" Foreground="#1E3932"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>

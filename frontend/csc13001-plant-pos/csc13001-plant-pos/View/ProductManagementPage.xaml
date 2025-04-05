@@ -82,12 +82,13 @@
                 <RowDefinition
                     Height="Auto" />
                 <RowDefinition
+    Height="Auto" />
+                <RowDefinition
                     Height="Auto" />
                 <RowDefinition
                     Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Thanh tìm kiếm + Bộ lọc -->
             <!-- Thanh tìm kiếm + Bộ lọc -->
             <Grid Grid.Row="0" Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
@@ -149,10 +150,10 @@
                     <StackPanel
                         Orientation="Horizontal">
                         <FontIcon
-                            Glyph="&#xE710;"
+                            Glyph="&#xE8CB;"
                             Margin="0,0,8,0" />
                         <TextBlock
-                            Text="Thêm sản phẩm" />
+                            Text="Sắp xếp theo thứ hạng" />
                     </StackPanel>
                 </Button>
 
@@ -183,7 +184,66 @@
                             Glyph="&#xE70F;"
                             Margin="0,0,8,0" />
                         <TextBlock
-                            Text="Cập nhật danh mục" />
+                            Text="Xóa bộ lọc" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <!-- Hàng chứa các nút -->
+            <Grid
+    Grid.Row="2"
+    Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+            Width="*" />
+                    <ColumnDefinition
+            Width="*" />
+                    <ColumnDefinition
+            Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+        Grid.Column="0"
+        Style="{StaticResource ActionButtonStyle}"
+        Margin="0,0,8,0"
+        Click="AddProduct_Click">
+                    <StackPanel
+            Orientation="Horizontal">
+                        <FontIcon
+                Glyph="&#xE8CB;"
+                Margin="0,0,8,0" />
+                        <TextBlock
+                Text="Thêm sản phẩm" />
+                    </StackPanel>
+                </Button>
+
+                <Button
+        Grid.Column="1"
+        Style="{StaticResource ActionButtonStyle}"
+        Margin="4,0"
+        Click="{x:Bind ViewModel.SortByPrice_Click}"
+       >
+                    <StackPanel
+            Orientation="Horizontal">
+                        <FontIcon
+                Glyph="&#xE8CB;"
+                Margin="0,0,8,0" />
+                        <TextBlock
+                Text="Điều chỉnh thông tin sản phẩm" />
+                    </StackPanel>
+                </Button>
+
+                <Button
+        Grid.Column="2"
+        Style="{StaticResource ActionButtonStyle}"
+        Margin="8,0,0,0"
+        Click="UpdateCategories_Click">
+                    <StackPanel
+            Orientation="Horizontal">
+                        <FontIcon
+                Glyph="&#xE70F;"
+                Margin="0,0,8,0" />
+                        <TextBlock
+                Text="Thêm danh mục sản phẩm" />
                     </StackPanel>
                 </Button>
             </Grid>
@@ -249,20 +309,6 @@
                                             Height="180"
                                             Stretch="UniformToFill" />
 
-                                        <!-- Badge trạng thái -->
-                                        <Border
-                                            CornerRadius="4"
-                                            Padding="6,2"
-                                            HorizontalAlignment="Right"
-                                            Background="{Binding StockBadgeColor}"
-                                            VerticalAlignment="Top"
-                                            Margin="0,8,8,0">
-                                            <TextBlock
-                                                Text="{Binding StockStatus}"
-                                                Foreground="White"
-                                                FontSize="12"
-                                                FontWeight="SemiBold" />
-                                        </Border>
                                     </Grid>
 
                                     <!-- Thông tin sản phẩm -->
