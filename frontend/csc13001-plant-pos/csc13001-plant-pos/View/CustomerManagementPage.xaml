@@ -8,9 +8,15 @@
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:csc13001_plant_pos.View.UI"
+    xmlns:conv="using:csc13001_plant_pos.Converter"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <conv:DateToStringConverter
+                x:Key="DateToStringConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid
         Padding="24"
         RowSpacing="12">
@@ -250,7 +256,7 @@
                     </controls:DataGridTemplateColumn>
                     <controls:DataGridTextColumn
                         Width="150"
-                        Binding="{Binding Customer.CreateAt}"
+                        Binding="{Binding Customer.CreateAt, Converter={StaticResource DateToStringConverter}}"
                         Header="Ngày tạo" />
                     <controls:DataGridTemplateColumn
                         Width="200"

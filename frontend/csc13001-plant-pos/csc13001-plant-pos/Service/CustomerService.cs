@@ -12,7 +12,6 @@ namespace csc13001_plant_pos.Service;
 
 public interface ICustomerService
 {
-    Task<string?> AddCustomerAsync(CustomerDto customerDto);
     Task<string?> AddCustomerAsync(CustomerCreateDto customerDto);
     Task<ApiResponse<CustomerDto>?> GetCustomerByIdAsync(string customerId);
     Task<ApiResponse<List<OrderListDto>>?> GetCustomerOrdersAsync(string customerId);
@@ -21,7 +20,7 @@ public interface ICustomerService
 
     Task<bool> DeleteCustomerAsync(string customerId);
 
-    Task<bool> UpdateCustomerAsync(CustomerDto customerDto);
+    Task<string?> UpdateCustomerAsync(CustomerDto customerDto);
 }
 
 public class CustomerService : ICustomerService
@@ -33,20 +32,6 @@ public class CustomerService : ICustomerService
         _httpClient = httpClient;
     }
 
-    public async Task<string?> AddCustomerAsync(CustomerDto customerDto)
-    {
-        var content = JsonUtils.ToJsonContent(customerDto);
-        var response = await _httpClient.PostAsync("customers", content);
-        var json = await response.Content.ReadAsStringAsync();
-        var jsonDoc = JsonDocument.Parse(json);
-        var root = jsonDoc.RootElement;
-        if (root.GetProperty("status").GetString() == "success")
-        {
-            var customerId = root.GetProperty("data").GetProperty("customerId").GetInt32().ToString();
-            return customerId;
-        }
-        return null;
-    }
     public async Task<string?> AddCustomerAsync(CustomerCreateDto customerDto)
     {
         var content = JsonUtils.ToJsonContent(customerDto);
@@ -59,7 +44,7 @@ public class CustomerService : ICustomerService
             var customerId = root.GetProperty("data").GetProperty("customerId").GetInt32().ToString();
             return customerId;
         }
-        return null;
+        return root.GetProperty("message").GetString();
     }
     public async Task<ApiResponse<CustomerDto>?> GetCustomerByIdAsync(string customerId)
     {
@@ -95,17 +80,13 @@ public class CustomerService : ICustomerService
         return false;
     }
 
-    public async Task<bool> UpdateCustomerAsync(CustomerDto customerDto)
+    public async Task<string?> UpdateCustomerAsync(CustomerDto customerDto)
     {
         var content = JsonUtils.ToJsonContent(customerDto);
-        var response = await _httpClient.PutAsync($"customers/{customerDto.Customer.CustomerId}", content);
+        var response = await _httpClient.PutAsync("customers", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;
-        if (root.GetProperty("status").GetString() == "success")
-        {
-            return true;
-        }
-        return false;
+        return root.GetProperty("message").GetString();
     }
 }

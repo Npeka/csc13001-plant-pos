@@ -1,39 +1,37 @@
-﻿using csc13001_plant_pos.ViewModel;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using System;
+using System.Collections.Generic;
+using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.View
 {
     public sealed partial class DetailProductPage : Page
     {
-        public DetailProductViewModel ViewModel { get; }
+        public Product CurrentProduct { get; private set; }
 
         public DetailProductPage()
         {
             this.InitializeComponent();
-            ViewModel = App.GetService<DetailProductViewModel>();
-            this.DataContext = ViewModel;
         }
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is string productId)
+
+            if (e.Parameter is Product product)
             {
-                await ViewModel.LoadProductAsync(productId);
+                CurrentProduct = product;
+                this.DataContext = this;
             }
         }
 
-        private void BackButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Frame.CanGoBack)
+            if (this.Frame.CanGoBack)
             {
-                Frame.GoBack();
+                this.Frame.GoBack();
             }
-        }
-
-        private void AddToCart_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-        {
         }
     }
 }

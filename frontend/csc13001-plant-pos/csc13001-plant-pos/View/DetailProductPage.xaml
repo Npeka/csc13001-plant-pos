@@ -2,370 +2,168 @@
     x:Class="csc13001_plant_pos.View.DetailProductPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:conv="using:csc13001_plant_pos.Converter"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    NavigationCacheMode="Required"
-    mc:Ignorable="d">
-
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <conv:CurrencyConverter
+            x:Key="CurrencyConverter" />
+            <conv:WateringNeed
+    x:Key="WateringNeed" />
+            <conv:CareLevel
+    x:Key="CareLevel" />
+            <conv:LightRequirement
+x:Key="LightRequirement" />
+            <conv:SizeConverter
+x:Key="SizeConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid Padding="24">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--  Back Button  -->
-        <Button
-            Grid.Row="0"
-            HorizontalAlignment="Left"  
-            Click="BackButton_Click"
-            Content=""
-            FontFamily="Segoe MDL2 Assets"
-            Style="{StaticResource AccentButtonStyle}" />
+        <!-- Back Button -->
+        <Button Grid.Row="0" HorizontalAlignment="Left" Background="Transparent" 
+        Click="BackButton_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="&#xE72B;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    <TextBlock Text="Trở về trang ban đầu" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
 
-        <!--  Main Content  -->
+
+        <!-- Main Content -->
         <Grid Grid.Row="1" Margin="0,12,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="7*" />
             </Grid.ColumnDefinitions>
 
-            <!--  Product Image  -->
-            <Border
-                Grid.Column="0"
-                Margin="0,0,16,0"
-                Background="#F5F7F9"
-                CornerRadius="12">
+            <!-- Product Image -->
+            <Border Grid.Column="0" CornerRadius="12" Background="#F5F7F9" Margin="0,0,16,0">
                 <Grid>
-                    <Grid.Shadow>
-                        <ThemeShadow />
-                    </Grid.Shadow>
-                    <Image
-                        Margin="20"
-                        Source="{x:Bind ViewModel.CurrentProduct.ImageUrl, Mode=OneWay}"
-                        Stretch="Uniform" />
-                    <Border
-                        Padding="12,4"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Background="#4CAF50"
-                        CornerRadius="0,0,8,0"
-                        Visibility="{x:Bind ViewModel.IsTopSelling, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <TextBlock
-                            FontWeight="SemiBold"
-                            Foreground="White"
-                            Text="Top 10 sản phẩm bán chạy nhất" />
-                    </Border>
+                    <Image Source="{x:Bind CurrentProduct.ImageUrl}" Stretch="Uniform" Margin="20"/>
                 </Grid>
             </Border>
 
-            <!--  Product Details  -->
-            <ScrollViewer
-                Grid.Column="1"
-                VerticalAlignment="Center"
-                VerticalScrollBarVisibility="Auto">
+            <!-- Product Details -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                 <StackPanel Padding="12,0,12,24" Spacing="16">
-                    <!--  Product Title and ID  -->
+                    <!-- Product Title and ID -->
                     <StackPanel>
-                        <TextBlock
-                            FontSize="28"
-                            FontWeight="SemiBold"
-                            Foreground="{StaticResource SystemAccentColorDark1}"
-                            Text="{x:Bind ViewModel.CurrentProduct.Name, Mode=OneWay}" />
-                        <Border
-                            Width="40"
-                            Height="4"
-                            Margin="0,8,8,8"
-                            HorizontalAlignment="Left"
-                            Background="{StaticResource SystemAccentColorDark2}"
-                            CornerRadius="2" />
-                        <TextBlock
-                            Margin="0,4,0,0"
-                            FontSize="14"
-                            Foreground="#224229"
-                            Text="{x:Bind ViewModel.CurrentProduct.Description, Mode=OneWay}"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-
-                    <!--  Price Section  -->
-                    <StackPanel Orientation="Vertical" Spacing="12">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,4,0"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Foreground="#666666"
-                                Text="Giá nhập: " />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontSize="18"
-                                FontWeight="Bold"
-                                Foreground="#666666"
-                                Text="{x:Bind ViewModel.CurrentProduct.PurchasePrice, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,4,0"
-                                VerticalAlignment="Center"
-                                FontSize="16"
-                                FontWeight="SemiBold"
-                                Foreground="#4CAF50"
-                                Text="Giá bán: " />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontSize="22"
-                                FontWeight="Bold"
-                                Foreground="#4CAF50"
-                                Text="{x:Bind ViewModel.CurrentProduct.SalePrice, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
-                        </StackPanel>
-                    </StackPanel>
-
-                    <!--  Stock Information  -->
-                    <Border
-                        Padding="12,8"
-                        Background="#F5F7F9"
-                        CornerRadius="8">
+                        <TextBlock Text="{x:Bind CurrentProduct.Name}" 
+                                FontSize="28" FontWeight="SemiBold" Foreground="#1E3932"/>
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <FontIcon
-                                FontFamily="Segoe MDL2 Assets"
-                                Foreground="#4CAF50"
-                                Glyph="" />
-                            <TextBlock FontWeight="SemiBold" Text="Số lượng tồn kho:" />
-                            <TextBlock Text="{x:Bind ViewModel.CurrentProduct.Stock, Mode=OneWay}" />
+                            <TextBlock Text="Mã sản phẩm: " 
+                                FontSize="24" FontWeight="SemiBold" Foreground="#1E3932"/>
+                            <TextBlock Text="{x:Bind CurrentProduct.ProductId}" 
+                                FontSize="24" Foreground="#666666" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Price Section -->
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="{x:Bind CurrentProduct.SalePrice, Converter={StaticResource CurrencyConverter}}" 
+                                FontSize="22" FontWeight="Bold" Foreground="#4CAF50"/>
+                    </StackPanel>
+
+                    <!-- Stock Information -->
+                    <Border Background="#F5F7F9" CornerRadius="8" Padding="12,8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE719;" FontFamily="Segoe MDL2 Assets" Foreground="#4CAF50"/>
+                            <TextBlock Text="Số lượng tồn kho:" FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind CurrentProduct.Stock}"/>
                         </StackPanel>
                     </Border>
 
-                    <!--  Product Specifications  -->
-                    <Grid
-                        Padding="12"
-                        Background="#F5F7F9"
-                        CornerRadius="8">
+                    <!-- Product Specifications -->
+                    <Grid Background="#F5F7F9" CornerRadius="8" Padding="12">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
+
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!--  Row separators  -->
-                        <Rectangle
-                            Grid.Row="0"
-                            Grid.ColumnSpan="2"
-                            Height="1"
-                            VerticalAlignment="Bottom"
-                            Fill="#E0E0E0" />
-                        <Rectangle
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            Height="1"
-                            VerticalAlignment="Bottom"
-                            Fill="#E0E0E0" />
-                        <Rectangle
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Height="1"
-                            VerticalAlignment="Bottom"
-                            Fill="#E0E0E0" />
-                        <Rectangle
-                            Grid.Row="3"
-                            Grid.ColumnSpan="2"
-                            Height="1"
-                            VerticalAlignment="Bottom"
-                            Fill="#E0E0E0" />
-                        <Rectangle
-                            Grid.Row="4"
-                            Grid.ColumnSpan="2"
-                            Height="1"
-                            VerticalAlignment="Bottom"
-                            Fill="#E0E0E0" />
+                        <!-- Row separators -->
+                        <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="2" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="3" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="4" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="5" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="6" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+                                VerticalAlignment="Bottom"/>
+                        <Rectangle Grid.Row="7" Grid.ColumnSpan="2" Height="1" Fill="#E0E0E0" 
+        VerticalAlignment="Bottom"/>
 
-                        <!--  Specifications  -->
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Margin="0,12,24,12"
-                            FontWeight="SemiBold"
-                            Text="Phân loại:" />
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            Foreground="#1E3932"
-                            Text="{x:Bind ViewModel.CurrentProduct.Category.Name, Mode=OneWay}" />
-                        <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="0,12,24,12"
-                            FontWeight="SemiBold"
-                            Text="Môi trường:" />
-                        <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            Foreground="#1E3932"
-                            Text="{x:Bind ViewModel.CurrentProduct.EnvironmentType, Mode=OneWay}" />
-                        <TextBlock
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Margin="0,12,24,12"
-                            FontWeight="SemiBold"
-                            Text="Kích thước:" />
-                        <StackPanel
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Margin="0,12,0,12"
-                            Orientation="Horizontal"
-                            Spacing="2">
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.Size, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=1}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.Size, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=2}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.Size, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=3}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.Size, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=4}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.Size, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=5}"
-                                Glyph="&#xE735;" />
-                        </StackPanel>
+                        <!-- Specifications -->
+                        <TextBlock Text="Tên khoa học:" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="Dracaena draco L" Grid.Row="0" Grid.Column="1" Margin="0,12,0,12"/>
 
-                        <TextBlock
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Margin="0,12,24,12"
-                            FontWeight="SemiBold"
-                            Text="Độ khó:" />
-                        <StackPanel
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            Margin="0,12,0,12"
-                            Orientation="Horizontal"
-                            Spacing="2">
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.CareLevel, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=1}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.CareLevel, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=2}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.CareLevel, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=3}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.CareLevel, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=4}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.CareLevel, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=5}"
-                                Glyph="&#xE735;" />
-                        </StackPanel>
+                        <TextBlock Text="Tên thông thường:" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="Phát tài núi" Grid.Row="1" Grid.Column="1" Margin="0,12,0,12"/>
 
-                        <TextBlock
-                            Grid.Row="4"
-                            Grid.Column="0"
-                            Margin="0,12,24,12"
-                            FontWeight="SemiBold"
-                            Text="Yêu cầu ánh sáng:" />
-                        <StackPanel
-                            Grid.Row="4"
-                            Grid.Column="1"
-                            Margin="0,12,0,12"
-                            Orientation="Horizontal"
-                            Spacing="2">
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.LightRequirement, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=1}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.LightRequirement, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=2}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.LightRequirement, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=3}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.LightRequirement, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=4}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.LightRequirement, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=5}"
-                                Glyph="&#xE735;" />
-                        </StackPanel>
+                        <TextBlock Text="Kích thước chậu:" FontWeight="SemiBold" Grid.Row="2" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.Size, Converter={StaticResource SizeConverter}}" Grid.Row="2" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
 
-                        <TextBlock
-                            Grid.Row="5"
-                            Grid.Column="0"
-                            Margin="0,12,24,12"
-                            FontWeight="SemiBold"
-                            Text="Nhu cầu nước:" />
-                        <StackPanel
-                            Grid.Row="5"
-                            Grid.Column="1"
-                            Margin="0,12,0,12"
-                            Orientation="Horizontal"
-                            Spacing="2">
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.WateringSchedule, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=1}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.WateringSchedule, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=2}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.WateringSchedule, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=3}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.WateringSchedule, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=4}"
-                                Glyph="&#xE735;" />
-                            <FontIcon
-                                FontSize="12"
-                                Foreground="{x:Bind ViewModel.CurrentProduct.WateringSchedule, Mode=OneWay, Converter={StaticResource StarColorConverter}, ConverterParameter=5}"
-                                Glyph="&#xE735;" />
-                        </StackPanel>
+                        <TextBlock Text="Chiều cao tổng:" FontWeight="SemiBold" Grid.Row="3" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="150 - 160 cm" Grid.Row="3" Grid.Column="1" Margin="0,12,0,12"/>
+
+                        <TextBlock Text="Độ khó:" FontWeight="SemiBold" Grid.Row="4" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.CareLevel, Converter={StaticResource CareLevel}}" Grid.Row="4" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
+
+                        <TextBlock Text="Yêu cầu ánh sáng:" FontWeight="SemiBold" Grid.Row="5" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.LightRequirement, Converter={StaticResource LightRequirement}}" Grid.Row="5" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
+
+                        <TextBlock Text="Nhu cầu nước:" FontWeight="SemiBold" Grid.Row="6" Grid.Column="0" 
+                                Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.WateringSchedule, Converter={StaticResource WateringNeed}}" Grid.Row="6" Grid.Column="1" 
+                                Margin="0,12,0,12"/>
+
+                        <TextBlock Text="Thể loại:" FontWeight="SemiBold" Grid.Row="7" Grid.Column="0" 
+                            Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.Category.Name}" Grid.Row="7" Grid.Column="1" 
+                            Margin="0,12,0,12"/>
+
+                        <TextBlock Text="Mô tả:" FontWeight="SemiBold" Grid.Row="8" Grid.Column="0" 
+                            Margin="0,12,24,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.Category.Description}" Grid.Row="8" Grid.Column="1" 
+                            Margin="0,12,0,12"/>
                     </Grid>
-
-                    <!--  Add to Cart Button  -->
-                    <Button
-                        Padding="24,12"
-                        HorizontalAlignment="Left"
-                        Background="#D3F9D8"
-                        Click="AddToCart_Click"
-                        Content="Sửa thông tin"
-                        CornerRadius="8"
-                        Foreground="#666666"
-                        Style="{StaticResource AccentButtonStyle}">
-                        <Button.Resources>
-                            <ResourceDictionary>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="8" />
-                                </Style>
-                            </ResourceDictionary>
-                        </Button.Resources>
-                    </Button>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

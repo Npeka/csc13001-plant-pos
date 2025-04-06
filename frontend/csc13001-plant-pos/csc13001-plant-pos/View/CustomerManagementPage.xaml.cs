@@ -34,8 +34,8 @@ namespace csc13001_plant_pos.View
                     Address = "",
                     BirthDate = null,
                     LoyaltyPoints = 0,
-                    LoyaltyCardType = "None", 
-                    CreateAt = DateTime.Now 
+                    LoyaltyCardType = "None",
+                    CreateAt = DateTime.Now
                 },
                 TotalOrders = 0,
                 TotalSpent = 0
@@ -160,22 +160,20 @@ namespace csc13001_plant_pos.View
                 customer.Customer.Gender = (string)genderComboBox.SelectedItem;
                 customer.Customer.BirthDate = birthDateBox.Date.DateTime;
 
-                bool success = isEdit
-                    ? await ViewModel.UpdateCustomerAsync(customer) 
+                string? success = isEdit
+                    ? await ViewModel.UpdateCustomerAsync(customer)
                     : await ViewModel.AddCustomerAsync(customer);
 
-                if (!success)
-                {
-                    await ShowErrorDialogAsync("Không thể lưu khách hàng. Vui lòng thử lại.");
-                }
+
+                await ShowErrorDialogAsync(success);
             }
         }
 
-        private async Task ShowErrorDialogAsync(string message)
+        private async Task ShowErrorDialogAsync(string? message)
         {
             ContentDialog errorDialog = new ContentDialog
             {
-                Title = "Lỗi",
+                Title = "Thông báo",
                 Content = message,
                 CloseButtonText = "Đóng",
                 XamlRoot = this.XamlRoot
