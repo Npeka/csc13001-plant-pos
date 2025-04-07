@@ -1,13 +1,12 @@
 ﻿using System;
-using System.IO;
-using Microsoft.UI.Xaml;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 using csc13001_plant_pos.Service;
-using csc13001_plant_pos.ViewModel.Authentication;
 using csc13001_plant_pos.ViewModel;
+using csc13001_plant_pos.ViewModel.Authentication;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.UI.Xaml;
 using Syncfusion.Licensing;
 
 namespace csc13001_plant_pos;
@@ -58,6 +57,7 @@ public partial class App : Application
                 services.AddSingleton<ICustomerService, CustomerService>();
                 services.AddSingleton<IDiscountProgramService, DiscountProgramService>();
                 services.AddSingleton<IInventoryService, InventoryService>();
+                services.AddSingleton<INotificationService, NotificationService>();
                 services.AddSingleton<IOrderService, OrderService>();
                 services.AddSingleton<IProductService, ProductService>();
                 services.AddSingleton<IStaffService, StaffService>();
@@ -85,6 +85,7 @@ public partial class App : Application
                 services.AddSingleton<ProductManagementViewModel>();
                 services.AddSingleton<ProductsViewModel>();
                 services.AddSingleton<DetailProductViewModel>();
+                services.AddSingleton<StaffNotificationViewModel>();
             })
             .Build();
     }

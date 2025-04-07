@@ -4,12 +4,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dto="using:csc13001_plant_pos.DTO.NotificationDTO"
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:csc13001_plant_pos.Model"
     xmlns:ui="using:csc13001_plant_pos.View.UI"
+    x:Name="RootPage"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+
     <Page.Resources>
         <!--  Style cho ComboBoxItem tag  -->
         <Style x:Key="TagComboBoxItemStyle" TargetType="ComboBoxItem">
@@ -18,6 +21,81 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
+
+        <!--  DataTemplate cho mỗi thông báo  -->
+        <DataTemplate x:Key="NotificationTemplate" x:DataType="dto:NotificationDto">
+            <Grid
+                Margin="0,0,0,8"
+                Padding="16"
+                Background="{x:Bind IsRead, Mode=OneWay, Converter={StaticResource IsReadToBackgroundConverter}, ConverterParameter='#FAFAFA:#F0F7FF'}"
+                BorderBrush="{x:Bind IsRead, Mode=OneWay, Converter={StaticResource IsReadToBackgroundConverter}, ConverterParameter='#E5E5E5:#CCE5FF'}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Tapped="OnNotificationTapped">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FontIcon
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    FontSize="28"
+                    Foreground="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
+                    Glyph="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToGlyphConverter}}" />
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="16,0,0,0"
+                    Spacing="4">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid
+                            Grid.Column="0"
+                            Padding="8,3"
+                            HorizontalAlignment="Left"
+                            Background="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
+                            CornerRadius="4">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="11"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{x:Bind TypeName, Mode=OneWay}" />
+                        </Grid>
+                        <StackPanel
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <FontIcon
+                                VerticalAlignment="Top"
+                                FontSize="14"
+                                Foreground="#777777"
+                                Glyph="&#xE823;" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="#777777"
+                                Text="{x:Bind CreatedAt, Mode=OneWay, Converter={StaticResource DateTimeWithHourConverter}}" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock
+                        Margin="0,4,0,2"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        Text="{x:Bind Title, Mode=OneWay}"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="13"
+                        Foreground="#555555"
+                        LineHeight="20"
+                        Text="{x:Bind Content, Mode=OneWay}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid Padding="24,24,24,24" RowSpacing="16">
@@ -38,6 +116,22 @@
                 Orientation="Horizontal"
                 Spacing="12">
                 <ComboBox
+                    Width="120"
+                    Padding="10,5"
+                    VerticalAlignment="Center"
+                    Background="#F5F5F5"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    CornerRadius="4"
+                    Foreground="#555555"
+                    PlaceholderText="Lọc theo trạng thái"
+                    SelectedValue="{x:Bind ViewModel.SelectedReadFilter, Mode=TwoWay}"
+                    SelectedValuePath="Tag">
+                    <ComboBoxItem Content="Tất cả" Tag="All" />
+                    <ComboBoxItem Content="Chưa đọc" Tag="Unread" />
+                    <ComboBoxItem Content="Đã đọc" Tag="Read" />
+                </ComboBox>
+                <ComboBox
                     Width="200"
                     Padding="10,5"
                     VerticalAlignment="Center"
@@ -46,11 +140,11 @@
                     BorderThickness="1"
                     CornerRadius="4"
                     Foreground="#555555"
-                    PlaceholderText="Lọc theo tag">
-
-                    <ComboBoxItem IsSelected="True" Style="{StaticResource TagComboBoxItemStyle}">
+                    PlaceholderText="Lọc theo tag"
+                    SelectedValue="{x:Bind ViewModel.SelectedTag, Mode=TwoWay}"
+                    SelectedValuePath="Tag">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="All">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#555555"
                             CornerRadius="4">
@@ -62,10 +156,8 @@
                                 Text="Tất cả" />
                         </Grid>
                     </ComboBoxItem>
-
-                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="Summary">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#0078D7"
                             CornerRadius="4">
@@ -77,10 +169,8 @@
                                 Text="Tổng kết" />
                         </Grid>
                     </ComboBoxItem>
-
-                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="OwnerAnnouncement">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#E81123"
                             CornerRadius="4">
@@ -92,10 +182,8 @@
                                 Text="Chủ cửa hàng" />
                         </Grid>
                     </ComboBoxItem>
-
-                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="NewPromotion">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#107C10"
                             CornerRadius="4">
@@ -107,10 +195,8 @@
                                 Text="Khuyến mãi mới" />
                         </Grid>
                     </ComboBoxItem>
-
-                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="ExpirationNotice">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#881798"
                             CornerRadius="4">
@@ -122,10 +208,8 @@
                                 Text="Thông báo hết hạn" />
                         </Grid>
                     </ComboBoxItem>
-
-                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="NewProduct">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#008575"
                             CornerRadius="4">
@@ -137,10 +221,8 @@
                                 Text="Sản phẩm mới" />
                         </Grid>
                     </ComboBoxItem>
-
-                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}">
+                    <ComboBoxItem Style="{StaticResource TagComboBoxItemStyle}" Tag="PlantCareTip">
                         <Grid
-                            Grid.Column="0"
                             Padding="8,3"
                             Background="#00B7C3"
                             CornerRadius="4">
@@ -160,6 +242,7 @@
                     BorderBrush="#DDDDDD"
                     BorderThickness="1"
                     CornerRadius="4"
+                    Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}"
                     Foreground="#555555"
                     PlaceholderText="Lọc theo ngày" />
             </StackPanel>
@@ -169,469 +252,10 @@
             Grid.Row="1"
             Padding="0,0,12,0"
             VerticalScrollBarVisibility="Auto">
-            <StackPanel Spacing="12">
-                <Grid
-                    Margin="0,0,0,0"
-                    Padding="16"
-                    Background="#F0F7FF"
-                    BorderBrush="#CCE5FF"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <FontIcon
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Foreground="#0078D7"
-                        Glyph="&#xE71D;" />
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="16,0,0,0"
-                        Spacing="4">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid
-                                Grid.Column="0"
-                                Padding="8,3"
-                                HorizontalAlignment="Left"
-                                Background="#0078D7"
-                                CornerRadius="4">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="11"
-                                    FontWeight="SemiBold"
-                                    Foreground="White"
-                                    Text="Tổng kết" />
-                            </Grid>
-                            <StackPanel
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="4">
-                                <FontIcon
-                                    VerticalAlignment="Top"
-                                    FontSize="14"
-                                    Foreground="#777777"
-                                    Glyph="&#xE823;" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text="01/04/2025" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text=" 19:30" />
-                            </StackPanel>
-                        </Grid>
-                        <TextBlock
-                            Margin="0,4,0,2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#333333"
-                            Text="Tổng kết ngày làm việc"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="#555555"
-                            LineHeight="20"
-                            Text="Bạn đã hoàn thành 10 đơn hàng trong ngày hôm nay với tổng doanh thu 3.000.000đ. Xin chúc mừng!"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </Grid>
-
-
-                <!--  Thông báo từ chủ cửa hàng  -->
-                <Grid
-                    Margin="0,0,0,0"
-                    Padding="16"
-                    Background="#F0F7FF"
-                    BorderBrush="#CCE5FF"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <FontIcon
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Foreground="#E81123"
-                        Glyph="&#xE715;" />
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="16,0,0,0"
-                        Spacing="4">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid
-                                Grid.Column="0"
-                                Padding="8,3"
-                                HorizontalAlignment="Left"
-                                Background="#E81123"
-                                CornerRadius="4">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="11"
-                                    FontWeight="SemiBold"
-                                    Foreground="White"
-                                    Text="Chủ cửa hàng" />
-                            </Grid>
-                            <StackPanel
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="4">
-                                <FontIcon
-                                    VerticalAlignment="Top"
-                                    FontSize="14"
-                                    Foreground="#777777"
-                                    Glyph="&#xE823;" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text="01/04/2025" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text=" 10:15" />
-                            </StackPanel>
-                        </Grid>
-                        <TextBlock
-                            Margin="0,4,0,2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#333333"
-                            Text="Thông báo nghỉ lễ 30/4 - 01/5"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="#555555"
-                            LineHeight="20"
-                            Text="Cửa hàng sẽ hoạt động đến hết ngày 26/4 và nghỉ 5 ngày liên tục. Mọi người sẽ quay lại làm việc vào ngày 02/5. Chúc các bạn có kỳ nghỉ lễ vui vẻ!"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </Grid>
-
-                <!--  Chương trình giảm giá mới  -->
-                <Grid
-                    Margin="0,0,0,0"
-                    Padding="16"
-                    Background="#F0F7FF"
-                    BorderBrush="#CCE5FF"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <FontIcon
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Foreground="#107C10"
-                        Glyph="&#xE8EC;" />
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="16,0,0,0"
-                        Spacing="4">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid
-                                Grid.Column="0"
-                                Padding="8,3"
-                                HorizontalAlignment="Left"
-                                Background="#107C10"
-                                CornerRadius="4">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="11"
-                                    FontWeight="SemiBold"
-                                    Foreground="White"
-                                    Text="Khuyến mãi mới" />
-                            </Grid>
-                            <StackPanel
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="4">
-                                <FontIcon
-                                    VerticalAlignment="Top"
-                                    FontSize="14"
-                                    Foreground="#777777"
-                                    Glyph="&#xE823;" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text="31/03/2025" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text=" 08:45" />
-                            </StackPanel>
-                        </Grid>
-                        <TextBlock
-                            Margin="0,4,0,2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#333333"
-                            Text="Ưu đãi Mùa Xuân 2025 cho khách hàng VIP"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="#555555"
-                            LineHeight="20"
-                            Text="Chương trình giảm giá 5% cho tất cả khách hàng hạng vàng sẽ bắt đầu từ 01/04/2025 đến hết 01/08/2025. Vui lòng thông báo cho khách hàng khi họ thanh toán."
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </Grid>
-
-                <!--  Chương trình giảm giá hết hạn  -->
-                <Grid
-                    Margin="0,0,0,0"
-                    Padding="16"
-                    Background="#FAFAFA"
-                    BorderBrush="#E5E5E5"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <FontIcon
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Foreground="#881798"
-                        Glyph="&#xECC5;" />
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="16,0,0,0"
-                        Spacing="4">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid
-                                Grid.Column="0"
-                                Padding="8,3"
-                                HorizontalAlignment="Left"
-                                Background="#881798"
-                                CornerRadius="4">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="11"
-                                    FontWeight="SemiBold"
-                                    Foreground="White"
-                                    Text="Thông báo hết hạn" />
-                            </Grid>
-
-                            <StackPanel
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="4">
-                                <FontIcon
-                                    VerticalAlignment="Top"
-                                    FontSize="14"
-                                    Foreground="#777777"
-                                    Glyph="&#xE823;" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text="01/04/2025" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text=" 00:01" />
-                            </StackPanel>
-                        </Grid>
-                        <TextBlock
-                            Margin="0,4,0,2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#333333"
-                            Text="Chương trình khuyến mãi đầu năm đã kết thúc"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="#555555"
-                            LineHeight="20"
-                            Text="Chương trình giảm giá 5% cho tất cả khách hàng diễn ra từ 01/01/2024 đến 01/04/2025 đã chính thức kết thúc. Vui lòng không áp dụng ưu đãi này khi thanh toán."
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </Grid>
-
-                <!--  Sản phẩm mới  -->
-                <Grid
-                    Margin="0,0,0,0"
-                    Padding="16"
-                    Background="#FAFAFA"
-                    BorderBrush="#E5E5E5"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <FontIcon
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Foreground="#008575"
-                        Glyph="&#xEC0A;" />
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="16,0,0,0"
-                        Spacing="4">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid
-                                Grid.Column="0"
-                                Padding="8,3"
-                                HorizontalAlignment="Left"
-                                Background="#008575"
-                                CornerRadius="4">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="11"
-                                    FontWeight="SemiBold"
-                                    Foreground="White"
-                                    Text="Sản phẩm mới" />
-                            </Grid>
-
-                            <StackPanel
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="4">
-                                <FontIcon
-                                    VerticalAlignment="Top"
-                                    FontSize="14"
-                                    Foreground="#777777"
-                                    Glyph="&#xE823;" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text="31/03/2025" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text=" 15:20" />
-                            </StackPanel>
-                        </Grid>
-                        <TextBlock
-                            Margin="0,4,0,2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#333333"
-                            Text="Cây Monstera Variegata vừa về hàng"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="#555555"
-                            LineHeight="20"
-                            Text="Sản phẩm Monstera Variegata với giá 750.000đ thuộc dòng Cây nội thất đã được thêm vào kho. Sản phẩm có số lượng giới hạn, vui lòng tư vấn cho khách hàng quan tâm."
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </Grid>
-
-                <!--  Nhắc nhở tưới nước  -->
-                <Grid
-                    Margin="0,0,0,0"
-                    Padding="16"
-                    Background="#FAFAFA"
-                    BorderBrush="#E5E5E5"
-                    BorderThickness="1"
-                    CornerRadius="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <FontIcon
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Foreground="#00B7C3"
-                        Glyph="&#xE95E;" />
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="16,0,0,0"
-                        Spacing="4">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid
-                                Grid.Column="0"
-                                Padding="8,3"
-                                HorizontalAlignment="Left"
-                                Background="#00B7C3"
-                                CornerRadius="4">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="11"
-                                    FontWeight="SemiBold"
-                                    Foreground="White"
-                                    Text="Chăm sóc cây" />
-                            </Grid>
-
-                            <StackPanel
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="4">
-                                <FontIcon
-                                    VerticalAlignment="Top"
-                                    FontSize="14"
-                                    Foreground="#777777"
-                                    Glyph="&#xE823;" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text="01/04/2025" />
-                                <TextBlock
-                                    FontSize="12"
-                                    Foreground="#777777"
-                                    Text=" 08:00" />
-                            </StackPanel>
-                        </Grid>
-                        <TextBlock
-                            Margin="0,4,0,2"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#333333"
-                            Text="Nhắc nhở tưới nước định kỳ"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="#555555"
-                            LineHeight="20"
-                            Text="Đã đến giờ tưới nước định kỳ cho các cây cảnh trong cửa hàng. Vui lòng kiểm tra và tưới nước cho các khu vực trưng bày và kho."
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
+            <ListView
+                ItemTemplate="{StaticResource NotificationTemplate}"
+                ItemsSource="{x:Bind ViewModel.FilteredNotifications, Mode=OneWay}"
+                SelectionMode="None" />
         </ScrollViewer>
     </Grid>
 </Page>

@@ -1,7 +1,6 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using System;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media.Imaging;
-using System;
 
 namespace csc13001_plant_pos.Converter
 {
