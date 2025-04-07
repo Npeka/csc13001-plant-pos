@@ -1,17 +1,38 @@
 [
   {
-    "title": "Cập nhật hệ thống",
-    "content": "Hệ thống sẽ bảo trì vào lúc 22:00",
+    "type": "Summary",
+    "title": "Tổng kết ngày làm việc",
+    "content": "Bạn đã hoàn thành 10 đơn hàng trong ngày hôm nay với tổng doanh thu 3.000.000đ. Xin chúc mừng!",
     "to": [2, 3, 4, 5, 6]
   },
   {
-    "title": "Khuyến mãi đặc biệt",
-    "content": "Giảm giá 50% cho tất cả sản phẩm",
-    "to": [2, 3]
+    "type": "OwnerAnnouncement",
+    "title": "Thông báo nghỉ lễ 30/4 - 01/5",
+    "content": "Cửa hàng sẽ hoạt động đến hết ngày 26/4 và nghỉ 5 ngày liên tục. Mọi người sẽ quay lại làm việc vào ngày 02/5. Chúc các bạn có kỳ nghỉ lễ vui vẻ!",
+    "to": [2, 3, 4, 5, 6]
   },
   {
-    "title": "Thông báo lỗi",
-    "content": "Đã xảy ra lỗi trong hệ thống, chúng tôi đang khắc phục",
-    "to": [4, 5, 6]
+    "type": "NewPromotion",
+    "title": "Ưu đãi Mùa Xuân 2025 cho khách hàng VIP",
+    "content": "Chương trình giảm giá 5% cho tất cả khách hàng hạng vàng sẽ bắt đầu từ 01/04/2025 đến hết 01/08/2025. Vui lòng thông báo cho khách hàng khi họ thanh toán.",
+    "to": [2, 3, 4, 5, 6]
+  },
+  {
+    "type": "ExpirationNotice",
+    "title": "Chương trình khuyến mãi đầu năm đã kết thúc",
+    "content": "Chương trình giảm giá 5% cho tất cả khách hàng diễn ra từ 01/01/2024 đến 01/04/2025 đã chính thức kết thúc. Vui lòng không áp dụng ưu đãi này khi thanh toán.",
+    "to": [2, 3, 4, 5, 6]
+  },
+  {
+    "type": "NewProduct",
+    "title": "Cây Monstera Variegata vừa về hàng",
+    "content": "Sản phẩm Monstera Variegata với giá 750.000đ thuộc dòng Cây nội thất đã được thêm vào kho. Sản phẩm có số lượng giới hạn, vui lòng tư vấn cho khách hàng quan tâm.",
+    "to": [2, 3, 4, 5, 6]
+  },
+  {
+    "type": "PlantCareTip",
+    "title": "Nhắc nhở tưới nước định kỳ",
+    "content": "Đã đến giờ tưới nước định kỳ cho các cây cảnh trong cửa hàng. Vui lòng kiểm tra và tưới nước cho các khu vực trưng bày và kho.",
+    "to": [2, 3, 4, 5, 6]
   }
 ]

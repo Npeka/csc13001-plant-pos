@@ -34,6 +34,8 @@ public class NotificationService {
                         .notificationUserId(notificationUser.getNotificationUserId())
                         .title(notificationUser.getNotification().getTitle())
                         .content(notificationUser.getNotification().getContent())
+                        .type(notificationUser.getNotification().getType())
+                        .typeName(notificationUser.getNotification().getType().getName())
                         .createdAt(notificationUser.getNotification().getCreatedAt())
                         .isRead(notificationUser.getIsRead())
                         .build())
@@ -49,6 +51,7 @@ public class NotificationService {
         Notification notification = Notification.builder()
                 .title(notificationDTO.getTitle())
                 .content(notificationDTO.getContent())
+                .type(notificationDTO.getType())
                 .build();
 
         notification = notificationRepository.save(notification);

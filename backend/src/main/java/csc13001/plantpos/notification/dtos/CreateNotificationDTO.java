@@ -2,6 +2,7 @@ package csc13001.plantpos.notification.dtos;
 
 import java.util.List;
 
+import csc13001.plantpos.notification.models.Notification.NotificationType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,4 +27,8 @@ public class CreateNotificationDTO {
     @NotNull(message = "Người nhận không được để trống")
     @Schema(example = "[1, 2, 3]")
     private List<Long> to;
+
+    @NotNull(message = "Loại thông báo không được để trống")
+    @Schema(example = "Summary")
+    private NotificationType type;
 }
