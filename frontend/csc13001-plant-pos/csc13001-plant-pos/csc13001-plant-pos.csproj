@@ -93,6 +93,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="View\ProductsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="View\AddStockReceiptPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

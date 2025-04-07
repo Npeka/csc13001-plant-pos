@@ -249,74 +249,76 @@
             </Grid>
 
             <!-- Danh sách sản phẩm -->
-            <ScrollViewer
-                Grid.Row="2"
-                VerticalScrollBarVisibility="Auto">
-                <GridView
+            <GridView
+                    Grid.Row="3"
                     x:Name="ProductGridView"
                     ItemsSource="{x:Bind ViewModel.FilteredProductList, Mode=OneWay}"
                     Padding="0"
-                    SelectionMode="Single">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid
+                    IsItemClickEnabled="True"
+    ItemClick="ProductGridView_ItemClick"
+    SelectionMode="Single"
+    VerticalAlignment="Stretch"
+    HorizontalAlignment="Stretch">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid
                                 MaximumRowsOrColumns="4"
                                 Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
 
-                    <GridView.ItemContainerStyle>
-                        <Style
+                <GridView.ItemContainerStyle>
+                    <Style
                             TargetType="GridViewItem">
-                            <Setter
+                        <Setter
                                 Property="Margin"
                                 Value="4" />
-                            <Setter
+                        <Setter
                                 Property="Padding"
                                 Value="0" />
-                            <Setter
+                        <Setter
                                 Property="HorizontalContentAlignment"
                                 Value="Stretch" />
-                            <Setter
+                        <Setter
                                 Property="VerticalContentAlignment"
                                 Value="Stretch" />
-                        </Style>
-                    </GridView.ItemContainerStyle>
+                    </Style>
+                </GridView.ItemContainerStyle>
 
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <Border
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
                                 CornerRadius="8"
                                 BorderThickness="1"
                                 BorderBrush="{ThemeResource CardBorderBrush}"
                                 Background="{ThemeResource CardBackground}"
                                 Margin="4"
                                 Width="240">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
                                             Height="Auto" />
-                                        <RowDefinition
+                                    <RowDefinition
                                             Height="*" />
-                                    </Grid.RowDefinitions>
+                                </Grid.RowDefinitions>
 
-                                    <!-- Ảnh sản phẩm -->
-                                    <Grid
+                                <!-- Ảnh sản phẩm -->
+                                <Grid
                                         Grid.Row="0"
                                         Background="{ThemeResource SubtleFillColorBrush}">
-                                        <Image
+                                    <Image
                                             Source="{Binding ImageUrl}"
                                             Height="180"
                                             Stretch="UniformToFill" />
 
-                                    </Grid>
+                                </Grid>
 
-                                    <!-- Thông tin sản phẩm -->
-                                    <StackPanel
+                                <!-- Thông tin sản phẩm -->
+                                <StackPanel
                                         Grid.Row="1"
                                         Padding="12"
                                         Spacing="6">
-                                        <TextBlock
+                                    <TextBlock
                                             Text="{Binding Name}"
                                             FontSize="16"
                                             FontWeight="SemiBold"
@@ -324,51 +326,50 @@
                                             TextWrapping="NoWrap"
                                             MaxLines="2" />
 
-                                        <StackPanel
+                                    <StackPanel
                                             Orientation="Horizontal"
                                             Margin="0,4">
-                                            <TextBlock
+                                        <TextBlock
                                                 Text="{Binding SalePrice, Converter={StaticResource CurrencyConverter}}"
                                                 Foreground="{ThemeResource SystemAccentColor}"
                                                 FontWeight="Bold"
                                                 FontSize="16" />
-                                        </StackPanel>
+                                    </StackPanel>
 
-                                        <!-- Đánh giá và số lượng -->
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition
+                                    <!-- Đánh giá và số lượng -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition
                                                     Width="*" />
-                                                <ColumnDefinition
+                                            <ColumnDefinition
                                                     Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                        </Grid.ColumnDefinitions>
 
-                                            <StackPanel
+                                        <StackPanel
                                                 Grid.Column="0"
                                                 Orientation="Horizontal">
-                                                <FontIcon
+                                            <FontIcon
                                                     Glyph="&#xE735;"
                                                     FontSize="12"
                                                     Foreground="{ThemeResource SystemAccentColorLight1}" />
-                                                <TextBlock
+                                            <TextBlock
                                                     Text="{Binding CareLevel}"
                                                     FontSize="12"
                                                     Margin="4,0,0,0" />
-                                            </StackPanel>
+                                        </StackPanel>
 
-                                            <TextBlock
+                                        <TextBlock
                                                 Grid.Column="1"
                                                 Text="{Binding Stock}"
                                                 FontSize="12"
                                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-            </ScrollViewer>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </Grid>
 
        

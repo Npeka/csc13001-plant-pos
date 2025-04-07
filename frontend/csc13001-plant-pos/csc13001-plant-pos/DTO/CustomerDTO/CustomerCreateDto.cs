@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace csc13001_plant_pos.DTO.CustomerDTO
 {
@@ -16,5 +17,7 @@ namespace csc13001_plant_pos.DTO.CustomerDTO
         public string Gender { get; set; }
         [JsonPropertyName("loyaltyCardType")]
         public string LoyaltyCardType { get; set; }
+        [JsonPropertyName("birthDate")]
+        public DateTime? BirthDate { get; set; }
     }
 }

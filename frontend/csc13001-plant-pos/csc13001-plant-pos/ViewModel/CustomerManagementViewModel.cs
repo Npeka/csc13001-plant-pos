@@ -128,9 +128,19 @@ namespace csc13001_plant_pos.ViewModel
             return false;
         }
 
-        public async Task<bool> AddCustomerAsync(CustomerDto data)
+        public async Task<string?> AddCustomerAsync(CustomerDto data)
         {
-            var response = await _customerService.AddCustomerAsync(data);
+            var CustomerCreateDto = new CustomerCreateDto
+            {
+                Name = data.Customer.Name,
+                Phone = data.Customer.Phone,
+                Email = data.Customer.Email,
+                Gender = data.Customer.Gender,
+                Address = data.Customer.Address,
+                BirthDate = data.Customer.BirthDate,
+                LoyaltyCardType = data.Customer.LoyaltyCardType,
+            };
+            var response = await _customerService.AddCustomerAsync(CustomerCreateDto);
             if (response != null)
             {
                 var customerId = response;
@@ -138,22 +148,23 @@ namespace csc13001_plant_pos.ViewModel
                 CustomerList.Add(data);
                 FilteredCustomerList.Add(data);
                 UpdateStatistics();
-                return true;
+                return "Tạo khách hàng mới thành công";
             }
-            return false;
+            return response;
         }
 
-        public async Task<bool> UpdateCustomerAsync(CustomerDto data)
+        public async Task<string?> UpdateCustomerAsync(CustomerDto data)
         {
             var response = await _customerService.UpdateCustomerAsync(data);
-            if (response)
+            var existingCustomer = CustomerList.FirstOrDefault(c => c.Customer.CustomerId == data.Customer.CustomerId);
+            if (existingCustomer != null)
             {
-                
-                
-                UpdateStatistics();
-                return true;
+                var index = CustomerList.IndexOf(existingCustomer);
+                CustomerList[index] = data;
             }
-            return false;
+
+            ResetFilter_Click();
+            return response;
         }
         partial void OnSearchQueryChanged(string value)
         {

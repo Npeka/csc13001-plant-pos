@@ -83,6 +83,8 @@ public partial class App : Application
                 services.AddSingleton<AddStockReceiptViewModel>();
                 services.AddSingleton<TopSellingProductViewModel>();
                 services.AddSingleton<ProductManagementViewModel>();
+                services.AddSingleton<ProductsViewModel>();
+                services.AddSingleton<DetailProductViewModel>();
             })
             .Build();
     }

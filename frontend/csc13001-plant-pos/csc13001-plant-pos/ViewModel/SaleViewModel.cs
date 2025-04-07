@@ -257,5 +257,22 @@ namespace csc13001_plant_pos.ViewModel
             var orderId = await _orderService.CreateOrderAsync(orderRequest);
             return orderId;
         }
+
+        [RelayCommand]
+        private void ResetOrder()
+        {
+            foreach (var orderItem in CurrentOrders)
+            {
+                var product = Products.FirstOrDefault(p => p.ProductId == orderItem.Id);
+                if (product != null)
+                {
+                    product.Stock += orderItem.Quantity;
+                }
+            }
+            CurrentOrders.Clear();
+            PhoneNumber = string.Empty;
+            SelectedDiscount = AvailableDiscounts.FirstOrDefault(d => d.DiscountId == -1);
+            CalculateOrderSummary();
+        }
     }
 }

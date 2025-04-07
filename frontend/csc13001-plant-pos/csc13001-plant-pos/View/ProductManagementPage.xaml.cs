@@ -26,6 +26,16 @@ namespace csc13001_plant_pos.View
             this.InitializeComponent();
         }
 
+        private void ProductGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Ép kiểu item được click về Product
+            var selectedProduct = e.ClickedItem as Product;
+            if (selectedProduct != null)
+            {
+                // Điều hướng đến trang DetailProductPage và truyền đối tượng Product
+                Frame.Navigate(typeof(DetailProductPage), selectedProduct);
+            }
+        }
 
 
         private async void AddProduct_Click(object sender, RoutedEventArgs e)
