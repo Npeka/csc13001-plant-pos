@@ -140,9 +140,9 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
-                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[0].Percentage)}">
+                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(ViewModel.StatisticDto.RevenueGrowthRate)}">
                         <Run
-                            Text="{x:Bind DashboardVM.Tiles[0].Percentage}" />
+                            Text="{x:Bind ViewModel.StatisticDto.RevenueGrowthRate}" />
                         <Run
                             Text="%" />
                     </TextBlock>
@@ -168,7 +168,7 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="$14,329" />
+                        Text="{x:Bind ViewModel.StatisticDto.Revenue}" />
                 </StackPanel>
             </Grid>
 
@@ -198,9 +198,9 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
-                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[1].Percentage)}">
+                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(ViewModel.StatisticDto.OrderCountGrowthRate)}">
                         <Run
-                            Text="{x:Bind DashboardVM.Tiles[1].Percentage}" />
+                            Text="{x:Bind ViewModel.StatisticDto.OrderCountGrowthRate}" />
                         <Run
                             Text="%" />
                     </TextBlock>
@@ -225,7 +225,7 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="2,506" />
+                        Text="{x:Bind ViewModel.StatisticDto.OrderCount}" />
                 </StackPanel>
             </Grid>
 
@@ -255,9 +255,9 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
-                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(DashboardVM.Tiles[2].Percentage)}">
+                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(ViewModel.StatisticDto.ProfitGrowthRate)}">
                         <Run
-                            Text="{x:Bind DashboardVM.Tiles[0].Percentage}" />
+                            Text="{x:Bind ViewModel.StatisticDto.ProfitGrowthRate}" />
                         <Run
                             Text="%" />
                     </TextBlock>
@@ -282,7 +282,7 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="$2,047" />
+                        Text="{x:Bind ViewModel.StatisticDto.Profit}" />
                 </StackPanel>
             </Grid>
         </Grid>
