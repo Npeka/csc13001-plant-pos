@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.DTO.StaffDTO;
-using csc13001_plant_pos.Utils;
 using csc13001_plant_pos.Model;
-using System;
+using csc13001_plant_pos.Utils;
 
 namespace csc13001_plant_pos.Service;
 

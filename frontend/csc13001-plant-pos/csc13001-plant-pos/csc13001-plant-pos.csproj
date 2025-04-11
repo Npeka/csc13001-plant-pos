@@ -25,12 +25,14 @@
     <None Remove="View\Authentication\FormResetPassword.xaml" />
     <None Remove="View\Authentication\FormTitle.xaml" />
     <None Remove="View\BillPage.xaml" />
+    <None Remove="View\ChatbotPage.xaml" />
     <None Remove="View\CustomerProfilePage.xaml" />
     <None Remove="View\DiscountManagementPage.xaml" />
     <None Remove="View\OrderPage.xaml" />
     <None Remove="View\RoleSelectionPage.xaml" />
     <None Remove="View\SaleDashBoard.xaml" />
     <None Remove="View\SalePage.xaml" />
+    <None Remove="View\StaffNotification.xaml" />
     <None Remove="View\StaffProfilePage.xaml" />
     <None Remove="View\StatisticPage.xaml" />
     <None Remove="View\UI\PageTitle.xaml" />
@@ -93,6 +95,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="View\ChatbotPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\StaffNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="View\ProductsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -45,6 +45,18 @@
                     Content="Thêm khách hàng"
                     Icon="People"
                     Tag="AddCustomerPage" />
+
+                <NavigationViewItem Content="Thông báo" Tag="StaffNotification">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEA8F;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Trợ lý AI" Tag="ChatbotPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE99A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>

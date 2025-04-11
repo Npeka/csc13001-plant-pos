@@ -12,7 +12,9 @@ public interface IStatisticService
 {
     Task<ApiResponse<List<ProductDto>>?> GetProductsAsync();
 
-    Task<ApiResponse<StatisticReviewDto?>> GetListReview();
+    Task<ApiResponse<StatisticReviewDto?>> GetListReviewAsync();
+
+    Task<ApiResponse<StatisticDto?>> GetStatisticAsync(StatisticQueryDto statisticQuery);
 }
 
 public class StatisticService : IStatisticService
@@ -31,10 +33,19 @@ public class StatisticService : IStatisticService
         return JsonUtils.Deserialize<ApiResponse<List<ProductDto>>>(json);
     }
 
-    public async Task<ApiResponse<StatisticReviewDto?>> GetListReview()
+    public async Task<ApiResponse<StatisticReviewDto?>> GetListReviewAsync()
     {
         var response = await _httpClient.GetAsync("statistics/products-review");
         var json = await response.Content.ReadAsStringAsync();
         return JsonUtils.Deserialize<ApiResponse<StatisticReviewDto>>(json);
     }
+
+    public async Task<ApiResponse<StatisticDto?>> GetStatisticAsync(StatisticQueryDto statisticQuery)
+    {
+        var queryString = $"?TimeType={statisticQuery.TimeType}&StartDate={statisticQuery.StartDate.ToString("s")}&EndDate={statisticQuery.EndDate.ToString("s")}";
+        var response = await _httpClient.GetAsync($"statistics/sales{queryString}");
+        var json = await response.Content.ReadAsStringAsync();
+        return JsonUtils.Deserialize<ApiResponse<StatisticDto>>(json);
+    }
+
 }

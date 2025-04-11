@@ -88,7 +88,7 @@ namespace csc13001_plant_pos.View
 
         public StatisticPage()
         {
-            ViewModel = App.GetService<StatisticViewModel>();
+            this.DataContext = ViewModel = App.GetService<StatisticViewModel>();
             this.InitializeComponent();
             DashboardVM = new DashboardViewModel();
             // Initialize chart data

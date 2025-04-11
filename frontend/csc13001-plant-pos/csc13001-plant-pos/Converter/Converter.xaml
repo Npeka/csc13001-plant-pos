@@ -29,4 +29,8 @@
     <local:WateringNeed x:Key="WateringNeed" />
     <local:LightRequirement x:Key="LightRequirement" />
     <local:SizeConverter x:Key="SizeConverter" />
+    <local:TypeNotiToColorConverter x:Key="TypeNotiToColorConverter" />
+    <local:TypeNotiToGlyphConverter x:Key="TypeNotiToGlyphConverter" />
+    <local:IsReadToBackgroundConverter x:Key="IsReadToBackgroundConverter" />
+    <local:DateTimeWithHourConverter x:Key="DateTimeWithHourConverter" />
 </ResourceDictionary>

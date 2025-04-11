@@ -3,13 +3,13 @@ using Microsoft.UI.Xaml.Data;
 
 namespace csc13001_plant_pos.Converter
 {
-    internal class DateToStringConverter : IValueConverter
+    public class DateTimeWithHourConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is DateTime date)
             {
-                return date.ToString("dd/MM/yyyy");
+                return date.ToString("dd/MM/yyyy HH:mm");
             }
             return string.Empty;
         }

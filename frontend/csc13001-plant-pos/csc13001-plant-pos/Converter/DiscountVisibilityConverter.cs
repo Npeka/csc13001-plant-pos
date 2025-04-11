@@ -1,7 +1,7 @@
-﻿using csc13001_plant_pos.Model;
+﻿using System;
+using csc13001_plant_pos.Model;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
-using System;
 
 namespace csc13001_plant_pos.Converter
 {
