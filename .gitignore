@@ -17,3 +17,4 @@
 /frontend/csc13001-plant-pos/.vs
 /frontend/csc13001-plant-pos/csc13001-plant-pos/obj
 /frontend/csc13001-plant-pos/csc13001-plant-pos/bin
+backend/src/main/resources/application.properties
