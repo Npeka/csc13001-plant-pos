@@ -26,6 +26,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class NotificationController {
     private final NotificationService notificationService;
 
+    @GetMapping
+    public ResponseEntity<?> getAllNotification() {
+        return HttpResponse.ok(
+                "Lấy tất cả thông báo thành công",
+                notificationService.getAllNotification());
+    }
+
     @GetMapping("{staffId}")
     public ResponseEntity<?> getNotificationByStaffId(@Parameter(example = "2") @PathVariable Long staffId) {
         List<NotificationDTO> notificationUsers = notificationService.getNotificationByStaffId(staffId);
@@ -37,7 +44,7 @@ public class NotificationController {
             @RequestBody @Validated CreateNotificationDTO notificationDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+            return HttpResponse.badRequest(bindingResult);
         }
 
         notificationService.createNotification(notificationDTO);

@@ -27,7 +27,7 @@ public class StaffService {
     private final MinIOService minIOService;
 
     public List<User> getAllStaff() {
-        return userRepository.findByIsAdmin(false).get();
+        return userRepository.findAllByIsAdmin(false);
     }
 
     public StaffDTO getStaffById(Long staffId) {

@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import csc13001.plantpos.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,7 +45,6 @@ public class Notification {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private NotificationType type;
 

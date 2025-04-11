@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,8 +35,13 @@ public class Message {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @NotBlank(message = "Tin nhắn không được để trống")
     @Column(name = "message", columnDefinition = "TEXT")
     private String message;
+
+    @Builder.Default
+    @Column(name = "from_bot", nullable = false)
+    private boolean fromBot = false;
 
     @Builder.Default
     @Column(name = "sent_at", nullable = false, updatable = false)

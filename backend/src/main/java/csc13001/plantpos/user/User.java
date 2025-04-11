@@ -59,7 +59,6 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
 
@@ -67,7 +66,6 @@ public class User {
     @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private WorkingStatus status;
 
