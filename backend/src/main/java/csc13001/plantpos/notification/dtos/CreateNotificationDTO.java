@@ -28,7 +28,7 @@ public class CreateNotificationDTO {
     @Schema(example = "[1, 2, 3]")
     private List<Long> to;
 
-    @NotNull(message = "Loại thông báo không được để trống")
+    @Builder.Default
     @Schema(example = "Summary")
-    private NotificationType type;
+    private NotificationType type = NotificationType.OwnerAnnouncement;
 }

@@ -59,7 +59,6 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
 
@@ -67,7 +66,6 @@ public class User {
     @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private WorkingStatus status;
 
@@ -75,6 +73,14 @@ public class User {
     @NotNull(message = "isAdmin là bắt buộc")
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin;
+
+    @Builder.Default
+    @Column(name = "can_manage_discounts")
+    private boolean canManageDiscounts = false;
+
+    @Builder.Default
+    @Column(name = "can_manage_inventory")
+    private boolean canManageInventory = false;
 
     @OneToMany
     private List<WorkLog> workLogs;
@@ -105,6 +111,10 @@ public class User {
         this.startDate = other.startDate;
         this.status = other.status;
         this.gender = other.gender;
+        this.imageUrl = other.imageUrl;
+        this.workLogs = other.workLogs;
+        this.canManageDiscounts = other.canManageDiscounts;
+        this.canManageInventory = other.canManageInventory;
     }
 
     @JsonIgnore

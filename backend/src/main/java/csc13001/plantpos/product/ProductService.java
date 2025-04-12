@@ -6,6 +6,8 @@ import csc13001.plantpos.global.MinIOService;
 import csc13001.plantpos.global.enums.MinioBucket;
 import csc13001.plantpos.product.exception.ProductException;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
+    private final ApplicationEventPublisher eventPublisher;
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final MinIOService minIOService;
@@ -39,7 +42,9 @@ public class ProductService {
             product.setImageUrl(imageurl);
         }
 
-        return productRepository.save(product);
+        Product savedProduct = productRepository.save(product);
+        eventPublisher.publishEvent(savedProduct);
+        return savedProduct;
     }
 
     @Transactional

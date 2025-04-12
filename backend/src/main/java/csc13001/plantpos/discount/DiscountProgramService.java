@@ -5,6 +5,9 @@ import csc13001.plantpos.customer.CustomerRepository;
 import csc13001.plantpos.customer.exception.CustomerException;
 import csc13001.plantpos.discount.exception.DiscountException;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,6 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DiscountProgramService {
+    private final ApplicationEventPublisher eventPublisher;
     private final DiscountProgramRepository discountProgramRepository;
     private final DiscountUsageRepository discountUsageRepository;
     private final CustomerRepository customerRepository;
@@ -44,7 +48,10 @@ public class DiscountProgramService {
         if (startDate.compareTo(endDate) > 0) {
             throw new DiscountException.DiscountInvalidDateException();
         }
-        return discountProgramRepository.save(discountProgram);
+
+        DiscountProgram savedDiscountProgram = discountProgramRepository.save(discountProgram);
+        eventPublisher.publishEvent(savedDiscountProgram);
+        return savedDiscountProgram;
     }
 
     public DiscountProgram getDiscountProgramById(Long id) {
@@ -73,4 +80,17 @@ public class DiscountProgramService {
         discountProgramRepository.deleteById(id);
     }
 
+    // @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
+    public void checkExpiredDiscounts() {
+        LocalDate today = LocalDate.now().minusDays(1);
+        List<DiscountProgram> expired = discountProgramRepository.findByEndDate(today);
+        List<DiscountProgram> allDiscounts = discountProgramRepository.findAll();
+        for (DiscountProgram discount : allDiscounts) {
+            System.err.println(discount.getName() + " - " + discount.getEndDate());
+        }
+        for (DiscountProgram discount : expired) {
+            eventPublisher.publishEvent(discount);
+        }
+    }
 }
