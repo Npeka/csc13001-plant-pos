@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.ProductDTO;
 using csc13001_plant_pos.DTO.StatisticDTO;
 using csc13001_plant_pos.Utils;
-
+using System.Diagnostics;
 namespace csc13001_plant_pos.Service;
 
 public interface IStatisticService
@@ -42,7 +43,8 @@ public class StatisticService : IStatisticService
 
     public async Task<ApiResponse<StatisticDto?>> GetStatisticAsync(StatisticQueryDto statisticQuery)
     {
-        var queryString = $"?TimeType={statisticQuery.TimeType}&StartDate={statisticQuery.StartDate.ToString("s")}&EndDate={statisticQuery.EndDate.ToString("s")}";
+        var queryString = $"?timeType={statisticQuery.TimeType}&startDate={statisticQuery.StartDate}&endDate={statisticQuery.EndDate}";
+        Debug.WriteLine($"statistics/sales{queryString}");
         var response = await _httpClient.GetAsync($"statistics/sales{queryString}");
         var json = await response.Content.ReadAsStringAsync();
         return JsonUtils.Deserialize<ApiResponse<StatisticDto>>(json);
