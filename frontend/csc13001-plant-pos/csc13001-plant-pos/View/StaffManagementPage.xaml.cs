@@ -60,13 +60,18 @@ namespace csc13001_plant_pos.View
             var stream = await file.OpenReadAsync();
             var bytes = new byte[stream.Size];
             await stream.ReadAsync(bytes.AsBuffer(), (uint)stream.Size, InputStreamOptions.None);
-            return Convert.ToBase64String(bytes);
-        }
 
+            string base64 = Convert.ToBase64String(bytes);
+
+            var contentType = file.ContentType;
+
+            return $"data:{contentType};base64,{base64}";
+        }
 
         private async Task ShowStaffDialogAsync(csc13001_plant_pos.Model.User user, bool isEdit)
         {
            string image64 = null;
+            StorageFile selectedFile = null;
             TextBox fullNameTextBox = new TextBox
             {
                 Header = "Họ Tên",
@@ -95,7 +100,7 @@ namespace csc13001_plant_pos.View
             ComboBox genderComboBox = new ComboBox
             {
                 Header = "Giới tính",
-                ItemsSource = new List<string> { "Male", "Female", "Unknown" },
+                ItemsSource = new List<string> { "Male", "Female"},
                 SelectedItem = user.Gender,
                 Width = 300
             };
@@ -103,7 +108,8 @@ namespace csc13001_plant_pos.View
             {
                 Header = "Quyền quản trị",
                 IsOn = user.IsAdmin,
-                Width = 300
+                Width = 300,
+                IsEnabled = false
             };
 
             ToggleSwitch canManageDiscounts = new ToggleSwitch
@@ -130,7 +136,8 @@ namespace csc13001_plant_pos.View
                 Width = 100,
                 Height = 100,
                 Margin = new Thickness(0, 10, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Source = string.IsNullOrEmpty(user.ImageUrl) ? null : new BitmapImage(new Uri(user.ImageUrl))
             };
 
             selectImageButton.Click += async (sender, e) =>
@@ -146,6 +153,7 @@ namespace csc13001_plant_pos.View
                 var file = await picker.PickSingleFileAsync();
                 if (file != null)
                 {
+                    selectedFile = file;
                     image64 = await ConvertImageToBase64Async(file);
                     var stream = await file.OpenAsync(FileAccessMode.Read);
                     var bitmap = new BitmapImage();
@@ -199,8 +207,8 @@ namespace csc13001_plant_pos.View
                 user.CanManageDiscounts = canManageDiscounts.IsOn;
                 user.CanManageInventory = canManageInventory.IsOn;
                 bool success = isEdit
-                    ? await ViewModel.UpdateStaffAsync(user, image64)
-                    : await ViewModel.AddStaffAsync(user, image64);
+                    ? await ViewModel.UpdateStaffAsync(user, selectedFile)
+                    : await ViewModel.AddStaffAsync(user, selectedFile);
 
                 if (!success)
                 {
