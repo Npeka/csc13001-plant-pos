@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -55,7 +56,12 @@ public class CategoryService : ICategoryService
 
     public async Task<string?> CreateCategoryAsync(Category category)
     {
-        var content = JsonUtils.ToJsonContent(category);
+        var content = JsonUtils.ToJsonContent(new
+        {
+            category.CategoryId,
+            category.Name,
+            category.Description
+        });
         var response = await _httpClient.PostAsync("categories", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
@@ -70,7 +76,12 @@ public class CategoryService : ICategoryService
 
     public async Task<string?> UpdateCategoryAsync(string id, Category category)
     {
-        var content = JsonUtils.ToJsonContent(category);
+        var content = JsonUtils.ToJsonContent(new
+        {
+            category.CategoryId,
+            category.Name,
+            category.Description
+        });
         var response = await _httpClient.PutAsync($"categories/{id}", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);

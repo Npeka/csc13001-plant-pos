@@ -90,6 +90,7 @@ namespace csc13001_plant_pos.ViewModel
 
             // Xử lý response2
             StatisticReview = response2?.Data;
+            OnPropertyChanged(nameof(StatisticReview));
         }
 
 

@@ -82,7 +82,7 @@ x:Key="CurrencyConverter" />
                 <Button.ContentTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <FontIcon FontSize="12" Glyph="&#xE8DE;" />
+                            <FontIcon Glyph="&#xE8DE;" />
                             <TextBlock VerticalAlignment="Center" Text="Xuất báo cáo" />
                         </StackPanel>
                     </DataTemplate>
@@ -259,16 +259,16 @@ x:Key="CurrencyConverter" />
                         FontWeight="SemiBold"
                         Text="Doang thu" />
                     <TextBlock
-    Margin="10,0,0,0"
-    FontSize="12"
-    DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                        Margin="10,0,0,0"
+                        FontSize="12"
+                        DataContext="{x:Bind ViewModel, Mode=OneWay}">
                         <TextBlock.Foreground>
                             <Binding Path="StatisticDto.ProfitGrowthRate"
                  Converter="{StaticResource PercentageToForegroundConverter}" />
                         </TextBlock.Foreground>
 
-    <Run Text="{x:Bind ViewModel.StatisticDto.ProfitGrowthRate, Mode=OneWay}" />
-    <Run Text="%" />
+                        <Run Text="{x:Bind ViewModel.StatisticDto.ProfitGrowthRate, Mode=OneWay}" />
+                        <Run Text="%" />
                     </TextBlock>
 
 
@@ -290,10 +290,10 @@ x:Key="CurrencyConverter" />
                             Glyph="&#xE8D4;" />
                     </Border>
                     <TextBlock
-VerticalAlignment="Center"
-FontSize="20"
-FontWeight="Bold"
-DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        DataContext="{x:Bind ViewModel, Mode=OneWay}">
                         <TextBlock.Text>
                             <Binding Path="StatisticDto.Profit"
              Converter="{StaticResource CurrencyConverter}" />
@@ -387,7 +387,7 @@ DataContext="{x:Bind ViewModel, Mode=OneWay}">
                     </Grid>
 
                     <ItemsControl
-                        ItemsSource="{x:Bind ViewModel.StatisticReview.TopSellingProducts}">
+                        ItemsSource="{x:Bind ViewModel.StatisticReview.TopSellingProducts, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate
                                 x:DataType="model:Product">
@@ -439,7 +439,7 @@ DataContext="{x:Bind ViewModel, Mode=OneWay}">
                     </Grid>
 
                     <ItemsControl
-                        ItemsSource="{x:Bind ViewModel.StatisticReview.LowStockProducts}">
+                        ItemsSource="{x:Bind ViewModel.StatisticReview.LowStockProducts, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate
                                 x:DataType="model:Product">

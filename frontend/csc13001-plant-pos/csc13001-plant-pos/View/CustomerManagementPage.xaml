@@ -143,11 +143,19 @@
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Button
-                    x:Name="AddNew"
-                    Grid.Column="1"
-                    Margin="10,0,10,0"
-                    Click="AddNewCustomer"
-                    Content="+ Thêm khách hàng" />
+    x:Name="AddNew"
+    Grid.Column="1"
+    Margin="10,0,10,0"
+    Click="AddNewCustomer">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+            Glyph="&#xE8FA;"
+            FontFamily="Segoe MDL2 Assets"
+            Margin="0,0,8,0" />
+                        <TextBlock Text="Thêm khách hàng" />
+                    </StackPanel>
+                </Button>
+
                 <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" >
                     <Button.ContentTemplate>
                         <DataTemplate>

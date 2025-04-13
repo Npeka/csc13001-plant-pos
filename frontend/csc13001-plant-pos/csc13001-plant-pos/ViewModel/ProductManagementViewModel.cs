@@ -9,6 +9,8 @@ using csc13001_plant_pos.Service;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using csc13001_plant_pos.DTO.CustomerDTO;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -18,36 +20,58 @@ namespace csc13001_plant_pos.ViewModel
         private ObservableCollection<Product> productList;
 
         [ObservableProperty]
-        public ObservableCollection<Product> filteredProductList;
+        private ObservableCollection<Product> filteredProductList;
+
+        [ObservableProperty]
+        private ObservableCollection<string> categoryList;
+
+        [ObservableProperty]
+        private ObservableCollection<Category> categories;
 
         [ObservableProperty]
         private string searchQuery;
 
         [ObservableProperty]
-        private string statusQuery;
+        private string? statusQuery;
 
         [ObservableProperty]
-        private int isAscending = 0;
+        private string? selectedCategory;
+
+        [ObservableProperty]
+        private int isAscendingPrice = 0;
+
+        [ObservableProperty]
+        private int isAscendingLevel = 0;
 
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public ProductManagementViewModel(IProductService productService)
+        public ProductManagementViewModel(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
             LoadProductsDataAsync();
+            _categoryService = categoryService;
         }
 
         public async void LoadProductsDataAsync()
         {
             var response = await _productService.GetProductsAsync();
-            System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
                 ProductList = new ObservableCollection<Product>(response.Data);
                 FilteredProductList = new ObservableCollection<Product>(response.Data);
             }
+            var response2 = await _categoryService.GetCategoriesAsync();
+            if (response2?.Status == "success" && response2.Data != null)
+            {
+                var Categories = new ObservableCollection<Category>(response2.Data);
+                CategoryList = new ObservableCollection<string>();
+                foreach (var category in Categories)
+                {
+                    CategoryList.Add(category.Name);
+                }
+            }
         }
-
 
         public void StockFilter_SelectionChanged(string value)
         {
@@ -67,22 +91,39 @@ namespace csc13001_plant_pos.ViewModel
             if (ProductList == null || ProductList.Count == 0) return;
 
             ObservableCollection<Product> sortedList;
-            if (IsAscending == 0)
+            if (IsAscendingPrice == 0)
             {
                 sortedList = new ObservableCollection<Product>(FilteredProductList.OrderByDescending(p => p.SalePrice));
-                IsAscending++;
-            }
-            else if (IsAscending == 1)
-            {
-                sortedList = new ObservableCollection<Product>(FilteredProductList.OrderBy(p => p.SalePrice));
-                IsAscending++;
+                IsAscendingPrice++;
             }
             else
             {
-                sortedList = ProductList;
-                IsAscending = 0;
+                sortedList = new ObservableCollection<Product>(FilteredProductList.OrderBy(p => p.SalePrice));
+                IsAscendingPrice++;
             }
                 FilteredProductList.Clear();
+            foreach (var product in sortedList)
+            {
+                FilteredProductList.Add(product);
+            }
+        }
+
+        public void SortByLevel_Click()
+        {
+            if (ProductList == null || ProductList.Count == 0) return;
+
+            ObservableCollection<Product> sortedList;
+            if (IsAscendingLevel == 0)
+            {
+                sortedList = new ObservableCollection<Product>(FilteredProductList.OrderByDescending(p => p.CareLevel));
+                IsAscendingLevel++;
+            }
+            else
+            {
+                sortedList = new ObservableCollection<Product>(FilteredProductList.OrderBy(p => p.CareLevel));
+                IsAscendingLevel++;
+            }
+            FilteredProductList.Clear();
             foreach (var product in sortedList)
             {
                 FilteredProductList.Add(product);
@@ -97,6 +138,10 @@ namespace csc13001_plant_pos.ViewModel
             {
                 filtered = filtered.Where(emp =>
                 emp.Name.ToLower().Contains(SearchQuery));
+            }
+            if (!string.IsNullOrEmpty(SelectedCategory))
+            {
+                filtered = filtered.Where(emp => emp.Category.Name.Equals(SelectedCategory));
             }
             if (!string.IsNullOrEmpty(StatusQuery) && StatusQuery != "All")
             {
@@ -115,7 +160,7 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
-        public void resetFilter()
+        public void ResetFilter()
         {
             FilteredProductList.Clear();
             foreach (var product in ProductList)
@@ -123,8 +168,46 @@ namespace csc13001_plant_pos.ViewModel
                 FilteredProductList.Add(product);
             }
             SearchQuery = "";
-            IsAscending = 0;
-            StatusQuery = "All";
+            SelectedCategory = null;
+            IsAscendingLevel = 0;
+            IsAscendingPrice = 0;
+            StatusQuery = null;
+        }
+
+        public async Task<string?> AddCategoryAsync(Category data)
+        {
+            var response = await _categoryService.CreateCategoryAsync(data);
+            if (response != null && int.TryParse(response, out int categoryId))
+            {
+                data.CategoryId = categoryId;
+                Categories.Add(data);
+                CategoryList.Add(data.Name);
+                return "Tạo danh mục mới thành công";
+            }
+            return response;
+        }
+
+
+        public async Task<string?> UpdateCategoryAsync(Category data)
+        {
+
+            var response = await _categoryService.UpdateCategoryAsync(data.CategoryId.ToString(), data);
+            if (response != null)
+            {
+                LoadProductsDataAsync();
+                var index = Categories.IndexOf(Categories.FirstOrDefault(c => c.CategoryId == data.CategoryId));
+                if (index != -1)
+                {
+                    Categories[index] = data;
+                }
+                var index2 = CategoryList.IndexOf(CategoryList.FirstOrDefault(c => c == data.Name));
+                if (index2 != -1)
+                {
+                    CategoryList[index2] = data.Name;
+                }
+                return "Sửa danh mục thành công";
+            }
+            return response;
         }
 
         partial void OnSearchQueryChanged(string value)
@@ -137,5 +220,9 @@ namespace csc13001_plant_pos.ViewModel
             ApplyFilter();
         }
 
+        partial void OnSelectedCategoryChanged(string value)
+        {
+            ApplyFilter();
+        }
     }
 }
