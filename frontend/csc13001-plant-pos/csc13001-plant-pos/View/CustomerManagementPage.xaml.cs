@@ -181,5 +181,13 @@ namespace csc13001_plant_pos.View
 
             await errorDialog.ShowAsync();
         }
+
+        private async void ExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentWindow = ((App)Application.Current).GetMainWindow();
+            await ViewModel.ExportToExcelAsync(currentWindow);
+        }
+
+
     }
 }

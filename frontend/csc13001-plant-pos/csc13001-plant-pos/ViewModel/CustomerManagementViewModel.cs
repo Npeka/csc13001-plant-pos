@@ -5,6 +5,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using csc13001_plant_pos.DTO.CustomerDTO;
 using System.Threading.Tasks;
+using OfficeOpenXml;
+using Microsoft.UI.Xaml;
+using System.IO;
+using WinRT.Interop;
+using System.Collections.Generic;
+using Windows.Storage.Pickers;
+using System.ComponentModel;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -166,6 +173,66 @@ namespace csc13001_plant_pos.ViewModel
             ResetFilter_Click();
             return response;
         }
+
+        public async Task ExportToExcelAsync(Window window)
+        {
+            ExcelPackage.License.SetNonCommercialOrganization("My Noncommercial organization");
+
+            using var package = new ExcelPackage();
+            var worksheet = package.Workbook.Worksheets.Add("Customers");
+
+            // Header
+            worksheet.Cells[1, 1].Value = "Customer ID";
+            worksheet.Cells[1, 2].Value = "Name";
+            worksheet.Cells[1, 3].Value = "Phone";
+            worksheet.Cells[1, 4].Value = "Email";
+            worksheet.Cells[1, 5].Value = "Gender";
+            worksheet.Cells[1, 6].Value = "Address";
+            worksheet.Cells[1, 7].Value = "Birth Date";
+            worksheet.Cells[1, 8].Value = "Loyalty Points";
+            worksheet.Cells[1, 9].Value = "Loyalty Card Type";
+            worksheet.Cells[1, 10].Value = "Created At";
+            worksheet.Cells[1, 11].Value = "Total Orders";
+            worksheet.Cells[1, 12].Value = "Total Spent";
+
+            // Data
+            int row = 2;
+            foreach (var item in CustomerList)
+            {
+                var c = item.Customer;
+                worksheet.Cells[row, 1].Value = c.CustomerId;
+                worksheet.Cells[row, 2].Value = c.Name;
+                worksheet.Cells[row, 3].Value = c.Phone;
+                worksheet.Cells[row, 4].Value = c.Email;
+                worksheet.Cells[row, 5].Value = c.Gender;
+                worksheet.Cells[row, 6].Value = c.Address;
+                worksheet.Cells[row, 7].Value = c.BirthDate?.ToString("yyyy-MM-dd");
+                worksheet.Cells[row, 8].Value = c.LoyaltyPoints;
+                worksheet.Cells[row, 9].Value = c.LoyaltyCardType;
+                worksheet.Cells[row, 10].Value = c.CreateAt?.ToString("yyyy-MM-dd HH:mm");
+                worksheet.Cells[row, 11].Value = item.TotalOrders;
+                worksheet.Cells[row, 12].Value = item.TotalSpent;
+                row++;
+            }
+
+            // Format auto width
+            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+            // Mở file save picker
+            var picker = new FileSavePicker();
+            InitializeWithWindow.Initialize(picker, WindowNative.GetWindowHandle(window));
+            picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+            picker.SuggestedFileName = "exportCustomer";
+            picker.FileTypeChoices.Add("Excel File", new List<string> { ".xlsx" });
+
+            var file = await picker.PickSaveFileAsync();
+            if (file != null)
+            {
+                using var stream = await file.OpenStreamForWriteAsync();
+                await package.SaveAsAsync(stream);
+            }
+        }
+
         partial void OnSearchQueryChanged(string value)
         {
             ApplyFilters();

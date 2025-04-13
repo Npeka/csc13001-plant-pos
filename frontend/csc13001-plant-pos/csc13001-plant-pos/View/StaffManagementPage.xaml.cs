@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using System;
 using static SkiaSharp.HarfBuzz.SKShaper;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Windows.Storage.Pickers;
+using Windows.Storage;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Storage.Streams;
+using Windows.ApplicationModel.Contacts;
 
 namespace csc13001_plant_pos.View
 {
@@ -49,8 +55,18 @@ namespace csc13001_plant_pos.View
             await ShowStaffDialogAsync(user, true);
         }
 
+        private async Task<string> ConvertImageToBase64Async(StorageFile file)
+        {
+            var stream = await file.OpenReadAsync();
+            var bytes = new byte[stream.Size];
+            await stream.ReadAsync(bytes.AsBuffer(), (uint)stream.Size, InputStreamOptions.None);
+            return Convert.ToBase64String(bytes);
+        }
+
+
         private async Task ShowStaffDialogAsync(csc13001_plant_pos.Model.User user, bool isEdit)
         {
+           string image64 = null;
             TextBox fullNameTextBox = new TextBox
             {
                 Header = "Họ Tên",
@@ -90,16 +106,70 @@ namespace csc13001_plant_pos.View
                 Width = 300
             };
 
+            ToggleSwitch canManageDiscounts = new ToggleSwitch
+            {
+                Header = "Quyền quản lý giảm giá",
+                IsOn = user.CanManageDiscounts,
+                Width = 300
+            };
+
+            ToggleSwitch canManageInventory = new ToggleSwitch
+            {
+                Header = "Quyền quản lý kho",
+                IsOn = user.CanManageInventory,
+                Width = 300
+            };
+
+            Button selectImageButton = new Button
+            {
+                Content = "Chọn ảnh",
+                Width = 100
+            };
+            Image selectedImagePreview = new Image
+            {
+                Width = 100,
+                Height = 100,
+                Margin = new Thickness(0, 10, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+
+            selectImageButton.Click += async (sender, e) =>
+            {
+
+                var picker = new FileOpenPicker();
+                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                picker.FileTypeFilter.Add(".jpg");
+                picker.FileTypeFilter.Add(".png");
+                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(((App)Application.Current).GetMainWindow());
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+                var file = await picker.PickSingleFileAsync();
+                if (file != null)
+                {
+                    image64 = await ConvertImageToBase64Async(file);
+                    var stream = await file.OpenAsync(FileAccessMode.Read);
+                    var bitmap = new BitmapImage();
+                    bitmap.SetSource(stream);
+                    selectedImagePreview.Source = bitmap;
+
+                }
+            };
+
             StackPanel dialogContent = new StackPanel
             {
                 Spacing = 10,
-                Children = { fullNameTextBox, emailTextBox, phoneTextBox, statusComboBox, genderComboBox, isAdminToggleSwitch }
+                Children = { fullNameTextBox, emailTextBox, phoneTextBox, statusComboBox, genderComboBox, isAdminToggleSwitch, canManageDiscounts, canManageInventory, selectImageButton, selectedImagePreview }
             };
-
+            var scrollViewer = new ScrollViewer
+            {
+                Content = dialogContent,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                MaxHeight = 700
+            };
             ContentDialog dialog = new ContentDialog
             {
                 Title = isEdit ? "Chỉnh sửa nhân viên" : "Thêm nhân viên",
-                Content = dialogContent,
+                Content = scrollViewer,
                 PrimaryButtonText = isEdit ? "Lưu" : "Thêm",
                 CloseButtonText = "Hủy",
                 DefaultButton = ContentDialogButton.Primary,
@@ -126,10 +196,11 @@ namespace csc13001_plant_pos.View
                 user.Status = (string)statusComboBox.SelectedItem;
                 user.Gender = (string)genderComboBox.SelectedItem;
                 user.IsAdmin = isAdminToggleSwitch.IsOn;
-
+                user.CanManageDiscounts = canManageDiscounts.IsOn;
+                user.CanManageInventory = canManageInventory.IsOn;
                 bool success = isEdit
-                    ? await ViewModel.UpdateStaffAsync(user) // Assume UpdateStaffAsync is implemented in ViewModel
-                    : await ViewModel.AddStaffAsync(user);   // Assume AddStaffAsync is implemented in ViewModel
+                    ? await ViewModel.UpdateStaffAsync(user, image64)
+                    : await ViewModel.AddStaffAsync(user, image64);
 
                 if (!success)
                 {
@@ -149,6 +220,12 @@ namespace csc13001_plant_pos.View
             };
 
             await errorDialog.ShowAsync();
+        }
+
+        private async void ExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentWindow = ((App)Application.Current).GetMainWindow();
+            await ViewModel.ExportToExcelAsync(currentWindow);
         }
     }
 

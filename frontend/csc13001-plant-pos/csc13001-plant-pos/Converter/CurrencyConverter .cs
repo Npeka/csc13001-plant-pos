@@ -16,6 +16,15 @@ namespace csc13001_plant_pos.Converter
                 };
                 return decimalValue.ToString("N0", culture) + " ₫";
             }
+            if (value is double longValue)
+            {
+                var culture = new CultureInfo("vi-VN")
+                {
+                    NumberFormat = { NumberGroupSeparator = "." }
+                };
+                return longValue.ToString("N0", culture) + " ₫";
+            }
+
             return value;
         }
 

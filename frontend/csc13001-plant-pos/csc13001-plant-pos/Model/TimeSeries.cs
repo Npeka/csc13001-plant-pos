@@ -6,7 +6,7 @@ namespace csc13001_plant_pos.Model
     {
         [JsonPropertyName("time")]
         public string Time { get; set; }
-        [JsonPropertyName("value")]
-        public int revenue { get; set; }
+        [JsonPropertyName("revenue")]
+        public double Revenue { get; set; }
     }
 }

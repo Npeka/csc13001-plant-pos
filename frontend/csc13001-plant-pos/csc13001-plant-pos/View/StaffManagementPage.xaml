@@ -52,6 +52,8 @@
                         Width="*" />
                     <ColumnDefinition
                         Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBox
@@ -76,7 +78,7 @@
 
                 <Button
                     Grid.Column="1"
-                    Margin="8,0,0,0"
+                    Margin="8,0,8,0"
                     CornerRadius="4"
                     Click="AddNewStaff">
                     <StackPanel
@@ -90,7 +92,16 @@
                             Text="Thêm nhân viên" />
                     </StackPanel>
                 </Button>
-
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" >
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon FontSize="12" Glyph="&#xE8DE;" />
+                                <TextBlock VerticalAlignment="Center" Text="Xuất báo cáo" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
             </Grid>
 
             <Grid
