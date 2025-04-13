@@ -62,6 +62,7 @@
                           Height="40"
                           CornerRadius="4"
                           BorderThickness="1"
+                              PlaceholderText="Sắp xếp theo"
                           BorderBrush="{ThemeResource TextControlBorderBrush}"
                           SelectedValue="{x:Bind ViewModel.SortType, Mode=TwoWay}" SelectedValuePath="Tag"
                           >
