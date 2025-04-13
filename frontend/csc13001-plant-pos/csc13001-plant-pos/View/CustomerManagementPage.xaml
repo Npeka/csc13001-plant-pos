@@ -145,10 +145,10 @@
                 <Button
                     x:Name="AddNew"
                     Grid.Column="1"
-                    Margin="10,0,0,0"
+                    Margin="10,0,10,0"
                     Click="AddNewCustomer"
                     Content="+ Thêm khách hàng" />
-                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="8,5" BorderBrush="#E0E0E0" Content="Export"  Click="ExportButton_Click" >
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" >
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="8">

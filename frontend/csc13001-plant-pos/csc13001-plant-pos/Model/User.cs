@@ -31,5 +31,9 @@ namespace csc13001_plant_pos.Model
 
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
+        [JsonPropertyName("canManageDiscounts")]
+        public bool CanManageDiscounts { get; set; }
+        [JsonPropertyName("canManageInventory")]
+        public bool CanManageInventory { get; set; }
     }
 }
