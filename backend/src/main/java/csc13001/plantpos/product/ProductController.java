@@ -3,6 +3,8 @@ package csc13001.plantpos.product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import csc13001.plantpos.utils.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -42,6 +44,7 @@ public class ProductController {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         Product product = objectMapper.readValue(productJson, Product.class);
 
         Product createdProduct = productService.createProduct(product, image);
@@ -59,6 +62,7 @@ public class ProductController {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         Product product = objectMapper.readValue(productJson, Product.class);
         product.setProductId(id);
 
