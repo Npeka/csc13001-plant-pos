@@ -64,7 +64,7 @@ namespace csc13001_plant_pos.ViewModel
             var response2 = await _categoryService.GetCategoriesAsync();
             if (response2?.Status == "success" && response2.Data != null)
             {
-                var Categories = new ObservableCollection<Category>(response2.Data);
+                Categories = new ObservableCollection<Category>(response2.Data);
                 CategoryList = new ObservableCollection<string>();
                 foreach (var category in Categories)
                 {
@@ -176,7 +176,13 @@ namespace csc13001_plant_pos.ViewModel
 
         public async Task<string?> AddCategoryAsync(Category data)
         {
-            var response = await _categoryService.CreateCategoryAsync(data);
+            var CategoryCreateDto = new CategoryCreateDto
+            {
+                CategoryId = data.CategoryId,
+                Name = data.Name,
+                Description = data.Description
+            };
+            var response = await _categoryService.CreateCategoryAsync(CategoryCreateDto);
             if (response != null && int.TryParse(response, out int categoryId))
             {
                 data.CategoryId = categoryId;
@@ -190,8 +196,13 @@ namespace csc13001_plant_pos.ViewModel
 
         public async Task<string?> UpdateCategoryAsync(Category data)
         {
-
-            var response = await _categoryService.UpdateCategoryAsync(data.CategoryId.ToString(), data);
+            var CategoryCreateDto = new CategoryCreateDto
+            {
+                CategoryId = data.CategoryId,
+                Name = data.Name,
+                Description = data.Description
+            };
+            var response = await _categoryService.UpdateCategoryAsync(CategoryCreateDto);
             if (response != null)
             {
                 LoadProductsDataAsync();

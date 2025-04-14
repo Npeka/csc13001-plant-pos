@@ -30,11 +30,9 @@ namespace csc13001_plant_pos.View
 
         private void ProductGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Ép kiểu item được click về Product
             var selectedProduct = e.ClickedItem as Product;
             if (selectedProduct != null)
             {
-                // Điều hướng đến trang DetailProductPage và truyền đối tượng Product
                 Frame.Navigate(typeof(DetailProductPage), selectedProduct);
             }
         }
@@ -50,32 +48,32 @@ namespace csc13001_plant_pos.View
 
             await errorDialog.ShowAsync();
         }
-        private async void  ShowCategoryListDialogAsync(object sender, RoutedEventArgs e)
+        private async void ShowCategoryListDialogAsync(object sender, RoutedEventArgs e)
         {
             if (ViewModel?.Categories == null || ViewModel.Categories.Count == 0)
             {
                 await ShowErrorDialogAsync("Không có danh mục nào để hiển thị.");
                 return;
             }
-            // Tạo danh sách nút từ danh sách danh mục hiện tại
+
             StackPanel dialogContent = new StackPanel { Spacing = 8 };
+            TaskCompletionSource<Category> categorySelectionSource = new();
 
             foreach (var category in ViewModel.Categories)
             {
                 var button = new Button
                 {
                     Content = category.Name,
-                    Tag = category, // Gán category để sau lấy lại
+                    Tag = category,
                     HorizontalAlignment = HorizontalAlignment.Stretch
                 };
-                button.Click += async (s, e) =>
+                button.Click += (s, e) =>
                 {
                     var selectedButton = s as Button;
                     var selectedCategory = selectedButton?.Tag as Category;
-
                     if (selectedCategory != null)
                     {
-                        await ShowCategoryDialogAsync(selectedCategory, true);
+                        categorySelectionSource.TrySetResult(selectedCategory);
                     }
                 };
 
@@ -95,7 +93,15 @@ namespace csc13001_plant_pos.View
                 XamlRoot = this.XamlRoot
             };
 
-            await dialog.ShowAsync();
+            var dialogTask = dialog.ShowAsync().AsTask();
+            var completedTask = await Task.WhenAny(dialogTask, categorySelectionSource.Task);
+
+            if (completedTask == categorySelectionSource.Task)
+            {
+                dialog.Hide();
+                var selectedCategory = categorySelectionSource.Task.Result;
+                await ShowCategoryDialogAsync(selectedCategory, true);
+            }
         }
 
         public async void AddNewCategory(object sender, RoutedEventArgs e)
@@ -176,11 +182,6 @@ namespace csc13001_plant_pos.View
             }
         }
 
-
-        private void UpdateCategories_Click(object sender, RoutedEventArgs e)
-        {
-            // Xử lý cập nhật danh mục
-        }
     }
 
 }
