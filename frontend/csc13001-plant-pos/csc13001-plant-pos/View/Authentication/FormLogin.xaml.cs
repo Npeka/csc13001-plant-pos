@@ -1,4 +1,6 @@
-using System;
+﻿using System;
+using System.Linq;
+using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 using csc13001_plant_pos.ViewModel.Authentication;
 using Microsoft.UI.Xaml;
@@ -8,10 +10,7 @@ namespace csc13001_plant_pos.View.Authentication;
 
 public sealed partial class FormLogin : UserControl
 {
-    public LoginViewModel ViewModel
-    {
-        get;
-    }
+    public LoginViewModel ViewModel { get; }
 
     private readonly UserSessionService _userSessionService;
 
@@ -45,8 +44,7 @@ public sealed partial class FormLogin : UserControl
         }
     }
 
-
-    private void OnNavigateToSaleDashboard(object sender, EventArgs e)
+    private void NavigateToForgotPassword_Click(object sender, RoutedEventArgs e)
     {
         var mainWindow = (App.Current as App)?.GetMainWindow();
         if (mainWindow?.Content is Frame frame && frame.Content is AuthenticationPage authenticationPage)
@@ -55,12 +53,47 @@ public sealed partial class FormLogin : UserControl
         }
     }
 
-    private void NavigateToForgotPassword_Click(object sender, RoutedEventArgs e)
+    private void UsernameBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
     {
-        var mainWindow = (App.Current as App)?.GetMainWindow();
-        if (mainWindow?.Content is Frame frame && frame.Content is AuthenticationPage authenticationPage)
+        if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
         {
-            authenticationPage.NavigateToForgotPassword();
+            var suggestions = ViewModel.SavedCredentials
+                .Where(c => c.Username.Contains(sender.Text, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            sender.ItemsSource = suggestions.Count > 0 ? suggestions : null;
+        }
+    }
+
+    private void UsernameBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+    {
+        if (args.SelectedItem is RememberedCredential credential)
+        {
+            sender.Text = credential.Username;
+            ViewModel.Username = credential.Username;
+            ViewModel.Password = credential.Password;
+            PasswordBox.Password = credential.Password;
+            sender.ItemsSource = null;
+        }
+    }
+
+    private void DeleteCredential_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.Tag is string username)
+        {
+            var credential = ViewModel.SavedCredentials.FirstOrDefault(c => c.Username == username);
+            if (credential != null)
+            {
+                ViewModel.DeleteSavedCredentialCommand.Execute(credential);
+
+                if (UsernameBox.Text.Length > 0)
+                {
+                    var suggestions = ViewModel.SavedCredentials
+                        .Where(c => c.Username.Contains(UsernameBox.Text, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                    UsernameBox.ItemsSource = suggestions;
+                }
+            }
         }
     }
 }

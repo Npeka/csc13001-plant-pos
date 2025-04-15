@@ -49,11 +49,15 @@ public partial class App : Application
                 var baseAddress = Configuration["ApiSettings:BaseAddress"] ?? "http://localhost:8080/api/";
                 var httpClient = new HttpClient { BaseAddress = new Uri(baseAddress) };
 
+                // Register IConfiguration
+                services.AddSingleton<IConfiguration>(Configuration);
+
                 // Services
                 services.AddSingleton(httpClient);
                 services.AddSingleton<UserSessionService>();
                 services.AddSingleton<IAuthenticationService, AuthenticationService>();
                 services.AddSingleton<ICategoryService, CategoryService>();
+                services.AddSingleton<ICredentialStorageService, CredentialStorageService>();
                 services.AddSingleton<ICustomerService, CustomerService>();
                 services.AddSingleton<IDiscountProgramService, DiscountProgramService>();
                 services.AddSingleton<IInventoryService, InventoryService>();
