@@ -9,8 +9,8 @@ namespace csc13001_plant_pos.DTO.StatisticDTO
         public string TimeType { get; set; }
 
         [JsonPropertyName("startDate")]
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
         [JsonPropertyName("endDate")]
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; }
     }
 }

@@ -44,13 +44,13 @@ public class CategoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCategory(
-            @PathVariable Long categoryId,
+            @PathVariable Long id,
             @RequestBody @Validated Category category,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
-        category.setCategoryId(categoryId);
+        category.setCategoryId(id);
         categoryService.updateCategory(category);
         return HttpResponse.ok("Cập nhật danh mục thành công");
     }

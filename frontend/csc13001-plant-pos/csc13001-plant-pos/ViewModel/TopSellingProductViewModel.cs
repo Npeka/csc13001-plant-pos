@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using csc13001_plant_pos.DTO.CustomerDTO;
 using csc13001_plant_pos.DTO.ProductDTO;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -25,16 +27,12 @@ namespace csc13001_plant_pos.ViewModel
         private string searchQuery = "";
 
         [ObservableProperty]
-        private bool isAscending = true;
+        private string sortType;
 
         [ObservableProperty]
-        private int itemsPerPage = 10;
+        private string productCount;
 
-        [ObservableProperty]
-        private int currentPage = 1;
 
-        [ObservableProperty]
-        private int totalPages = 10;
 
         private readonly IStatisticService _statisticService;
 
@@ -50,49 +48,61 @@ namespace csc13001_plant_pos.ViewModel
             System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
-                topSellingProducts = new ObservableCollection<ProductDto>(response.Data);
-                filteredSellingProducts = new ObservableCollection<ProductDto>(response.Data);
+                TopSellingProducts = new ObservableCollection<ProductDto>(response.Data);
+                FilteredSellingProducts = new ObservableCollection<ProductDto>(response.Data);
+                ProductCount = $"Total: {TopSellingProducts.Count} sản phẩm";
             }
         }
 
-        private void UpdatePagination()
+        partial void OnSearchQueryChanged(string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                OnSortTypeChanged(sortType);
+                return;
+            }
             filteredSellingProducts.Clear();
-            var items = topSellingProducts.Skip((CurrentPage - 1) * ItemsPerPage).Take(ItemsPerPage);
-            foreach (var item in items)
+            var lowerValue = value.Trim().ToLower();
+            var filtered = topSellingProducts
+                .Where(p => p.Product.Name.ToLower().Contains(lowerValue));
+
+            if (sortType == "TopSelling")
+                filtered = filtered.OrderByDescending(p => p.SalesQuantity);
+            else if (sortType == "Remain")
+                filtered = filtered.OrderByDescending(p => p.Product.Stock);
+            foreach (var item in filtered)
             {
                 filteredSellingProducts.Add(item);
             }
+            ProductCount = $"Total: {filteredSellingProducts.Count} sản phẩm";
+            OnPropertyChanged(nameof(ProductCount));
         }
-        private void PreviousPage_Click(object sender, RoutedEventArgs e)
+
+        partial void OnSortTypeChanged(string value)
         {
-            if (CurrentPage > 1)
+            sortType = value;
+
+            IEnumerable<ProductDto> sorted = topSellingProducts;
+            filteredSellingProducts.Clear();
+            if (value == "TopSelling")
             {
-                CurrentPage--;
+                sorted = sorted.OrderByDescending(p => p.SalesQuantity);
             }
-        }
-
-        private void NextPage_Click(object sender, RoutedEventArgs e)
-        {
-            if (CurrentPage < TotalPages)
+            else if (value == "Remain")
             {
-                CurrentPage++;
+                sorted = sorted.OrderByDescending(p => p.Product.Stock);
             }
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                var lowerQuery = searchQuery.Trim().ToLower();
+                sorted = sorted.Where(p => p.Product.Name.ToLower().Contains(lowerQuery));
+            }
+            foreach(var item in sorted)
+            {
+                filteredSellingProducts.Add(item);
+            }
+            ProductCount = $"Total: {filteredSellingProducts.Count} sản phẩm";
+            OnPropertyChanged(nameof(ProductCount));
         }
-
-        private void PositionFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // do nothing 
-        }
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // do nothing
-        }
-        partial void OnSearchQueryChanged(string value)
-        {
-            Debug.WriteLine($"SearchQuery to '{value}'");
-        }
-
-
     }
 }

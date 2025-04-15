@@ -1,12 +1,5 @@
 package csc13001.plantpos.staff;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
 import csc13001.plantpos.authentication.AuthService;
 import csc13001.plantpos.global.MinIOService;
 import csc13001.plantpos.global.enums.MinioBucket;
@@ -17,6 +10,12 @@ import csc13001.plantpos.staff.exception.StaffException;
 import csc13001.plantpos.user.User;
 import csc13001.plantpos.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -65,7 +64,9 @@ public class StaffService {
         user.setStartDate(staff.getStartDate());
         user.setStatus(staff.getStatus());
         user.setGender(staff.getGender());
-
+        user.setCanManageDiscounts(staff.isCanManageDiscounts());
+        user.setCanManageInventory(staff.isCanManageInventory());
+        System.out.println(image);
         if (image != null) {
             if (user.getImageUrl() != null) {
                 minIOService.deleteFile(user.getImageUrl());

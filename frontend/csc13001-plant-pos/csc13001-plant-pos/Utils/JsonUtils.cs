@@ -25,4 +25,8 @@ public static class JsonUtils
     {
         return new StringContent(Serialize(data), Encoding.UTF8, "application/json");
     }
+    public static string ToJson(object data)
+    {
+        return Serialize(data);
+    }
 }

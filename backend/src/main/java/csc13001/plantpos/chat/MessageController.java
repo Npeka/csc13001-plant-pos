@@ -23,12 +23,12 @@ public class MessageController {
 
     @PostMapping
     public ResponseEntity<?> createMessage(
-            @RequestBody @Validated Message message,
+            @RequestBody @Validated MessageDTO messageDTO,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
-        Message createdMessage = messageService.createMessage(message);
+        Message createdMessage = messageService.createMessage(messageDTO);
         return HttpResponse.ok("Tạo tin nhắn thành công", createdMessage);
     }
 

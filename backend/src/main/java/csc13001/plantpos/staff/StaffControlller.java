@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import csc13001.plantpos.staff.dtos.StaffDTO;
 import csc13001.plantpos.user.User;
@@ -48,6 +49,7 @@ public class StaffControlller {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         User staff = objectMapper.readValue(staffJson, User.class);
         staffService.createStaff(staff, image);
 
@@ -65,6 +67,7 @@ public class StaffControlller {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         User staff = objectMapper.readValue(staffJson, User.class);
 
         staff.setUserId(staffId);

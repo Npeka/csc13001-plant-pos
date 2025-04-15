@@ -104,16 +104,14 @@
         Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <ComboBox
-        x:Name="CategoryFilter"
-        Grid.Column="1"
-        PlaceholderText="Chọn danh mục"
-        Width="180"
-        Margin="8,0">
-                    <ComboBoxItem Content="Tất cả" />
-                    <ComboBoxItem Content="Cây" />
-                    <ComboBoxItem Content="Phụ kiện chăm sóc" />
-                    <ComboBoxItem Content="Chậu" />
-                </ComboBox>
+                    x:Name="CategoryFilter"
+                    Grid.Column="1"
+                    PlaceholderText="Chọn danh mục"
+                    Width="180"
+                    Margin="8,0"
+                    ItemsSource="{x:Bind ViewModel.CategoryList, Mode=OneWay}"
+                    SelectedItem="{x:Bind ViewModel.SelectedCategory, Mode=TwoWay}" />
+
 
                 <ComboBox
         x:Name="StockFilter"
@@ -123,7 +121,6 @@
         Margin="8,0,0,0"
         SelectedValue="{x:Bind ViewModel.StatusQuery, Mode=TwoWay}"
         SelectedValuePath="Tag">
-                    <ComboBoxItem Content="Tất cả" Tag="All" />
                     <ComboBoxItem Content="Còn hàng" Tag="1" />
                     <ComboBoxItem Content="Hết hàng" Tag="0" />
                 </ComboBox>
@@ -146,14 +143,14 @@
                     Grid.Column="0"
                     Style="{StaticResource ActionButtonStyle}"
                     Margin="0,0,8,0"
-                    Click="AddProduct_Click">
+                    Click="{x:Bind ViewModel.SortByLevel_Click}">
                     <StackPanel
                         Orientation="Horizontal">
                         <FontIcon
                             Glyph="&#xE8CB;"
                             Margin="0,0,8,0" />
                         <TextBlock
-                            Text="Sắp xếp theo thứ hạng" />
+                            Text="Sắp xếp theo độ khó" />
                     </StackPanel>
                 </Button>
 
@@ -177,14 +174,16 @@
                     Grid.Column="2"
                     Style="{StaticResource ActionButtonStyle}"
                     Margin="8,0,0,0"
-                    Click="UpdateCategories_Click">
+                    Click="{x:Bind ViewModel.ResetFilter}">
                     <StackPanel
                         Orientation="Horizontal">
                         <FontIcon
-                            Glyph="&#xE70F;"
-                            Margin="0,0,8,0" />
-                        <TextBlock
+                            Glyph="&#xE74D;"
+                            Margin="0,0,8,0"
+                            FontFamily="Segoe MDL2 Assets" />
+                                                <TextBlock
                             Text="Xóa bộ lọc" />
+
                     </StackPanel>
                 </Button>
             </Grid>
@@ -205,47 +204,35 @@
         Grid.Column="0"
         Style="{StaticResource ActionButtonStyle}"
         Margin="0,0,8,0"
-        Click="AddProduct_Click">
+        Click="AddNewCategory">
                     <StackPanel
             Orientation="Horizontal">
                         <FontIcon
-                Glyph="&#xE8CB;"
-                Margin="0,0,8,0" />
-                        <TextBlock
-                Text="Thêm sản phẩm" />
-                    </StackPanel>
-                </Button>
+                            Glyph="&#xE710;"
+                            FontFamily="Segoe MDL2 Assets"
+                            Margin="0,0,8,0" />
 
-                <Button
-        Grid.Column="1"
-        Style="{StaticResource ActionButtonStyle}"
-        Margin="4,0"
-        Click="{x:Bind ViewModel.SortByPrice_Click}"
-       >
-                    <StackPanel
-            Orientation="Horizontal">
-                        <FontIcon
-                Glyph="&#xE8CB;"
-                Margin="0,0,8,0" />
-                        <TextBlock
-                Text="Điều chỉnh thông tin sản phẩm" />
-                    </StackPanel>
-                </Button>
 
-                <Button
-        Grid.Column="2"
-        Style="{StaticResource ActionButtonStyle}"
-        Margin="8,0,0,0"
-        Click="UpdateCategories_Click">
-                    <StackPanel
-            Orientation="Horizontal">
-                        <FontIcon
-                Glyph="&#xE70F;"
-                Margin="0,0,8,0" />
                         <TextBlock
                 Text="Thêm danh mục sản phẩm" />
                     </StackPanel>
                 </Button>
+
+                <Button
+                    Grid.Column="1"
+                    Style="{StaticResource ActionButtonStyle}"
+                    Margin="4,0"
+                    Click="ShowCategoryListDialogAsync">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon
+                            Glyph="&#xE713;"
+                            Margin="0,0,8,0" />
+                                        <TextBlock
+                            Text="Điều chỉnh danh mục sản phẩm" />
+                                    </StackPanel>
+                </Button>
+
+
             </Grid>
 
             <!-- Danh sách sản phẩm -->
@@ -357,12 +344,19 @@
                                                     FontSize="12"
                                                     Margin="4,0,0,0" />
                                         </StackPanel>
-
-                                        <TextBlock
-                                                Grid.Column="1"
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            Orientation="Horizontal">
+                                            <TextBlock
+                                                Text="Số lượng"
+                                                FontSize="12"
+                                                Foreground="Black" />
+                                            <TextBlock
                                                 Text="{Binding Stock}"
                                                 FontSize="12"
+                                                Margin="4,0,0,0"
                                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                        </StackPanel>
                                     </Grid>
                                 </StackPanel>
                             </Grid>
@@ -374,4 +368,5 @@
 
        
     </Grid>
+    
 </Page>

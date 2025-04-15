@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -35,5 +36,11 @@ namespace csc13001_plant_pos.Model
 
         [ObservableProperty]
         private bool _isSelected;
+        [JsonPropertyName("canManageDiscounts")]
+        public bool CanManageDiscounts { get; set; }
+        [JsonPropertyName("canManageInventory")]
+        public bool CanManageInventory { get; set; }
+        [JsonPropertyName("workLogs")]
+        public List<WorkLog> WorkLogs { get; set; }
     }
 }

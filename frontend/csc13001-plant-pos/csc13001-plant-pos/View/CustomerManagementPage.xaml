@@ -132,6 +132,8 @@
                         Width="*" />
                     <ColumnDefinition
                         Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBox
@@ -141,11 +143,29 @@
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Button
-                    x:Name="AddNew"
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    Click="AddNewCustomer"
-                    Content="+ Thêm khách hàng" />
+    x:Name="AddNew"
+    Grid.Column="1"
+    Margin="10,0,10,0"
+    Click="AddNewCustomer">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+            Glyph="&#xE8FA;"
+            FontFamily="Segoe MDL2 Assets"
+            Margin="0,0,8,0" />
+                        <TextBlock Text="Thêm khách hàng" />
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" >
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon FontSize="12" Glyph="&#xE8DE;" />
+                                <TextBlock VerticalAlignment="Center" Text="Xuất báo cáo" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
             </Grid>
 
             <!--  Hàng 2: Các bộ lọc  -->

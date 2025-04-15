@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using System;
 using static SkiaSharp.HarfBuzz.SKShaper;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Windows.Storage.Pickers;
+using Windows.Storage;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Storage.Streams;
+using Windows.ApplicationModel.Contacts;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI;
 
 namespace csc13001_plant_pos.View
 {
@@ -18,6 +26,57 @@ namespace csc13001_plant_pos.View
         {
             this.DataContext = ViewModel = App.GetService<StaffManagementViewModel>();
             this.InitializeComponent();
+        }
+
+        private async void ShowWorkLogListDialogAsync(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var user = button?.Tag as csc13001_plant_pos.Model.User;
+            if (user?.WorkLogs == null || user.WorkLogs.Count == 0)
+            {
+                await ShowErrorDialogAsync("Không có thông tin để hiển thị.");
+                return;
+            }
+
+            StackPanel dialogContent = new StackPanel { Spacing = 8 };
+
+            foreach (var worklog in user.WorkLogs)
+            {
+                var border = new Border
+                {
+                    BorderThickness = new Thickness(1),
+                    BorderBrush = new SolidColorBrush(Colors.Gray),
+                    Padding = new Thickness(8),
+                    CornerRadius = new CornerRadius(4),
+                    Child = new StackPanel
+                    {
+                        Children =
+                {
+                    new TextBlock { Text = $"🕒 Đăng nhập: {worklog.LogInTime}" },
+                    new TextBlock { Text = $"🕘 Đăng xuất: {worklog.LogOutTime}" },
+                    new TextBlock { Text = $"⏱️ Thời gian làm việc: {worklog.WorkDuration}" }
+                }
+                    }
+                };
+
+                dialogContent.Children.Add(border);
+            }
+
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Lịch sử làm việc của nhân viên",
+                Content = new ScrollViewer
+                {
+                    Content = dialogContent,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    Height = 400,
+                    Width = 400
+                },
+                CloseButtonText = "Đóng",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
         }
 
         public async void AddNewStaff(object sender, RoutedEventArgs e)
@@ -49,8 +108,23 @@ namespace csc13001_plant_pos.View
             await ShowStaffDialogAsync(user, true);
         }
 
+        private async Task<string> ConvertImageToBase64Async(StorageFile file)
+        {
+            var stream = await file.OpenReadAsync();
+            var bytes = new byte[stream.Size];
+            await stream.ReadAsync(bytes.AsBuffer(), (uint)stream.Size, InputStreamOptions.None);
+
+            string base64 = Convert.ToBase64String(bytes);
+
+            var contentType = file.ContentType;
+
+            return $"data:{contentType};base64,{base64}";
+        }
+
         private async Task ShowStaffDialogAsync(csc13001_plant_pos.Model.User user, bool isEdit)
         {
+           string image64 = null;
+            StorageFile selectedFile = null;
             TextBox fullNameTextBox = new TextBox
             {
                 Header = "Họ Tên",
@@ -79,7 +153,7 @@ namespace csc13001_plant_pos.View
             ComboBox genderComboBox = new ComboBox
             {
                 Header = "Giới tính",
-                ItemsSource = new List<string> { "Male", "Female", "Unknown" },
+                ItemsSource = new List<string> { "Male", "Female"},
                 SelectedItem = user.Gender,
                 Width = 300
             };
@@ -87,19 +161,76 @@ namespace csc13001_plant_pos.View
             {
                 Header = "Quyền quản trị",
                 IsOn = user.IsAdmin,
+                Width = 300,
+                IsEnabled = false
+            };
+
+            ToggleSwitch canManageDiscounts = new ToggleSwitch
+            {
+                Header = "Quyền quản lý giảm giá",
+                IsOn = user.CanManageDiscounts,
                 Width = 300
+            };
+
+            ToggleSwitch canManageInventory = new ToggleSwitch
+            {
+                Header = "Quyền quản lý kho",
+                IsOn = user.CanManageInventory,
+                Width = 300
+            };
+
+            Button selectImageButton = new Button
+            {
+                Content = "Chọn ảnh",
+                Width = 100
+            };
+            Image selectedImagePreview = new Image
+            {
+                Width = 100,
+                Height = 100,
+                Margin = new Thickness(0, 10, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Source = string.IsNullOrEmpty(user.ImageUrl) ? null : new BitmapImage(new Uri(user.ImageUrl))
+            };
+
+            selectImageButton.Click += async (sender, e) =>
+            {
+
+                var picker = new FileOpenPicker();
+                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                picker.FileTypeFilter.Add(".jpg");
+                picker.FileTypeFilter.Add(".png");
+                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(((App)Application.Current).GetMainWindow());
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+                var file = await picker.PickSingleFileAsync();
+                if (file != null)
+                {
+                    selectedFile = file;
+                    image64 = await ConvertImageToBase64Async(file);
+                    var stream = await file.OpenAsync(FileAccessMode.Read);
+                    var bitmap = new BitmapImage();
+                    bitmap.SetSource(stream);
+                    selectedImagePreview.Source = bitmap;
+
+                }
             };
 
             StackPanel dialogContent = new StackPanel
             {
                 Spacing = 10,
-                Children = { fullNameTextBox, emailTextBox, phoneTextBox, statusComboBox, genderComboBox, isAdminToggleSwitch }
+                Children = { fullNameTextBox, emailTextBox, phoneTextBox, statusComboBox, genderComboBox, isAdminToggleSwitch, canManageDiscounts, canManageInventory, selectImageButton, selectedImagePreview }
             };
-
+            var scrollViewer = new ScrollViewer
+            {
+                Content = dialogContent,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                MaxHeight = 700
+            };
             ContentDialog dialog = new ContentDialog
             {
                 Title = isEdit ? "Chỉnh sửa nhân viên" : "Thêm nhân viên",
-                Content = dialogContent,
+                Content = scrollViewer,
                 PrimaryButtonText = isEdit ? "Lưu" : "Thêm",
                 CloseButtonText = "Hủy",
                 DefaultButton = ContentDialogButton.Primary,
@@ -126,10 +257,11 @@ namespace csc13001_plant_pos.View
                 user.Status = (string)statusComboBox.SelectedItem;
                 user.Gender = (string)genderComboBox.SelectedItem;
                 user.IsAdmin = isAdminToggleSwitch.IsOn;
-
+                user.CanManageDiscounts = canManageDiscounts.IsOn;
+                user.CanManageInventory = canManageInventory.IsOn;
                 bool success = isEdit
-                    ? await ViewModel.UpdateStaffAsync(user) // Assume UpdateStaffAsync is implemented in ViewModel
-                    : await ViewModel.AddStaffAsync(user);   // Assume AddStaffAsync is implemented in ViewModel
+                    ? await ViewModel.UpdateStaffAsync(user, selectedFile)
+                    : await ViewModel.AddStaffAsync(user, selectedFile);
 
                 if (!success)
                 {
@@ -142,13 +274,19 @@ namespace csc13001_plant_pos.View
         {
             ContentDialog errorDialog = new ContentDialog
             {
-                Title = "Lỗi",
+                Title = "Thông báo",
                 Content = message,
                 CloseButtonText = "Đóng",
                 XamlRoot = this.XamlRoot
             };
 
             await errorDialog.ShowAsync();
+        }
+
+        private async void ExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentWindow = ((App)Application.Current).GetMainWindow();
+            await ViewModel.ExportToExcelAsync(currentWindow);
         }
     }
 

@@ -9,11 +9,18 @@
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:csc13001_plant_pos.View.UI"
+    xmlns:model="using:csc13001_plant_pos.Model"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Resources>
-        <conv:PercentageToForegroundConverter
+        <ResourceDictionary>
+            <conv:DateToStringConverter
+            x:Key="DateToStringConverter" />
+            <conv:PercentageToForegroundConverter
             x:Key="PercentageToForegroundConverter" />
+            <conv:CurrencyConverter
+x:Key="CurrencyConverter" />
+        </ResourceDictionary>
     </Page.Resources>
     <Grid
         Padding="24"
@@ -35,72 +42,54 @@
             Title="Thống kê"
             Grid.Column="0" />
 
-        <!--  Header with date range and export button  -->
-        <Grid
-            Grid.Row="1">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="Auto" />
+                <ColumnDefinition Width="150" />
+                <!-- Fixed width for Type ComboBox -->
+                <ColumnDefinition Width="400" />
+                <!-- Flexible width for Start Date Picker -->
+                <ColumnDefinition Width="400" />
+                <!-- Flexible width for End Date Picker -->
+                <ColumnDefinition Width="Auto" />
+                <!-- Auto width for Export Button -->
             </Grid.ColumnDefinitions>
 
-            <Button
-                Grid.Column="0"
-                Padding="8,5"
-                BorderBrush="#E0E0E0"
-                BorderThickness="1">
-                <StackPanel
-                    Orientation="Horizontal"
-                    Spacing="8">
-                    <FontIcon
-                        FontSize="12"
-                        Glyph="&#xE787;" />
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        Text="{Binding SelectedDateRange, Mode=TwoWay}" />
+            <!-- Type ComboBox -->
+            <ComboBox Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0" SelectedValue="{x:Bind ViewModel.TimeType, Mode=TwoWay}" SelectedValuePath="Tag">
+                <ComboBoxItem Content="Theo ngày" Tag="DAILY" />
+                <ComboBoxItem Content="Theo tháng" Tag="MONTHLY" />
+                <ComboBoxItem Content="Theo năm" Tag="YEARLY" />
+            </ComboBox>
+
+            <!-- Start Date Picker -->
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0" Padding="8,5" BorderBrush="#E0E0E0" BorderThickness="1">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock VerticalAlignment="Center" Text="From Date:" Margin="0,0,5,0"/>
+                    <DatePicker SelectedDate="{x:Bind ViewModel.StartDate, Mode=TwoWay}" VerticalAlignment="Center" />
                 </StackPanel>
+            </StackPanel>
 
-                <Button.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem
-                            Click="OnDateRangeSelected"
-                            Text="Tuần trước" />
-                        <MenuFlyoutItem
-                            Click="OnDateRangeSelected"
-                            Text="Tháng trước" />
-                        <MenuFlyoutItem
-                            Click="OnCustomDatePicked"
-                            Text="Chọn ngày..." />
-                    </MenuFlyout>
-                </Button.Flyout>
-            </Button>
+            <!-- End Date Picker -->
+            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="8,5"  Margin="0,0,10,0" BorderBrush="#E0E0E0" BorderThickness="1">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock VerticalAlignment="Center" Text="To Date:" Margin="0,0,5,0"/>
+                    <DatePicker SelectedDate="{x:Bind ViewModel.EndDate, Mode=TwoWay}" VerticalAlignment="Center" IsEnabled="False" />
+                </StackPanel>
+            </StackPanel>
 
-
-
-
-            <Button
-                Grid.Column="1"
-                Padding="8,5"
-                BorderBrush="#E0E0E0"
-                BorderThickness="1"
-                Content="Export">
+            <!-- Export Button -->
+            <Button Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="8,5" BorderBrush="#E0E0E0" BorderThickness="1" Content="Export" Click="ExportButton_Click">
                 <Button.ContentTemplate>
                     <DataTemplate>
-                        <StackPanel
-                            Orientation="Horizontal"
-                            Spacing="8">
-                            <FontIcon
-                                FontSize="12"
-                                Glyph="&#xE8DE;" />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Text="Xuất báo cáo" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE8DE;" />
+                            <TextBlock VerticalAlignment="Center" Text="Xuất báo cáo" />
                         </StackPanel>
                     </DataTemplate>
                 </Button.ContentTemplate>
             </Button>
         </Grid>
+
 
         <!--  Statistics tiles  -->
         <Grid
@@ -140,12 +129,18 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
-                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(ViewModel.StatisticDto.RevenueGrowthRate)}">
+                        DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                                            <TextBlock.Foreground>
+                                                <Binding Path="StatisticDto.RevenueGrowthRate"
+                                     Converter="{StaticResource PercentageToForegroundConverter}" />
+                                            </TextBlock.Foreground>
+    
                         <Run
-                            Text="{x:Bind ViewModel.StatisticDto.RevenueGrowthRate}" />
+                            Text="{x:Bind ViewModel.StatisticDto.RevenueGrowthRate, Mode=OneWay}" />
                         <Run
                             Text="%" />
                     </TextBlock>
+
 
 
                 </StackPanel>
@@ -165,10 +160,16 @@
                             Glyph="&#xE8CB;" />
                     </Border>
                     <TextBlock
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        FontWeight="Bold"
-                        Text="{x:Bind ViewModel.StatisticDto.Revenue}" />
+    VerticalAlignment="Center"
+    FontSize="20"
+    FontWeight="Bold"
+    DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                        <TextBlock.Text>
+                            <Binding Path="StatisticDto.Revenue"
+                 Converter="{StaticResource CurrencyConverter}" />
+                        </TextBlock.Text>
+                    </TextBlock>
+
                 </StackPanel>
             </Grid>
 
@@ -196,14 +197,19 @@
                         FontWeight="SemiBold"
                         Text="Số đơn hàng" />
                     <TextBlock
-                        Margin="10,0,0,0"
-                        FontSize="12"
-                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(ViewModel.StatisticDto.OrderCountGrowthRate)}">
-                        <Run
-                            Text="{x:Bind ViewModel.StatisticDto.OrderCountGrowthRate}" />
-                        <Run
-                            Text="%" />
+    Margin="10,0,0,0"
+    FontSize="12"
+    DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                        <TextBlock.Foreground>
+                            <Binding Path="StatisticDto.OrderCountGrowthRate"
+                 Converter="{StaticResource PercentageToForegroundConverter}" />
+                        </TextBlock.Foreground>
+    
+    <Run
+        Text="{x:Bind ViewModel.StatisticDto.OrderCountGrowthRate, Mode=OneWay}" />
+    <Run Text="%" />
                     </TextBlock>
+
 
                 </StackPanel>
 
@@ -225,7 +231,7 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="{x:Bind ViewModel.StatisticDto.OrderCount}" />
+                        Text="{x:Bind ViewModel.StatisticDto.OrderCount, Mode=OneWay}" />
                 </StackPanel>
             </Grid>
 
@@ -255,12 +261,17 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="12"
-                        Foreground="{x:Bind conv:PercentageToForegroundConverter.Convert(ViewModel.StatisticDto.ProfitGrowthRate)}">
-                        <Run
-                            Text="{x:Bind ViewModel.StatisticDto.ProfitGrowthRate}" />
-                        <Run
-                            Text="%" />
+                        DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                        <TextBlock.Foreground>
+                            <Binding Path="StatisticDto.ProfitGrowthRate"
+                 Converter="{StaticResource PercentageToForegroundConverter}" />
+                        </TextBlock.Foreground>
+
+                        <Run Text="{x:Bind ViewModel.StatisticDto.ProfitGrowthRate, Mode=OneWay}" />
+                        <Run Text="%" />
                     </TextBlock>
+
+
 
                 </StackPanel>
 
@@ -282,7 +293,13 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="{x:Bind ViewModel.StatisticDto.Profit}" />
+                        DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                        <TextBlock.Text>
+                            <Binding Path="StatisticDto.Profit"
+             Converter="{StaticResource CurrencyConverter}" />
+                        </TextBlock.Text>
+                    </TextBlock>
+
                 </StackPanel>
             </Grid>
         </Grid>
@@ -310,10 +327,15 @@
             <Grid
                 Grid.Row="1">
                 <lvc:CartesianChart
-                    Series="{Binding Series}"
+                    Series="{x:Bind ViewModel.MySeries, Mode=OneWay}"
+                    XAxes="{x:Bind ViewModel.XAxes, Mode=OneWay}"
+                    YAxes="{x:Bind ViewModel.YAxes, Mode=OneWay}"
+                    LegendPosition="Right"
                     TooltipPosition="Auto"
-                    XAxes="{Binding XAxes}"
-                    YAxes="{Binding YAxes}" />
+                    ZoomMode="X"
+                    ZoomingSpeed="0"
+                />
+
 
 
                 <!--  Tooltip Overlay (positioned by code-behind)  -->
@@ -359,14 +381,16 @@
                             Text="Sản phẩm bán chạy" />
                         <Button
                             HorizontalAlignment="Right"
-                            Content="Xem thêm" />
+                            Content="Xem thêm"
+                            Click="ClickNavigate" />
+
                     </Grid>
 
                     <ItemsControl
-                        ItemsSource="{x:Bind BestSellingProducts}">
+                        ItemsSource="{x:Bind ViewModel.StatisticReview.TopSellingProducts, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate
-                                x:DataType="local:Product1">
+                                x:DataType="model:Product">
                                 <Grid
                                     Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -381,13 +405,13 @@
                                     <TextBlock
                                         Grid.Column="0"
                                         FontWeight="Bold"
-                                        Text="{x:Bind ProductID}" />
+                                        Text="{x:Bind ProductId}" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Text="{x:Bind Name}" />
                                     <TextBlock
                                         Grid.Column="2"
-                                        Text="{x:Bind QuantitySold}" />
+                                        Text="{x:Bind Stock}" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -409,14 +433,16 @@
                             Text="Sản phẩm sắp hết hàng" />
                         <Button
                             HorizontalAlignment="Right"
-                            Content="Xem thêm" />
+                            Content="Xem thêm"
+                            Click="ClickNavigate" />
+
                     </Grid>
 
                     <ItemsControl
-                        ItemsSource="{x:Bind LowStockProducts}">
+                        ItemsSource="{x:Bind ViewModel.StatisticReview.LowStockProducts, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate
-                                x:DataType="local:Product1">
+                                x:DataType="model:Product">
                                 <Grid
                                     Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -431,13 +457,13 @@
                                     <TextBlock
                                         Grid.Column="0"
                                         FontWeight="Bold"
-                                        Text="{x:Bind ProductID}" />
+                                        Text="{x:Bind ProductId}" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Text="{x:Bind Name}" />
                                     <TextBlock
                                         Grid.Column="2"
-                                        Text="{x:Bind RemainingStock}" />
+                                        Text="{x:Bind Stock}" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

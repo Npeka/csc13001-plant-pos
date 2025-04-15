@@ -20,9 +20,15 @@ public class MessageService {
         return messageRepository.findByUser_UserId(userId);
     }
 
-    public Message createMessage(Message message) {
-        User user = userRepository.findById(message.getUser().getUserId())
+    public Message createMessage(MessageDTO messageDTO) {
+        User user = userRepository.findById(messageDTO.getUserId())
                 .orElseThrow(() -> new RuntimeException("Người dùng không tồn tại"));
+
+        Message message = Message.builder()
+                .user(user)
+                .message(messageDTO.getMessage())
+                .fromBot(false)
+                .build();
 
         messageRepository.save(message);
         String role = user.getRole(); // "ADMIN" | "STAFF"
