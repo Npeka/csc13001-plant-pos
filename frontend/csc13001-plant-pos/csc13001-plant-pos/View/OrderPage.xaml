@@ -13,9 +13,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate
-            x:Key="OrderItemTemplate"
-            x:DataType="orderDto:OrderListDto">
+        <DataTemplate x:Key="OrderItemTemplate" x:DataType="orderDto:OrderListDto">
             <Expander
                 Margin="0,0,0,8"
                 Padding="0"
@@ -27,15 +25,11 @@
                 CornerRadius="8"
                 IsExpanded="False">
                 <Expander.Header>
-                    <Grid
-                        Padding="16">
+                    <Grid Padding="16">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <StackPanel
@@ -47,8 +41,7 @@
                                 Foreground="#4CAF50"
                                 Glyph="&#xE8EC;" />
                             <StackPanel>
-                                <StackPanel
-                                    Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         Margin="0,0,4,0"
                                         FontSize="16"
@@ -59,11 +52,8 @@
                                         FontWeight="SemiBold"
                                         Text="{x:Bind OrderId, Mode=OneWay}" />
                                 </StackPanel>
-                                <StackPanel
-                                    Orientation="Horizontal"
-                                    Spacing="8">
-                                    <StackPanel
-                                        Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="12"
@@ -74,8 +64,7 @@
                                             Foreground="#666666"
                                             Text="{x:Bind Staff.UserId, Mode=OneWay}" />
                                     </StackPanel>
-                                    <StackPanel
-                                        Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="12"
@@ -91,8 +80,7 @@
                                     Orientation="Horizontal"
                                     Spacing="8"
                                     Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
-                                    <StackPanel
-                                        Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="12"
@@ -103,9 +91,7 @@
                                             Foreground="#666666"
                                             Text="{x:Bind Customer.CustomerId, Mode=OneWay}" />
                                     </StackPanel>
-                                    <StackPanel
-                                        Orientation="Horizontal"
-                                        Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" Visibility="{x:Bind Customer, Converter={StaticResource CustomerVisibilityConverter}}">
                                         <TextBlock
                                             Margin="0,0,4,0"
                                             FontSize="12"
@@ -120,14 +106,10 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Grid
-                            Grid.Column="2"
-                            HorizontalAlignment="Right">
+                        <Grid Grid.Column="2" HorizontalAlignment="Right">
                             <Grid.RowDefinitions>
-                                <RowDefinition
-                                    Height="Auto" />
-                                <RowDefinition
-                                    Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <TextBlock
                                 Grid.Row="0"
@@ -135,26 +117,16 @@
                                 FontSize="12"
                                 Foreground="{StaticResource SystemAccentColor}"
                                 Text="{x:Bind OrderDate, Mode=OneWay, Converter={StaticResource DateToStringConverter}}" />
-                            <StackPanel
-                                Grid.Row="1"
-                                HorizontalAlignment="Right">
-                                <StackPanel
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        FontWeight="SemiBold"
-                                        Text="Giá gốc:" />
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <TextBlock FontWeight="SemiBold" Text="Giá gốc:" />
                                     <TextBlock
                                         Margin="4,0,0,0"
                                         Foreground="#555555"
                                         Text="{x:Bind TotalPrice, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
                                 </StackPanel>
-                                <StackPanel
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        FontWeight="SemiBold"
-                                        Text="Giá bán:" />
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <TextBlock FontWeight="SemiBold" Text="Giá bán:" />
                                     <TextBlock
                                         Margin="4,0,0,0"
                                         Foreground="#555555"
@@ -166,9 +138,7 @@
                 </Expander.Header>
 
                 <Expander.Content>
-                    <StackPanel
-                        Margin="32,0,16,16"
-                        Spacing="5">
+                    <StackPanel Margin="32,0,16,16" Spacing="5">
                         <Grid
                             Margin="0,16,0,4"
                             Padding="12"
@@ -176,12 +146,9 @@
                             CornerRadius="8"
                             Visibility="{x:Bind DiscountProgram, Converter={StaticResource DiscountVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition
-                                    Width="Auto" />
-                                <ColumnDefinition
-                                    Width="*" />
-                                <ColumnDefinition
-                                    Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <StackPanel
                                 Grid.Column="0"
@@ -193,13 +160,9 @@
                                     FontWeight="SemiBold"
                                     Text="{x:Bind DiscountProgram.DiscountRate, Mode=OneWay, Converter={StaticResource PercentageConverter}, ConverterParameter='invert'}" />
                             </StackPanel>
-                            <StackPanel
-                                Grid.Column="1">
-                                <TextBlock
-                                    FontWeight="SemiBold"
-                                    Text="{x:Bind DiscountProgram.Name, Mode=OneWay}" />
-                                <StackPanel
-                                    Orientation="Horizontal">
+                            <StackPanel Grid.Column="1">
+                                <TextBlock FontWeight="SemiBold" Text="{x:Bind DiscountProgram.Name, Mode=OneWay}" />
+                                <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         FontSize="12"
                                         Foreground="#666666"
@@ -221,46 +184,32 @@
                                 VerticalAlignment="Center"
                                 Source="{x:Bind DiscountProgram.ApplicableCustomerType, Mode=OneWay, Converter={StaticResource MembershipTypeToImageConverter}}" />
                         </Grid>
-                        <ItemsControl
-                            ItemsSource="{x:Bind OrderItems, Mode=OneWay}">
+                        <ItemsControl ItemsSource="{x:Bind OrderItems, Mode=OneWay}">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate
-                                    x:DataType="model:OrderItem">
-                                    <Grid
-                                        Padding="4">
+                                <DataTemplate x:DataType="model:OrderItem">
+                                    <Grid Padding="4">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition
-                                                Width="Auto" />
-                                            <ColumnDefinition
-                                                Width="*" />
-                                            <ColumnDefinition
-                                                Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <Image
                                             Width="40"
                                             Height="40"
                                             Source="{x:Bind Product.ImageUrl, Mode=OneWay}" />
-                                        <Grid
-                                            Grid.Column="1"
-                                            Margin="12,0,0,0">
+                                        <Grid Grid.Column="1" Margin="12,0,0,0">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition
-                                                    Height="Auto" />
-                                                <RowDefinition
-                                                    Height="*" />
-                                                <RowDefinition
-                                                    Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <TextBlock
                                                 Grid.Row="0"
                                                 Margin="0,0,0,2"
                                                 FontWeight="SemiBold"
                                                 Text="{x:Bind Product.Name, Mode=OneWay}" />
-                                            <StackPanel
-                                                Grid.Row="1">
-                                                <StackPanel
-                                                    Margin="0,0,0,2"
-                                                    Orientation="Horizontal">
+                                            <StackPanel Grid.Row="1">
+                                                <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
                                                     <TextBlock
                                                         FontSize="12"
                                                         Foreground="#666666"
@@ -271,8 +220,7 @@
                                                         Foreground="#666666"
                                                         Text="{x:Bind Quantity, Mode=OneWay}" />
                                                 </StackPanel>
-                                                <StackPanel
-                                                    Orientation="Horizontal">
+                                                <StackPanel Orientation="Horizontal">
                                                     <TextBlock
                                                         FontSize="12"
                                                         Foreground="#666666"
@@ -285,16 +233,11 @@
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>
-                                        <Grid
-                                            Grid.Column="2"
-                                            HorizontalAlignment="Right">
+                                        <Grid Grid.Column="2" HorizontalAlignment="Right">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition
-                                                    Height="Auto" />
-                                                <RowDefinition
-                                                    Height="*" />
-                                                <RowDefinition
-                                                    Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <TextBlock
                                                 Grid.Row="0"
@@ -313,21 +256,19 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <StackPanel
-                            HorizontalAlignment="Right"
-                            Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <Button
                                 Margin="8"
-                                CornerRadius="4"
-                                Content="Xoá đơn hàng"
                                 Click="DeleteOrderButton_Click"
+                                Content="Xoá đơn hàng"
+                                CornerRadius="4"
                                 Style="{StaticResource RedAccentButtonStyle}" />
 
                             <Button
                                 Margin="8"
-                                CornerRadius="4"
-                                Content="Xem hoá đơn"
                                 Click="ViewBillButton_Click"
+                                Content="Xem hoá đơn"
+                                CornerRadius="4"
                                 Style="{StaticResource AccentButtonStyle}" />
                         </StackPanel>
                     </StackPanel>
@@ -336,21 +277,15 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid
-        Padding="24"
-        RowSpacing="12">
+    <Grid Padding="24" RowSpacing="12">
         <Grid.RowDefinitions>
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition
-                Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ui:PageTitle
-            Title="Quản lý đơn hàng"
-            Grid.Row="0" />
+        <ui:PageTitle Title="Quản lý đơn hàng" Grid.Row="0" />
 
         <StackPanel
             Grid.Row="1"
@@ -360,16 +295,64 @@
                 Width="500"
                 PlaceholderText="Tìm kiếm theo mã đơn, nhân viên, khách hàng..."
                 Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <CalendarDatePicker
-                Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}"
-                PlaceholderText="Chọn ngày" />
+            <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
+            <!--  Nút sắp xếp  -->
+            <Button
+                VerticalAlignment="Bottom"
+                Command="{x:Bind ViewModel.ChangeSortOrderCommand}"
+                ToolTipService.ToolTip="{x:Bind ViewModel.IsAscending, Mode=OneWay, Converter={StaticResource SortTooltipConverter}}">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind ViewModel.IsAscending, Mode=OneWay, Converter={StaticResource SortIconConverter}}" />
+            </Button>
         </StackPanel>
-        <ScrollViewer
-            Grid.Row="2"
-            VerticalScrollBarVisibility="Auto">
-            <ItemsControl
-                ItemTemplate="{StaticResource OrderItemTemplate}"
-                ItemsSource="{x:Bind ViewModel.FilteredOrders, Mode=OneWay}" />
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemTemplate="{StaticResource OrderItemTemplate}" ItemsSource="{x:Bind ViewModel.FilteredOrders, Mode=OneWay}" />
         </ScrollViewer>
+
+        <Grid Grid.Row="3" Margin="0,8,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="4">
+                <TextBlock VerticalAlignment="Center" Text="Số đơn hàng mỗi trang:" />
+                <ComboBox
+                    Width="72"
+                    ItemsSource="{x:Bind ViewModel.PageSizeOptions}"
+                    SelectedItem="{x:Bind ViewModel.PageSize, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Button Command="{x:Bind ViewModel.PreviousPageCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76B;" />
+                </Button>
+                <StackPanel Orientation="Horizontal" Spacing="2">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" />
+                    <TextBlock VerticalAlignment="Center" Text=" / " />
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
+                </StackPanel>
+                <Button Command="{x:Bind ViewModel.NextPageCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76C;" />
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -33,4 +33,7 @@
     <local:TypeNotiToGlyphConverter x:Key="TypeNotiToGlyphConverter" />
     <local:IsReadToBackgroundConverter x:Key="IsReadToBackgroundConverter" />
     <local:DateTimeWithHourConverter x:Key="DateTimeWithHourConverter" />
+    <local:StringToUriConverter x:Key="StringToUriConverter" />
+    <local:SortIconConverter x:Key="SortIconConverter" />
+    <local:SortTooltipConverter x:Key="SortTooltipConverter" />
 </ResourceDictionary>

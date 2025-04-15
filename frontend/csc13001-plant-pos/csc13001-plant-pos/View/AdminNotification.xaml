@@ -1,0 +1,439 @@
+<Page
+    x:Class="csc13001_plant_pos.View.AdminNotification"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dto="using:csc13001_plant_pos.DTO.NotificationDTO"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:csc13001_plant_pos.Model"
+    xmlns:ui="using:csc13001_plant_pos.View.UI"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!--  DataTemplate cho thông báo  -->
+        <DataTemplate x:Key="NotificationTemplate" x:DataType="dto:NotificationDto">
+            <Grid
+                Margin="0,0,0,12"
+                Padding="16"
+                Background="#F0F7FF"
+                BorderBrush="#CCE5FF"
+                BorderThickness="1"
+                CornerRadius="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="1.4*" />
+                </Grid.ColumnDefinitions>
+
+                <FontIcon
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="28"
+                    Foreground="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
+                    Glyph="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToGlyphConverter}}" />
+
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="16,0,0,0"
+                    Spacing="4">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid
+                            Grid.Column="0"
+                            Padding="8,3"
+                            HorizontalAlignment="Left"
+                            Background="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
+                            CornerRadius="4">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="11"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{x:Bind TypeName, Mode=OneWay}" />
+                        </Grid>
+                    </Grid>
+                    <TextBlock
+                        Margin="0,4,0,2"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        Text="{x:Bind Title, Mode=OneWay}"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="13"
+                        Foreground="#555555"
+                        LineHeight="20"
+                        Text="{x:Bind Content, Mode=OneWay}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="2"
+                    Margin="16,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Spacing="4">
+                    <StackPanel
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        Spacing="4">
+                        <FontIcon
+                            VerticalAlignment="Top"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="14"
+                            Foreground="#777777"
+                            Glyph="&#xED5A;" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="#777777"
+                            Text="{x:Bind CreatedAt, Mode=OneWay, Converter={StaticResource DateTimeWithHourConverter}}" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{x:Bind Users, Mode=OneWay}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="model:User">
+                                <PersonPicture
+                                    Width="24"
+                                    Height="24"
+                                    Margin="0,0,4,4"
+                                    DisplayName="{x:Bind Fullname, Mode=OneWay}"
+                                    ProfilePicture="{x:Bind ImageUrl, Mode=OneWay, Converter={StaticResource StringToUriConverter}}"
+                                    ToolTipService.ToolTip="{x:Bind Fullname, Mode=OneWay}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="24,24,24,24" RowSpacing="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <StackPanel Grid.Row="0" Spacing="8">
+                <ui:PageTitle Title="Quản lý thông báo" />
+                <TextBlock
+                    Margin="0,0,0,8"
+                    FontSize="14"
+                    Foreground="#666666"
+                    Text="Tạo và xem các thông báo đến nhân viên" />
+                <Rectangle
+                    Height="1"
+                    Margin="0,4,0,0"
+                    Fill="#EEEEEE" />
+            </StackPanel>
+
+            <!--  Notification Creation Form  -->
+            <Border
+                Grid.Row="1"
+                Padding="24"
+                Background="White"
+                BorderBrush="#EAEAEA"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Section Title  -->
+                    <StackPanel
+                        Grid.Row="0"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <FontIcon
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Foreground="#FF388E3C"
+                            Glyph="&#xF0EE;" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Foreground="#333333"
+                            Text="Tạo thông báo mới" />
+                    </StackPanel>
+
+                    <!--  Title Section  -->
+                    <StackPanel Grid.Row="1" Spacing="8">
+                        <TextBlock
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Text="Tiêu đề:" />
+                        <TextBox
+                            x:Name="TitleTextBox"
+                            Height="44"
+                            Padding="12,10"
+                            Background="#F9F9F9"
+                            BorderBrush="#DDDDDD"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            PlaceholderText="Nhập tiêu đề thông báo"
+                            Text="{x:Bind ViewModel.NewNotificationTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <!--  Content Section  -->
+                    <StackPanel Grid.Row="2" Spacing="8">
+                        <TextBlock
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Text="Nội dung:" />
+                        <TextBox
+                            x:Name="ContentTextBox"
+                            Height="140"
+                            Padding="12,10"
+                            AcceptsReturn="True"
+                            Background="#F9F9F9"
+                            BorderBrush="#DDDDDD"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            PlaceholderText="Nhập nội dung thông báo chi tiết..."
+                            Text="{x:Bind ViewModel.NewNotificationContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <!--  Recipients Section  -->
+                    <StackPanel Grid.Row="3" Spacing="12">
+                        <TextBlock
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Text="Người nhận:" />
+
+                        <!--  All Recipients Toggle  -->
+                        <Grid
+                            Padding="8"
+                            Background="#F5F9FF"
+                            CornerRadius="6">
+                            <Grid
+                                Padding="8"
+                                Background="#F9F9F9"
+                                CornerRadius="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <PersonPicture
+                                    Grid.Column="0"
+                                    Width="36"
+                                    Height="36"
+                                    Margin="0,0,12,0" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="SemiBold"
+                                        Text="Tất cả nhân viên" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="#666666"
+                                        Text="Gửi thông báo đến toàn bộ nhân viên" />
+                                </StackPanel>
+                                <ToggleSwitch
+                                    x:Name="AllStaffToggle"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    IsOn="{x:Bind ViewModel.IsAllStaffSelected, Mode=TwoWay}" />
+                            </Grid>
+                        </Grid>
+
+                        <!--  Staff List  -->
+                        <GridView
+                            x:Name="StaffGridView"
+                            Margin="0,8,0,0"
+                            ItemsSource="{x:Bind ViewModel.StaffList, Mode=OneWay}"
+                            SelectionMode="None">
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="model:User">
+                                    <StackPanel
+                                        Margin="0,0,8,0"
+                                        Padding="8"
+                                        Background="#F9F9F9"
+                                        CornerRadius="6"
+                                        Orientation="Horizontal"
+                                        Spacing="4">
+                                        <CheckBox MinWidth="0" IsChecked="{x:Bind IsSelected, Mode=TwoWay}">
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <PersonPicture
+                                                    Width="36"
+                                                    Height="36"
+                                                    VerticalAlignment="Center"
+                                                    DisplayName="{x:Bind Fullname, Mode=OneWay}"
+                                                    ProfilePicture="{x:Bind ImageUrl, Mode=OneWay, Converter={StaticResource StringToUriConverter}}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    FontSize="14"
+                                                    FontWeight="SemiBold"
+                                                    Text="{x:Bind Fullname, Mode=OneWay}" />
+                                            </StackPanel>
+                                        </CheckBox>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </StackPanel>
+
+                    <!--  Send Button  -->
+                    <StackPanel
+                        Grid.Row="4"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button
+                            x:Name="CancelButton"
+                            Padding="16,10,16,10"
+                            HorizontalAlignment="Left"
+                            Click="CancelButton_Click"
+                            Content="Huỷ bỏ"
+                            CornerRadius="6"
+                            Style="{StaticResource RedAccentButtonStyle}" />
+                        <Button
+                            x:Name="SendButton"
+                            Padding="16,10,16,10"
+                            HorizontalAlignment="Left"
+                            BorderThickness="0"
+                            Click="SendButton_Click"
+                            CornerRadius="6"
+                            Foreground="White"
+                            Style="{StaticResource AccentButtonStyle}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="16"
+                                    Glyph="&#xE724;" />
+                                <TextBlock Text="Gửi thông báo" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--  Sent Notifications Header  -->
+            <Grid
+                Grid.Row="2"
+                Margin="0,8,0,0"
+                HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    Spacing="12">
+                    <FontIcon
+                        VerticalAlignment="Center"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="20"
+                        Foreground="#FF388E3C"
+                        Glyph="&#xEC42;" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        Text="Các thông báo đã gửi" />
+                </StackPanel>
+                <CalendarDatePicker
+                    Grid.Column="1"
+                    Width="160"
+                    Padding="12,8"
+                    VerticalAlignment="Center"
+                    Background="#F9F9F9"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}"
+                    Foreground="#555555"
+                    PlaceholderText="Lọc theo ngày" />
+            </Grid>
+
+            <!--  Notification List  -->
+            <Border
+                Grid.Row="3"
+                Padding="24"
+                Background="White"
+                BorderBrush="#EAEAEA"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer
+                        Grid.Row="0"
+                        Height="500"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemTemplate="{StaticResource NotificationTemplate}" ItemsSource="{x:Bind ViewModel.FilteredNotifications, Mode=OneWay}" />
+                    </ScrollViewer>
+                    <Grid Grid.Row="1" Margin="0,8,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <TextBlock VerticalAlignment="Center" Text="Số thông báo mỗi trang:" />
+                            <ComboBox
+                                Width="72"
+                                ItemsSource="{x:Bind ViewModel.PageSizeOptions, Mode=OneWay}"
+                                SelectedItem="{x:Bind ViewModel.PageSize, Mode=TwoWay}"
+                                SelectionChanged="PageSizeComboBox_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Button Command="{x:Bind ViewModel.PreviousPageCommand}">
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76B;" />
+                            </Button>
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" />
+                                <TextBlock VerticalAlignment="Center" Text=" / " />
+                                <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
+                            </StackPanel>
+                            <Button Command="{x:Bind ViewModel.NextPageCommand}">
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76C;" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

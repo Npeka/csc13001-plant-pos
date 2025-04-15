@@ -41,6 +41,7 @@
                             Orientation="Horizontal"
                             Spacing="12">
                             <FontIcon
+                                FontFamily="Segoe MDL2 Assets"
                                 FontSize="20"
                                 Foreground="#4CAF50"
                                 Glyph="&#xE8EC;" />
@@ -258,6 +259,7 @@
             </Expander>
         </DataTemplate>
     </Page.Resources>
+
     <Grid x:Name="ContentArea">
         <Grid Margin="20">
             <Grid.ColumnDefinitions>
@@ -284,14 +286,11 @@
                         Width="120"
                         Height="120"
                         Margin="0,12,0,12">
-                        <Border
+                        <PersonPicture
                             Width="120"
                             Height="120"
-                            CornerRadius="60">
-                            <Border.Background>
-                                <ImageBrush ImageSource="https://res.cloudinary.com/djyugezvf/image/upload/v1735137936/csc13008/avatar/avatars_6759d0d5eb6a720ac748a335.jpg" />
-                            </Border.Background>
-                        </Border>
+                            DisplayName="{x:Bind ViewModel.StaffUser.Fullname, Mode=OneWay}"
+                            ProfilePicture="{x:Bind ViewModel.StaffUser.ImageUrl, Mode=OneWay, Converter={StaticResource StringToUriConverter}}" />
                         <Border
                             Width="28"
                             Height="28"
@@ -410,7 +409,6 @@
                             Foreground="#555555"
                             Text="{x:Bind ViewModel.StaffUser.StartDate, Mode=OneWay, Converter={StaticResource DateToStringConverter}}" />
 
-
                         <!--  Số đơn hàng  -->
                         <TextBlock
                             Grid.Row="6"
@@ -451,6 +449,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <StackPanel
                         Grid.Row="0"
@@ -462,6 +461,12 @@
                             PlaceholderText="Tìm kiếm theo mã khách hàng, tên khách hàng, mã đơn,..."
                             Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
+                        <Button
+                            VerticalAlignment="Bottom"
+                            Command="{x:Bind ViewModel.ChangeSortOrderCommand}"
+                            ToolTipService.ToolTip="{x:Bind ViewModel.IsAscending, Mode=OneWay, Converter={StaticResource SortTooltipConverter}}">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind ViewModel.IsAscending, Mode=OneWay, Converter={StaticResource SortIconConverter}}" />
+                        </Button>
                     </StackPanel>
 
                     <Grid Grid.Row="1">
@@ -478,18 +483,64 @@
                             Spacing="10"
                             Visibility="{x:Bind ViewModel.FilteredStaffOrders.Count, Mode=OneWay, Converter={StaticResource CountToVisibilityConverter}, ConverterParameter='inverse'}">
                             <FontIcon
+                                FontFamily="Segoe MDL2 Assets"
                                 FontSize="48"
                                 Foreground="#666666"
-                                Glyph="" />
+                                Glyph="&#xE783;" />
                             <TextBlock
                                 FontSize="16"
                                 Foreground="#666666"
                                 Text="Hiện chưa có đơn hàng nào" />
                         </StackPanel>
                     </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,8,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <TextBlock VerticalAlignment="Center" Text="Số đơn hàng mỗi trang:" />
+                            <ComboBox
+                                Width="72"
+                                ItemsSource="{x:Bind ViewModel.PageSizeOptions}"
+                                SelectedItem="{x:Bind ViewModel.PageSize, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Button Command="{x:Bind ViewModel.PreviousPageCommand}">
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76B;" />
+                            </Button>
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" />
+                                <TextBlock VerticalAlignment="Center" Text=" / " />
+                                <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
+                            </StackPanel>
+                            <Button Command="{x:Bind ViewModel.NextPageCommand}">
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76C;" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>
-
     </Grid>
 </Page>

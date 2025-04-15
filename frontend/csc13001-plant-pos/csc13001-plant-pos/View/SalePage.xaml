@@ -340,7 +340,10 @@
                         FontWeight="Bold"
                         Text="{x:Bind ViewModel.Total, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
                 </Grid>
-                <StackPanel Orientation="Horizontal" Spacing="10">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="10">
                     <Button
                         x:Name="CreateOrderButton"
                         Width="150"

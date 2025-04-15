@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using csc13001_plant_pos.Converter.JsonConverter;
-using csc13001_plant_pos.Model;
 
-namespace csc13001_plant_pos.DTO.NotificationDTO;
+namespace csc13001_plant_pos.Model;
 
-public class NotificationDto : ObservableObject
+public class Notification : ObservableObject
 {
     [JsonPropertyName("notificationUserId")]
     public int NotificationUserId { get; set; }
@@ -35,7 +33,4 @@ public class NotificationDto : ObservableObject
         get => _isRead;
         set => SetProperty(ref _isRead, value);
     }
-
-    [JsonPropertyName("users")]
-    public List<User> Users { get; set; }
 }

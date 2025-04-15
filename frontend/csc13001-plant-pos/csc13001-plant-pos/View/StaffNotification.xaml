@@ -4,7 +4,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:dto="using:csc13001_plant_pos.DTO.NotificationDTO"
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:csc13001_plant_pos.Model"
@@ -14,7 +13,6 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <!--  Style cho ComboBoxItem tag  -->
         <Style x:Key="TagComboBoxItemStyle" TargetType="ComboBoxItem">
             <Setter Property="MinHeight" Value="32" />
             <Setter Property="Padding" Value="8,4" />
@@ -22,8 +20,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
-        <!--  DataTemplate cho mỗi thông báo  -->
-        <DataTemplate x:Key="NotificationTemplate" x:DataType="dto:NotificationDto">
+        <DataTemplate x:Key="NotificationTemplate" x:DataType="model:Notification">
             <Grid
                 Margin="0,0,0,8"
                 Padding="16"
@@ -39,6 +36,7 @@
                 <FontIcon
                     Grid.Column="0"
                     VerticalAlignment="Top"
+                    FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
                     Foreground="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
                     Glyph="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToGlyphConverter}}" />
@@ -71,6 +69,7 @@
                             Spacing="4">
                             <FontIcon
                                 VerticalAlignment="Top"
+                                FontFamily="Segoe MDL2 Assets"
                                 FontSize="14"
                                 Foreground="#777777"
                                 Glyph="&#xE823;" />
@@ -102,6 +101,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" HorizontalAlignment="Stretch">
@@ -257,5 +257,52 @@
                 ItemsSource="{x:Bind ViewModel.FilteredNotifications, Mode=OneWay}"
                 SelectionMode="None" />
         </ScrollViewer>
+
+        <Grid Grid.Row="2" Margin="0,8,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="4">
+                <TextBlock VerticalAlignment="Center" Text="Số thông báo mỗi trang:" />
+                <ComboBox
+                    Width="72"
+                    ItemsSource="{x:Bind ViewModel.PageSizeOptions, Mode=OneWay}"
+                    SelectedItem="{x:Bind ViewModel.PageSize, Mode=TwoWay}"
+                    SelectionChanged="PageSizeComboBox_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Button Command="{x:Bind ViewModel.PreviousPageCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76B;" />
+                </Button>
+                <StackPanel Orientation="Horizontal" Spacing="2">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" />
+                    <TextBlock VerticalAlignment="Center" Text=" / " />
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
+                </StackPanel>
+                <Button Command="{x:Bind ViewModel.NextPageCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76C;" />
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

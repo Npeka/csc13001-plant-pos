@@ -105,13 +105,16 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Padding="24,24,24,24" RowSpacing="12">
+    <Grid Padding="24" RowSpacing="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <ui:PageTitle Title="Quản lý chương trình giảm giá" Grid.Row="0" />
+
         <StackPanel
             Grid.Row="1"
             Orientation="Horizontal"
@@ -122,15 +125,19 @@
                 Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <CalendarDatePicker Date="{x:Bind ViewModel.SelectedDate, Mode=TwoWay}" PlaceholderText="Chọn ngày" />
             <Button
-                Padding="8,8"
-                Background="#B3FFFFFF"
+                VerticalAlignment="Bottom"
+                Command="{x:Bind ViewModel.ChangeSortOrderCommand}"
+                ToolTipService.ToolTip="{x:Bind ViewModel.IsAscending, Mode=OneWay, Converter={StaticResource SortTooltipConverter}}">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind ViewModel.IsAscending, Mode=OneWay, Converter={StaticResource SortIconConverter}}" />
+            </Button>
+            <Button
+                Padding="8"
                 Click="AddDiscountButton_Click"
                 Content="Thêm chương trình"
                 CornerRadius="5"
-                FontSize="14"
-                Foreground="#666666"
                 Style="{StaticResource AccentButtonStyle}" />
         </StackPanel>
+
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <ListView
                 Margin="-14,0,0,0"
@@ -138,5 +145,51 @@
                 ItemsSource="{x:Bind ViewModel.FilteredDiscounts, Mode=OneWay}"
                 SelectionMode="None" />
         </ScrollViewer>
+
+        <Grid Grid.Row="3" Margin="0,8,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="4">
+                <TextBlock VerticalAlignment="Center" Text="Số chương trình mỗi trang:" />
+                <ComboBox
+                    Width="72"
+                    ItemsSource="{x:Bind ViewModel.PageSizeOptions}"
+                    SelectedItem="{x:Bind ViewModel.PageSize, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Button Command="{x:Bind ViewModel.PreviousPageCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76B;" />
+                </Button>
+                <StackPanel Orientation="Horizontal" Spacing="2">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" />
+                    <TextBlock VerticalAlignment="Center" Text=" / " />
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
+                </StackPanel>
+                <Button Command="{x:Bind ViewModel.NextPageCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76C;" />
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

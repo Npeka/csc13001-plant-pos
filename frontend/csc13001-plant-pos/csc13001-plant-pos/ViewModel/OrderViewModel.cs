@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Service;
-using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -24,8 +23,23 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private ObservableCollection<OrderListDto> filteredOrders = new ObservableCollection<OrderListDto>();
 
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+
+        [ObservableProperty]
+        private bool isAscending = true;
+
+        private readonly int[] pageSizeOptions = { 5, 10, 20, 50 };
         private readonly IOrderService _orderService;
         private ObservableCollection<OrderListDto> allOrders = new ObservableCollection<OrderListDto>();
+
+        public int[] PageSizeOptions => pageSizeOptions;
 
         public OrderViewModel(IOrderService orderService)
         {
@@ -58,7 +72,7 @@ namespace csc13001_plant_pos.ViewModel
             UpdateFilteredOrders();
         }
 
-        private void UpdateFilteredOrders()
+        public void UpdateFilteredOrders()
         {
             FilteredOrders.Clear();
             var filtered = allOrders.AsEnumerable();
@@ -80,6 +94,19 @@ namespace csc13001_plant_pos.ViewModel
                 filtered = filtered.Where(order => order.OrderDate.Date == selectedDateOnly);
             }
 
+            filtered = isAscending
+                ? filtered.OrderBy(o => o.OrderId)
+                : filtered.OrderByDescending(o => o.OrderId);
+
+            var totalItems = filtered.Count();
+            TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
+
             foreach (var order in filtered)
             {
                 FilteredOrders.Add(order);
@@ -96,17 +123,53 @@ namespace csc13001_plant_pos.ViewModel
                 Orders.Remove(order);
                 FilteredOrders.Remove(order);
                 System.Diagnostics.Debug.WriteLine($"Order {order.OrderId} deleted successfully.");
+                UpdateFilteredOrders();
             }
             return success;
         }
 
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                UpdateFilteredOrders();
+            }
+        }
+
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                UpdateFilteredOrders();
+            }
+        }
+
+        [RelayCommand]
+        private void ChangeSortOrder()
+        {
+            IsAscending = !IsAscending;
+            UpdateFilteredOrders();
+        }
+
         partial void OnSearchQueryChanged(string value)
         {
+            CurrentPage = 1;
             UpdateFilteredOrders();
         }
 
         partial void OnSelectedDateChanged(DateTimeOffset? value)
         {
+            CurrentPage = 1;
+            UpdateFilteredOrders();
+        }
+
+        partial void OnPageSizeChanged(int value)
+        {
+            CurrentPage = 1;
             UpdateFilteredOrders();
         }
     }

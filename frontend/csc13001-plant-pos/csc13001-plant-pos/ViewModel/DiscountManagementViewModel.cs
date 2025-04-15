@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 
@@ -22,8 +23,23 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private ObservableCollection<DiscountProgram> filteredDiscounts = new ObservableCollection<DiscountProgram>();
 
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+
+        [ObservableProperty]
+        private bool isAscending = true;
+
+        private readonly int[] pageSizeOptions = { 5, 10, 20, 50 };
         private readonly IDiscountProgramService _discountProgramService;
         private ObservableCollection<DiscountProgram> allDiscounts = new ObservableCollection<DiscountProgram>();
+
+        public int[] PageSizeOptions => pageSizeOptions;
 
         public DiscountManagementViewModel(IDiscountProgramService discountService)
         {
@@ -76,6 +92,19 @@ namespace csc13001_plant_pos.ViewModel
                     discount.StartDate.Date <= selectedDateOnly && discount.EndDate.Date >= selectedDateOnly);
             }
 
+            filtered = isAscending
+                ? filtered.OrderBy(d => d.DiscountId)
+                : filtered.OrderByDescending(d => d.DiscountId);
+
+            var totalItems = filtered.Count();
+            TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
+
             foreach (var discount in filtered)
             {
                 FilteredDiscounts.Add(discount);
@@ -102,13 +131,48 @@ namespace csc13001_plant_pos.ViewModel
             return success;
         }
 
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                UpdateFilteredDiscounts();
+            }
+        }
+
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                UpdateFilteredDiscounts();
+            }
+        }
+
+        [RelayCommand]
+        private void ChangeSortOrder()
+        {
+            IsAscending = !IsAscending;
+            UpdateFilteredDiscounts();
+        }
+
         partial void OnSearchQueryChanged(string value)
         {
+            CurrentPage = 1;
             UpdateFilteredDiscounts();
         }
 
         partial void OnSelectedDateChanged(DateTimeOffset? value)
         {
+            CurrentPage = 1;
+            UpdateFilteredDiscounts();
+        }
+
+        partial void OnPageSizeChanged(int value)
+        {
+            CurrentPage = 1;
             UpdateFilteredDiscounts();
         }
     }

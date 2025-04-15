@@ -86,6 +86,7 @@ public partial class App : Application
                 services.AddSingleton<ProductsViewModel>();
                 services.AddSingleton<DetailProductViewModel>();
                 services.AddSingleton<StaffNotificationViewModel>();
+                services.AddSingleton<AdminNotificationViewModel>();
             })
             .Build();
     }

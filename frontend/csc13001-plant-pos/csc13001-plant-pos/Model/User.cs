@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace csc13001_plant_pos.Model
 {
-    public class User
+    public partial class User : ObservableObject
     {
         [JsonPropertyName("userId")]
         public int UserId { get; set; }
@@ -31,5 +32,8 @@ namespace csc13001_plant_pos.Model
 
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
+
+        [ObservableProperty]
+        private bool _isSelected;
     }
 }

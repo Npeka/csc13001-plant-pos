@@ -367,6 +367,7 @@
 
                     <TextBox
                         Grid.Column="0"
+                        Width="700"
                         MinHeight="24"
                         MaxHeight="120"
                         VerticalContentAlignment="Center"

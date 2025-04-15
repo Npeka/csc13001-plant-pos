@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using csc13001_plant_pos.DTO.NotificationDTO;
+using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
 
 namespace csc13001_plant_pos.ViewModel
@@ -12,10 +12,10 @@ namespace csc13001_plant_pos.ViewModel
     public partial class StaffNotificationViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<NotificationDto> notifications = new ObservableCollection<NotificationDto>();
+        private ObservableCollection<Notification> notifications = new ObservableCollection<Notification>();
 
         [ObservableProperty]
-        private ObservableCollection<NotificationDto> filteredNotifications = new ObservableCollection<NotificationDto>();
+        private ObservableCollection<Notification> filteredNotifications = new ObservableCollection<Notification>();
 
         [ObservableProperty]
         private string selectedTag = "All";
@@ -26,8 +26,20 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private string selectedReadFilter = "All";
 
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+
+        private readonly int[] pageSizeOptions = { 5, 10, 20, 50 };
         private readonly INotificationService _notificationService;
         private readonly UserSessionService _userSession;
+
+        public int[] PageSizeOptions => pageSizeOptions;
 
         public StaffNotificationViewModel(INotificationService notificationService, UserSessionService userSession)
         {
@@ -63,25 +75,23 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
+        [RelayCommand]
         private void ApplyFilters()
         {
             FilteredNotifications.Clear();
             var filtered = Notifications.AsEnumerable();
 
-            // Lọc theo tag
             if (SelectedTag != "All")
             {
                 filtered = filtered.Where(n => n.Type == SelectedTag);
             }
 
-            // Lọc theo ngày
             if (SelectedDate.HasValue)
             {
                 var selectedDateOnly = SelectedDate.Value.Date;
                 filtered = filtered.Where(n => n.CreatedAt.Date == selectedDateOnly);
             }
 
-            // Lọc theo trạng thái đọc
             switch (SelectedReadFilter)
             {
                 case "Unread":
@@ -95,29 +105,75 @@ namespace csc13001_plant_pos.ViewModel
                     break;
             }
 
+            filtered = filtered.OrderByDescending(n => n.CreatedAt);
+
+            var totalItems = filtered.Count();
+            TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+            if (CurrentPage < 1) CurrentPage = 1;
+
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
+
             foreach (var notification in filtered)
             {
                 FilteredNotifications.Add(notification);
+            }
+
+            OnPropertyChanged(nameof(FilteredNotifications));
+        }
+
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                ApplyFilters();
+            }
+        }
+
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                ApplyFilters();
             }
         }
 
         partial void OnSelectedTagChanged(string value)
         {
+            CurrentPage = 1;
             ApplyFilters();
         }
 
         partial void OnSelectedDateChanged(DateTimeOffset? value)
         {
+            CurrentPage = 1;
             ApplyFilters();
         }
 
         partial void OnSelectedReadFilterChanged(string value)
         {
+            CurrentPage = 1;
             ApplyFilters();
         }
 
+        partial void OnPageSizeChanged(int oldValue, int newValue)
+        {
+            if (oldValue != newValue)
+            {
+                CurrentPage = 1;
+                ApplyFilters();
+            }
+        }
+
         [RelayCommand]
-        private async Task MarkAsRead(NotificationDto notification)
+        private async Task MarkAsRead(Notification notification)
         {
             if (notification == null || notification.IsRead) return;
             var success = await _notificationService.MarkNotificationAsReadAsync(notification.NotificationUserId);
@@ -127,6 +183,7 @@ namespace csc13001_plant_pos.ViewModel
                 if (SelectedReadFilter == "Unread" && FilteredNotifications.Contains(notification))
                 {
                     FilteredNotifications.Remove(notification);
+                    ApplyFilters();
                 }
             }
             else

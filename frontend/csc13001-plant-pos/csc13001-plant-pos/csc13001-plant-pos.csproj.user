@@ -5,6 +5,9 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="View\AdminNotification.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\ChatbotPage.xaml">
       <SubType>Designer</SubType>
     </Page>

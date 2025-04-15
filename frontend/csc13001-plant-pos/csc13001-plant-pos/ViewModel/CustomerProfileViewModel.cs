@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
@@ -32,8 +33,23 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private ObservableCollection<OrderListDto> filteredCustomerOrders = new ObservableCollection<OrderListDto>();
 
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+
+        [ObservableProperty]
+        private bool isAscending = true;
+
+        private readonly int[] pageSizeOptions = { 5, 10, 20, 50 };
         private readonly ICustomerService _customerService;
         private ObservableCollection<OrderListDto> allCustomerOrders = new ObservableCollection<OrderListDto>();
+
+        public int[] PageSizeOptions => pageSizeOptions;
 
         public CustomerProfileViewModel(ICustomerService customerService)
         {
@@ -101,19 +117,67 @@ namespace csc13001_plant_pos.ViewModel
                 filtered = filtered.Where(order => order.OrderDate.Date == selectedDateOnly);
             }
 
+            filtered = isAscending
+                ? filtered.OrderBy(o => o.OrderId)
+                : filtered.OrderByDescending(o => o.OrderId);
+
+            var totalItems = filtered.Count();
+            TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
+
             foreach (var order in filtered)
             {
                 FilteredCustomerOrders.Add(order);
             }
         }
 
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                UpdateFilteredOrders();
+            }
+        }
+
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                UpdateFilteredOrders();
+            }
+        }
+
+        [RelayCommand]
+        private void ChangeSortOrder()
+        {
+            IsAscending = !IsAscending;
+            UpdateFilteredOrders();
+        }
+
         partial void OnSearchQueryChanged(string value)
         {
+            CurrentPage = 1;
             UpdateFilteredOrders();
         }
 
         partial void OnSelectedDateChanged(DateTimeOffset? value)
         {
+            CurrentPage = 1;
+            UpdateFilteredOrders();
+        }
+
+        partial void OnPageSizeChanged(int value)
+        {
+            CurrentPage = 1;
             UpdateFilteredOrders();
         }
     }
