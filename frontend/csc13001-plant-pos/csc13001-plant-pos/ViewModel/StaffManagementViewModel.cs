@@ -15,6 +15,7 @@ using WinRT.Interop;
 using OfficeOpenXml;
 using Microsoft.UI.Xaml;
 using System.IO;
+using Windows.Storage;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -99,9 +100,9 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
-        public async Task<bool> UpdateStaffAsync(User user, string image64)
+        public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
         {
-            var response = await _staffService.UpdateStaffAsync(user, image64);
+            var response = await _staffService.UpdateStaffAsync(user, file);
             if (response)
             {
                 var existingUser = StaffList.FirstOrDefault(u => u.UserId == user.UserId);
@@ -126,9 +127,9 @@ namespace csc13001_plant_pos.ViewModel
             return false;
         }
 
-        public async Task<bool> AddStaffAsync(User user, string image64)
+        public async Task<bool> AddStaffAsync(User user, StorageFile file)
         {
-            var response = await _staffService.AddStaffAsync(user, image64);
+            var response = await _staffService.AddStaffAsync(user, file);
             if (response)
             {
                 StaffList.Add(user);

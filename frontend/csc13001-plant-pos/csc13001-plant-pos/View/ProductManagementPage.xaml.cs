@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.ViewModel;
+using csc13001_plant_pos.DTO.CustomerDTO;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,74 +30,158 @@ namespace csc13001_plant_pos.View
 
         private void ProductGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Ép kiểu item được click về Product
             var selectedProduct = e.ClickedItem as Product;
             if (selectedProduct != null)
             {
-                // Điều hướng đến trang DetailProductPage và truyền đối tượng Product
                 Frame.Navigate(typeof(DetailProductPage), selectedProduct);
             }
         }
-
-
-        private async void AddProduct_Click(object sender, RoutedEventArgs e)
+        private async Task ShowErrorDialogAsync(string? message)
         {
-            //AddProductDialog.XamlRoot = this.XamlRoot; // Đảm bảo hộp thoại hiển thị đúng trong ứng dụng WinUI
-            //await AddProductDialog.ShowAsync();
+            ContentDialog errorDialog = new ContentDialog
+            {
+                Title = "Thông báo",
+                Content = message,
+                CloseButtonText = "Đóng",
+                XamlRoot = this.XamlRoot
+            };
+
+            await errorDialog.ShowAsync();
         }
-        private void AddProductDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ShowCategoryListDialogAsync(object sender, RoutedEventArgs e)
         {
-            // Xử lý khi người dùng nhấn nút đóng (Close)
-            // Nếu không cần xử lý gì, có thể để trống hoặc chỉ đóng dialog
+            if (ViewModel?.Categories == null || ViewModel.Categories.Count == 0)
+            {
+                await ShowErrorDialogAsync("Không có danh mục nào để hiển thị.");
+                return;
+            }
+
+            StackPanel dialogContent = new StackPanel { Spacing = 8 };
+            TaskCompletionSource<Category> categorySelectionSource = new();
+
+            foreach (var category in ViewModel.Categories)
+            {
+                var button = new Button
+                {
+                    Content = category.Name,
+                    Tag = category,
+                    HorizontalAlignment = HorizontalAlignment.Stretch
+                };
+                button.Click += (s, e) =>
+                {
+                    var selectedButton = s as Button;
+                    var selectedCategory = selectedButton?.Tag as Category;
+                    if (selectedCategory != null)
+                    {
+                        categorySelectionSource.TrySetResult(selectedCategory);
+                    }
+                };
+
+                dialogContent.Children.Add(button);
+            }
+
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Chọn danh mục cần chỉnh sửa",
+                Content = new ScrollViewer
+                {
+                    Content = dialogContent,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    Height = 400
+                },
+                CloseButtonText = "Đóng",
+                XamlRoot = this.XamlRoot
+            };
+
+            var dialogTask = dialog.ShowAsync().AsTask();
+            var completedTask = await Task.WhenAny(dialogTask, categorySelectionSource.Task);
+
+            if (completedTask == categorySelectionSource.Task)
+            {
+                dialog.Hide();
+                var selectedCategory = categorySelectionSource.Task.Result;
+                await ShowCategoryDialogAsync(selectedCategory, true);
+            }
         }
 
-        private void AddProductDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        public async void AddNewCategory(object sender, RoutedEventArgs e)
         {
-            // Lấy dữ liệu từ form
-            //string name = ProductNameBox.Text;
-            //int price = int.TryParse(ProductPriceBox.Text, out int p) ? p : 0;
-            //string imageUrl = ProductImageBox.Text;
-            //int stock = int.TryParse(ProductStockBox.Text, out int s) ? s : 0;
+            var newCategory = new Category
+            {
+                CategoryId = 0,
+                Name = "",
+                Description = "",
+            };
 
-            //// Kiểm tra hợp lệ
-            //if (string.IsNullOrWhiteSpace(name) || price <= 0 || stock < 0 || string.IsNullOrWhiteSpace(imageUrl))
-            //{
-            //    return; // Không thêm nếu dữ liệu không hợp lệ
-            //}
-
-            //// Thêm sản phẩm mới vào danh sách
-            //Products.Add(new Product
-            //{
-            //    Name = name,
-            //    Price = price,
-            //    OriginalPrice = price,
-            //    IsDiscounted = false,
-            //    Stock = $"Còn {stock} sản phẩm",
-            //    StockColor = stock > 0 ? "Green" : "Red",
-            //    ImageUrl = imageUrl
-            //});
-
-            // Đóng hộp thoại (mặc định đã đóng sau khi nhấn PrimaryButton)
+            await ShowCategoryDialogAsync(newCategory, false);
         }
 
-
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        public async void EditCategoryInformation(object sender, RoutedEventArgs e)
         {
-            //FilterProducts();
+            var button = sender as Button;
+            var customer = button?.Tag as Category;
+
+            if (customer == null)
+            {
+                return;
+            }
+
+            await ShowCategoryDialogAsync(customer, true);
+        }
+        private async Task ShowCategoryDialogAsync(Category category, bool isEdit)
+        {
+            TextBox nameTextBox = new TextBox
+            {
+                Header = "Tên danh mục",
+                Text = category.Name,
+                Width = 300
+            };
+            TextBox describeTextBox = new TextBox
+            {
+                Header = "Mô tả",
+                Text = category.Description,
+                Width = 300
+            };
+            
+
+            StackPanel dialogContent = new StackPanel
+            {
+                Spacing = 10,
+                Children = { nameTextBox, describeTextBox }
+            };
+
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = isEdit ? "Chỉnh sửa danh mục" : "Thêm danh mục",
+                Content = dialogContent,
+                PrimaryButtonText = isEdit ? "Lưu" : "Thêm",
+                CloseButtonText = "Hủy",
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = this.XamlRoot
+            };
+
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                if (string.IsNullOrWhiteSpace(nameTextBox.Text) || string.IsNullOrWhiteSpace(describeTextBox.Text))
+                {
+                    await ShowErrorDialogAsync("Vui lòng nhập đầy đủ thông tin.");
+                    return;
+                }
+
+                category.Name = nameTextBox.Text;
+                category.Description = describeTextBox.Text;
+
+                string? success = isEdit
+                    ? await ViewModel.UpdateCategoryAsync(category)
+                    : await ViewModel.AddCategoryAsync(category);
+
+
+                await ShowErrorDialogAsync(success);
+            }
         }
 
-        private void StockFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //FilterProducts();
-        }
-        private void CategoryFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
-        private void UpdateCategories_Click(object sender, RoutedEventArgs e)
-        {
-            // Xử lý cập nhật danh mục
-        }
     }
 
 }

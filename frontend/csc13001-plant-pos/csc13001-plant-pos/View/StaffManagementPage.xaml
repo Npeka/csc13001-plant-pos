@@ -86,7 +86,7 @@
                         <FontIcon
                             Margin="0,0,5,0"
                             VerticalAlignment="Center"
-                            Glyph="&#xE710;" />
+                            Glyph="&#xE8FA;" FontFamily="Segoe MDL2 Assets"/>
                         <TextBlock
                             VerticalAlignment="Center"
                             Text="Thêm nhân viên" />
@@ -96,7 +96,7 @@
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="8">
-                                <FontIcon FontSize="12" Glyph="&#xE8DE;" />
+                                <FontIcon Glyph="&#xE8DE;" />
                                 <TextBlock VerticalAlignment="Center" Text="Xuất báo cáo" />
                             </StackPanel>
                         </DataTemplate>
@@ -224,7 +224,7 @@
                 GridLinesVisibility="Horizontal"
                 IsReadOnly="True"
                 HeadersVisibility="Column"
-                ItemsSource="{x:Bind ViewModel.filteredStaffList}">
+                ItemsSource="{x:Bind ViewModel.filteredStaffList, Mode=OneWay}">
                 <controls:DataGrid.Resources>
                     <SolidColorBrush
                         x:Key="DataGridColumnHeaderBackgroundColor"

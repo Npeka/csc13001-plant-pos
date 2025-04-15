@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 using csc13001_plant_pos.DTO;
@@ -10,6 +12,7 @@ using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.DTO.StaffDTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Utils;
+using Windows.Storage;
 
 namespace csc13001_plant_pos.Service;
 
@@ -20,9 +23,9 @@ public interface IStaffService
 
     Task<ApiResponse<List<User>>?> GetListStaffAsync();
 
-    Task<bool> UpdateStaffAsync(User user, string image64);
+    Task<bool> UpdateStaffAsync(User user, StorageFile file);
 
-    Task<bool> AddStaffAsync(User user, string image64);
+    Task<bool> AddStaffAsync(User user, StorageFile file);
 }
 
 public class StaffService : IStaffService
@@ -55,7 +58,7 @@ public class StaffService : IStaffService
         return JsonUtils.Deserialize<ApiResponse<List<User>>>(json);
     }
 
-    public async Task<bool> UpdateStaffAsync(User user, string image64)
+    public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
     {
         var content = new MultipartFormDataContent();
 
@@ -79,10 +82,12 @@ public class StaffService : IStaffService
             json = json.Insert(startDateValueStart, formattedDate);
         }
         content.Add(new StringContent(json), "staff");
-        Debug.WriteLine(json);
-        if (!string.IsNullOrEmpty(image64))
+        if (file != null)
         {
-            content.Add(new StringContent(image64), "image");
+            var stream = await file.OpenStreamForReadAsync();
+            var fileContent = new StreamContent(stream);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+            content.Add(fileContent, "image", file.Name);
         }
 
         var response = await _httpClient.PutAsync($"staff/{user.UserId}", content);
@@ -93,7 +98,7 @@ public class StaffService : IStaffService
     }
 
 
-    public async Task<bool> AddStaffAsync(User user, string image64)
+    public async Task<bool> AddStaffAsync(User user, StorageFile file)
     {
         var content = new MultipartFormDataContent();
         var json = JsonUtils.ToJson(user);
@@ -116,9 +121,12 @@ public class StaffService : IStaffService
         }
         content.Add(new StringContent(json), "staff");
         Debug.WriteLine(json);
-        if (!string.IsNullOrEmpty(image64))
+        if (file != null)
         {
-            content.Add(new StringContent(image64), "image");
+            var stream = await file.OpenStreamForReadAsync();
+            var fileContent = new StreamContent(stream);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+            content.Add(fileContent, "image", file.Name);
         }
         var response = await _httpClient.PostAsync("staff", content);
         var responseJson = await response.Content.ReadAsStringAsync();
