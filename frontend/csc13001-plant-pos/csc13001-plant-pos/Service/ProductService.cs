@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Utils;
+using Windows.Storage;
+using Windows.System;
 
 namespace csc13001_plant_pos.Service;
 
@@ -14,7 +20,7 @@ public interface IProductService
     Task<ApiResponse<Product>?> GetProductByIdAsync(string id);
     Task<bool?> DeleteProductAsync(string id);
     Task<string?> CreateProductAsync(Product product);
-    Task<string?> UpdateProductAsync(string id, Product product);
+    Task<string?> UpdateProductAsync(Product product, StorageFile file);
 }
 
 public class ProductService : IProductService
@@ -68,10 +74,21 @@ public class ProductService : IProductService
         return null;
     }
 
-    public async Task<string?> UpdateProductAsync(string id, Product product)
+    public async Task<string?> UpdateProductAsync(Product product, StorageFile file)
     {
-        var content = JsonUtils.ToJsonContent(product);
-        var response = await _httpClient.PutAsync($"products/{id}", content);
+        var content = new MultipartFormDataContent();
+        var jsonContent = JsonUtils.ToJson(product);
+
+        content.Add(new StringContent(jsonContent), "product");
+        Debug.WriteLine(jsonContent);
+        if (file != null)
+        {
+            var stream = await file.OpenStreamForReadAsync();
+            var fileContent = new StreamContent(stream);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+            content.Add(fileContent, "image", file.Name);
+        }
+        var response = await _httpClient.PutAsync($"products/{product.ProductId.ToString()}", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;

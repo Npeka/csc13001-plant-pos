@@ -28,16 +28,28 @@ x:Key="SizeConverter" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Back Button -->
-        <Button Grid.Row="0" HorizontalAlignment="Left" Background="Transparent" 
-        Click="BackButton_Click">
-            <Button.Content>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button HorizontalAlignment="Left" Background="Transparent" Click="BackButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <TextBlock Text="&#xE72B;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
                     <TextBlock Text="Trở về trang ban đầu" VerticalAlignment="Center" FontWeight="SemiBold"/>
                 </StackPanel>
-            </Button.Content>
-        </Button>
+            </Button>
+
+            <Button Grid.Column="1" Padding="10,6" Background="#E3F2FD" Foreground="#1976D2" 
+            CornerRadius="4" Click="ShowProductDialogAsync">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
+                    <TextBlock Text="Sửa thông tin" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
 
 
         <!-- Main Content -->
@@ -122,13 +134,13 @@ x:Key="SizeConverter" />
         VerticalAlignment="Bottom"/>
 
                         <!-- Specifications -->
-                        <TextBlock Text="Tên khoa học:" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" 
+                        <TextBlock Text="Tên thông thường:" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" 
                                 Margin="0,12,24,12"/>
-                        <TextBlock Text="Dracaena draco L" Grid.Row="0" Grid.Column="1" Margin="0,12,0,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.Name}" Grid.Row="0" Grid.Column="1" Margin="0,12,0,12"/>
 
-                        <TextBlock Text="Tên thông thường:" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" 
+                        <TextBlock Text="Mô tả:" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" 
                                 Margin="0,12,24,12"/>
-                        <TextBlock Text="Phát tài núi" Grid.Row="1" Grid.Column="1" Margin="0,12,0,12"/>
+                        <TextBlock Text="{x:Bind CurrentProduct.Description}" Grid.Row="1" Grid.Column="1" Margin="0,12,0,12"/>
 
                         <TextBlock Text="Kích thước chậu:" FontWeight="SemiBold" Grid.Row="2" Grid.Column="0" 
                                 Margin="0,12,24,12"/>
