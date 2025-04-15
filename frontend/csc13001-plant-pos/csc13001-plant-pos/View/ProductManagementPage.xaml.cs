@@ -140,9 +140,13 @@ namespace csc13001_plant_pos.View
             {
                 Header = "Mô tả",
                 Text = category.Description,
-                Width = 300
+                Width = 300,
+                Height = 100,
+                TextWrapping = TextWrapping.Wrap,
+                AcceptsReturn = true
             };
             
+
 
             StackPanel dialogContent = new StackPanel
             {
@@ -155,11 +159,16 @@ namespace csc13001_plant_pos.View
                 Title = isEdit ? "Chỉnh sửa danh mục" : "Thêm danh mục",
                 Content = dialogContent,
                 PrimaryButtonText = isEdit ? "Lưu" : "Thêm",
+                SecondaryButtonText = isEdit ? "Xóa" : "",
                 CloseButtonText = "Hủy",
                 DefaultButton = ContentDialogButton.Primary,
                 XamlRoot = this.XamlRoot
             };
-
+            dialog.SecondaryButtonClick += async (s, e) =>
+            {
+                string? res = await ViewModel.DeleteCategoryAsync(category);
+                await ShowErrorDialogAsync(res);
+            };
             var result = await dialog.ShowAsync();
 
             if (result == ContentDialogResult.Primary)

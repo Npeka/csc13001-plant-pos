@@ -16,7 +16,7 @@ public interface ICategoryService
     Task<ApiResponse<Category>?> GetCategoryByIdAsync(string id);
     Task<bool?> DeleteCategoryAsync(string id);
     Task<string?> CreateCategoryAsync(CategoryCreateDto category);
-    Task<string?> UpdateCategoryAsync(CategoryCreateDto category);
+    Task<string?> UpdateCategoryAsync(CategoryDto category);
 }
 
 public class CategoryService : ICategoryService
@@ -58,7 +58,8 @@ public class CategoryService : ICategoryService
     public async Task<string?> CreateCategoryAsync(CategoryCreateDto category)
     {
         var content = JsonUtils.ToJsonContent(category);
-        Debug.WriteLine(content);
+        string json11 = await content.ReadAsStringAsync();
+        Debug.WriteLine(json11);
         var response = await _httpClient.PostAsync("categories", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
@@ -71,7 +72,7 @@ public class CategoryService : ICategoryService
         return null;
     }
 
-    public async Task<string?> UpdateCategoryAsync( CategoryCreateDto category)
+    public async Task<string?> UpdateCategoryAsync( CategoryDto category)
     {
         var content = JsonUtils.ToJsonContent(category);
         string json11 = await content.ReadAsStringAsync();

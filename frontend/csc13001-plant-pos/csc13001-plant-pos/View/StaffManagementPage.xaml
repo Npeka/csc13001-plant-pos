@@ -259,32 +259,49 @@
                         Width="180"
                         Binding="{Binding Status,Converter={StaticResource EnglishToVietnameseConverter}}"
                         Header="Trạng thái" />
-                    <controls:DataGridTemplateColumn
-                        Width="100"
-                        Header="Thao tác">
+                    <controls:DataGridTemplateColumn Width="150" Header="Thao tác">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <!-- Nút Sửa -->
+                                    <Button
                                         Padding="6,4"
                                         Background="#E3F2FD"
                                         CornerRadius="4"
                                         Foreground="#1976D2"
                                         Click="EditStaffInformation"
                                         Tag="{Binding}">
-                                    <StackPanel
-                                            Orientation="Horizontal">
-                                        <FontIcon
+                                        <StackPanel Orientation="Horizontal">
+                                            <FontIcon
                                                 Margin="0,0,5,0"
                                                 FontFamily="Segoe MDL2 Assets"
                                                 Glyph="&#xE70F;" />
-                                        <TextBlock
-                                                VerticalAlignment="Center"
-                                                Text="Sửa" />
-                                    </StackPanel>
-                                </Button>
+                                            <!-- Icon bút chì -->
+                                            <TextBlock VerticalAlignment="Center" Text="Sửa" />
+                                        </StackPanel>
+                                    </Button>
+
+                                    <!-- Nút Xóa -->
+                                    <Button
+                                        Padding="6,4"
+                                        Background="#FFEBEE"
+                                        CornerRadius="4"
+                                        Foreground="#D32F2F"
+                                        Click="ShowWorkLogListDialogAsync"
+                                        Tag="{Binding}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <FontIcon
+                                                Margin="0,0,5,0"
+                                                FontFamily="Segoe MDL2 Assets"
+                                                Glyph="&#xE823;" />
+                                            <TextBlock VerticalAlignment="Center" Text="Xóa" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
+
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </Grid>

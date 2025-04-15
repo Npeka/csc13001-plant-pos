@@ -178,7 +178,6 @@ namespace csc13001_plant_pos.ViewModel
         {
             var CategoryCreateDto = new CategoryCreateDto
             {
-                CategoryId = data.CategoryId,
                 Name = data.Name,
                 Description = data.Description
             };
@@ -193,16 +192,31 @@ namespace csc13001_plant_pos.ViewModel
             return response;
         }
 
+        public async Task<string?> DeleteCategoryAsync(Category data)
+        {
+            var response = await _categoryService.DeleteCategoryAsync(data.CategoryId.ToString());
+            if (response != null)
+            {
+                var categoryToRemove = Categories.FirstOrDefault(c => c.CategoryId == data.CategoryId);
+                if (categoryToRemove != null)
+                {
+                    Categories.Remove(categoryToRemove);
+                }
+                CategoryList.Remove(data.Name);
+                return "Xóa danh mục thành công";
+            }
+            return "Không xóa danh mục thành công";
+        }
 
         public async Task<string?> UpdateCategoryAsync(Category data)
         {
-            var CategoryCreateDto = new CategoryCreateDto
+            var CategoryDto = new CategoryDto
             {
                 CategoryId = data.CategoryId,
                 Name = data.Name,
                 Description = data.Description
             };
-            var response = await _categoryService.UpdateCategoryAsync(CategoryCreateDto);
+            var response = await _categoryService.UpdateCategoryAsync(CategoryDto);
             if (response != null)
             {
                 LoadProductsDataAsync();

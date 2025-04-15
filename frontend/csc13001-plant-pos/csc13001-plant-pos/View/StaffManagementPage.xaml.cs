@@ -13,6 +13,8 @@ using Windows.Storage;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Streams;
 using Windows.ApplicationModel.Contacts;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI;
 
 namespace csc13001_plant_pos.View
 {
@@ -24,6 +26,57 @@ namespace csc13001_plant_pos.View
         {
             this.DataContext = ViewModel = App.GetService<StaffManagementViewModel>();
             this.InitializeComponent();
+        }
+
+        private async void ShowWorkLogListDialogAsync(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var user = button?.Tag as csc13001_plant_pos.Model.User;
+            if (user?.WorkLogs == null || user.WorkLogs.Count == 0)
+            {
+                await ShowErrorDialogAsync("Không có thông tin để hiển thị.");
+                return;
+            }
+
+            StackPanel dialogContent = new StackPanel { Spacing = 8 };
+
+            foreach (var worklog in user.WorkLogs)
+            {
+                var border = new Border
+                {
+                    BorderThickness = new Thickness(1),
+                    BorderBrush = new SolidColorBrush(Colors.Gray),
+                    Padding = new Thickness(8),
+                    CornerRadius = new CornerRadius(4),
+                    Child = new StackPanel
+                    {
+                        Children =
+                {
+                    new TextBlock { Text = $"🕒 Đăng nhập: {worklog.LogInTime}" },
+                    new TextBlock { Text = $"🕘 Đăng xuất: {worklog.LogOutTime}" },
+                    new TextBlock { Text = $"⏱️ Thời gian làm việc: {worklog.WorkDuration}" }
+                }
+                    }
+                };
+
+                dialogContent.Children.Add(border);
+            }
+
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Lịch sử làm việc của nhân viên",
+                Content = new ScrollViewer
+                {
+                    Content = dialogContent,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    Height = 400,
+                    Width = 400
+                },
+                CloseButtonText = "Đóng",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
         }
 
         public async void AddNewStaff(object sender, RoutedEventArgs e)
@@ -221,7 +274,7 @@ namespace csc13001_plant_pos.View
         {
             ContentDialog errorDialog = new ContentDialog
             {
-                Title = "Lỗi",
+                Title = "Thông báo",
                 Content = message,
                 CloseButtonText = "Đóng",
                 XamlRoot = this.XamlRoot

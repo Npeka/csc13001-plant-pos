@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace csc13001_plant_pos.Model
@@ -35,5 +36,7 @@ namespace csc13001_plant_pos.Model
         public bool CanManageDiscounts { get; set; }
         [JsonPropertyName("canManageInventory")]
         public bool CanManageInventory { get; set; }
+        [JsonPropertyName("workLogs")]
+        public List<WorkLog> WorkLogs { get; set; }
     }
 }

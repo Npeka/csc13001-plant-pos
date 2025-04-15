@@ -8,8 +8,11 @@ using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.DTO.CustomerDTO
 {
-    public class CategoryCreateDto
+    public class CategoryDto
     {
+        [JsonPropertyName("categoryId")]
+        public int CategoryId { get; set; }
+
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
