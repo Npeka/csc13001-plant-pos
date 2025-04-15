@@ -120,14 +120,14 @@
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                <TextBlock Margin="0,0,0,5" Text="Tên nhà cung cấp *:" />
+                <TextBlock Margin="0,0,0,5" Text="Tên nhà cung cấp (*):" />
                 <TextBox
                     Padding="10"
                     PlaceholderText="Nhập tên nhà cung cấp..."
                     Text="{x:Bind ViewModel.SupplierName, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="0,0,20,0">
-                <TextBlock Margin="0,0,0,5" Text="Ngày nhập hàng *:" />
+                <TextBlock Margin="0,0,0,5" Text="Ngày nhập hàng (*):" />
                 <CalendarDatePicker
                     Height="40"
                     Date="{x:Bind ViewModel.PurchaseDate, Mode=TwoWay}"

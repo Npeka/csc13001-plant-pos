@@ -5,6 +5,7 @@ using csc13001_plant_pos.Model;
 using csc13001_plant_pos.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace csc13001_plant_pos.View
 {
@@ -16,6 +17,12 @@ namespace csc13001_plant_pos.View
         {
             this.InitializeComponent();
             ViewModel = App.GetService<DiscountManagementViewModel>();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadDiscountsAsync();
         }
 
         private async void AddDiscountButton_Click(object sender, RoutedEventArgs e)

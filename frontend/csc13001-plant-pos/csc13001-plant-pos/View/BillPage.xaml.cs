@@ -66,7 +66,7 @@ namespace csc13001_plant_pos.View
                 return;
 
             var hWnd = WindowNative.GetWindowHandle(mainWindow);
-            printManager = PrintManagerInterop.GetForWindow(hWnd); // Gán cho biến instance
+            printManager = PrintManagerInterop.GetForWindow(hWnd);
             printManager.PrintTaskRequested += PrintTask_Requested;
 
             printDocument = new PrintDocument();

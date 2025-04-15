@@ -437,6 +437,15 @@
                             Foreground="#555555"
                             Text="{x:Bind ViewModel.TotalRevenue, Mode=OneWay, Converter={StaticResource CurrencyConverter}}" />
                     </Grid>
+
+                    <Button
+                        Padding="8"
+                        HorizontalAlignment="Center"
+                        Background="#D3F9D8"
+                        Content="Thay đổi thông tin"
+                        CornerRadius="5"
+                        Foreground="#666666"
+                        Style="{StaticResource AccentButtonStyle}" />
                 </StackPanel>
             </Border>
 

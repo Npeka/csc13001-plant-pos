@@ -12,7 +12,7 @@ namespace csc13001_plant_pos.View
         {
             this.InitializeComponent();
             this.Loaded += SaleDashBoard_Loaded;
-            _userSessionService = App.GetService<UserSessionService>();
+            this.DataContext = _userSessionService = App.GetService<UserSessionService>();
         }
 
         private void SaleDashBoard_Loaded(object sender, RoutedEventArgs e)

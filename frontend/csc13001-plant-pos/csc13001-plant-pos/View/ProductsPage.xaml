@@ -379,7 +379,6 @@
                 <StackPanel VerticalAlignment="Bottom">
                     <Button
                         Padding="16,8"
-                        Background="#B3FFFFFF"
                         Command="{x:Bind ViewModel.ResetFiltersCommand}"
                         Style="{StaticResource AccentButtonStyle}"
                         ToolTipService.ToolTip="Đặt lại bộ lọc">
@@ -388,12 +387,10 @@
                                 FontFamily="Segoe MDL2 Assets"
                                 FontSize="14"
                                 FontWeight="Normal"
-                                Foreground="Black"
                                 Glyph="&#xE72C;" />
                             <TextBlock
                                 FontSize="14"
                                 FontWeight="Normal"
-                                Foreground="Black"
                                 Text="Đặt lại" />
                         </StackPanel>
                     </Button>

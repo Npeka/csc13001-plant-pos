@@ -32,8 +32,8 @@
                     VerticalAlignment="Top"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
-                    Foreground="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
-                    Glyph="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToGlyphConverter}}" />
+                    Foreground="#E81123"
+                    Glyph="&#xE715;" />
 
                 <StackPanel
                     Grid.Column="1"
@@ -48,14 +48,14 @@
                             Grid.Column="0"
                             Padding="8,3"
                             HorizontalAlignment="Left"
-                            Background="{x:Bind Type, Mode=OneWay, Converter={StaticResource TypeNotiToColorConverter}}"
+                            Background="#E81123"
                             CornerRadius="4">
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 FontSize="11"
                                 FontWeight="SemiBold"
                                 Foreground="White"
-                                Text="{x:Bind TypeName, Mode=OneWay}" />
+                                Text="Thông báo từ chủ sở hữu" />
                         </Grid>
                     </Grid>
                     <TextBlock
@@ -385,6 +385,7 @@
                     <ScrollViewer
                         Grid.Row="0"
                         Height="500"
+                        Padding="0,0,20,0"
                         VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemTemplate="{StaticResource NotificationTemplate}" ItemsSource="{x:Bind ViewModel.FilteredNotifications, Mode=OneWay}" />
                     </ScrollViewer>

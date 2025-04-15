@@ -35,7 +35,17 @@
                     Icon="Contact"
                     Tag="StaffProfilePage" />
 
-                <NavigationViewItem Content="Quản lý kho" Tag="WarehouseManagementPage">
+
+                <NavigationViewItem
+                    Content="Quản lý giảm giá"
+                    Icon="Tag"
+                    Tag="DiscountManagementPage"
+                    Visibility="{Binding CurrentUser.CanManageDiscounts, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <NavigationViewItem
+                    Content="Quản lý kho"
+                    Tag="WarehouseManagementPage"
+                    Visibility="{Binding CurrentUser.CanManageInventory, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEA0D;" />
                     </NavigationViewItem.Icon>

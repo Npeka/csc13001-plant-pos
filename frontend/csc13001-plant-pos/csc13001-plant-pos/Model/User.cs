@@ -34,13 +34,21 @@ namespace csc13001_plant_pos.Model
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
 
-        [ObservableProperty]
-        private bool _isSelected;
         [JsonPropertyName("canManageDiscounts")]
         public bool CanManageDiscounts { get; set; }
+
         [JsonPropertyName("canManageInventory")]
         public bool CanManageInventory { get; set; }
+
         [JsonPropertyName("workLogs")]
         public List<WorkLog> WorkLogs { get; set; }
+
+        [JsonIgnore]
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
+        }
+        private bool _isSelected;
     }
 }

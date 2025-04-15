@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -97,6 +98,7 @@ namespace csc13001_plant_pos.ViewModel
         private async void LoadDataAsync()
         {
             var notificationResponse = await _notificationService.GetAllNotificationsAsync();
+            System.Diagnostics.Debug.WriteLine($"Status: {notificationResponse?.Status}, Message: {notificationResponse?.Message}");
             if (notificationResponse?.Status == "success" && notificationResponse.Data != null)
             {
                 Notifications.Clear();
@@ -172,7 +174,7 @@ namespace csc13001_plant_pos.ViewModel
                 Title = NewNotificationTitle,
                 Content = NewNotificationContent,
                 Type = SelectedNotificationType,
-                To = IsAllStaffSelected ? null : StaffList.Where(s => s.IsSelected).Select(s => s.UserId).ToList()
+                To = IsAllStaffSelected ? new List<int>() : StaffList.Where(s => s.IsSelected).Select(s => s.UserId).ToList()
             };
 
             var success = await _notificationService.CreateNotificationAsync(notification);

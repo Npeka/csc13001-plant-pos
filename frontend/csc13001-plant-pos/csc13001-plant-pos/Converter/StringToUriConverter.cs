@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace csc13001_plant_pos.Converter
 {
@@ -9,11 +10,16 @@ namespace csc13001_plant_pos.Converter
         {
             if (value is string url && !string.IsNullOrEmpty(url))
             {
-                if (Uri.TryCreate(url, UriKind.Absolute, out Uri result))
+                try
                 {
-                    return result;
+                    return new BitmapImage(new Uri(url));
+                }
+                catch
+                {
+                    return null;
                 }
             }
+
             return null;
         }
 

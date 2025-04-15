@@ -1,20 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using csc13001_plant_pos.ViewModel;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using System;
-using static SkiaSharp.HarfBuzz.SKShaper;
-using Microsoft.UI.Xaml.Media.Imaging;
-using Windows.Storage.Pickers;
-using Windows.Storage;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Storage.Streams;
-using Windows.ApplicationModel.Contacts;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 
 namespace csc13001_plant_pos.View
 {

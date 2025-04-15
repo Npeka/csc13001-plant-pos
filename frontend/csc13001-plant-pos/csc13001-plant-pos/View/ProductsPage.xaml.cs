@@ -20,7 +20,7 @@ namespace csc13001_plant_pos.View
             if (sender is Grid grid && grid.Tag is Product product)
             {
                 string productId = product.ProductId.ToString();
-                Frame.Navigate(typeof(DetailProductPage), productId);
+                Frame.Navigate(typeof(DetailProductPage), product);
             }
         }
     }
