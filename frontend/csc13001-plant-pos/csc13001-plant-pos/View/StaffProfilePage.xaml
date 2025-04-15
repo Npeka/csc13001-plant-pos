@@ -444,6 +444,7 @@
                         Background="#D3F9D8"
                         Content="Thay đổi thông tin"
                         CornerRadius="5"
+                        Click="ShowStaffDialogAsync"
                         Foreground="#666666"
                         Style="{StaticResource AccentButtonStyle}" />
                 </StackPanel>

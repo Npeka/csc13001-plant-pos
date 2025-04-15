@@ -12,6 +12,7 @@ using Windows.Storage;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Streams;
 using csc13001_plant_pos.ViewModel;
+using Microsoft.UI.Xaml.Markup;
 
 namespace csc13001_plant_pos.View
 {
@@ -60,113 +61,204 @@ namespace csc13001_plant_pos.View
             string image64 = null;
             StorageFile selectedFile = null;
 
-            TextBox nameTextBox = new TextBox
-            {
-                Header = "Tên sản phẩm",
-                Text = CurrentProduct.Name,
-                Width = 300
-            };
+            // Tạo Dialog bằng XAML để có giao diện nhất quán và dễ bảo trì
+            var dialogContent = new Grid();
 
-            TextBox descriptionTextBox = new TextBox
-            {
-                Header = "Mô tả",
-                Text = CurrentProduct.Description,
-                Width = 300,
-                AcceptsReturn = true,
-                TextWrapping = TextWrapping.Wrap,
-                Height = 100
-            };
+            // Tạo nội dung XAML
+            var xamlContent = $@"
+    <Grid xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+          xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+        <Grid.Resources>
+            <Style x:Key='FieldGroupHeaderStyle' TargetType='TextBlock'>
+                <Setter Property='FontWeight' Value='SemiBold'/>
+                <Setter Property='FontSize' Value='16'/>
+                <Setter Property='Margin' Value='0,0,0,10'/>
+            </Style>
+            <Style TargetType='TextBox'>
+                <Setter Property='Margin' Value='0,0,0,12'/>
+                <Setter Property='HorizontalAlignment' Value='Stretch'/>
+            </Style>
+            <Style TargetType='ComboBox'>
+                <Setter Property='Margin' Value='0,0,0,12'/>
+                <Setter Property='HorizontalAlignment' Value='Stretch'/>
+            </Style>
+            <Style TargetType='RatingControl'>
+                <Setter Property='Margin' Value='0,0,0,15'/>
+                <Setter Property='MaxRating' Value='5'/>  
+                <Setter Property='IsReadOnly' Value='False'/>
+            </Style>
+        </Grid.Resources>
 
-            // Disabled fields
-            TextBox purchasePriceTextBox = new TextBox
-            {
-                Header = "Giá nhập (VND)",
-                Text = CurrentProduct.PurchasePrice.ToString(),
-                Width = 300,
-                IsEnabled = false
-            };
+        <ScrollViewer MaxHeight='600' VerticalScrollBarVisibility='Auto'>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width='*'/>
+                    <ColumnDefinition Width='300'/>
+                </Grid.ColumnDefinitions>
 
-            TextBox stockTextBox = new TextBox
-            {
-                Header = "Số lượng tồn kho",
-                Text = CurrentProduct.Stock.ToString(),
-                Width = 300,
-                IsEnabled = false
-            };
+                <!-- Cột thông tin chính -->
+                <StackPanel Grid.Column='0' Margin='0,0,20,0'>
+                    <!-- Thông tin cơ bản -->
+                    <TextBlock Text='Thông tin cơ bản' Style='{{StaticResource FieldGroupHeaderStyle}}'/>
+                    
+                    <TextBox x:Name='NameTextBox' Header='Tên sản phẩm' PlaceholderText='Nhập tên sản phẩm'/>
+                    
+                    <TextBox x:Name='DescriptionTextBox' 
+                           Header='Mô tả sản phẩm' 
+                           PlaceholderText='Nhập mô tả chi tiết về sản phẩm'
+                           AcceptsReturn='True'
+                           TextWrapping='Wrap'
+                           Height='100'/>
 
-            // Regular fields
-            TextBox salePriceTextBox = new TextBox
-            {
-                Header = "Giá bán (VND)",
-                Text = CurrentProduct.SalePrice.ToString(),
-                Width = 300
-            };
+                    <Grid Margin='0,0,0,12'>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width='*'/>
+                            <ColumnDefinition Width='*'/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBox x:Name='SalePriceTextBox' 
+                               Grid.Column='0' 
+                               Header='Giá bán (VND)' 
+                               PlaceholderText='Nhập giá bán'
+                               Margin='0,0,6,0'/>
+                               
+                        <TextBox x:Name='PurchasePriceTextBox' 
+                               Grid.Column='1' 
+                               Header='Giá nhập (VND)' 
+                               PlaceholderText='Giá nhập'
+                               IsEnabled='False'
+                               Margin='6,0,0,0'/>
+                    </Grid>
+                    
+                    <Grid Margin='0,0,0,12'>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width='*'/>
+                            <ColumnDefinition Width='*'/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBox x:Name='EnvironmentTypeTextBox' 
+                               Grid.Column='0' 
+                               Header='Loại môi trường' 
+                               PlaceholderText='VD: Trong nhà/Ngoài trời'
+                               Margin='0,0,6,0'/>
+                               
+                        <TextBox x:Name='StockTextBox' 
+                               Grid.Column='1' 
+                               Header='Số lượng tồn kho' 
+                               IsEnabled='False'
+                               Margin='6,0,0,0'/>
+                    </Grid>
+                    
+                    <ComboBox x:Name='CategoryComboBox' 
+                            Header='Phân loại sản phẩm'
+                            PlaceholderText='Chọn phân loại'/>
+                    
+                    <!-- Đặc điểm sản phẩm -->
+                    <Rectangle Height='1' Fill='{{ThemeResource DividerStrokeColorDefaultBrush}}' Margin='0,10,0,15'/>
+                    
+                    <TextBlock Text='Đặc điểm sản phẩm' Style='{{StaticResource FieldGroupHeaderStyle}}'/>
 
-            TextBox environmentTypeTextBox = new TextBox
-            {
-                Header = "Loại môi trường",
-                Text = CurrentProduct.EnvironmentType,
-                Width = 300
-            };
-            ComboBox categoryComboBox = new ComboBox
-            {
-                Header = "Phân loại",
-                ItemsSource = ViewModel.Categories,
-                DisplayMemberPath = "Name",
-                SelectedItem = ViewModel.Categories.FirstOrDefault(c => c.CategoryId == CurrentProduct.Category.CategoryId),
-                Width = 300
-            };
+                    <TextBlock Text='Kích thước chậu' Margin='0,0,0,5'/>
+                    <RatingControl x:Name='SizeRating'/>
+                    
+                    <TextBlock Text='Độ khó chăm sóc' Margin='0,0,0,5'/>
+                    <RatingControl x:Name='CareLevelRating'/>
+                    
+                    <TextBlock Text='Yêu cầu ánh sáng' Margin='0,0,0,5'/>
+                    <RatingControl x:Name='LightRequirementRating'/>
+                    
+                    <TextBlock Text='Nhu cầu nước' Margin='0,0,0,5'/>
+                    <RatingControl x:Name='WateringScheduleRating'/>
+                </StackPanel>
+                
+                <!-- Cột hình ảnh -->
+                <StackPanel Grid.Column='1'>
+                    <Border x:Name='ImageBorder'
+                            Width='250' Height='250'
+                            BorderThickness='1'
+                            BorderBrush='{{ThemeResource CardStrokeColorDefaultBrush}}'
+                            CornerRadius='8'>
+                        <Grid>
+                            <FontIcon x:Name='DefaultImageIcon'
+                                    Glyph='&#xEB9F;'
+                                    FontSize='50'
+                                    Foreground='#99000000'
+                                    HorizontalAlignment='Center'
+                                    VerticalAlignment='Center'/>
+                            
+                            <Image x:Name='ProductImage'
+                                 Stretch='UniformToFill'/>
+                        </Grid>
+                    </Border>
+                    
+                    <Button x:Name='SelectImageButton'
+                            Content='Chọn ảnh sản phẩm'
+                            HorizontalAlignment='Center'
+                            Margin='0,15,0,0'/>
+                    
+                    <InfoBar Title='Định dạng ảnh'
+                             IsOpen='True'
+                             Severity='Informational'
+                             Message='Hỗ trợ định dạng JPG và PNG'
+                             Margin='0,15,0,0'/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>";
 
-            // Dropdown fields with values 1-5
-            ComboBox sizeComboBox = new ComboBox
-            {
-                Header = "Kích thước chậu",
-                ItemsSource = Enumerable.Range(1, 5).ToList(),
-                SelectedItem = CurrentProduct.Size,
-                Width = 300
-            };
+            // Parse XAML để tạo UI
+            dialogContent = XamlReader.Load(xamlContent) as Grid;
 
-            ComboBox careLevelComboBox = new ComboBox
-            {
-                Header = "Độ khó chăm sóc",
-                ItemsSource = Enumerable.Range(1, 5).ToList(),
-                SelectedItem = CurrentProduct.CareLevel,
-                Width = 300
-            };
+            // Lấy các tham chiếu đến điều khiển
+            var nameTextBox = dialogContent.FindName("NameTextBox") as TextBox;
+            var descriptionTextBox = dialogContent.FindName("DescriptionTextBox") as TextBox;
+            var salePriceTextBox = dialogContent.FindName("SalePriceTextBox") as TextBox;
+            var purchasePriceTextBox = dialogContent.FindName("PurchasePriceTextBox") as TextBox;
+            var stockTextBox = dialogContent.FindName("StockTextBox") as TextBox;
+            var environmentTypeTextBox = dialogContent.FindName("EnvironmentTypeTextBox") as TextBox;
+            var categoryComboBox = dialogContent.FindName("CategoryComboBox") as ComboBox;
 
-            ComboBox lightRequirementComboBox = new ComboBox
-            {
-                Header = "Yêu cầu ánh sáng",
-                ItemsSource = Enumerable.Range(1, 5).ToList(),
-                SelectedItem = CurrentProduct.LightRequirement,
-                Width = 300
-            };
+            var sizeRating = dialogContent.FindName("SizeRating") as RatingControl;
+            var careLevelRating = dialogContent.FindName("CareLevelRating") as RatingControl;
+            var lightRequirementRating = dialogContent.FindName("LightRequirementRating") as RatingControl;
+            var wateringScheduleRating = dialogContent.FindName("WateringScheduleRating") as RatingControl;
 
-            ComboBox wateringScheduleComboBox = new ComboBox
-            {
-                Header = "Nhu cầu nước",
-                ItemsSource = Enumerable.Range(1, 5).ToList(),
-                SelectedItem = CurrentProduct.WateringSchedule,
-                Width = 300
-            };
+            var selectImageButton = dialogContent.FindName("SelectImageButton") as Button;
+            var productImage = dialogContent.FindName("ProductImage") as Image;
+            var defaultImageIcon = dialogContent.FindName("DefaultImageIcon") as FontIcon;
 
-            // Image selection
-            Button selectImageButton = new Button
-            {
-                Content = "Chọn ảnh",
-                Width = 100
-            };
+            // Thiết lập dữ liệu
+            nameTextBox.Text = CurrentProduct.Name;
+            descriptionTextBox.Text = CurrentProduct.Description;
+            salePriceTextBox.Text = CurrentProduct.SalePrice.ToString();
+            purchasePriceTextBox.Text = CurrentProduct.PurchasePrice.ToString();
+            stockTextBox.Text = CurrentProduct.Stock.ToString();
+            environmentTypeTextBox.Text = CurrentProduct.EnvironmentType;
 
-            Image selectedImagePreview = new Image
-            {
-                Width = 100,
-                Height = 100,
-                Margin = new Thickness(0, 10, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Source = string.IsNullOrEmpty(CurrentProduct.ImageUrl) ? null : new BitmapImage(new Uri(CurrentProduct.ImageUrl))
-            };
+            // Thiết lập ComboBox Category
+            categoryComboBox.ItemsSource = ViewModel.Categories;
+            categoryComboBox.DisplayMemberPath = "Name";
+            categoryComboBox.SelectedItem = ViewModel.Categories.FirstOrDefault(c => c.CategoryId == CurrentProduct.Category.CategoryId);
 
-            selectImageButton.Click += async (sender, e) =>
+            // Thiết lập Rating Controls thay cho ComboBox
+            sizeRating.Value = CurrentProduct.Size;
+            careLevelRating.Value = CurrentProduct.CareLevel;
+            lightRequirementRating.Value = CurrentProduct.LightRequirement;
+            wateringScheduleRating.Value = CurrentProduct.WateringSchedule;
+
+            // Cài đặt hiển thị ảnh
+            if (!string.IsNullOrEmpty(CurrentProduct.ImageUrl))
+            {
+                productImage.Source = new BitmapImage(new Uri(CurrentProduct.ImageUrl));
+                defaultImageIcon.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                defaultImageIcon.Visibility = Visibility.Visible;
+            }
+
+            // Xử lý sự kiện chọn ảnh
+            selectImageButton.Click += async (s, args) =>
             {
                 var picker = new FileOpenPicker();
                 picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
@@ -182,48 +274,24 @@ namespace csc13001_plant_pos.View
                     image64 = await ConvertImageToBase64Async(file);
                     var stream = await file.OpenAsync(FileAccessMode.Read);
                     var bitmap = new BitmapImage();
-                    bitmap.SetSource(stream);
-                    selectedImagePreview.Source = bitmap;
+                    await bitmap.SetSourceAsync(stream);
+                    productImage.Source = bitmap;
+                    defaultImageIcon.Visibility = Visibility.Collapsed;
                 }
             };
 
-            // Create dialog layout
-            StackPanel dialogContent = new StackPanel
-            {
-                Spacing = 10,
-                Children =
-        {
-            nameTextBox,
-            descriptionTextBox,
-            salePriceTextBox,
-            purchasePriceTextBox,
-            stockTextBox,
-            environmentTypeTextBox,
-            categoryComboBox,
-            sizeComboBox,
-            careLevelComboBox,
-            lightRequirementComboBox,
-            wateringScheduleComboBox,
-            selectImageButton,
-            selectedImagePreview
-        }
-            };
-
-            var scrollViewer = new ScrollViewer
-            {
-                Content = dialogContent,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                MaxHeight = 700
-            };
-
+            // Tạo hộp thoại với giao diện đã cải thiện
             ContentDialog dialog = new ContentDialog
             {
                 Title = "Chỉnh sửa sản phẩm",
-                Content = scrollViewer,
-                PrimaryButtonText = "Lưu",
-                CloseButtonText = "Hủy",
+                Content = dialogContent,
+                PrimaryButtonText = "Lưu thay đổi",
+                CloseButtonText = "Hủy bỏ",
                 DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = this.XamlRoot
+                XamlRoot = this.XamlRoot,
+                Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                PrimaryButtonStyle = Application.Current.Resources["AccentButtonStyle"] as Style,
+                MinWidth = 800
             };
 
             var result = await dialog.ShowAsync();
@@ -234,12 +302,9 @@ namespace csc13001_plant_pos.View
                 if (string.IsNullOrWhiteSpace(nameTextBox.Text) ||
                     string.IsNullOrWhiteSpace(descriptionTextBox.Text) ||
                     !decimal.TryParse(salePriceTextBox.Text, out decimal salePrice) ||
-                    sizeComboBox.SelectedItem == null ||
-                    careLevelComboBox.SelectedItem == null ||
-                    lightRequirementComboBox.SelectedItem == null ||
-                    wateringScheduleComboBox.SelectedItem == null)
+                    categoryComboBox.SelectedItem == null)
                 {
-                    await ShowErrorDialogAsync("Vui lòng nhập đầy đủ thông tin.");
+                    await ShowErrorDialogAsync("Vui lòng nhập đầy đủ thông tin cần thiết.");
                     return;
                 }
 
@@ -248,14 +313,31 @@ namespace csc13001_plant_pos.View
                 CurrentProduct.Description = descriptionTextBox.Text;
                 CurrentProduct.SalePrice = salePrice;
                 CurrentProduct.EnvironmentType = environmentTypeTextBox.Text;
-                CurrentProduct.Size = (int)sizeComboBox.SelectedItem;
-                CurrentProduct.CareLevel = (int)careLevelComboBox.SelectedItem;
-                CurrentProduct.LightRequirement = (int)lightRequirementComboBox.SelectedItem;
-                CurrentProduct.WateringSchedule = (int)wateringScheduleComboBox.SelectedItem;
+                CurrentProduct.Size = (int)sizeRating.Value;
+                CurrentProduct.CareLevel = (int)careLevelRating.Value;
+                CurrentProduct.LightRequirement = (int)lightRequirementRating.Value;
+                CurrentProduct.WateringSchedule = (int)wateringScheduleRating.Value;
+                CurrentProduct.Category = categoryComboBox.SelectedItem as Category;
 
-                // Save changes
-                await ViewModel.UpdateProductAsync(CurrentProduct, selectedFile);
+                    // Lưu thay đổi
+                    bool updateResult = await ViewModel.UpdateProductAsync(CurrentProduct, selectedFile);
 
+
+                    if (updateResult)
+                    {
+                        var successDialog = new ContentDialog
+                        {
+                            Title = "Thành công",
+                            Content = "Đã cập nhật thông tin sản phẩm thành công.",
+                            CloseButtonText = "Đóng",
+                            XamlRoot = this.XamlRoot
+                        };
+                        await successDialog.ShowAsync();
+                    }
+                    else
+                    {
+                        await ShowErrorDialogAsync("Không thể cập nhật sản phẩm. Vui lòng thử lại sau.");
+                    }
             }
         }
         private void SaveChanges()

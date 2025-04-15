@@ -79,6 +79,7 @@
                 <Button
                     Grid.Column="1"
                     Margin="8,0,8,0"
+                    Style="{StaticResource AccentButtonStyle}"
                     CornerRadius="4"
                     Click="AddNewStaff">
                     <StackPanel
@@ -92,7 +93,7 @@
                             Text="Thêm nhân viên" />
                     </StackPanel>
                 </Button>
-                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" >
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" Style="{StaticResource AccentButtonStyle}">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="8">
@@ -166,6 +167,7 @@
                     VerticalAlignment="Bottom"
                     Background="Transparent"
                     BorderBrush="#D13438"
+                    Style="{StaticResource AccentButtonStyle}"
                     BorderThickness="1"
                     Click="{x:Bind ViewModel.ResetFilters, Mode=OneWay}"
                     Content="Đặt lại bộ lọc"
@@ -259,7 +261,7 @@
                         Width="180"
                         Binding="{Binding Status,Converter={StaticResource EnglishToVietnameseConverter}}"
                         Header="Trạng thái" />
-                    <controls:DataGridTemplateColumn Width="150" Header="Thao tác">
+                    <controls:DataGridTemplateColumn Width="180" Header="Thao tác">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Spacing="6">
@@ -270,6 +272,7 @@
                                         CornerRadius="4"
                                         Foreground="#1976D2"
                                         Click="EditStaffInformation"
+                                        Style="{StaticResource AccentButtonStyle}"
                                         Tag="{Binding}">
                                         <StackPanel Orientation="Horizontal">
                                             <FontIcon
@@ -284,17 +287,18 @@
                                     <!-- Nút Xóa -->
                                     <Button
                                         Padding="6,4"
-                                        Background="#FFEBEE"
+                                        Background="Transparent"
                                         CornerRadius="4"
-                                        Foreground="#D32F2F"
+                                        Foreground="#111111"
                                         Click="ShowWorkLogListDialogAsync"
+                                        Style="{StaticResource AccentButtonStyle}"
                                         Tag="{Binding}">
                                         <StackPanel Orientation="Horizontal">
                                             <FontIcon
                                                 Margin="0,0,5,0"
                                                 FontFamily="Segoe MDL2 Assets"
                                                 Glyph="&#xE823;" />
-                                            <TextBlock VerticalAlignment="Center" Text="Xóa" />
+                                            <TextBlock VerticalAlignment="Center" Text="Lịch sử" />
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>

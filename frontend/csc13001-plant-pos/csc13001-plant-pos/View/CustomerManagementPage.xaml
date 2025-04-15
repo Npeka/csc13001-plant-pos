@@ -36,83 +36,106 @@
             Grid.Row="0" />
 
         <!--  Thông tin tổng quan (Dashboard)  -->
-        <Grid
-            Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,10,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="250" />
-                <ColumnDefinition
-                    Width="250" />
-                <ColumnDefinition
-                    Width="250" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!--  Tổng số khách hàng  -->
-            <Border
-                Margin="0,0,5,0"
-                Background="#0078D7"
-                CornerRadius="8">
-                <StackPanel
-                    Padding="15">
-                    <TextBlock
-                        FontSize="14"
-                        Foreground="White"
-                        Text="Tổng số khách hàng" />
-                    <TextBlock
-                        x:Name="TotalCustomersCount"
-                        Margin="0,5,0,0"
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Foreground="White"
-                        Text="{x:Bind ViewModel.TotalCustomers, Mode=OneWay}" />
-                </StackPanel>
+            <!-- Tổng số khách hàng -->
+            <Border Grid.Column="0" Margin="5" CornerRadius="12" BorderThickness="0"
+            Background="{ThemeResource SystemAccentColor}">
+                <Border.Shadow>
+                    <ThemeShadow />
+                </Border.Shadow>
+                <Grid Padding="18,15" Background="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <FontIcon Grid.Column="1" Glyph="&#xE716;" FontSize="28" Foreground="White" Opacity="0.8" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Tổng số khách hàng" 
+                       Foreground="White" FontSize="14" Opacity="0.8" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,5" 
+                       Text="{x:Bind ViewModel.TotalCustomers, Mode=OneWay}"
+                       FontSize="30" FontWeight="SemiBold" Foreground="White" />
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE72C;" FontSize="12" Foreground="#7FFFFFFF" VerticalAlignment="Center" Margin="0,0,5,0" />
+                        <TextBlock Text="Cập nhật mới nhất" Foreground="#7FFFFFFF" FontSize="12" />
+                    </StackPanel>
+                </Grid>
             </Border>
 
-            <!--  Khách hàng mới trong tháng  -->
-            <Border
-                Grid.Column="1"
-                Margin="5,0,5,0"
-                Background="#107C10"
-                CornerRadius="8">
-                <StackPanel
-                    Padding="15">
-                    <TextBlock
-                        FontSize="14"
-                        Foreground="White"
-                        Text="Khách hàng mới trong tháng" />
-                    <TextBlock
-                        x:Name="NewCustomersCount"
-                        Margin="0,5,0,0"
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Foreground="White"
-                        Text="{x:Bind ViewModel.NewCustomersThisMonth, Mode=OneWay}" />
-                </StackPanel>
+            <!-- Khách hàng mới trong tháng -->
+            <Border Grid.Column="1" Margin="5" CornerRadius="12" BorderThickness="0"
+            Background="#00BFFF">
+                <Border.Shadow>
+                    <ThemeShadow />
+                </Border.Shadow>
+                <Grid Padding="18,15" Background="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <FontIcon Grid.Column="1" Glyph="&#xE77F;" FontSize="28" Foreground="White" Opacity="0.8" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Khách hàng mới" 
+                       Foreground="White" FontSize="14" Opacity="0.8" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,5"
+                       Text="{x:Bind ViewModel.NewCustomersThisMonth, Mode=OneWay}"
+                       FontSize="30" FontWeight="SemiBold" Foreground="White" />
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE787;" FontSize="12" Foreground="#7FFFFFFF" VerticalAlignment="Center" Margin="0,0,5,0" />
+                        <TextBlock Text="Tháng hiện tại" Foreground="#7FFFFFFF" FontSize="12" />
+                    </StackPanel>
+                </Grid>
             </Border>
 
-            <!--  Khách hàng hạng cao  -->
-            <Border
-                Grid.Column="2"
-                Margin="5,0,0,0"
-                Background="#5C2D91"
-                CornerRadius="8">
-                <StackPanel
-                    Padding="15">
-                    <TextBlock
-                        FontSize="14"
-                        Foreground="White"
-                        Text="Khách hàng cao cấp" />
-                    <TextBlock
-                        x:Name="PremiumCustomersCount"
-                        Margin="0,5,0,0"
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Foreground="White"
-                        Text="{x:Bind ViewModel.PremiumCustomers, Mode=OneWay}" />
-                </StackPanel>
+            <!-- Khách hàng cao cấp -->
+            <Border Grid.Column="2" Margin="5" CornerRadius="12" BorderThickness="0"
+            Background="#B3B1AF">
+                <Border.Shadow>
+                    <ThemeShadow />
+                </Border.Shadow>
+                <Grid Padding="18,15" Background="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <FontIcon Grid.Column="1" Glyph="&#xE734;" FontSize="28" Foreground="White" Opacity="0.8" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Khách hàng cao cấp" 
+                       Foreground="White" FontSize="14" Opacity="0.8" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,5"
+                       Text="{x:Bind ViewModel.PremiumCustomers, Mode=OneWay}"
+                       FontSize="30" FontWeight="SemiBold" Foreground="White" />
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE735;" FontSize="12" Foreground="#7FFFFFFF" VerticalAlignment="Center" Margin="0,0,5,0" />
+                        <TextBlock Text="Tần suất mua sắm cao" Foreground="#7FFFFFFF" FontSize="12" />
+                    </StackPanel>
+                </Grid>
             </Border>
         </Grid>
-
         <!--  Khu vực tìm kiếm và lọc  -->
         <Grid
             Grid.Row="2">
@@ -145,6 +168,7 @@
                 <Button
     x:Name="AddNew"
     Grid.Column="1"
+                    Style="{StaticResource AccentButtonStyle}"
     Margin="10,0,10,0"
     Click="AddNewCustomer">
                     <StackPanel Orientation="Horizontal">
@@ -156,7 +180,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" >
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Export"  Click="ExportButton_Click" Style="{StaticResource AccentButtonStyle}">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="8">
@@ -222,6 +246,7 @@
                 <Button
                     Grid.Column="4"
                     VerticalAlignment="Center"
+                    Style="{StaticResource AccentButtonStyle}"
                     Click="{x:Bind ViewModel.ResetFilter_Click}"
                     Content="Đặt lại bộ lọc" />
             </Grid>
@@ -292,6 +317,7 @@
                                         Background="#E3F2FD"
                                         Click="EditCustomerInformation"
                                         CornerRadius="4"
+                                        Style="{StaticResource AccentButtonStyle}"
                                         Foreground="#1976D2"
                                         Tag="{Binding}">
                                         <StackPanel
@@ -310,6 +336,7 @@
                                     <Button
                                         Padding="6,4"
                                         Background="#FFEBEE"
+                                        Style="{StaticResource AccentButtonStyle}"
                                         CornerRadius="4"
                                         Click="DeleteCustomer"
                                         Foreground="#C62828"
