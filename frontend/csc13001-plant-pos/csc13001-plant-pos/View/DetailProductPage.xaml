@@ -31,30 +31,18 @@
 
             <Button
                 HorizontalAlignment="Left"
-                Background="Transparent"
-                Foreground="Black"
-                Style="{StaticResource AccentButtonStyle}"
-                Click="BackButton_Click">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        FontFamily="Segoe MDL2 Assets"
-                        Text="&#xE72B;" />
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        FontWeight="SemiBold"
-                        Text="Trở về trang ban đầu" />
-                </StackPanel>
-            </Button>
+                Click="BackButton_Click"
+                Content="&#xE830;"
+                FontFamily="Segoe MDL2 Assets"
+                Style="{StaticResource AccentButtonStyle}" />
 
             <Button
                 Grid.Column="1"
                 Padding="10,6"
-                Background="#E3F2FD"
+                BorderThickness="0"
                 Click="ShowProductDialogAsync"
-                Style="{StaticResource AccentButtonStyle}"
                 CornerRadius="4"
-                Foreground="#1976D2">
+                Style="{StaticResource BlueAccentButtonStyle}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
                     <TextBlock VerticalAlignment="Center" Text="Sửa thông tin" />

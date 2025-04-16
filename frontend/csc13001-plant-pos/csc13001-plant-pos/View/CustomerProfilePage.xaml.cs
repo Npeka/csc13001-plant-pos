@@ -13,6 +13,14 @@ namespace csc13001_plant_pos.View {
             this.InitializeComponent();
             ViewModel = App.GetService<CustomerProfileViewModel>();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+        }
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

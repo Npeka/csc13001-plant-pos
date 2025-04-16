@@ -44,6 +44,16 @@ namespace csc13001_plant_pos.View
             await ShowCustomerDialogAsync(newCustomer, false);
         }
 
+        public void ViewCustomer(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var customer = button?.Tag as CustomerDto;
+            if (customer != null)
+            {
+                Frame.Navigate(typeof(CustomerProfilePage), customer.Customer.CustomerId.ToString());
+            }
+        }
+
         public async void EditCustomerInformation(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

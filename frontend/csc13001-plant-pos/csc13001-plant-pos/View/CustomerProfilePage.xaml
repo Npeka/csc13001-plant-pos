@@ -249,7 +249,19 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button
+            Grid.Row="0"
+            Margin="16,16,0,0"
+            Click="BackButton_Click"
+            Content="&#xE830;"
+            FontFamily="Segoe MDL2 Assets"
+            Style="{StaticResource AccentButtonStyle}" />
+
+        <Grid Grid.Row="1" Margin="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="20" />

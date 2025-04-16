@@ -369,18 +369,39 @@
                     <controls:DataGridTemplateColumn Width="200" Header="Thao tác">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                    <!--  Button Cập nhật  -->
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="6">
                                     <Button
                                         Padding="6,4"
-                                        Background="#E3F2FD"
+                                        Click="ViewCustomer"
+                                        CornerRadius="4"
+                                        Style="{StaticResource BlueAccentButtonStyle}"
+                                        Tag="{Binding}">
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                FontSize="12"
+                                                Glyph="&#xE7B3;" />
+                                            <TextBlock
+                                                Margin="0,0,5,0"
+                                                VerticalAlignment="Center"
+                                                Text="Xem" />
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button
+                                        Padding="6,4"
                                         Click="EditCustomerInformation"
                                         CornerRadius="4"
-                                        Foreground="#1976D2"
-                                        Style="{StaticResource AccentButtonStyle}"
+                                        Style="{StaticResource BlueAccentButtonStyle}"
                                         Tag="{Binding}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <FontIcon VerticalAlignment="Center" Glyph="&#xE70F;" />
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                FontSize="12"
+                                                Glyph="&#xE70F;" />
                                             <TextBlock
                                                 Margin="0,0,5,0"
                                                 VerticalAlignment="Center"
@@ -388,16 +409,17 @@
                                         </StackPanel>
                                     </Button>
 
-                                    <!--  Button Xóa  -->
                                     <Button
                                         Padding="6,4"
-                                        Background="#FFEBEE"
                                         Click="DeleteCustomer"
                                         CornerRadius="4"
-                                        Foreground="#C62828"
+                                        Style="{StaticResource RedAccentButtonStyle}"
                                         Tag="{Binding}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <FontIcon VerticalAlignment="Center" Glyph="&#xE74D;" />
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                FontSize="12"
+                                                Glyph="&#xE74D;" />
                                             <TextBlock
                                                 Margin="0,0,5,0"
                                                 VerticalAlignment="Center"
@@ -405,7 +427,6 @@
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
-
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
 

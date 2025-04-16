@@ -7,59 +7,43 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <XamlControlsResources
-                    xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <ResourceDictionary
-                    Source="/Converter/Converter.xaml" />
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="/Converter/Converter.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Color
-                x:Key="SystemAccentColor">#FF4CAF50</Color>
-            <SolidColorBrush
-                x:Key="SystemAccentColorBrush"
-                Color="{StaticResource SystemAccentColor}" />
+            <Color x:Key="SystemAccentColor">#FF4CAF50</Color>
+            <SolidColorBrush x:Key="SystemAccentColorBrush" Color="{StaticResource SystemAccentColor}" />
 
             <Style
                 x:Key="RedAccentButtonStyle"
-                TargetType="Button"
-                BasedOn="{StaticResource DefaultButtonStyle}">
-                <Setter
-                    Property="Background"
-                    Value="Red" />
-                <Setter
-                    Property="Foreground"
-                    Value="White" />
-                <Setter
-                    Property="BorderBrush"
-                    Value="Red" />
-                <Setter
-                    Property="Template">
+                BasedOn="{StaticResource DefaultButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Background" Value="Red" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="BorderBrush" Value="Red" />
+                <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate
-                            TargetType="Button">
+                        <ControlTemplate TargetType="Button">
                             <Grid>
                                 <Border
                                     x:Name="ButtonBackground"
+                                    Padding="{TemplateBinding Padding}"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    Padding="{TemplateBinding Padding}" />
+                                    CornerRadius="{TemplateBinding CornerRadius}" />
 
                                 <ContentPresenter
+                                    Margin="{TemplateBinding Padding}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     Content="{TemplateBinding Content}"
-                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                    Margin="{TemplateBinding Padding}" />
+                                    ContentTemplate="{TemplateBinding ContentTemplate}" />
 
                                 <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup
-                                        x:Name="CommonStates">
-                                        <VisualState
-                                            x:Name="Normal" />
-                                        <VisualState
-                                            x:Name="PointerOver">
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
                                             <Storyboard>
                                                 <ColorAnimation
                                                     Storyboard.TargetName="ButtonBackground"
@@ -76,20 +60,67 @@
                 </Setter>
             </Style>
 
+            <Style
+                x:Key="BlueAccentButtonStyle"
+                BasedOn="{StaticResource DefaultButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Background" Value="#BBDEFB" />
+                <Setter Property="Foreground" Value="#1976D2" />
+                <Setter Property="BorderBrush" Value="#1976D2" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Border
+                                    x:Name="ButtonBackground"
+                                    Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding CornerRadius}" />
+                                <ContentPresenter
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    Storyboard.TargetName="ButtonBackground"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="#90CAF9"
+                                                    Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    Storyboard.TargetName="ButtonBackground"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="#1976D2"
+                                                    Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-            <Color
-                x:Key="SystemAccentColorLight1">#FF81C784</Color>
-            <Color
-                x:Key="SystemAccentColorLight2">#FFB9F6CA</Color>
-            <Color
-                x:Key="SystemAccentColorLight3">#FFE8F5E9</Color>
+            <Color x:Key="SystemAccentColorLight1">#FF81C784</Color>
+            <Color x:Key="SystemAccentColorLight2">#FFB9F6CA</Color>
+            <Color x:Key="SystemAccentColorLight3">#FFE8F5E9</Color>
 
-            <Color
-                x:Key="SystemAccentColorDark1">#FF388E3C</Color>
-            <Color
-                x:Key="SystemAccentColorDark2">#FF2E7D32</Color>
-            <Color
-                x:Key="SystemAccentColorDark3">#FF1B5E20</Color>
+            <Color x:Key="SystemAccentColorDark1">#FF388E3C</Color>
+            <Color x:Key="SystemAccentColorDark2">#FF2E7D32</Color>
+            <Color x:Key="SystemAccentColorDark3">#FF1B5E20</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

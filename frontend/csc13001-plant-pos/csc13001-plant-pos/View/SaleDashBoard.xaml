@@ -31,12 +31,6 @@
                 </NavigationViewItem>
 
                 <NavigationViewItem
-                    Content="Hồ sơ cá nhân"
-                    Icon="Contact"
-                    Tag="StaffProfilePage" />
-
-
-                <NavigationViewItem
                     Content="Quản lý giảm giá"
                     Icon="Tag"
                     Tag="DiscountManagementPage"
@@ -70,6 +64,11 @@
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
+                <NavigationViewItem
+                    Content="Hồ sơ cá nhân"
+                    Icon="Contact2"
+                    Tag="StaffProfilePage" />
+
                 <NavigationViewItem Content="Đăng xuất" Tag="Logout">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE8DE;" />
