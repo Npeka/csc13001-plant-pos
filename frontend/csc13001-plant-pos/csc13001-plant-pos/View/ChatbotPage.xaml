@@ -22,11 +22,13 @@
                         Grid.Column="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToColumnConverter}, ConverterParameter='0:1'}"
                         Width="32"
                         Height="32"
+                        Margin="4"
                         VerticalAlignment="Top"
                         DisplayName="{x:Bind User.Fullname, Mode=OneWay}"
                         ProfilePicture="{x:Bind User.ImageUrl, Mode=OneWay, Converter={StaticResource StringToUriConverter}}" />
                     <StackPanel Grid.Column="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToColumnConverter}, ConverterParameter='1:0'}" Spacing="8">
                         <TextBlock
+                            HorizontalAlignment="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToAlignmentConverter}, ConverterParameter='Left:Right'}"
                             FontWeight="SemiBold"
                             Foreground="#202123"
                             Text="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToSenderConverter}, ConverterParameter='AI Assistant:Bạn'}" />
@@ -113,7 +115,7 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="20"
                     Foreground="#202123"
-                    Glyph="" />
+                    Glyph="&#xE8EA;" />
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="16"
@@ -133,7 +135,7 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="16"
                     Foreground="#202123"
-                    Glyph="" />
+                    Glyph="&#xE712;" />
             </Button>
         </Grid>
 
@@ -256,7 +258,7 @@
                             FontFamily="Segoe MDL2 Assets"
                             FontSize="16"
                             Foreground="White"
-                            Glyph="" />
+                            Glyph="&#xE725;" />
                     </Button>
                 </Grid>
                 <TextBlock

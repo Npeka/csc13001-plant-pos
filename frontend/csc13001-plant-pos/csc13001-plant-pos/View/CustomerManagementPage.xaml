@@ -59,7 +59,8 @@
                     <!--  Phần thông tin  -->
                     <StackPanel Grid.Column="0">
                         <TextBlock
-                            FontSize="14"
+                            FontSize="16"
+                            FontWeight="SemiBold"
                             Foreground="White"
                             Text="Tổng số khách hàng" />
                         <TextBlock
@@ -69,6 +70,24 @@
                             FontWeight="Bold"
                             Foreground="White"
                             Text="{x:Bind ViewModel.TotalCustomers, Mode=OneWay}" />
+                        <StackPanel
+                            Margin="0,4,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <FontIcon
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="14"
+                                Foreground="#B3FFFFFF"
+                                Glyph="&#xE72C;" />
+                            <TextBlock
+                                Margin="0,4,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Foreground="#B3FFFFFF"
+                                Text="Cập nhật mới nhất" />
+                        </StackPanel>
                     </StackPanel>
 
                     <!--  Phần icon  -->
@@ -77,7 +96,7 @@
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         FontFamily="Segoe MDL2 Assets"
-                        FontSize="24"
+                        FontSize="40"
                         Foreground="White"
                         Glyph="&#xEBDA;" />
                 </Grid>
@@ -97,9 +116,10 @@
                     <!--  Phần thông tin  -->
                     <StackPanel Grid.Column="0">
                         <TextBlock
-                            FontSize="14"
+                            FontSize="16"
+                            FontWeight="SemiBold"
                             Foreground="White"
-                            Text="Khách hàng mới trong tháng" />
+                            Text="Khách hàng mới" />
                         <TextBlock
                             x:Name="NewCustomersCount"
                             Margin="0,5,0,0"
@@ -107,6 +127,24 @@
                             FontWeight="Bold"
                             Foreground="White"
                             Text="{x:Bind ViewModel.NewCustomersThisMonth, Mode=OneWay}" />
+                        <StackPanel
+                            Margin="0,4,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <FontIcon
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="14"
+                                Foreground="#B3FFFFFF"
+                                Glyph="&#xEC92;" />
+                            <TextBlock
+                                Margin="0,4,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Foreground="#B3FFFFFF"
+                                Text="Tháng hiện tại" />
+                        </StackPanel>
                     </StackPanel>
 
                     <!--  Phần icon  -->
@@ -115,7 +153,7 @@
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         FontFamily="Segoe MDL2 Assets"
-                        FontSize="24"
+                        FontSize="40"
                         Foreground="White"
                         Glyph="&#xE8FA;" />
                 </Grid>
@@ -135,7 +173,8 @@
                     <!--  Phần thông tin  -->
                     <StackPanel Grid.Column="0">
                         <TextBlock
-                            FontSize="14"
+                            FontSize="16"
+                            FontWeight="SemiBold"
                             Foreground="White"
                             Text="Khách hàng cao cấp" />
                         <TextBlock
@@ -145,6 +184,24 @@
                             FontWeight="Bold"
                             Foreground="White"
                             Text="{x:Bind ViewModel.PremiumCustomers, Mode=OneWay}" />
+                        <StackPanel
+                            Margin="0,4,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <FontIcon
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="14"
+                                Foreground="#B3FFFFFF"
+                                Glyph="&#xE735;" />
+                            <TextBlock
+                                Margin="0,4,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Foreground="#B3FFFFFF"
+                                Text="Tần xuất mua sắm cao" />
+                        </StackPanel>
                     </StackPanel>
 
                     <!--  Phần icon  -->
@@ -153,7 +210,7 @@
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         FontFamily="Segoe MDL2 Assets"
-                        FontSize="24"
+                        FontSize="40"
                         Foreground="White"
                         Glyph="&#xECA7;" />
                 </Grid>
@@ -184,7 +241,8 @@
                     x:Name="AddNew"
                     Grid.Column="1"
                     Margin="10,0,10,0"
-                    Click="AddNewCustomer">
+                    Click="AddNewCustomer"
+                    Style="{StaticResource AccentButtonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon
                             Margin="0,0,8,0"
@@ -199,7 +257,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Click="ExportButton_Click"
-                    Content="Export">
+                    Content="Export"
+                    Style="{StaticResource AccentButtonStyle}">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="8">
@@ -252,9 +311,9 @@
                 <Button
                     Grid.Column="4"
                     VerticalAlignment="Center"
-                    Style="{StaticResource AccentButtonStyle}"
                     Click="{x:Bind ViewModel.ResetFilter_Click}"
-                    Content="Đặt lại bộ lọc" />
+                    Content="Đặt lại bộ lọc"
+                    Style="{StaticResource AccentButtonStyle}" />
             </Grid>
         </Grid>
 
@@ -317,8 +376,8 @@
                                         Background="#E3F2FD"
                                         Click="EditCustomerInformation"
                                         CornerRadius="4"
-                                        Style="{StaticResource AccentButtonStyle}"
                                         Foreground="#1976D2"
+                                        Style="{StaticResource AccentButtonStyle}"
                                         Tag="{Binding}">
                                         <StackPanel Orientation="Horizontal">
                                             <FontIcon VerticalAlignment="Center" Glyph="&#xE70F;" />
