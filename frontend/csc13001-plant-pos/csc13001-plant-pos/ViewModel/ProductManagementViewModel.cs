@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using csc13001_plant_pos.DTO.CustomerDTO;
+using Windows.Storage;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -99,7 +100,7 @@ namespace csc13001_plant_pos.ViewModel
             else
             {
                 sortedList = new ObservableCollection<Product>(FilteredProductList.OrderBy(p => p.SalePrice));
-                IsAscendingPrice++;
+                IsAscendingPrice--;
             }
                 FilteredProductList.Clear();
             foreach (var product in sortedList)
@@ -121,7 +122,7 @@ namespace csc13001_plant_pos.ViewModel
             else
             {
                 sortedList = new ObservableCollection<Product>(FilteredProductList.OrderBy(p => p.CareLevel));
-                IsAscendingLevel++;
+                IsAscendingLevel--;
             }
             FilteredProductList.Clear();
             foreach (var product in sortedList)
@@ -233,6 +234,19 @@ namespace csc13001_plant_pos.ViewModel
                 return "Sửa danh mục thành công";
             }
             return response;
+        }
+
+        public async Task<bool> CreateProductAsync(Product product, StorageFile selectedFile)
+        {
+            var response = await _productService.CreateProductAsync(product, selectedFile);
+            if (response != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         partial void OnSearchQueryChanged(string value)

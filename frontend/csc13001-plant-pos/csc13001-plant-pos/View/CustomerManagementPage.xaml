@@ -159,7 +159,6 @@
                 </Grid>
             </Border>
         </Grid>
-
         <!--  Khu vực tìm kiếm và lọc  -->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -253,6 +252,7 @@
                 <Button
                     Grid.Column="4"
                     VerticalAlignment="Center"
+                    Style="{StaticResource AccentButtonStyle}"
                     Click="{x:Bind ViewModel.ResetFilter_Click}"
                     Content="Đặt lại bộ lọc" />
             </Grid>
@@ -317,6 +317,7 @@
                                         Background="#E3F2FD"
                                         Click="EditCustomerInformation"
                                         CornerRadius="4"
+                                        Style="{StaticResource AccentButtonStyle}"
                                         Foreground="#1976D2"
                                         Tag="{Binding}">
                                         <StackPanel Orientation="Horizontal">

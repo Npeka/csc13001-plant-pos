@@ -6,6 +6,7 @@ using csc13001_plant_pos.ViewModel;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage;
@@ -119,79 +120,177 @@ namespace csc13001_plant_pos.View
 
         private async Task ShowStaffDialogAsync(csc13001_plant_pos.Model.User user, bool isEdit)
         {
-           string image64 = null;
+            string image64 = null;
             StorageFile selectedFile = null;
-            TextBox fullNameTextBox = new TextBox
-            {
-                Header = "Họ Tên",
-                Text = user.Fullname,
-                Width = 300
-            };
-            TextBox emailTextBox = new TextBox
-            {
-                Header = "Email",
-                Text = user.Email,
-                Width = 300
-            };
-            TextBox phoneTextBox = new TextBox
-            {
-                Header = "Số điện thoại",
-                Text = user.Phone,
-                Width = 300
-            };
-            ComboBox statusComboBox = new ComboBox
-            {
-                Header = "Trạng thái",
-                ItemsSource = new List<string> { "Working", "OnLeave", "Resigned" },
-                SelectedItem = user.Status,
-                Width = 300
-            };
-            ComboBox genderComboBox = new ComboBox
-            {
-                Header = "Giới tính",
-                ItemsSource = new List<string> { "Male", "Female"},
-                SelectedItem = user.Gender,
-                Width = 300
-            };
-            ToggleSwitch isAdminToggleSwitch = new ToggleSwitch
-            {
-                Header = "Quyền quản trị",
-                IsOn = user.IsAdmin,
-                Width = 300,
-                IsEnabled = false
-            };
 
-            ToggleSwitch canManageDiscounts = new ToggleSwitch
-            {
-                Header = "Quyền quản lý giảm giá",
-                IsOn = user.CanManageDiscounts,
-                Width = 300
-            };
+            // Tạo Dialog bằng XAML để có giao diện nhất quán và dễ bảo trì
+            var dialogContent = new Grid();
 
-            ToggleSwitch canManageInventory = new ToggleSwitch
-            {
-                Header = "Quyền quản lý kho",
-                IsOn = user.CanManageInventory,
-                Width = 300
-            };
+            // Tạo nội dung XAML
+            var xamlContent = $@"
+    <Grid xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+          xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+        <Grid.Resources>
+            <Style TargetType='TextBox'>
+                <Setter Property='Margin' Value='0,0,0,12' />
+                <Setter Property='Width' Value='300' />
+                <Setter Property='HorizontalAlignment' Value='Stretch' />
+            </Style>
+            <Style TargetType='ComboBox'>
+                <Setter Property='Margin' Value='0,0,0,12' />
+                <Setter Property='Width' Value='300' />
+                <Setter Property='HorizontalAlignment' Value='Stretch' />
+            </Style>
+            <Style TargetType='ToggleSwitch'>
+                <Setter Property='Margin' Value='0,0,0,12' />
+                <Setter Property='Width' Value='300' />
+                <Setter Property='HorizontalAlignment' Value='Stretch' />
+            </Style>
+        </Grid.Resources>
 
-            Button selectImageButton = new Button
-            {
-                Content = "Chọn ảnh",
-                Width = 100
-            };
-            Image selectedImagePreview = new Image
-            {
-                Width = 100,
-                Height = 100,
-                Margin = new Thickness(0, 10, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Source = string.IsNullOrEmpty(user.ImageUrl) ? null : new BitmapImage(new Uri(user.ImageUrl))
-            };
+        <ScrollViewer MaxHeight='500' VerticalScrollBarVisibility='Auto'>
+            <StackPanel Spacing='12' Margin='0,0,0,20'>
+                <!-- Profile Image Section -->
+                <Grid HorizontalAlignment='Center' Margin='0,0,0,15'>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height='Auto'/>
+                        <RowDefinition Height='Auto'/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border x:Name='ImageBorder' 
+                            Grid.Row='0'
+                            Width='120' Height='120' 
+                            BorderThickness='2'
+                            BorderBrush='{{ThemeResource SystemAccentColor}}'
+                            CornerRadius='60'>
+                        <Border.Background>
+                            <SolidColorBrush Color='#FFEEEEEE'/>
+                        </Border.Background>
+                        
+                        <Grid>
+                            <FontIcon x:Name='DefaultPersonIcon' 
+                                      Glyph='&#xE77B;' 
+                                      FontSize='50' 
+                                      Foreground='#99000000'
+                                      HorizontalAlignment='Center' 
+                                      VerticalAlignment='Center'/>
+                            
+                            <Image x:Name='StaffImage' 
+                                   Stretch='UniformToFill'/>
+                        </Grid>
+                    </Border>
+                    
+                    <Button x:Name='SelectImageButton'
+                            Grid.Row='1'
+                            Content='Chọn ảnh'
+                            Margin='0,10,0,0'
+                            HorizontalAlignment='Center'/>
+                </Grid>
+                
+                <!-- Divider -->
+                <Rectangle Height='1' Fill='{{ThemeResource SystemBaseLowColor}}' Margin='0,0,0,10'/>
+                
+                <!-- Info Section -->
+                <TextBlock Text='Thông tin cá nhân' 
+                           FontWeight='SemiBold' 
+                           FontSize='16' 
+                           Margin='0,0,0,10'/>
+                
+                <TextBox x:Name='FullNameTextBox' 
+                         Header='Họ Tên' 
+                         PlaceholderText='Nhập họ tên đầy đủ'/>
+                
+                    
+                    <ComboBox x:Name='GenderComboBox' 
+                              Header='Giới tính'
+                              Margin='0,0,5,12'/>
+                    
+                    <ComboBox x:Name='StatusComboBox'
+                              Header='Trạng thái'
+                              Margin='5,0,0,12'/>
+                
+                <TextBox x:Name='EmailTextBox' 
+                         Header='Email' 
+                         PlaceholderText='example@domain.com'/>
+                
+                <TextBox x:Name='PhoneTextBox' 
+                         Header='Số điện thoại' 
+                         PlaceholderText='Nhập số điện thoại'/>
+                
+                <!-- Divider -->
+                <Rectangle Height='1' Fill='{{ThemeResource SystemBaseLowColor}}' Margin='0,10,0,10'/>
+                
+                <!-- Permissions Section -->
+                <TextBlock Text='Phân quyền' 
+                           FontWeight='SemiBold' 
+                           FontSize='16' 
+                           Margin='0,0,0,10'/>
+                
+                <ToggleSwitch x:Name='IsAdminToggleSwitch' 
+                              Header='Quyền quản trị'
+                              OffContent='Không'
+                              OnContent='Có'/>
+                
+                <ToggleSwitch x:Name='CanManageDiscountsToggleSwitch' 
+                              Header='Quyền quản lý giảm giá'
+                              OffContent='Không'
+                              OnContent='Có'/>
+                
+                <ToggleSwitch x:Name='CanManageInventoryToggleSwitch' 
+                              Header='Quyền quản lý kho'
+                              OffContent='Không'
+                              OnContent='Có'/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>";
 
+            // Parse XAML để tạo UI
+            dialogContent = XamlReader.Load(xamlContent) as Grid;
+
+            // Lấy các tham chiếu đến điều khiển
+            var fullNameTextBox = dialogContent.FindName("FullNameTextBox") as TextBox;
+            var emailTextBox = dialogContent.FindName("EmailTextBox") as TextBox;
+            var phoneTextBox = dialogContent.FindName("PhoneTextBox") as TextBox;
+            var statusComboBox = dialogContent.FindName("StatusComboBox") as ComboBox;
+            var genderComboBox = dialogContent.FindName("GenderComboBox") as ComboBox;
+            var isAdminToggleSwitch = dialogContent.FindName("IsAdminToggleSwitch") as ToggleSwitch;
+            var canManageDiscountsToggleSwitch = dialogContent.FindName("CanManageDiscountsToggleSwitch") as ToggleSwitch;
+            var canManageInventoryToggleSwitch = dialogContent.FindName("CanManageInventoryToggleSwitch") as ToggleSwitch;
+            var selectImageButton = dialogContent.FindName("SelectImageButton") as Button;
+            var staffImage = dialogContent.FindName("StaffImage") as Image;
+            var defaultPersonIcon = dialogContent.FindName("DefaultPersonIcon") as FontIcon;
+
+            // Thiết lập dữ liệu
+            fullNameTextBox.Text = user.Fullname;
+            emailTextBox.Text = user.Email;
+            phoneTextBox.Text = user.Phone;
+
+            statusComboBox.ItemsSource = new List<string> { "Working", "OnLeave", "Resigned" };
+            statusComboBox.SelectedItem = user.Status;
+
+            genderComboBox.ItemsSource = new List<string> { "Male", "Female" };
+            genderComboBox.SelectedItem = user.Gender;
+
+            isAdminToggleSwitch.IsOn = user.IsAdmin;
+            isAdminToggleSwitch.IsEnabled = false;
+
+            canManageDiscountsToggleSwitch.IsOn = user.CanManageDiscounts;
+            canManageInventoryToggleSwitch.IsOn = user.CanManageInventory;
+
+            // Cài đặt hiển thị ảnh
+            if (!string.IsNullOrEmpty(user.ImageUrl))
+            {
+                staffImage.Source = new BitmapImage(new Uri(user.ImageUrl));
+                defaultPersonIcon.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                defaultPersonIcon.Visibility = Visibility.Visible;
+            }
+
+            // Xử lý sự kiện chọn ảnh
             selectImageButton.Click += async (sender, e) =>
             {
-
                 var picker = new FileOpenPicker();
                 picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
                 picker.FileTypeFilter.Add(".jpg");
@@ -206,31 +305,23 @@ namespace csc13001_plant_pos.View
                     image64 = await ConvertImageToBase64Async(file);
                     var stream = await file.OpenAsync(FileAccessMode.Read);
                     var bitmap = new BitmapImage();
-                    bitmap.SetSource(stream);
-                    selectedImagePreview.Source = bitmap;
-
+                    await bitmap.SetSourceAsync(stream);
+                    staffImage.Source = bitmap;
+                    defaultPersonIcon.Visibility = Visibility.Collapsed;
                 }
             };
 
-            StackPanel dialogContent = new StackPanel
-            {
-                Spacing = 10,
-                Children = { fullNameTextBox, emailTextBox, phoneTextBox, statusComboBox, genderComboBox, isAdminToggleSwitch, canManageDiscounts, canManageInventory, selectImageButton, selectedImagePreview }
-            };
-            var scrollViewer = new ScrollViewer
-            {
-                Content = dialogContent,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                MaxHeight = 700
-            };
+            // Tạo hộp thoại với giao diện đã cải thiện
             ContentDialog dialog = new ContentDialog
             {
                 Title = isEdit ? "Chỉnh sửa nhân viên" : "Thêm nhân viên",
-                Content = scrollViewer,
-                PrimaryButtonText = isEdit ? "Lưu" : "Thêm",
+                Content = dialogContent,
+                PrimaryButtonText = isEdit ? "Lưu thay đổi" : "Thêm nhân viên",
                 CloseButtonText = "Hủy",
                 DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = this.XamlRoot
+                XamlRoot = this.XamlRoot,
+                Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                PrimaryButtonStyle = Application.Current.Resources["AccentButtonStyle"] as Style
             };
 
             var result = await dialog.ShowAsync();
@@ -253,19 +344,31 @@ namespace csc13001_plant_pos.View
                 user.Status = (string)statusComboBox.SelectedItem;
                 user.Gender = (string)genderComboBox.SelectedItem;
                 user.IsAdmin = isAdminToggleSwitch.IsOn;
-                user.CanManageDiscounts = canManageDiscounts.IsOn;
-                user.CanManageInventory = canManageInventory.IsOn;
+                user.CanManageDiscounts = canManageDiscountsToggleSwitch.IsOn;
+                user.CanManageInventory = canManageInventoryToggleSwitch.IsOn;
+
                 bool success = isEdit
                     ? await ViewModel.UpdateStaffAsync(user, selectedFile)
                     : await ViewModel.AddStaffAsync(user, selectedFile);
 
-                if (!success)
+                if (success)
                 {
-                    await ShowErrorDialogAsync("Không thể lưu nhân viên. Vui lòng thử lại.");
+                    var successDialog = new ContentDialog
+                    {
+                        Title = "Thành công",
+                        Content = isEdit ? "Đã cập nhật thông tin nhân viên." : "Đã thêm nhân viên mới.",
+                        CloseButtonText = "Đóng",
+                        XamlRoot = this.XamlRoot,
+                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style
+                    };
+                    await successDialog.ShowAsync();
+                }
+                else
+                {
+                    await ShowErrorDialogAsync("Không thể lưu thông tin nhân viên. Vui lòng thử lại.");
                 }
             }
         }
-
         private async Task ShowErrorDialogAsync(string message)
         {
             ContentDialog errorDialog = new ContentDialog

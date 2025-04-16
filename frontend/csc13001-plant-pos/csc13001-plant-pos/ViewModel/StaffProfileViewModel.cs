@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using csc13001_plant_pos.DTO.OrderDTO;
 using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Service;
+using Windows.Storage;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -97,6 +98,15 @@ namespace csc13001_plant_pos.ViewModel
             }
 
             UpdateFilteredOrders();
+        }
+        public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
+        {
+            var response = await _staffService.UpdateStaffAsync(user, file);
+            if (response)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void UpdateFilteredOrders()

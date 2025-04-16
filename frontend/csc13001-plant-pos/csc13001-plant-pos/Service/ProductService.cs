@@ -19,7 +19,7 @@ public interface IProductService
     Task<ApiResponse<List<Product>>?> GetProductsAsync();
     Task<ApiResponse<Product>?> GetProductByIdAsync(string id);
     Task<bool?> DeleteProductAsync(string id);
-    Task<string?> CreateProductAsync(Product product);
+    Task<string?> CreateProductAsync(Product product, StorageFile file);
     Task<string?> UpdateProductAsync(Product product, StorageFile file);
 }
 
@@ -59,9 +59,40 @@ public class ProductService : IProductService
         return false;
     }
 
-    public async Task<string?> CreateProductAsync(Product product)
+    public async Task<string?> CreateProductAsync(Product product, StorageFile file)
     {
-        var content = JsonUtils.ToJsonContent(product);
+        var jsonContent = JsonSerializer.Serialize(new
+        {
+            productId = product.ProductId,
+            name = product.Name,
+            description = product.Description,
+            imageUrl = product.ImageUrl,
+            salePrice = product.SalePrice,
+            purchasePrice = product.PurchasePrice,
+            stock = product.Stock,
+            size = product.Size,
+            careLevel = product.CareLevel,
+            lightRequirement = product.LightRequirement,
+            wateringSchedule = product.WateringSchedule,
+            environmentType = product.EnvironmentType,
+            category = new
+            {
+                categoryId = product.Category.CategoryId,
+                name = product.Category.Name,
+                description = product.Category.Description
+            }
+        });
+
+        var content = new MultipartFormDataContent();
+        content.Add(new StringContent(jsonContent), "product");
+        Debug.WriteLine(jsonContent);
+        if (file != null)
+        {
+            var stream = await file.OpenStreamForReadAsync();
+            var fileContent = new StreamContent(stream);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+            content.Add(fileContent, "image", file.Name);
+        }
         var response = await _httpClient.PostAsync("products", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
@@ -76,11 +107,30 @@ public class ProductService : IProductService
 
     public async Task<string?> UpdateProductAsync(Product product, StorageFile file)
     {
-        var content = new MultipartFormDataContent();
-        var jsonContent = JsonUtils.ToJson(product);
+        var jsonContent = JsonSerializer.Serialize(new
+        {
+            productId = product.ProductId,
+            name = product.Name,
+            description = product.Description,
+            imageUrl = product.ImageUrl,
+            salePrice = product.SalePrice,
+            purchasePrice = product.PurchasePrice,
+            stock = product.Stock,
+            size = product.Size,
+            careLevel = product.CareLevel,
+            lightRequirement = product.LightRequirement,
+            wateringSchedule = product.WateringSchedule,
+            environmentType = product.EnvironmentType,
+            category = new
+            {
+                categoryId = product.Category.CategoryId,
+                name = product.Category.Name,
+                description = product.Category.Description
+            }
+        });
 
+        var content = new MultipartFormDataContent();
         content.Add(new StringContent(jsonContent), "product");
-        Debug.WriteLine(jsonContent);
         if (file != null)
         {
             var stream = await file.OpenStreamForReadAsync();
@@ -89,13 +139,13 @@ public class ProductService : IProductService
             content.Add(fileContent, "image", file.Name);
         }
         var response = await _httpClient.PutAsync($"products/{product.ProductId.ToString()}", content);
+        Debug.WriteLine($"Response: {response.StatusCode}");
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;
         if (root.GetProperty("status").GetString() == "success")
         {
-            var productId = root.GetProperty("data").GetProperty("productId").GetInt32().ToString();
-            return productId;
+            return product.ProductId.ToString();
         }
         return null;
     }
