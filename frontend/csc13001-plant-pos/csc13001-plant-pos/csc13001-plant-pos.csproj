@@ -17,8 +17,9 @@
     <None Remove="Converter\Converter.xaml" />
     <None Remove="View\AddCustomerPage.xaml" />
     <None Remove="View\AddStockReceiptPage.xaml" />
+    <None Remove="View\AdminAccountPage.xaml" />
     <None Remove="View\AdminDashBoard.xaml" />
-    <None Remove="View\AdminNotification.xaml" />
+    <None Remove="View\AdminNotificationPage.xaml" />
     <None Remove="View\AuthenticationPage.xaml" />
     <None Remove="View\Authentication\FormForgotPassword.xaml" />
     <None Remove="View\Authentication\FormLayout.xaml" />
@@ -33,7 +34,7 @@
     <None Remove="View\RoleSelectionPage.xaml" />
     <None Remove="View\SaleDashBoard.xaml" />
     <None Remove="View\SalePage.xaml" />
-    <None Remove="View\StaffNotification.xaml" />
+    <None Remove="View\StaffNotificationPage.xaml" />
     <None Remove="View\StaffProfilePage.xaml" />
     <None Remove="View\StatisticPage.xaml" />
     <None Remove="View\UI\PageTitle.xaml" />
@@ -97,13 +98,16 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Page Update="View\AdminNotification.xaml">
+    <Page Update="View\StaffNotificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\AdminNotificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\AdminAccountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="View\ChatbotPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="View\StaffNotification.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="View\ProductsPage.xaml">

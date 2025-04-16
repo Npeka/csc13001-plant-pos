@@ -5,14 +5,14 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos.View
 {
-    public sealed partial class StaffNotification : Page
+    public sealed partial class StaffNotificationPage : Page
     {
         public StaffNotificationViewModel ViewModel { get; }
 
-        public StaffNotification()
+        public StaffNotificationPage()
         {
             this.InitializeComponent();
-            this.DataContext =  ViewModel = App.GetService<StaffNotificationViewModel>();
+            this.DataContext = ViewModel = App.GetService<StaffNotificationViewModel>();
         }
 
         private void PageSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

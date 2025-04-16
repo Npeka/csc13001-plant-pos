@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using csc13001_plant_pos.Service;
+using csc13001_plant_pos.View;
 using csc13001_plant_pos.ViewModel;
 using csc13001_plant_pos.ViewModel.Authentication;
 using Microsoft.Extensions.Configuration;
@@ -61,6 +62,7 @@ public partial class App : Application
                 services.AddSingleton<ICustomerService, CustomerService>();
                 services.AddSingleton<IDiscountProgramService, DiscountProgramService>();
                 services.AddSingleton<IInventoryService, InventoryService>();
+                services.AddSingleton<IMessageService, MessageService>();
                 services.AddSingleton<INotificationService, NotificationService>();
                 services.AddSingleton<IOrderService, OrderService>();
                 services.AddSingleton<IProductService, ProductService>();
@@ -91,6 +93,7 @@ public partial class App : Application
                 services.AddSingleton<DetailProductViewModel>();
                 services.AddSingleton<StaffNotificationViewModel>();
                 services.AddSingleton<AdminNotificationViewModel>();
+                services.AddSingleton<ChatbotViewModel>();
             })
             .Build();
     }

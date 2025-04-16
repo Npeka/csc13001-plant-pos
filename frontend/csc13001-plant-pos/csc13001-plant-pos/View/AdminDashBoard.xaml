@@ -63,7 +63,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Quản lý thông báo" Tag="AdminNotification">
+                <NavigationViewItem Content="Quản lý thông báo" Tag="AdminNotificationPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEC42;" />
                     </NavigationViewItem.Icon>
@@ -77,6 +77,11 @@
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Tài khoản" Tag="AdminAccountPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8D4;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="Đăng xuất" Tag="Logout">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE8DE;" />

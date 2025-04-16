@@ -5,13 +5,16 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
-    <Page Update="View\AdminNotification.xaml">
+    <Page Update="View\StaffNotificationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminNotificationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminAccountPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ChatbotPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\StaffNotification.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ProductsPage.xaml">

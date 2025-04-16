@@ -6,8 +6,78 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:csc13001_plant_pos.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:csc13001_plant_pos.Model"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="MessageTemplate" x:DataType="model:Message">
+            <Grid Padding="16,24" Background="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToBackgroundConverter}}">
+                <Grid HorizontalAlignment="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToAlignmentConverter}, ConverterParameter='Left:Right'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <PersonPicture
+                        Grid.Column="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToColumnConverter}, ConverterParameter='0:1'}"
+                        Width="32"
+                        Height="32"
+                        VerticalAlignment="Top"
+                        DisplayName="{x:Bind User.Fullname, Mode=OneWay}"
+                        ProfilePicture="{x:Bind User.ImageUrl, Mode=OneWay, Converter={StaticResource StringToUriConverter}}" />
+                    <StackPanel Grid.Column="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToColumnConverter}, ConverterParameter='1:0'}" Spacing="8">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Foreground="#202123"
+                            Text="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToSenderConverter}, ConverterParameter='AI Assistant:Bạn'}" />
+                        <Border
+                            MaxWidth="600"
+                            Padding="12,8"
+                            HorizontalAlignment="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToAlignmentConverter}, ConverterParameter='Left:Right'}"
+                            Background="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToBackgroundConverter}}"
+                            BorderBrush="#E5E5E5"
+                            BorderThickness="1"
+                            CornerRadius="8">
+                            <TextBlock
+                                Foreground="#202123"
+                                LineHeight="24"
+                                Text="{x:Bind Content, Mode=OneWay}"
+                                TextWrapping="Wrap" />
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MessageGroupTemplate" x:DataType="model:MessageDateGroup">
+            <StackPanel>
+                <Grid Padding="16,8,16,8" Background="#E5E5E5">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#202123"
+                        Text="{x:Bind Date, Mode=OneWay, Converter={StaticResource DateToGroupHeaderConverter}}" />
+                </Grid>
+                <ListView
+                    IsItemClickEnabled="False"
+                    ItemTemplate="{StaticResource MessageTemplate}"
+                    ItemsSource="{x:Bind Messages, Mode=OneWay}"
+                    SelectionMode="None">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Padding="0">
         <Grid.RowDefinitions>
@@ -15,7 +85,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -35,17 +104,16 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
             <StackPanel
                 Grid.Column="0"
                 VerticalAlignment="Center"
                 Orientation="Horizontal"
                 Spacing="12">
                 <FontIcon
-                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    FontFamily="Segoe MDL2 Assets"
                     FontSize="20"
                     Foreground="#202123"
-                    Glyph="&#xE8EA;" />
+                    Glyph="" />
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="16"
@@ -53,228 +121,50 @@
                     Foreground="#202123"
                     Text="Trợ lý PlantAI" />
             </StackPanel>
-
-            <StackPanel
+            <Button
+                x:Name="HistoryButton"
                 Grid.Column="2"
-                Orientation="Horizontal"
-                Spacing="8">
-                <!--  History Button  -->
-                <Button
-                    x:Name="HistoryButton"
-                    Padding="8"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    CornerRadius="4"
-                    Style="{StaticResource AccentButtonStyle}">
-                    <FontIcon
-                        FontFamily="{StaticResource SymbolThemeFontFamily}"
-                        FontSize="16"
-                        Foreground="#202123"
-                        Glyph="&#xE712;" />
-                </Button>
-                <!--  New Button  -->
-                <Button
-                    x:Name="NewChatButton"
-                    Padding="8"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    CornerRadius="4"
-                    Style="{StaticResource AccentButtonStyle}">
-                    <FontIcon
-                        FontFamily="{StaticResource SymbolThemeFontFamily}"
-                        FontSize="16"
-                        Foreground="#202123"
-                        Glyph="&#xE710;" />
-                </Button>
-            </StackPanel>
+                Padding="8"
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{x:Bind ViewModel.ToggleHistoryPanelCommand}"
+                CornerRadius="4">
+                <FontIcon
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="16"
+                    Foreground="#202123"
+                    Glyph="" />
+            </Button>
         </Grid>
 
         <!--  Chat History  -->
         <ScrollViewer
+            x:Name="ChatScrollViewer"
             Grid.Row="1"
             Grid.Column="0"
-            Padding="0"
+            Padding="0,0,8,0"
             Background="White"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
-            <StackPanel Padding="0">
-                <!--  User Message  -->
-                <Grid Padding="16,24" Background="White">
-                    <Grid MaxWidth="800" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <PersonPicture
-                            Grid.Column="0"
-                            Width="32"
-                            Height="32"
-                            Margin="0,0,16,0"
-                            VerticalAlignment="Top"
-                            ProfilePicture="/Assets/Icon/ManagerIcon.png" />
-
-                        <StackPanel Grid.Column="1" Spacing="8">
-                            <TextBlock
-                                FontWeight="SemiBold"
-                                Foreground="#202123"
-                                Text="Bạn" />
-                            <Border
-                                Padding="12,8"
-                                Background="#F7F7F8"
-                                BorderBrush="#E5E5E5"
-                                BorderThickness="1"
-                                CornerRadius="8">
-                                <TextBlock
-                                    Foreground="#202123"
-                                    LineHeight="24"
-                                    Text="Tôi vừa mua cây trầu bà và không biết cách chăm sóc. Bạn có thể tư vấn giúp tôi không?"
-                                    TextWrapping="Wrap" />
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-                <!--  AI Response  -->
-                <Grid Padding="16,24" Background="#F7F7F8">
-                    <Grid MaxWidth="800" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <PersonPicture
-                            Grid.Column="0"
-                            Width="32"
-                            Height="32"
-                            Margin="0,0,16,0"
-                            VerticalAlignment="Top"
-                            ProfilePicture="/Assets/Icon/ShoppingIcon.png" />
-
-                        <StackPanel Grid.Column="1" Spacing="8">
-                            <TextBlock
-                                FontWeight="SemiBold"
-                                Foreground="#202123"
-                                Text="AI Assistant" />
-                            <Border
-                                Padding="12,8"
-                                Background="White"
-                                BorderBrush="#E5E5E5"
-                                BorderThickness="1"
-                                CornerRadius="8">
-                                <TextBlock
-                                    Foreground="#202123"
-                                    LineHeight="24"
-                                    TextWrapping="Wrap">
-                                    <Run Text="Rất vui khi bạn đã chọn cây trầu bà! Đây là một loại cây dễ chăm sóc và phổ biến. Dưới đây là một số hướng dẫn cơ bản:" />
-                                    <LineBreak />
-                                    <LineBreak />
-                                    <Run Text="1. Ánh sáng: Trầu bà thích ánh sáng gián tiếp, tránh ánh nắng trực tiếp." />
-                                    <LineBreak />
-                                    <Run Text="2. Nước: Tưới khi lớp đất trên mặt khô, khoảng 1-2 lần/tuần tùy mùa." />
-                                    <LineBreak />
-                                    <Run Text="3. Độ ẩm: Thích môi trường ẩm, có thể phun sương lên lá." />
-                                    <LineBreak />
-                                    <LineBreak />
-                                    <Run Text="Hãy đặt cây ở nơi có ánh sáng tốt nhưng không trực tiếp, và chú ý không để nước đọng trong chậu." />
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-                <!--  User Message 2  -->
-                <Grid Padding="16,24" Background="White">
-                    <Grid MaxWidth="800" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <PersonPicture
-                            Grid.Column="0"
-                            Width="32"
-                            Height="32"
-                            Margin="0,0,16,0"
-                            VerticalAlignment="Top"
-                            ProfilePicture="/Assets/Icon/ManagerIcon.png" />
-
-                        <StackPanel Grid.Column="1" Spacing="8">
-                            <TextBlock
-                                FontWeight="SemiBold"
-                                Foreground="#202123"
-                                Text="Bạn" />
-                            <Border
-                                Padding="12,8"
-                                Background="#F7F7F8"
-                                BorderBrush="#E5E5E5"
-                                BorderThickness="1"
-                                CornerRadius="8">
-                                <TextBlock
-                                    Foreground="#202123"
-                                    LineHeight="24"
-                                    Text="Cảm ơn bạn! Tôi thấy lá cây hơi vàng ở mép, đó có phải là dấu hiệu của vấn đề gì không?"
-                                    TextWrapping="Wrap" />
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-                <!--  AI Response 2  -->
-                <Grid Padding="16,24" Background="#F7F7F8">
-                    <Grid MaxWidth="800" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <PersonPicture
-                            Grid.Column="0"
-                            Width="32"
-                            Height="32"
-                            Margin="0,0,16,0"
-                            VerticalAlignment="Top"
-                            ProfilePicture="/Assets/Icon/ShoppingIcon.png" />
-
-                        <StackPanel Grid.Column="1" Spacing="8">
-                            <TextBlock
-                                FontWeight="SemiBold"
-                                Foreground="#202123"
-                                Text="AI Assistant" />
-                            <Border
-                                Padding="12,8"
-                                Background="White"
-                                BorderBrush="#E5E5E5"
-                                BorderThickness="1"
-                                CornerRadius="8">
-                                <TextBlock
-                                    Foreground="#202123"
-                                    LineHeight="24"
-                                    TextWrapping="Wrap">
-                                    <Run Text="Lá vàng ở mép có thể do một số nguyên nhân phổ biến sau:" />
-                                    <LineBreak />
-                                    <LineBreak />
-                                    <Run Text="1. Tưới quá nhiều nước: Trầu bà không thích đất quá ẩm, có thể gây úng rễ." />
-                                    <LineBreak />
-                                    <Run Text="2. Thiếu độ ẩm: Không khí quá khô làm lá vàng ở mép." />
-                                    <LineBreak />
-                                    <Run Text="3. Ánh nắng trực tiếp: Có thể gây cháy lá." />
-                                    <LineBreak />
-                                    <Run Text="4. Thiếu dinh dưỡng: Đặc biệt là kali hoặc magiê." />
-                                    <LineBreak />
-                                    <Run Text="5. Nước nhiều clo: Nước máy có thể chứa nhiều clo gây vàng lá." />
-                                    <LineBreak />
-                                    <LineBreak />
-                                    <Run Text="Tôi khuyên bạn nên kiểm tra độ ẩm của đất và điều chỉnh lịch tưới nước, đồng thời xem xét vị trí đặt cây có phù hợp không." />
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </StackPanel>
+            <ListView
+                IsItemClickEnabled="False"
+                ItemTemplate="{StaticResource MessageGroupTemplate}"
+                ItemsSource="{x:Bind ViewModel.MessageGroups, Mode=OneWay}"
+                SelectionMode="None">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
         </ScrollViewer>
 
-        <!--  Chat History Panel  -->
+        <!--  History Panel  -->
         <Grid
             x:Name="HistoryPanel"
             Grid.Row="1"
@@ -283,12 +173,11 @@
             Background="White"
             BorderBrush="#E5E5E5"
             BorderThickness="1,0,0,0"
-            Visibility="Visible">
+            Visibility="{x:Bind ViewModel.IsHistoryPanelVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <Grid
                 Grid.Row="0"
                 Padding="16,12"
@@ -301,39 +190,20 @@
                     Foreground="#202123"
                     Text="Lịch sử trò chuyện" />
             </Grid>
-
             <ListView
                 Grid.Row="1"
                 Padding="8"
                 IsItemClickEnabled="True"
+                ItemsSource="{x:Bind ViewModel.MessageDates, Mode=OneWay}"
+                SelectionChanged="HistoryListView_SelectionChanged"
                 SelectionMode="Single">
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="07/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="06/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="05/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="04/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="03/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="02/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="01/04/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="31/03/2025" />
-                </ListViewItem>
-                <ListViewItem Padding="12,8">
-                    <TextBlock Foreground="#202123" Text="30/03/2025" />
-                </ListViewItem>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <ListViewItem Padding="12,8">
+                            <TextBlock Foreground="#202123" Text="{x:Bind Mode=OneWay}" />
+                        </ListViewItem>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
@@ -351,8 +221,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
-                <!--  Text Input Area  -->
                 <Grid
                     Grid.Row="0"
                     Padding="12"
@@ -364,7 +232,6 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-
                     <TextBox
                         Grid.Column="0"
                         Width="700"
@@ -374,31 +241,24 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Foreground="#202123"
+                        KeyDown="TextBox_KeyDown"
                         PlaceholderText="Nhập tin nhắn..."
+                        Text="{x:Bind ViewModel.NewMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap" />
-
-                    <StackPanel
+                    <Button
                         Grid.Column="1"
-                        Margin="8,0,0,0"
-                        VerticalAlignment="Bottom"
-                        Orientation="Horizontal"
-                        Spacing="8">
-                        <Button
-                            Padding="8"
-                            Background="#FF81C784"
-                            BorderThickness="0"
-                            CornerRadius="4"
-                            Style="{StaticResource AccentButtonStyle}">
-                            <FontIcon
-                                FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                FontSize="16"
-                                Foreground="White"
-                                Glyph="&#xE725;" />
-                        </Button>
-                    </StackPanel>
+                        Padding="8"
+                        Background="#FF81C784"
+                        BorderThickness="0"
+                        Command="{x:Bind ViewModel.SendMessageCommand}"
+                        CornerRadius="4">
+                        <FontIcon
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="16"
+                            Foreground="White"
+                            Glyph="" />
+                    </Button>
                 </Grid>
-
-                <!--  Footer Text  -->
                 <TextBlock
                     Grid.Row="1"
                     Margin="0,8,0,0"

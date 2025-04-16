@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="csc13001_plant_pos.View.AdminAccountPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:csc13001_plant_pos.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <!--  Resources for custom styles  -->
+    <Page.Resources>
+        <!--  Style for TextBox and PasswordBox  -->
+        <Style x:Key="CustomInputBoxStyle" TargetType="Control">
+            <Setter Property="Width" Value="400" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemBaseLowColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Background" Value="{ThemeResource SystemChromeWhiteColor}" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <!--  Style for Buttons  -->
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="16,10" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="MinWidth" Value="120" />
+        </Style>
+
+        <!--  Style for Cancel Button  -->
+        <Style
+            x:Key="CancelButtonStyle"
+            BasedOn="{StaticResource CustomButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource SystemChromeLowColor}" />
+            <Setter Property="Foreground" Value="{ThemeResource SystemBaseHighColor}" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Padding="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Header  -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock
+                FontSize="28"
+                FontWeight="SemiBold"
+                Text="Cài đặt tài khoản" />
+            <TextBlock
+                Margin="0,8,0,0"
+                FontSize="14"
+                Foreground="{ThemeResource SystemBaseMediumColor}"
+                Text="Cập nhật thông tin cá nhân và mật khẩu của bạn" />
+        </StackPanel>
+
+        <!--  Form Content  -->
+        <ScrollViewer Grid.Row="1" VerticalAlignment="Center">
+            <Border
+                MaxWidth="600"
+                Padding="24"
+                HorizontalAlignment="Center"
+                Background="{ThemeResource SystemChromeWhiteColor}"
+                BorderBrush="{ThemeResource SystemBaseLowColor}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <StackPanel Spacing="20">
+                    <!--  Email Section  -->
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Email" />
+                        <TextBox
+                            x:Name="EmailTextBox"
+                            PlaceholderText="Nhập email của bạn"
+                            Style="{StaticResource CustomInputBoxStyle}" />
+                    </StackPanel>
+
+                    <!--  Phone Section  -->
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Số điện thoại" />
+                        <TextBox
+                            x:Name="PhoneTextBox"
+                            PlaceholderText="Nhập số điện thoại của bạn"
+                            Style="{StaticResource CustomInputBoxStyle}" />
+                    </StackPanel>
+
+                    <!--  Password Section  -->
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Thay đổi mật khẩu" />
+                        <PasswordBox
+                            x:Name="NewPasswordBox"
+                            Margin="0,0,0,12"
+                            PlaceholderText="Mật khẩu mới"
+                            Style="{StaticResource CustomInputBoxStyle}" />
+                        <PasswordBox
+                            x:Name="ConfirmPasswordBox"
+                            Margin="0,0,0,12"
+                            PlaceholderText="Xác nhận mật khẩu mới"
+                            Style="{StaticResource CustomInputBoxStyle}" />
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            FontSize="12"
+                            Foreground="{ThemeResource SystemBaseMediumColor}"
+                            Text="Mật khẩu phải có ít nhất 8 ký tự."
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <!--  Action Buttons  -->
+                    <StackPanel
+                        Margin="0,12,0,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button
+                            Background="{StaticResource SystemAccentColorBrush}"
+                            Content="Lưu thay đổi"
+                            Foreground="White"
+                            Style="{StaticResource CustomButtonStyle}" />
+                        <Button Content="Hủy" Style="{StaticResource CancelButtonStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>

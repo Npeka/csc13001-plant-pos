@@ -53,10 +53,10 @@
 
                 <NavigationViewItem
                     Content="Thêm khách hàng"
-                    Icon="People"
+                    Icon="AddFriend"
                     Tag="AddCustomerPage" />
 
-                <NavigationViewItem Content="Thông báo" Tag="StaffNotification">
+                <NavigationViewItem Content="Thông báo" Tag="StaffNotificationPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEA8F;" />
                     </NavigationViewItem.Icon>

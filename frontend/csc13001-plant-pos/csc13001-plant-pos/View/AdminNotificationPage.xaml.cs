@@ -4,11 +4,11 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace csc13001_plant_pos.View
 {
-    public sealed partial class AdminNotification : Page
+    public sealed partial class AdminNotificationPage : Page
     {
         public AdminNotificationViewModel ViewModel { get; }
 
-        public AdminNotification()
+        public AdminNotificationPage()
         {
             this.InitializeComponent();
             ViewModel = App.GetService<AdminNotificationViewModel>();

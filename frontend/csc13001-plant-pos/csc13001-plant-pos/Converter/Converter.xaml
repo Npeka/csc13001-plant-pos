@@ -36,4 +36,9 @@
     <local:StringToUriConverter x:Key="StringToUriConverter" />
     <local:SortIconConverter x:Key="SortIconConverter" />
     <local:SortTooltipConverter x:Key="SortTooltipConverter" />
+    <local:FromBotToBackgroundConverter x:Key="FromBotToBackgroundConverter" />
+    <local:FromBotToSenderConverter x:Key="FromBotToSenderConverter" />
+    <local:DateToGroupHeaderConverter x:Key="DateToGroupHeaderConverter" />
+    <local:FromBotToAlignmentConverter x:Key="FromBotToAlignmentConverter" />
+    <local:FromBotToColumnConverter x:Key="FromBotToColumnConverter" />
 </ResourceDictionary>
