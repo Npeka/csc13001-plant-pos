@@ -2,19 +2,24 @@ package csc13001.plantpos.chat;
 
 import org.springframework.stereotype.Service;
 
+import csc13001.plantpos.statistic.StatisticsService;
+import csc13001.plantpos.statistic.TimeType;
+import csc13001.plantpos.statistic.dtos.SalesStatisticsDTO;
 import csc13001.plantpos.user.User;
 import csc13001.plantpos.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class MessageService {
-    private final OpenAIService openAIService;
+    private final AIService aiService;
     private final UserRepository userRepository;
     private final MessageRepository messageRepository;
+    private final StatisticsService statisticsService;
 
     public List<Message> getMessagesByUserId(Long userId) {
         return messageRepository.findByUser_UserId(userId);
@@ -31,22 +36,65 @@ public class MessageService {
                 .build();
 
         messageRepository.save(message);
-        String role = user.getRole(); // "ADMIN" | "STAFF"
         String userMessage = message.getMessage().toLowerCase();
 
         // ========================== ADMIN XỬ LÝ DOANH THU ==========================
-        if (user.isAdmin() && userMessage.contains("doanh thu")) {
-            String reply = mockDoanhThuReply(userMessage);
-            return saveAndReturnBotMessage(user, reply);
+        if (user.isAdmin()) {
+            if (userMessage.contains("doanh thu")) {
+                try {
+                    Map<String, String> queryParams = aiService.extractRevenueQueryParams(userMessage);
+                    System.err.println("Query Params: " + queryParams);
+
+                    TimeType timeType = TimeType.valueOf(queryParams.get("timeType").toUpperCase());
+                    LocalDateTime startDate = LocalDateTime.parse(queryParams.get("startDate"));
+                    LocalDateTime endDate = LocalDateTime.parse(queryParams.get("endDate"));
+
+                    // gọi service lấy thống kê
+                    SalesStatisticsDTO stats = statisticsService.getSalesStatistics(timeType, startDate, endDate);
+
+                    String prompt = String.format(
+                            """
+                                    Từ ngày %s đến %s:
+                                    - Doanh thu: %.0f VND
+                                    - Lợi nhuận: %.0f VND
+                                    - Số đơn hàng: %d
+
+                                    Hãy viết một câu trả lời thân thiện phù hợp với người hỏi là admin của hệ thống, dễ hiểu để phản hồi người dùng với các thông tin trên.
+                                    """,
+                            startDate, endDate,
+                            stats.getRevenue(),
+                            stats.getProfit(),
+                            stats.getOrderCount());
+
+                    String reply = aiService.chat(prompt);
+                    return saveAndReturnBotMessage(user, reply);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return saveAndReturnBotMessage(user, "Xin lỗi, tôi không hiểu yêu cầu doanh thu của bạn.");
+                }
+            } else {
+                String prompt = String.format(
+                        """
+                                Admin của hệ thống hỏi: %s
+                                Hãy viết một câu trả lời thân thiện phù hợp với người hỏi là admin của hệ thống, dễ hiểu để phản hồi người dùng với các thông tin trên.
+                                Thông tin admin: %s
+                                """,
+                        message.getMessage(), user.toString());
+                String reply = aiService.chat(prompt);
+                return saveAndReturnBotMessage(user, reply);
+            }
         }
 
         // ========================== STAFF DÙNG OPENAI ==========================
         if (!user.isAdmin()) {
-            String systemPrompt = getSystemPrompt(role);
-            List<Map<String, String>> messages = List.of(
-                    Map.of("role", "system", "content", systemPrompt),
-                    Map.of("role", "user", "content", userMessage));
-            String reply = openAIService.chat(messages);
+            String prompt = String.format(
+                    """
+                            Nhân viên của hệ thống hỏi: %s
+                            Hãy viết một câu trả lời thân thiện phù hợp với người hỏi là nhân viên của hệ thống, dễ hiểu để phản hồi người dùng với các thông tin trên.
+                            Thông tin nhân viên: %s
+                            """,
+                    message.getMessage(), user.toString());
+            String reply = aiService.chat(prompt);
             return saveAndReturnBotMessage(user, reply);
         }
 
@@ -62,29 +110,5 @@ public class MessageService {
                         .message(reply)
                         .fromBot(true)
                         .build());
-    }
-
-    private String getSystemPrompt(String role) {
-        return switch (role) {
-            case "ADMIN" ->
-                "Bạn là trợ lý cho quản trị viên cửa hàng. Trả lời các câu hỏi về doanh thu, thống kê, đơn hàng. Nếu không liên quan, từ chối.";
-            case "STAFF" ->
-                "Bạn là trợ lý cho nhân viên chăm sóc cây. Hướng dẫn chăm cây, xử lý sâu bệnh, thời tiết ảnh hưởng cây, tưới nước, v.v.";
-            default -> "Bạn là trợ lý ảo.";
-        };
-    }
-
-    private String mockDoanhThuReply(String message) {
-        if (message.contains("hôm nay"))
-            return "Doanh thu hôm nay là 5.200.000đ.";
-        if (message.contains("hôm qua"))
-            return "Doanh thu hôm qua là 4.700.000đ.";
-        if (message.contains("tháng"))
-            return "Doanh thu tháng này là 125.000.000đ.";
-        if (message.contains("năm"))
-            return "Doanh thu năm nay là 1.560.000.000đ.";
-        if (message.matches(".*\\d{4}-\\d{2}-\\d{2}.*"))
-            return "Doanh thu ngày đó là 3.200.000đ.";
-        return "Tôi không hiểu yêu cầu doanh thu của bạn. Vui lòng hỏi rõ hơn.";
     }
 }

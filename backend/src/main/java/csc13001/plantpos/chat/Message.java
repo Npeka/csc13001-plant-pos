@@ -3,6 +3,7 @@ package csc13001.plantpos.chat;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import csc13001.plantpos.user.User;
 import jakarta.persistence.Column;
@@ -31,6 +32,7 @@ public class Message {
     @Column(name = "message_id")
     private Long messageId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
