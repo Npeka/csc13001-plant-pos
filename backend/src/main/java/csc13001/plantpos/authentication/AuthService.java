@@ -3,6 +3,7 @@ package csc13001.plantpos.authentication;
 import csc13001.plantpos.authentication.dtos.LoginDTO;
 import csc13001.plantpos.authentication.dtos.LoginResponseDTO;
 import csc13001.plantpos.authentication.dtos.ResetPassworDTO;
+import csc13001.plantpos.authentication.exception.AuthErrorMessages;
 import csc13001.plantpos.authentication.exception.AuthException;
 import csc13001.plantpos.config.JwtUtil;
 import csc13001.plantpos.notification.events.OtpEvent;
@@ -131,7 +132,7 @@ public class AuthService {
         String confirmPassword = resetPassworDTO.getConfirmPassword();
 
         if (!newPassword.equals(confirmPassword)) {
-            throw new AuthException.InvalidPasswordException();
+            throw new RuntimeException(AuthErrorMessages.INVALID_CONFIRM_PASSWORD);
         }
 
         User user = userRepository.findByUsername(username)
