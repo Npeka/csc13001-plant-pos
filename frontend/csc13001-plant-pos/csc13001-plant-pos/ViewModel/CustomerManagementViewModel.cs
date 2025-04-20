@@ -12,6 +12,7 @@ using WinRT.Interop;
 using System.Collections.Generic;
 using Windows.Storage.Pickers;
 using System.ComponentModel;
+using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -134,9 +135,19 @@ namespace csc13001_plant_pos.ViewModel
             }
             return false;
         }
+        private bool IsCustomerDuplicate(string email, string phone)
+        {
+            return CustomerList.Any(c =>
+                c.Customer.Email.Equals(email, StringComparison.OrdinalIgnoreCase) ||
+                c.Customer.Phone.Equals(phone));
+        }
 
         public async Task<string?> AddCustomerAsync(CustomerDto data)
         {
+            if (IsCustomerDuplicate(data.Customer.Email, data.Customer.Phone))
+            {
+                return "Email hoặc số điện thoại đã tồn tại trong hệ thống.";
+            }
             var CustomerCreateDto = new CustomerCreateDto
             {
                 Name = data.Customer.Name,
@@ -150,18 +161,28 @@ namespace csc13001_plant_pos.ViewModel
             var response = await _customerService.AddCustomerAsync(CustomerCreateDto);
             if (response != null)
             {
-                var customerId = response;
-                data.Customer.CustomerId = int.Parse(customerId);
-                CustomerList.Add(data);
-                FilteredCustomerList.Add(data);
-                UpdateStatistics();
-                return "Tạo khách hàng mới thành công";
+                if (int.TryParse(response, out int parsedId))
+                {
+                    data.Customer.CustomerId = parsedId;
+                    CustomerList.Add(data);
+                    FilteredCustomerList.Add(data);
+                    UpdateStatistics();
+                    return "Tạo khách hàng mới thành công";
+                }
+                else
+                {
+                    return response;
+                }
             }
             return response;
         }
 
         public async Task<string?> UpdateCustomerAsync(CustomerDto data)
         {
+            if (IsCustomerDuplicate(data.Customer.Email, data.Customer.Phone))
+            {
+                return "Email hoặc số điện thoại đã tồn tại trong hệ thống.";
+            }
             var response = await _customerService.UpdateCustomerAsync(data);
             var existingCustomer = CustomerList.FirstOrDefault(c => c.Customer.CustomerId == data.Customer.CustomerId);
             if (existingCustomer != null)

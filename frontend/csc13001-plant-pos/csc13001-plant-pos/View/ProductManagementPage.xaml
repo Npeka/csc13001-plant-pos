@@ -223,11 +223,12 @@
     ItemClick="ProductGridView_ItemClick"
     SelectionMode="Single"
     VerticalAlignment="Stretch"
-    HorizontalAlignment="Stretch">
+    HorizontalAlignment="Center">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid
                                 MaximumRowsOrColumns="6"
+                            HorizontalAlignment="Center"
                                 Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>

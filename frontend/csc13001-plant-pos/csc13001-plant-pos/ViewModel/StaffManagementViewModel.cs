@@ -99,9 +99,19 @@ namespace csc13001_plant_pos.ViewModel
                 FilteredStaffList.Add(user);
             }
         }
+        private bool IsStaffDuplicate(string email, string phone)
+        {
+            return StaffList.Any(c =>
+                c.Email.Equals(email, StringComparison.OrdinalIgnoreCase) ||
+                c.Phone.Equals(phone));
+        }
 
         public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
         {
+            if (IsStaffDuplicate(user.Email, user.Phone))
+            {
+                return false;
+            }
             var response = await _staffService.UpdateStaffAsync(user, file);
             if (response)
             {
@@ -129,6 +139,10 @@ namespace csc13001_plant_pos.ViewModel
 
         public async Task<bool> AddStaffAsync(User user, StorageFile file)
         {
+            if (IsStaffDuplicate(user.Email, user.Phone))
+            {
+                return false;
+            }
             var response = await _staffService.AddStaffAsync(user, file);
             if (response)
             {
