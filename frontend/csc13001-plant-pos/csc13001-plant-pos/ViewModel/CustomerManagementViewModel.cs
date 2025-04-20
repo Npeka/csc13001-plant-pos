@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Windows.Storage.Pickers;
 using System.ComponentModel;
 using csc13001_plant_pos.Model;
+using CommunityToolkit.Mvvm.Input;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -41,6 +42,17 @@ namespace csc13001_plant_pos.ViewModel
 
         [ObservableProperty]
         private string rankQuery;
+
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+        public ObservableCollection<int> PageSizeOptions { get; set; } = new ObservableCollection<int> { 5, 10, 20 };
+
 
         private readonly ICustomerService _customerService;
 
@@ -75,6 +87,7 @@ namespace csc13001_plant_pos.ViewModel
                 CustomerList = new ObservableCollection<CustomerDto>(response.Data);
                 FilteredCustomerList = new ObservableCollection<CustomerDto>(response.Data);
                 UpdateStatistics();
+                ApplyFilters();
             }
         }
 
@@ -98,6 +111,14 @@ namespace csc13001_plant_pos.ViewModel
             {
                 filtered = filtered.Where(emp => emp.Customer.LoyaltyCardType.ToLower() == RankQuery.ToLower());
             }
+            
+            var totalItems = filtered.Count();
+            TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
             foreach (var customer in filtered)
             {
                 FilteredCustomerList.Add(customer);
@@ -254,6 +275,25 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                ApplyFilters();
+            }
+        }
+
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                ApplyFilters();
+            }
+        }
         partial void OnSearchQueryChanged(string value)
         {
             ApplyFilters();
@@ -266,6 +306,12 @@ namespace csc13001_plant_pos.ViewModel
 
         partial void OnDateQueryChanged(DateTimeOffset? value)
         {
+            ApplyFilters();
+        }
+
+        partial void OnPageSizeChanged(int value)
+        {
+            CurrentPage = 1;
             ApplyFilters();
         }
 

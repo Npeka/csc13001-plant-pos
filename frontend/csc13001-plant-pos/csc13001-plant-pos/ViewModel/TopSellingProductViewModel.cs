@@ -11,6 +11,8 @@ using csc13001_plant_pos.DTO.CustomerDTO;
 using csc13001_plant_pos.DTO.ProductDTO;
 using System.Collections.Generic;
 using System.Globalization;
+using CommunityToolkit.Mvvm.Input;
+using static OfficeOpenXml.ExcelErrorValue;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -32,6 +34,16 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private string productCount;
 
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+
+        public ObservableCollection<int> PageSizeOptions { get; set; } = new ObservableCollection<int> { 5, 10, 20 };
 
 
         private readonly IStatisticService _statisticService;
@@ -51,58 +63,77 @@ namespace csc13001_plant_pos.ViewModel
                 TopSellingProducts = new ObservableCollection<ProductDto>(response.Data);
                 FilteredSellingProducts = new ObservableCollection<ProductDto>(response.Data);
                 ProductCount = $"Total: {TopSellingProducts.Count} sản phẩm";
+                ApplyFilters();
             }
+        }
+        public void ApplyFilters()
+        {
+            FilteredSellingProducts.Clear();
+            var filtered = TopSellingProducts.AsEnumerable();
+
+            if (!string.IsNullOrEmpty(SearchQuery))
+            {
+                filtered = filtered.Where(emp =>
+                emp.Product.Name.ToLower().Contains(SearchQuery) ||
+                emp.Product.ProductId.ToString().ToLower().Contains(SearchQuery));
+            }
+            if (SortType == "TopSelling")
+            {
+                filtered = filtered.OrderByDescending(p => p.SalesQuantity);
+            }
+            else if (SortType == "Remain")
+            {
+                filtered = filtered.OrderByDescending(p => p.Product.Stock);
+            }
+            var totalItems = filtered.Count();
+            TotalPages = Math.Max(1, (int)Math.Ceiling((double)totalItems / PageSize));
+
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
+            foreach (var user in filtered)
+            {
+                FilteredSellingProducts.Add(user);
+            }
+            ProductCount = $"Tổng cộng: {FilteredSellingProducts.Count} sản phẩm";
+            OnPropertyChanged(nameof(ProductCount));
+            OnPropertyChanged(nameof(FilteredSellingProducts));
         }
 
         partial void OnSearchQueryChanged(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                OnSortTypeChanged(sortType);
-                return;
-            }
-            filteredSellingProducts.Clear();
-            var lowerValue = value.Trim().ToLower();
-            var filtered = topSellingProducts
-                .Where(p => p.Product.Name.ToLower().Contains(lowerValue));
-
-            if (sortType == "TopSelling")
-                filtered = filtered.OrderByDescending(p => p.SalesQuantity);
-            else if (sortType == "Remain")
-                filtered = filtered.OrderByDescending(p => p.Product.Stock);
-            foreach (var item in filtered)
-            {
-                filteredSellingProducts.Add(item);
-            }
-            ProductCount = $"Total: {filteredSellingProducts.Count} sản phẩm";
-            OnPropertyChanged(nameof(ProductCount));
+            ApplyFilters();
         }
 
         partial void OnSortTypeChanged(string value)
         {
-            sortType = value;
+            ApplyFilters();
+        }
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                ApplyFilters();
+            }
+        }
 
-            IEnumerable<ProductDto> sorted = topSellingProducts;
-            filteredSellingProducts.Clear();
-            if (value == "TopSelling")
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
             {
-                sorted = sorted.OrderByDescending(p => p.SalesQuantity);
+                CurrentPage--;
+                ApplyFilters();
             }
-            else if (value == "Remain")
-            {
-                sorted = sorted.OrderByDescending(p => p.Product.Stock);
-            }
-            if (!string.IsNullOrWhiteSpace(searchQuery))
-            {
-                var lowerQuery = searchQuery.Trim().ToLower();
-                sorted = sorted.Where(p => p.Product.Name.ToLower().Contains(lowerQuery));
-            }
-            foreach(var item in sorted)
-            {
-                filteredSellingProducts.Add(item);
-            }
-            ProductCount = $"Total: {filteredSellingProducts.Count} sản phẩm";
-            OnPropertyChanged(nameof(ProductCount));
+        }
+
+        partial void OnPageSizeChanged(int value)
+        {
+            CurrentPage = 1;
+            ApplyFilters();
         }
     }
 }

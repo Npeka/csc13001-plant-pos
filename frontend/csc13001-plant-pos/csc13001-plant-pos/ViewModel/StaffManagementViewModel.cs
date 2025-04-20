@@ -16,6 +16,7 @@ using OfficeOpenXml;
 using Microsoft.UI.Xaml;
 using System.IO;
 using Windows.Storage;
+using CommunityToolkit.Mvvm.Input;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -36,6 +37,17 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private string statusQuery;
 
+        [ObservableProperty]
+        private int currentPage = 1;
+
+        [ObservableProperty]
+        private int pageSize = 10;
+
+        [ObservableProperty]
+        private int totalPages;
+
+        public ObservableCollection<int> PageSizeOptions { get; set; } = new ObservableCollection<int> { 5, 10, 20 };
+
         public string FilteredStaffCount => $"{FilteredStaffList?.Count ?? 0} nhân viên";
 
         private readonly IStaffService _staffService;
@@ -55,6 +67,7 @@ namespace csc13001_plant_pos.ViewModel
             {
                 StaffList = new ObservableCollection<User>(response.Data);
                 FilteredStaffList = new ObservableCollection<User>(response.Data);
+                ApplyFilters();
             }
         }
 
@@ -79,7 +92,13 @@ namespace csc13001_plant_pos.ViewModel
             {
                 filtered = filtered.Where(emp => emp.Status == StatusQuery);
             }
+            var totalItems = filtered.Count();
+            TotalPages = Math.Max(1, (int)Math.Ceiling((double)totalItems / PageSize));
 
+            if (CurrentPage > TotalPages) CurrentPage = TotalPages > 0 ? TotalPages : 1;
+            filtered = filtered
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize);
             foreach (var user in filtered)
             {
                 FilteredStaffList.Add(user);
@@ -208,6 +227,25 @@ namespace csc13001_plant_pos.ViewModel
             }
         }
 
+        [RelayCommand]
+        private void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                ApplyFilters();
+            }
+        }
+
+        [RelayCommand]
+        private void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                ApplyFilters();
+            }
+        }
 
         partial void OnSearchQueryChanged(string value)
         {
@@ -223,6 +261,11 @@ namespace csc13001_plant_pos.ViewModel
         partial void OnStatusQueryChanged(string value)
         {
             Debug.WriteLine($"SearchQuery to '{value}'");
+            ApplyFilters();
+        }
+        partial void OnPageSizeChanged(int value)
+        {
+            CurrentPage = 1;
             ApplyFilters();
         }
     }
