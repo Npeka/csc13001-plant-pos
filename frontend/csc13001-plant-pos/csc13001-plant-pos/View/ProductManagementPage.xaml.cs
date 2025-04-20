@@ -34,7 +34,11 @@ namespace csc13001_plant_pos.View
             this.DataContext = ViewModel = App.GetService<ProductManagementViewModel>();
             this.InitializeComponent();
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadProductsDataAsync();
+        }
         private void ProductGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedProduct = e.ClickedItem as Product;

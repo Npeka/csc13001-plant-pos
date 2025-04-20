@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using csc13001_plant_pos.DTO.CustomerDTO;
 using csc13001_plant_pos.Model;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace csc13001_plant_pos.View
 {
@@ -19,7 +20,11 @@ namespace csc13001_plant_pos.View
             this.DataContext = ViewModel = App.GetService<CustomerManagementViewModel>();
             this.InitializeComponent();
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadCustomersDataAsync();
+        }
         public async void AddNewCustomer(object sender, RoutedEventArgs e)
         {
             var newCustomer = new CustomerDto

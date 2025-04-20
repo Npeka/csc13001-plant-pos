@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
@@ -24,7 +25,11 @@ namespace csc13001_plant_pos.View
             this.DataContext = ViewModel = App.GetService<StaffManagementViewModel>();
             this.InitializeComponent();
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadStaffsDataAsync();
+        }
         private async void ShowWorkLogListDialogAsync(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

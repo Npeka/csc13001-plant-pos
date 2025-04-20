@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.ComponentModel;
 using csc13001_plant_pos.ViewModel;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace csc13001_plant_pos.View
 {
@@ -15,6 +16,11 @@ namespace csc13001_plant_pos.View
         {
             this.DataContext = ViewModel = App.GetService<TopSellingProductViewModel>();
             this.InitializeComponent();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadTopSellingDataAsync();
         }
     }
 }

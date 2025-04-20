@@ -11,6 +11,7 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using SkiaSharp;
 
 namespace csc13001_plant_pos.View
@@ -26,7 +27,11 @@ namespace csc13001_plant_pos.View
             this.InitializeComponent();
             this.DataContext = ViewModel = App.GetService<StatisticViewModel>();
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadDataAsync();
+        }
         public void ClickNavigate(object sender, RoutedEventArgs e)
         {
                 Frame.Navigate(typeof(TopSellingProductsPage));
