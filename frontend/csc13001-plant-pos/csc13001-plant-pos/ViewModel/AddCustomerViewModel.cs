@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -49,6 +50,7 @@ namespace csc13001_plant_pos.ViewModel
         [RelayCommand]
         public async Task<string?> AddCustomer()
         {
+            // Kiểm tra các trường bắt buộc
             if (string.IsNullOrWhiteSpace(Name) ||
                 string.IsNullOrWhiteSpace(Phone) ||
                 string.IsNullOrWhiteSpace(Email) ||
@@ -58,6 +60,24 @@ namespace csc13001_plant_pos.ViewModel
                 IsErrorVisible = true;
                 return null;
             }
+
+            // Validate Email (phải có đuôi @gmail.com)
+            if (!Regex.IsMatch(Email, @"^[^@\s]+@gmail\.com$"))
+            {
+                ErrorMessage = "Email phải có định dạng hợp lệ và sử dụng đuôi @gmail.com.";
+                IsErrorVisible = true;
+                return null;
+            }
+
+            // Validate Phone (bắt đầu bằng 0, có 10 hoặc 11 số)
+            if (!Regex.IsMatch(Phone, @"^0[0-9]{9,10}$"))
+            {
+                ErrorMessage = "Số điện thoại phải bắt đầu bằng số 0 và có 10 hoặc 11 chữ số.";
+                IsErrorVisible = true;
+                return null;
+            }
+
+            // Tạo DTO để gửi dữ liệu
             var customerDto = new CustomerCreateDto
             {
                 Name = Name,
@@ -68,6 +88,7 @@ namespace csc13001_plant_pos.ViewModel
                 LoyaltyCardType = "All"
             };
 
+            // Gửi yêu cầu thêm khách hàng
             var customerId = await _customerService.AddCustomerAsync(customerDto);
             if (customerId != null)
             {
@@ -98,6 +119,7 @@ namespace csc13001_plant_pos.ViewModel
             ErrorMessage = string.Empty;
             IsErrorVisible = false;
         }
+
         partial void OnIsMaleCheckedChanged(bool value)
         {
             if (value)
@@ -106,6 +128,7 @@ namespace csc13001_plant_pos.ViewModel
                 IsFemaleChecked = false;
             }
         }
+
         partial void OnIsFemaleCheckedChanged(bool value)
         {
             if (value)
