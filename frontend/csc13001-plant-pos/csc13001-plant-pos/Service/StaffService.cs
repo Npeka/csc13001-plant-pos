@@ -25,7 +25,7 @@ public interface IStaffService
 
     Task<bool> UpdateStaffAsync(User user, StorageFile file);
 
-    Task<bool> AddStaffAsync(User user, StorageFile file);
+    Task<bool> AddStaffAsync(StaffCreateDto user, StorageFile file);
 }
 
 public class StaffService : IStaffService
@@ -98,7 +98,7 @@ public class StaffService : IStaffService
     }
 
 
-    public async Task<bool> AddStaffAsync(User user, StorageFile file)
+    public async Task<bool> AddStaffAsync(StaffCreateDto user, StorageFile file)
     {
         var content = new MultipartFormDataContent();
         var json = JsonUtils.ToJson(user);

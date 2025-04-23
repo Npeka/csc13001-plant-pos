@@ -147,22 +147,7 @@ namespace csc13001_plant_pos.View
                 
                 <!-- Divider -->
                 <Rectangle Height='1' Fill='{{ThemeResource SystemBaseLowColor}}' Margin='0,10,0,10'/>
-                
-                <!-- Permissions Section -->
-                <TextBlock Text='Phân quyền' 
-                           FontWeight='SemiBold' 
-                           FontSize='16' 
-                           Margin='0,0,0,10'/>
-                
-                <ToggleSwitch x:Name='CanManageDiscountsToggleSwitch' 
-                              Header='Quyền quản lý giảm giá'
-                              OffContent='Không'
-                              OnContent='Có'/>
-                
-                <ToggleSwitch x:Name='CanManageInventoryToggleSwitch' 
-                              Header='Quyền quản lý kho'
-                              OffContent='Không'
-                              OnContent='Có'/>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>";
@@ -176,8 +161,6 @@ namespace csc13001_plant_pos.View
             var phoneTextBox = dialogContent.FindName("PhoneTextBox") as TextBox;
             var statusComboBox = dialogContent.FindName("StatusComboBox") as ComboBox;
             var genderComboBox = dialogContent.FindName("GenderComboBox") as ComboBox;
-            var canManageDiscountsToggleSwitch = dialogContent.FindName("CanManageDiscountsToggleSwitch") as ToggleSwitch;
-            var canManageInventoryToggleSwitch = dialogContent.FindName("CanManageInventoryToggleSwitch") as ToggleSwitch;
             var selectImageButton = dialogContent.FindName("SelectImageButton") as Button;
             var staffImage = dialogContent.FindName("StaffImage") as Image;
             var defaultPersonIcon = dialogContent.FindName("DefaultPersonIcon") as FontIcon;
@@ -193,8 +176,6 @@ namespace csc13001_plant_pos.View
             genderComboBox.ItemsSource = new List<string> { "Male", "Female" };
             genderComboBox.SelectedItem = ViewModel.StaffUser.Gender;
 
-            canManageDiscountsToggleSwitch.IsOn = ViewModel.StaffUser.CanManageDiscounts;
-            canManageInventoryToggleSwitch.IsOn = ViewModel.StaffUser.CanManageInventory;
 
             // Cài đặt hiển thị ảnh
             if (!string.IsNullOrEmpty(ViewModel.StaffUser.ImageUrl))
@@ -262,8 +243,6 @@ namespace csc13001_plant_pos.View
                 ViewModel.StaffUser.Phone = phoneTextBox.Text;
                 ViewModel.StaffUser.Status = (string)statusComboBox.SelectedItem;
                 ViewModel.StaffUser.Gender = (string)genderComboBox.SelectedItem;
-                ViewModel.StaffUser.CanManageDiscounts = canManageDiscountsToggleSwitch.IsOn;
-                ViewModel.StaffUser.CanManageInventory = canManageInventoryToggleSwitch.IsOn;
 
                 bool success = await ViewModel.UpdateStaffAsync(ViewModel.StaffUser, selectedFile);
 

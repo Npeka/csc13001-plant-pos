@@ -127,6 +127,8 @@ namespace csc13001_plant_pos.View
         {
             string image64 = null;
             StorageFile selectedFile = null;
+            string username = "";
+            string password = "";
 
             // Tạo Dialog bằng XAML để có giao diện nhất quán và dễ bảo trì
             var dialogContent = new Grid();
@@ -201,6 +203,16 @@ namespace csc13001_plant_pos.View
                            FontSize='16' 
                            Margin='0,0,0,10'/>
                 
+            <TextBox x:Name='UsernameTextBox' 
+                                 Header='Tên đăng nhập' 
+                                 PlaceholderText='Nhập tên đăng nhập'
+                                 Visibility='{(isEdit ? "Collapsed" : "Visible")}'/>
+            
+            <TextBox x:Name='PasswordTextBox' 
+                     Header='Mật khẩu' 
+                     PlaceholderText='Nhập mật khẩu'
+                     Visibility='{(isEdit ? "Collapsed" : "Visible")}'
+                    />
                 <TextBox x:Name='FullNameTextBox' 
                          Header='Họ Tên' 
                          PlaceholderText='Nhập họ tên đầy đủ'/>
@@ -258,6 +270,8 @@ namespace csc13001_plant_pos.View
             var selectImageButton = dialogContent.FindName("SelectImageButton") as Button;
             var staffImage = dialogContent.FindName("StaffImage") as Image;
             var defaultPersonIcon = dialogContent.FindName("DefaultPersonIcon") as FontIcon;
+            var usernameTextBox = dialogContent.FindName("UsernameTextBox") as TextBox;
+            var passwordTextBox = dialogContent.FindName("PasswordTextBox") as TextBox;
 
             // Thiết lập dữ liệu
             fullNameTextBox.Text = user.Fullname;
@@ -270,9 +284,9 @@ namespace csc13001_plant_pos.View
             genderComboBox.ItemsSource = new List<string> { "Male", "Female" };
             genderComboBox.SelectedItem = user.Gender;
 
-
             canManageDiscountsToggleSwitch.IsOn = user.CanManageDiscounts;
             canManageInventoryToggleSwitch.IsOn = user.CanManageInventory;
+
 
             // Cài đặt hiển thị ảnh
             if (!string.IsNullOrEmpty(user.ImageUrl))
@@ -334,6 +348,21 @@ namespace csc13001_plant_pos.View
                     await ShowErrorDialogAsync("Vui lòng nhập đầy đủ thông tin.");
                     return;
                 }
+                if (!isEdit)
+                {
+                    if (string.IsNullOrWhiteSpace(usernameTextBox.Text) ||
+                        string.IsNullOrWhiteSpace(passwordTextBox.Text))
+                    {
+                        await ShowErrorDialogAsync("Vui lòng nhập tên đăng nhập và mật khẩu.");
+                        return;
+                    }
+                }
+                if (!isEdit)
+                {
+                    username = usernameTextBox.Text;
+                    password = passwordTextBox.Text;
+                }
+
 
                 user.Fullname = fullNameTextBox.Text;
                 user.Email = emailTextBox.Text;
@@ -345,7 +374,7 @@ namespace csc13001_plant_pos.View
 
                 bool success = isEdit
                     ? await ViewModel.UpdateStaffAsync(user, selectedFile)
-                    : await ViewModel.AddStaffAsync(user, selectedFile);
+                    : await ViewModel.AddStaffAsync(user, selectedFile, username, password);
 
                 if (success)
                 {

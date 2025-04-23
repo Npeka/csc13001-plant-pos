@@ -17,6 +17,7 @@ using Microsoft.UI.Xaml;
 using System.IO;
 using Windows.Storage;
 using CommunityToolkit.Mvvm.Input;
+using csc13001_plant_pos.DTO.StaffDTO;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -156,13 +157,29 @@ namespace csc13001_plant_pos.ViewModel
             return false;
         }
 
-        public async Task<bool> AddStaffAsync(User user, StorageFile file)
+        public async Task<bool> AddStaffAsync(User user, StorageFile file, string username, string password)
         {
             if (IsStaffDuplicate(user.Email, user.Phone))
             {
                 return false;
             }
-            var response = await _staffService.AddStaffAsync(user, file);
+            var StaffCreateDto = new StaffCreateDto
+            {
+                UserId = user.UserId,
+                Password = password,
+                Username = username,
+                IsAdmin = user.IsAdmin,
+                Fullname = user.Fullname,
+                Email = user.Email,
+                Phone = user.Phone,
+                Status = user.Status,
+                Gender = user.Gender,
+                StartDate = user.StartDate,
+                CanManageDiscounts = user.CanManageDiscounts,
+                CanManageInventory = user.CanManageInventory,
+                WorkLogs = user.WorkLogs
+            };
+            var response = await _staffService.AddStaffAsync(StaffCreateDto, file);
             if (response)
             {
                 StaffList.Add(user);

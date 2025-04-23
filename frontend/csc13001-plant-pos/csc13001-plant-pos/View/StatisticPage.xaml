@@ -405,11 +405,9 @@ x:Key="CurrencyConverter" />
 
                                     <TextBlock
                                         Grid.Column="0"
-                                        FontWeight="Bold"
                                         Text="{x:Bind Product.ProductId}" />
                                     <TextBlock
                                         Grid.Column="1"
-                                        FontWeight="Bold"
                                         Text="{x:Bind Product.Name}" />
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
                                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF158;" />
@@ -462,11 +460,9 @@ x:Key="CurrencyConverter" />
 
                                     <TextBlock
                                         Grid.Column="0"
-                                        FontWeight="Bold"
                                         Text="{x:Bind ProductId}" />
                                     <TextBlock
                                         Grid.Column="1"
-                                        FontWeight="Bold"
                                         Text="{x:Bind Name}" />
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
                                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF158;" />
