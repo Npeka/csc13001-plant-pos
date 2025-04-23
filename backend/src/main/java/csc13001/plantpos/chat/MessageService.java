@@ -60,6 +60,7 @@ public class MessageService {
                                     - Số đơn hàng: %d
 
                                     Hãy viết một câu trả lời thân thiện phù hợp với người hỏi là admin của hệ thống, dễ hiểu để phản hồi người dùng với các thông tin trên.
+                                    Chỉ dùng dạng text thông thường, không cần định dạng gì cả.
                                     """,
                             startDate, endDate,
                             stats.getRevenue(),
@@ -92,6 +93,7 @@ public class MessageService {
                             Nhân viên của hệ thống hỏi: %s
                             Hãy viết một câu trả lời thân thiện phù hợp với người hỏi là nhân viên của hệ thống, dễ hiểu để phản hồi người dùng với các thông tin trên.
                             Thông tin nhân viên: %s
+                            Chỉ dùng dạng text thông thường, không cần định dạng gì cả.
                             """,
                     message.getMessage(), user.toString());
             String reply = aiService.chat(prompt);

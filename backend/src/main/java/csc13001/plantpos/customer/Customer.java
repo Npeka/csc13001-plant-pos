@@ -35,7 +35,7 @@ public class Customer {
     @Column(name = "phone", length = 20, unique = true)
     private String phone;
 
-    @Column(name = "email", length = 256)
+    @Column(name = "email", length = 256, unique = true)
     private String email;
 
     @Column(name = "gender", length = 10)

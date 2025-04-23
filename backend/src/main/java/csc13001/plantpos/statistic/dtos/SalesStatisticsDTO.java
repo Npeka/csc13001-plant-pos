@@ -21,16 +21,7 @@ public class SalesStatisticsDTO {
     private long orderCountGrowthRate;
 
     private BigDecimal growthRate;
-    // private List<CategoryRevenue> categoryRevenues;
     private List<TimeSeriesRevenue> timeSeriesRevenues;
-
-    // @Data
-    // @NoArgsConstructor
-    // @AllArgsConstructor
-    // public static class CategoryRevenue {
-    // private String category;
-    // private BigDecimal revenue;
-    // }
 
     @Data
     @NoArgsConstructor

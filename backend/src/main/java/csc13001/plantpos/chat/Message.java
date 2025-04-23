@@ -3,7 +3,6 @@ package csc13001.plantpos.chat;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import csc13001.plantpos.user.User;
 import jakarta.persistence.Column;

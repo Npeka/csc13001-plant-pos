@@ -2,6 +2,7 @@ package csc13001.plantpos.notification;
 
 import lombok.RequiredArgsConstructor;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.context.event.EventListener;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,11 @@ import csc13001.plantpos.notification.models.Notification;
 import csc13001.plantpos.notification.models.NotificationUser;
 import csc13001.plantpos.notification.models.Notification.NotificationType;
 import csc13001.plantpos.product.Product;
+import csc13001.plantpos.statistic.dtos.SalesStatisticsDTO;
 import csc13001.plantpos.user.User;
 import csc13001.plantpos.user.UserRepository;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 
 @Service
 @RequiredArgsConstructor
@@ -171,15 +175,96 @@ public class NotificationService {
     @Async
     @EventListener
     public void handlerOtpEven(OtpEvent event) {
-        sendEmail(event.getEmail(), "Xác thực OTP", event.getOtp());
+        String htmlContent = "<html>" +
+                "<body>" +
+                "<h2>Xác thực OTP</h2>" +
+                "<p>Mã OTP của bạn là:</p>" +
+                "<div style='font-size: 24px; font-weight: bold; color: #2c3e50;'>" + event.getOtp() + "</div>" +
+                "<p>Vui lòng không chia sẻ mã này với bất kỳ ai.</p>" +
+                "</body>" +
+                "</html>";
+
+        sendEmail(event.getEmail(), "Xác thực OTP", htmlContent);
     }
 
-    private void sendEmail(String to, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        mailSender.send(message);
+    @Async
+    @EventListener
+    public void handleSaleStatisticsEvent(SalesStatisticsDTO event) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.of("vi", "VN"));
+        symbols.setGroupingSeparator('.');
+        symbols.setDecimalSeparator(',');
+
+        DecimalFormat df = new DecimalFormat("#,##0.##", symbols);
+        String content = """
+                    <html>
+                      <body style="font-family: Arial, sans-serif; color: #333;">
+                        <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                          <h2 style="color: #4CAF50; text-align: center;">📊 Thống kê doanh thu</h2>
+                          <table style="width: 100%%; border-collapse: collapse; margin-top: 20px;">
+                            <tr style="background-color: #E8F5E9;">
+                              <td style="padding: 10px; font-weight: bold;">Doanh thu</td>
+                              <td style="padding: 10px; text-align: right; color: #4CAF50;">%s đ</td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 10px; font-weight: bold;">Lợi nhuận</td>
+                              <td style="padding: 10px; text-align: right;">%s đ</td>
+                            </tr>
+                            <tr style="background-color: #E8F5E9;">
+                              <td style="padding: 10px; font-weight: bold;">Số đơn hàng</td>
+                              <td style="padding: 10px; text-align: right;">%d</td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 10px; font-weight: bold;">Tăng trưởng doanh thu</td>
+                              <td style="padding: 10px; text-align: right;">%s</td>
+                            </tr>
+                            <tr style="background-color: #E8F5E9;">
+                              <td style="padding: 10px; font-weight: bold;">Tăng trưởng lợi nhuận</td>
+                              <td style="padding: 10px; text-align: right;">%s</td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 10px; font-weight: bold;">Tăng trưởng số đơn hàng</td>
+                              <td style="padding: 10px; text-align: right;">%s</td>
+                            </tr>
+                          </table>
+                          <p style="text-align: center; margin-top: 30px; font-size: 12px; color: #888;">
+                            Đây là email tự động từ hệ thống, vui lòng không phản hồi.
+                          </p>
+                        </div>
+                      </body>
+                    </html>
+                """
+                .formatted(
+                        df.format(event.getRevenue()),
+                        df.format(event.getProfit()),
+                        event.getOrderCount(),
+                        df.format(event.getRevenueGrowthRate()) + " %",
+                        df.format(event.getProfitGrowthRate()) + " %",
+                        String.valueOf(event.getOrderCountGrowthRate()) + " %");
+
+        List<User> adminUsers = userRepository.findAllByIsAdmin(true);
+        if (adminUsers.isEmpty()) {
+            throw new RuntimeException("Người nhận không tồn tại");
+        }
+
+        adminUsers.forEach(user -> {
+            sendEmail(user.getEmail(), "Thống kê doanh thu", content);
+        });
+    }
+
+    private void sendEmail(String to, String subject, String htmlContent) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom("seimeicc@gmail.com", "Plant POS");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true);
+
+            mailSender.send(message);
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            throw new RuntimeException("Lỗi khi gửi email", e);
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -25,4 +26,6 @@ public class CreateOrderDTO extends JsonModel {
 
     @Valid
     private List<OrderItemlDTO> items;
+
+    private LocalDateTime orderDate = null;
 }

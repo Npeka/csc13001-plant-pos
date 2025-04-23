@@ -30,6 +30,9 @@ public class CustomerService {
         if (customerRepository.existsByPhone(customer.getPhone())) {
             throw new CustomerException.CustomerPhoneExistsException();
         }
+        if (customerRepository.existsByEmail(customer.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
         return customerRepository.save(customer);
     }
 

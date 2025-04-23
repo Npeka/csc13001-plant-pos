@@ -105,6 +105,7 @@ public class OrderService {
                 .discountProgram(discountProgram)
                 .totalPrice(BigDecimal.ZERO)
                 .finalPrice(BigDecimal.ZERO)
+                .orderDate(createOrderDTO.getOrderDate() != null ? createOrderDTO.getOrderDate() : LocalDateTime.now())
                 .build();
         Order savedOrder = orderRepository.save(order);
 
