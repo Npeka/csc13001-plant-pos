@@ -231,11 +231,6 @@ namespace csc13001_plant_pos.View
                            FontSize='16' 
                            Margin='0,0,0,10'/>
                 
-                <ToggleSwitch x:Name='IsAdminToggleSwitch' 
-                              Header='Quyền quản trị'
-                              OffContent='Không'
-                              OnContent='Có'/>
-                
                 <ToggleSwitch x:Name='CanManageDiscountsToggleSwitch' 
                               Header='Quyền quản lý giảm giá'
                               OffContent='Không'
@@ -258,7 +253,6 @@ namespace csc13001_plant_pos.View
             var phoneTextBox = dialogContent.FindName("PhoneTextBox") as TextBox;
             var statusComboBox = dialogContent.FindName("StatusComboBox") as ComboBox;
             var genderComboBox = dialogContent.FindName("GenderComboBox") as ComboBox;
-            var isAdminToggleSwitch = dialogContent.FindName("IsAdminToggleSwitch") as ToggleSwitch;
             var canManageDiscountsToggleSwitch = dialogContent.FindName("CanManageDiscountsToggleSwitch") as ToggleSwitch;
             var canManageInventoryToggleSwitch = dialogContent.FindName("CanManageInventoryToggleSwitch") as ToggleSwitch;
             var selectImageButton = dialogContent.FindName("SelectImageButton") as Button;
@@ -276,8 +270,6 @@ namespace csc13001_plant_pos.View
             genderComboBox.ItemsSource = new List<string> { "Male", "Female" };
             genderComboBox.SelectedItem = user.Gender;
 
-            isAdminToggleSwitch.IsOn = user.IsAdmin;
-            isAdminToggleSwitch.IsEnabled = false;
 
             canManageDiscountsToggleSwitch.IsOn = user.CanManageDiscounts;
             canManageInventoryToggleSwitch.IsOn = user.CanManageInventory;
@@ -348,7 +340,6 @@ namespace csc13001_plant_pos.View
                 user.Phone = phoneTextBox.Text;
                 user.Status = (string)statusComboBox.SelectedItem;
                 user.Gender = (string)genderComboBox.SelectedItem;
-                user.IsAdmin = isAdminToggleSwitch.IsOn;
                 user.CanManageDiscounts = canManageDiscountsToggleSwitch.IsOn;
                 user.CanManageInventory = canManageInventoryToggleSwitch.IsOn;
 

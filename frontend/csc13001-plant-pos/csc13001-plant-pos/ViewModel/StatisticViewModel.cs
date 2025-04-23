@@ -260,19 +260,19 @@ namespace csc13001_plant_pos.ViewModel
 
                 foreach (var product in StatisticReview.TopSellingProducts)
                 {
-                    worksheet.Cells[row, 1].Value = product.ProductId;
-                    worksheet.Cells[row, 2].Value = product.Name;
-                    worksheet.Cells[row, 3].Value = product.Description;
-                    worksheet.Cells[row, 4].Value = product.ImageUrl;
-                    worksheet.Cells[row, 5].Value = product.SalePrice;
-                    worksheet.Cells[row, 6].Value = product.PurchasePrice;
-                    worksheet.Cells[row, 7].Value = product.Stock;
-                    worksheet.Cells[row, 8].Value = product.Size;
-                    worksheet.Cells[row, 9].Value = product.CareLevel;
-                    worksheet.Cells[row, 10].Value = product.LightRequirement;
-                    worksheet.Cells[row, 11].Value = product.WateringSchedule;
-                    worksheet.Cells[row, 12].Value = product.EnvironmentType;
-                    worksheet.Cells[row, 13].Value = product.Category?.Name;
+                    worksheet.Cells[row, 1].Value = product.Product.ProductId;
+                    worksheet.Cells[row, 2].Value = product.Product.Name;
+                    worksheet.Cells[row, 3].Value = product.Product.Description;
+                    worksheet.Cells[row, 4].Value = product.Product.ImageUrl;
+                    worksheet.Cells[row, 5].Value = product.Product.SalePrice;
+                    worksheet.Cells[row, 6].Value = product.Product.PurchasePrice;
+                    worksheet.Cells[row, 7].Value = product.Product.Stock;
+                    worksheet.Cells[row, 8].Value = product.Product.Size;
+                    worksheet.Cells[row, 9].Value = product.Product.CareLevel;
+                    worksheet.Cells[row, 10].Value = product.Product.LightRequirement;
+                    worksheet.Cells[row, 11].Value = product.Product.WateringSchedule;
+                    worksheet.Cells[row, 12].Value = product.Product.EnvironmentType;
+                    worksheet.Cells[row, 13].Value = product.Product.Category?.Name;
                     row++;
                 }
             }

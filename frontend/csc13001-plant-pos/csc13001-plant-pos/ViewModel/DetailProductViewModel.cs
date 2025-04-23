@@ -7,6 +7,7 @@ using csc13001_plant_pos.Model;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.Service;
 using Windows.Storage;
+using System.Diagnostics;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -19,17 +20,22 @@ namespace csc13001_plant_pos.ViewModel
         private bool isTopSelling;
 
         [ObservableProperty]
+        private bool isAdmin;
+
+        [ObservableProperty]
         private ObservableCollection<Category> categories;
 
         private readonly IProductService _productService;
         private readonly IStatisticService _statisticService;
         private readonly ICategoryService _categoryService;
+        private readonly UserSessionService _userSessionService;
 
-        public DetailProductViewModel(IProductService productService, IStatisticService statisticService, ICategoryService categoryService)
+        public DetailProductViewModel(IProductService productService, IStatisticService statisticService, ICategoryService categoryService, UserSessionService userSessionService)
         {
             _productService = productService;
             _statisticService = statisticService;
             _categoryService = categoryService;
+            _userSessionService = userSessionService;
             LoadCategoryAsync();
         }
         public async Task LoadCategoryAsync()
@@ -39,6 +45,8 @@ namespace csc13001_plant_pos.ViewModel
             {
                 Categories = new ObservableCollection<Category>(response2.Data);
             }
+            IsAdmin = _userSessionService.CurrentUser.IsAdmin;
+            OnPropertyChanged(nameof(IsAdmin));
         }
         //public async Task LoadProductAsync(string productId)
         //{

@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:csc13001_plant_pos.View.UI"
     xmlns:model="using:csc13001_plant_pos.Model"
+    xmlns:dto="using:csc13001_plant_pos.DTO.ProductDTO"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Resources>
@@ -64,7 +65,7 @@ x:Key="CurrencyConverter" />
             <!-- Start Date Picker -->
             <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0" Padding="8,5" BorderBrush="#E0E0E0" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <TextBlock VerticalAlignment="Center" Text="From Date:" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Từ ngày:" Margin="0,0,5,0"/>
                     <DatePicker SelectedDate="{x:Bind ViewModel.StartDate, Mode=TwoWay}" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
@@ -72,7 +73,7 @@ x:Key="CurrencyConverter" />
             <!-- End Date Picker -->
             <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="8,5"  Margin="0,0,10,0" BorderBrush="#E0E0E0" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <TextBlock VerticalAlignment="Center" Text="To Date:" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Đến ngày:" Margin="0,0,5,0"/>
                     <DatePicker SelectedDate="{x:Bind ViewModel.EndDate, Mode=TwoWay}" VerticalAlignment="Center" IsEnabled="False" />
                 </StackPanel>
             </StackPanel>
@@ -390,28 +391,33 @@ x:Key="CurrencyConverter" />
                         ItemsSource="{x:Bind ViewModel.StatisticReview.TopSellingProducts, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate
-                                x:DataType="model:Product">
+                                x:DataType="dto:ProductDto">
                                 <Grid
                                     Margin="5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition
-                                            Width="0.3*" />
+                                            Width="0.1*" />
                                         <ColumnDefinition
-                                            Width="0.4*" />
+                                            Width="0.7*" />
                                         <ColumnDefinition
-                                            Width="0.3*" />
+                                            Width="0.2*" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock
                                         Grid.Column="0"
                                         FontWeight="Bold"
-                                        Text="{x:Bind ProductId}" />
+                                        Text="{x:Bind Product.ProductId}" />
                                     <TextBlock
                                         Grid.Column="1"
-                                        Text="{x:Bind Name}" />
-                                    <TextBlock
-                                        Grid.Column="2"
-                                        Text="{x:Bind Stock}" />
+                                        FontWeight="Bold"
+                                        Text="{x:Bind Product.Name}" />
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF158;" />
+                                        <TextBlock Text="{x:Bind Product.Stock}" />
+                                    </StackPanel>
+
+
+
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -447,11 +453,11 @@ x:Key="CurrencyConverter" />
                                     Margin="5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition
-                                            Width="0.3*" />
+                                            Width="0.1*" />
                                         <ColumnDefinition
-                                            Width="0.4*" />
+                                            Width="0.7*" />
                                         <ColumnDefinition
-                                            Width="0.3*" />
+                                            Width="0.2*" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock
@@ -460,10 +466,12 @@ x:Key="CurrencyConverter" />
                                         Text="{x:Bind ProductId}" />
                                     <TextBlock
                                         Grid.Column="1"
+                                        FontWeight="Bold"
                                         Text="{x:Bind Name}" />
-                                    <TextBlock
-                                        Grid.Column="2"
-                                        Text="{x:Bind Stock}" />
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF158;" />
+                                        <TextBlock Text="{x:Bind Stock}" />
+                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

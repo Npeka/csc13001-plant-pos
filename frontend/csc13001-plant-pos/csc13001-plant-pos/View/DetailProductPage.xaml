@@ -15,6 +15,7 @@
             <conv:CareLevel x:Key="CareLevel" />
             <conv:LightRequirement x:Key="LightRequirement" />
             <conv:SizeConverter x:Key="SizeConverter" />
+            <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
     <Grid Padding="24">
@@ -42,6 +43,7 @@
                 BorderThickness="0"
                 Click="ShowProductDialogAsync"
                 CornerRadius="4"
+                Visibility="{x:Bind ViewModel.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
                 Style="{StaticResource BlueAccentButtonStyle}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />

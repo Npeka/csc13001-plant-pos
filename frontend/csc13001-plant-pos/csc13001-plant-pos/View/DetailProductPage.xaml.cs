@@ -35,6 +35,7 @@ namespace csc13001_plant_pos.View
                 CurrentProduct = product;
                 this.DataContext = this;
             }
+            ViewModel.LoadCategoryAsync();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
