@@ -11,17 +11,12 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style
-            TargetType="DatePicker">
-            <Setter
-                Property="MinHeight"
-                Value="50" />
+        <Style TargetType="DatePicker">
+            <Setter Property="MinHeight" Value="50" />
         </Style>
     </Page.Resources>
     <Grid>
-        <Border
-            Padding="20"
-            Background="White">
+        <Border Padding="20" Background="White">
             <StackPanel>
                 <!--  Thông báo lỗi  -->
                 <InfoBar
@@ -31,15 +26,11 @@
                     Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
                     Severity="Error" />
 
-                <ui:PageTitle
-                    Title="Thêm khách hàng" />
+                <ui:PageTitle Title="Thêm khách hàng" />
 
                 <!--  Name Field  -->
-                <StackPanel
-                    Margin="0,0,0,20">
-                    <TextBlock
-                        Margin="0,0,0,5"
-                        Text="Tên khách hàng (*):" />
+                <StackPanel Margin="0,0,0,20">
+                    <TextBlock Margin="0,0,0,5" Text="Tên khách hàng (*):" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
@@ -50,12 +41,8 @@
 
                 <!--  Gender Selection  -->
                 <StackPanel>
-                    <TextBlock
-                        Margin="0,0,0,5"
-                        Text="Giới tính" />
-                    <StackPanel
-                        Margin="0,0,0,20"
-                        Orientation="Horizontal">
+                    <TextBlock Margin="0,0,0,5" Text="Giới tính" />
+                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal">
                         <RadioButton
                             Content="Nam"
                             GroupName="GenderGroup"
@@ -68,11 +55,8 @@
                 </StackPanel>
 
                 <!--  Email  -->
-                <StackPanel
-                    Margin="0,0,0,20">
-                    <TextBlock
-                        Margin="0,0,0,5"
-                        Text="Email (*):" />
+                <StackPanel Margin="0,0,0,20">
+                    <TextBlock Margin="0,0,0,5" Text="Email (*):" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
@@ -82,11 +66,8 @@
                 </StackPanel>
 
                 <!--  Address  -->
-                <StackPanel
-                    Margin="0,0,0,20">
-                    <TextBlock
-                        Margin="0,0,0,5"
-                        Text="Địa chỉ (*):" />
+                <StackPanel Margin="0,0,0,20">
+                    <TextBlock Margin="0,0,0,5" Text="Địa chỉ (*):" />
                     <TextBox
                         Padding="10"
                         Background="#F5F5F5"
@@ -96,22 +77,15 @@
                 </StackPanel>
 
                 <!--  Phone and DOB  -->
-                <Grid
-                    Margin="0,0,0,20">
+                <Grid Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="20" />
-                        <ColumnDefinition
-                            Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel
-                        Grid.Column="0">
-                        <TextBlock
-                            Margin="0,0,0,5"
-                            Text="Số điện thoại (*):" />
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Margin="0,0,0,5" Text="Số điện thoại (*):" />
                         <TextBox
                             Padding="10"
                             Background="#F5F5F5"
@@ -120,11 +94,8 @@
                             Text="{x:Bind ViewModel.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
-                    <StackPanel
-                        Grid.Column="2">
-                        <TextBlock
-                            Margin="0,0,0,5"
-                            Text="Ngày tháng năm sinh:" />
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Margin="0,0,0,5" Text="Ngày tháng năm sinh:" />
                         <CalendarDatePicker
                             Height="40"
                             Background="#F5F5F5"
@@ -134,15 +105,11 @@
                 </Grid>
 
                 <!--  Buttons  -->
-                <Grid
-                    Margin="0,20,0,0">
+                <Grid Margin="0,20,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="20" />
-                        <ColumnDefinition
-                            Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Button

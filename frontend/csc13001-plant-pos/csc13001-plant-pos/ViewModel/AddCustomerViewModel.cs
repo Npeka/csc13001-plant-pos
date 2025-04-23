@@ -50,7 +50,9 @@ namespace csc13001_plant_pos.ViewModel
         [RelayCommand]
         public async Task<string?> AddCustomer()
         {
-            // Kiểm tra các trường bắt buộc
+            ErrorMessage = string.Empty;
+            IsErrorVisible = false;
+
             if (string.IsNullOrWhiteSpace(Name) ||
                 string.IsNullOrWhiteSpace(Phone) ||
                 string.IsNullOrWhiteSpace(Email) ||
@@ -61,15 +63,13 @@ namespace csc13001_plant_pos.ViewModel
                 return null;
             }
 
-            // Validate Email (phải có đuôi @gmail.com)
-            if (!Regex.IsMatch(Email, @"^[^@\s]+@gmail\.com$"))
+            if (!Regex.IsMatch(Email?.Trim(), @"^[a-zA-Z0-9._%+-]+@gmail\.com$"))
             {
                 ErrorMessage = "Email phải có định dạng hợp lệ và sử dụng đuôi @gmail.com.";
                 IsErrorVisible = true;
                 return null;
             }
 
-            // Validate Phone (bắt đầu bằng 0, có 10 hoặc 11 số)
             if (!Regex.IsMatch(Phone, @"^0[0-9]{9,10}$"))
             {
                 ErrorMessage = "Số điện thoại phải bắt đầu bằng số 0 và có 10 hoặc 11 chữ số.";
@@ -77,7 +77,6 @@ namespace csc13001_plant_pos.ViewModel
                 return null;
             }
 
-            // Tạo DTO để gửi dữ liệu
             var customerDto = new CustomerCreateDto
             {
                 Name = Name,
@@ -88,9 +87,8 @@ namespace csc13001_plant_pos.ViewModel
                 LoyaltyCardType = "All"
             };
 
-            // Gửi yêu cầu thêm khách hàng
             var customerId = await _customerService.AddCustomerAsync(customerDto);
-            if (customerId != null)
+            if (int.TryParse(customerId, out _))
             {
                 System.Diagnostics.Debug.WriteLine($"Customer added successfully with ID: {customerId}");
                 ResetForm();
@@ -98,7 +96,8 @@ namespace csc13001_plant_pos.ViewModel
             }
             else
             {
-                ErrorMessage = "Không thể thêm khách hàng. Vui lòng thử lại.";
+                if (customerId != null)
+                    ErrorMessage = customerId;
                 IsErrorVisible = true;
             }
 

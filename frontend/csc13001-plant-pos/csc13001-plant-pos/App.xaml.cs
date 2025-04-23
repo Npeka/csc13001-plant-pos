@@ -94,6 +94,7 @@ public partial class App : Application
                 services.AddSingleton<StaffNotificationViewModel>();
                 services.AddSingleton<AdminNotificationViewModel>();
                 services.AddSingleton<ChatbotViewModel>();
+                services.AddSingleton<AdminAccountViewModel>();
             })
             .Build();
     }

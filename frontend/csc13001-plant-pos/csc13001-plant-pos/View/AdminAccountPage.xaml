@@ -9,18 +9,33 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <!--  Resources for custom styles  -->
     <Page.Resources>
-        <!--  Style for TextBox and PasswordBox  -->
-        <Style x:Key="CustomInputBoxStyle" TargetType="Control">
-            <Setter Property="Width" Value="400" />
-            <Setter Property="Height" Value="40" />
+        <!--  Style for TextBox  -->
+        <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="45" />
             <Setter Property="Padding" Value="12" />
             <Setter Property="BorderBrush" Value="{ThemeResource SystemBaseLowColor}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="6" />
             <Setter Property="Background" Value="{ThemeResource SystemChromeWhiteColor}" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+
+        <!--  Style for PasswordBox  -->
+        <Style
+            x:Key="CustomPasswordBoxStyle"
+            BasedOn="{StaticResource DefaultPasswordBoxStyle}"
+            TargetType="PasswordBox">
+            <Setter Property="Height" Value="45" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemBaseLowColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Background" Value="{ThemeResource SystemChromeWhiteColor}" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="FlowDirection" Value="LeftToRight" />
         </Style>
 
         <!--  Style for Buttons  -->
@@ -38,6 +53,40 @@
             TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource SystemChromeLowColor}" />
             <Setter Property="Foreground" Value="{ThemeResource SystemBaseHighColor}" />
+        </Style>
+
+        <!--  Style for Section Title  -->
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,16" />
+        </Style>
+
+        <!--  Style for Section Container  -->
+        <Style x:Key="SectionContainerStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource SystemChromeWhiteColor}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemBaseLowColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="24" />
+            <Setter Property="Width" Value="450" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+        </Style>
+
+        <!--  Style for Error Message  -->
+        <Style x:Key="ErrorTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="0,8,0,8" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!--  Style for Success Message  -->
+        <Style x:Key="SuccessTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Green" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="0,8,0,8" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
     </Page.Resources>
 
@@ -60,80 +109,161 @@
                 Text="Cập nhật thông tin cá nhân và mật khẩu của bạn" />
         </StackPanel>
 
-        <!--  Form Content  -->
-        <ScrollViewer Grid.Row="1" VerticalAlignment="Center">
+        <!--  Form Content - Two Columns  -->
+        <Grid
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Left Column - Account Information Section  -->
             <Border
-                MaxWidth="600"
-                Padding="24"
-                HorizontalAlignment="Center"
-                Background="{ThemeResource SystemChromeWhiteColor}"
-                BorderBrush="{ThemeResource SystemBaseLowColor}"
-                BorderThickness="1"
-                CornerRadius="12">
-                <StackPanel Spacing="20">
+                Grid.Column="0"
+                Margin="0,0,100,0"
+                Style="{StaticResource SectionContainerStyle}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Thông tin tài khoản" />
+
                     <!--  Email Section  -->
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,20">
                         <TextBlock
                             Margin="0,0,0,8"
                             Style="{StaticResource SubtitleTextBlockStyle}"
                             Text="Email" />
                         <TextBox
-                            x:Name="EmailTextBox"
                             PlaceholderText="Nhập email của bạn"
-                            Style="{StaticResource CustomInputBoxStyle}" />
+                            Style="{StaticResource CustomTextBoxStyle}"
+                            Text="{x:Bind ViewModel.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
                     <!--  Phone Section  -->
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,20">
                         <TextBlock
                             Margin="0,0,0,8"
                             Style="{StaticResource SubtitleTextBlockStyle}"
                             Text="Số điện thoại" />
                         <TextBox
-                            x:Name="PhoneTextBox"
                             PlaceholderText="Nhập số điện thoại của bạn"
-                            Style="{StaticResource CustomInputBoxStyle}" />
+                            Style="{StaticResource CustomTextBoxStyle}"
+                            Text="{x:Bind ViewModel.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
-                    <!--  Password Section  -->
-                    <StackPanel>
-                        <TextBlock
-                            Margin="0,0,0,8"
-                            Style="{StaticResource SubtitleTextBlockStyle}"
-                            Text="Thay đổi mật khẩu" />
-                        <PasswordBox
-                            x:Name="NewPasswordBox"
-                            Margin="0,0,0,12"
-                            PlaceholderText="Mật khẩu mới"
-                            Style="{StaticResource CustomInputBoxStyle}" />
-                        <PasswordBox
-                            x:Name="ConfirmPasswordBox"
-                            Margin="0,0,0,12"
-                            PlaceholderText="Xác nhận mật khẩu mới"
-                            Style="{StaticResource CustomInputBoxStyle}" />
-                        <TextBlock
-                            Margin="0,0,0,8"
-                            FontSize="12"
-                            Foreground="{ThemeResource SystemBaseMediumColor}"
-                            Text="Mật khẩu phải có ít nhất 8 ký tự."
-                            TextWrapping="Wrap" />
-                    </StackPanel>
+                    <!--  Error Message  -->
+                    <TextBlock
+                        Style="{StaticResource ErrorTextStyle}"
+                        Text="{x:Bind ViewModel.InfoErrorMessage, Mode=OneWay}"
+                        Visibility="{x:Bind ViewModel.InfoErrorMessage, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}" />
 
-                    <!--  Action Buttons  -->
+                    <!--  Success Message  -->
+                    <TextBlock
+                        Style="{StaticResource SuccessTextStyle}"
+                        Text="{x:Bind ViewModel.InfoSuccessMessage, Mode=OneWay}"
+                        Visibility="{x:Bind ViewModel.InfoSuccessMessage, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}" />
+
+                    <!--  Action Buttons for Account Info  -->
                     <StackPanel
-                        Margin="0,12,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal"
                         Spacing="12">
                         <Button
                             Background="{StaticResource SystemAccentColorBrush}"
-                            Content="Lưu thay đổi"
+                            Command="{x:Bind ViewModel.SaveInfoCommand}"
+                            Content="Lưu thông tin"
                             Foreground="White"
                             Style="{StaticResource CustomButtonStyle}" />
-                        <Button Content="Hủy" Style="{StaticResource CancelButtonStyle}" />
+                        <Button
+                            Command="{x:Bind ViewModel.CancelInfoCommand}"
+                            Content="Hủy"
+                            Style="{StaticResource CancelButtonStyle}" />
                     </StackPanel>
                 </StackPanel>
             </Border>
-        </ScrollViewer>
+
+            <!--  Right Column - Password Change Section  -->
+            <Border
+                Grid.Column="1"
+                Margin="20,0,0,0"
+                Style="{StaticResource SectionContainerStyle}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Thay đổi mật khẩu" />
+
+                    <!--  Current Password  -->
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Mật khẩu hiện tại" />
+                        <PasswordBox
+                            Password="{x:Bind ViewModel.CurrentPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            PlaceholderText="Nhập mật khẩu hiện tại"
+                            Style="{StaticResource CustomPasswordBoxStyle}" />
+                    </StackPanel>
+
+                    <!--  New Password  -->
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Mật khẩu mới" />
+                        <PasswordBox
+                            Password="{x:Bind ViewModel.NewPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            PlaceholderText="Nhập mật khẩu mới"
+                            Style="{StaticResource CustomPasswordBoxStyle}" />
+                    </StackPanel>
+
+                    <!--  Confirm Password  -->
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Xác nhận mật khẩu" />
+                        <PasswordBox
+                            Password="{x:Bind ViewModel.ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            PlaceholderText="Xác nhận mật khẩu mới"
+                            Style="{StaticResource CustomPasswordBoxStyle}" />
+                        <TextBlock
+                            Margin="0,8,0,0"
+                            FontSize="12"
+                            Foreground="{ThemeResource SystemBaseMediumColor}"
+                            Text="Mật khẩu phải có ít nhất 5 ký tự."
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <!--  Error Message  -->
+                    <TextBlock
+                        Style="{StaticResource ErrorTextStyle}"
+                        Text="{x:Bind ViewModel.PasswordErrorMessage, Mode=OneWay}"
+                        Visibility="{x:Bind ViewModel.PasswordErrorMessage, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}" />
+
+                    <!--  Success Message  -->
+                    <TextBlock
+                        Style="{StaticResource SuccessTextStyle}"
+                        Text="{x:Bind ViewModel.PasswordSuccessMessage, Mode=OneWay}"
+                        Visibility="{x:Bind ViewModel.PasswordSuccessMessage, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}" />
+
+                    <!--  Action Buttons for Password  -->
+                    <StackPanel
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button
+                            Background="{StaticResource SystemAccentColorBrush}"
+                            Command="{x:Bind ViewModel.SavePasswordCommand}"
+                            Content="Đổi mật khẩu"
+                            Foreground="White"
+                            Style="{StaticResource CustomButtonStyle}" />
+                        <Button
+                            Command="{x:Bind ViewModel.CancelPasswordCommand}"
+                            Content="Hủy"
+                            Style="{StaticResource CancelButtonStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Page>

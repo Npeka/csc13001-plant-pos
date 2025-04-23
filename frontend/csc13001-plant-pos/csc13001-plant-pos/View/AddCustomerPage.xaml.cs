@@ -19,7 +19,7 @@ namespace csc13001_plant_pos.View
             {
                
                 var customerId = await ViewModel.AddCustomer();
-                if (customerId != null)
+                if (customerId != null && int.TryParse(customerId, out _))
                 {
                     Frame.Navigate(typeof(CustomerProfilePage), customerId);
                 }
