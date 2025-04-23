@@ -29,14 +29,27 @@ public class StatisticsService {
 	private final OrderItemRepository orderItemRepository;
 	private final ApplicationEventPublisher eventPublisher;
 
-	public SalesStatisticsDTO getSalesStatistics(TimeType timeType, LocalDateTime startDate,
+	public SalesStatisticsDTO getSalesStatistics(
+			TimeType timeType,
+			LocalDateTime startDate,
 			LocalDateTime endDate) {
 		// Lấy đơn hàng trong khoảng thời gian
 		List<Order> orders = orderRepository.findAllByOrderDateBetween(startDate, endDate);
 
 		// Lấy đơn hàng của kỳ trước (năm trước)
-		List<Order> preOrders = orderRepository.findAllByOrderDateBetween(startDate.minusYears(1),
-				endDate.minusYears(1));
+		LocalDateTime preStartDate;
+		LocalDateTime preEndDate;
+		if (timeType == TimeType.DAILY) {
+			preStartDate = startDate.minusDays(1);
+			preEndDate = endDate.minusDays(1);
+		} else if (timeType == TimeType.MONTHLY) {
+			preStartDate = startDate.minusMonths(1);
+			preEndDate = endDate.minusMonths(1);
+		} else {
+			preStartDate = startDate.minusYears(1);
+			preEndDate = endDate.minusYears(1);
+		}
+		List<Order> preOrders = orderRepository.findAllByOrderDateBetween(preStartDate, preEndDate);
 
 		// Tính toán chỉ số cho kỳ hiện tại
 		BigDecimal revenue = calculateTotalRevenue(orders);
@@ -123,7 +136,8 @@ public class StatisticsService {
 	/** 📌 Tính tỷ lệ tăng trưởng */
 	private BigDecimal calculateGrowthRate(BigDecimal current, BigDecimal previous) {
 		return previous.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO
-				: current.subtract(previous).divide(previous, 4, RoundingMode.HALF_UP);
+				: current.subtract(previous).divide(previous, 4, RoundingMode.HALF_UP)
+						.multiply(BigDecimal.valueOf(100));
 	}
 
 	public List<ProductDTO> topSellingProducts(Integer limit) {
