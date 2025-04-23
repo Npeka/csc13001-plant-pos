@@ -55,17 +55,20 @@ public class MessageService {
                     String prompt = String.format(
                             """
                                     Từ ngày %s đến %s:
-                                    - Doanh thu: %.0f VND
-                                    - Lợi nhuận: %.0f VND
-                                    - Số đơn hàng: %d
+                                    - Doanh thu: %.0f VND (Tăng trưởng: %.2f%%)
+                                    - Lợi nhuận: %.0f VND (Tăng trưởng: %.2f%%)
+                                    - Số đơn hàng: %d (Tăng trưởng: %d%%)
 
                                     Hãy viết một câu trả lời thân thiện phù hợp với người hỏi là admin của hệ thống, dễ hiểu để phản hồi người dùng với các thông tin trên.
                                     Chỉ dùng dạng text thông thường, không cần định dạng gì cả.
                                     """,
                             startDate, endDate,
                             stats.getRevenue(),
+                            stats.getRevenueGrowthRate(),
                             stats.getProfit(),
-                            stats.getOrderCount());
+                            stats.getProfitGrowthRate(),
+                            stats.getOrderCount(),
+                            stats.getOrderCountGrowthRate());
 
                     String reply = aiService.chat(prompt);
                     return saveAndReturnBotMessage(user, reply);
