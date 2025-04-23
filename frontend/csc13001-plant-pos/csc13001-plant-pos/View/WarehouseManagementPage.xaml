@@ -170,11 +170,9 @@
                         <Button
                             Margin="8"
                             HorizontalAlignment="Right"
-                            Background="#D3F9D8"
                             Click="ExportPDFButton_Click"
                             Content="Xuất phiếu nhập (PDF)"
                             CornerRadius="4"
-                            Foreground="#666666"
                             Style="{StaticResource AccentButtonStyle}"
                             Tag="{x:Bind InventoryId, Mode=OneWay}" />
                     </StackPanel>

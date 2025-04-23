@@ -248,11 +248,9 @@
                         <Button
                             Margin="8"
                             HorizontalAlignment="Right"
-                            Background="#D3F9D8"
                             Click="ViewBillButton_Click"
                             Content="Xem hoá đơn"
                             CornerRadius="4"
-                            Foreground="#666666"
                             Style="{StaticResource AccentButtonStyle}" />
                     </StackPanel>
                 </Expander.Content>
@@ -442,9 +440,9 @@
                         Padding="8"
                         HorizontalAlignment="Center"
                         Background="#D3F9D8"
+                        Click="ShowStaffDialogAsync"
                         Content="Thay đổi thông tin"
                         CornerRadius="5"
-                        Click="ShowStaffDialogAsync"
                         Foreground="#666666"
                         Style="{StaticResource AccentButtonStyle}" />
                 </StackPanel>
