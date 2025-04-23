@@ -1,4 +1,6 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
@@ -13,7 +15,6 @@ namespace csc13001_plant_pos.View
         {
             this.InitializeComponent();
             ViewModel = App.GetService<ChatbotViewModel>();
-            // Đăng ký sự kiện khi Messages thay đổi
             ViewModel.Messages.CollectionChanged += Messages_CollectionChanged;
         }
 
@@ -23,9 +24,9 @@ namespace csc13001_plant_pos.View
             ViewModel.LoadMessagesAsync();
         }
 
-        private void Messages_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private async void Messages_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            // Cuộn xuống tin nhắn mới nhất
+            await Task.Delay(100);
             ScrollToBottom();
         }
 

@@ -115,7 +115,7 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="20"
                     Foreground="#202123"
-                    Glyph="&#xE8EA;" />
+                    Glyph="" />
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="16"
@@ -135,7 +135,7 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="16"
                     Foreground="#202123"
-                    Glyph="&#xE712;" />
+                    Glyph="" />
             </Button>
         </Grid>
 
@@ -148,22 +148,41 @@
             Background="White"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
-            <ListView
-                IsItemClickEnabled="False"
-                ItemTemplate="{StaticResource MessageGroupTemplate}"
-                ItemsSource="{x:Bind ViewModel.MessageGroups, Mode=OneWay}"
-                SelectionMode="None">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Padding" Value="0" />
-                        <Setter Property="Margin" Value="0" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                        <Setter Property="Background" Value="Transparent" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
+            <StackPanel>
+                <ListView
+                    IsItemClickEnabled="False"
+                    ItemTemplate="{StaticResource MessageGroupTemplate}"
+                    ItemsSource="{x:Bind ViewModel.MessageGroups, Mode=OneWay}"
+                    SelectionMode="None">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <!--  Typing Indicator  -->
+                <Grid
+                    Padding="16,24"
+                    HorizontalAlignment="Left"
+                    Visibility="{x:Bind ViewModel.IsBotTyping, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <ProgressRing
+                            Width="20"
+                            Height="20"
+                            Foreground="#202123"
+                            IsActive="{x:Bind ViewModel.IsBotTyping, Mode=OneWay}" />
+                        <TextBlock
+                            FontSize="14"
+                            Foreground="#202123"
+                            Text="AI Assistant đang trả lời..." />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </ScrollViewer>
 
         <!--  History Panel  -->
@@ -217,7 +236,8 @@
             Padding="16,12"
             Background="#F7F7F8"
             BorderBrush="#E5E5E5"
-            BorderThickness="0,1,0,0">
+            BorderThickness="0,1,0,0"
+            Visibility="{x:Bind ViewModel.IsInputAreaVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid MaxWidth="800" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -243,22 +263,26 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Foreground="#202123"
+                        IsEnabled="{x:Bind ViewModel.IsBotTyping, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
                         KeyDown="TextBox_KeyDown"
                         PlaceholderText="Nhập tin nhắn..."
                         Text="{x:Bind ViewModel.NewMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap" />
                     <Button
                         Grid.Column="1"
+                        Margin="4,0"
                         Padding="8"
                         Background="#FF81C784"
                         BorderThickness="0"
                         Command="{x:Bind ViewModel.SendMessageCommand}"
-                        CornerRadius="4">
+                        CornerRadius="4"
+                        IsEnabled="{x:Bind ViewModel.IsBotTyping, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"
+                        Style="{StaticResource AccentButtonStyle}">
                         <FontIcon
                             FontFamily="Segoe MDL2 Assets"
                             FontSize="16"
                             Foreground="White"
-                            Glyph="&#xE725;" />
+                            Glyph="" />
                     </Button>
                 </Grid>
                 <TextBlock

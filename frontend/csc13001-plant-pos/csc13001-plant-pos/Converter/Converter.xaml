@@ -41,4 +41,5 @@
     <local:DateToGroupHeaderConverter x:Key="DateToGroupHeaderConverter" />
     <local:FromBotToAlignmentConverter x:Key="FromBotToAlignmentConverter" />
     <local:FromBotToColumnConverter x:Key="FromBotToColumnConverter" />
+    <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
 </ResourceDictionary>

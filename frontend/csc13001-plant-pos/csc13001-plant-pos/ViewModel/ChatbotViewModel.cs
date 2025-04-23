@@ -32,9 +32,15 @@ namespace csc13001_plant_pos.View
         [ObservableProperty]
         private DateTime? selectedDate;
 
+        [ObservableProperty]
+        private bool isInputAreaVisible = true;
+
+        [ObservableProperty]
+        private bool isBotTyping = false;
+
         private readonly IMessageService _messageService;
         private readonly UserSessionService _userSession;
-        private long _currentSequence = 0; // Biến để theo dõi thứ tự tin nhắn
+        private long _currentSequence = 0;
 
         public ChatbotViewModel(IMessageService messageService, UserSessionService userSession)
         {
@@ -59,10 +65,10 @@ namespace csc13001_plant_pos.View
                 Messages.Clear();
                 foreach (var message in response.Data.OrderBy(m => m.SentAt))
                 {
-                    message.Sequence = _currentSequence++; // Gán Sequence cho tin nhắn lịch sử
+                    message.Sequence = _currentSequence++;
                     Messages.Add(message);
                 }
-                UpdateMessageGroups(false);
+                UpdateMessageGroups();
             }
             else
             {
@@ -70,14 +76,20 @@ namespace csc13001_plant_pos.View
             }
         }
 
-        private void UpdateMessageGroups(bool preserveScrollPosition = true)
+        private void UpdateMessageGroups()
         {
-            var previousGroups = new List<MessageDateGroup>(MessageGroups);
+            MessageGroups.Clear();
 
-            if (!preserveScrollPosition)
+            var allDates = Messages
+                .GroupBy(m => m.SentAt.Date)
+                .Select(g => g.Key)
+                .OrderBy(d => d)
+                .ToList();
+
+            MessageDates.Clear();
+            foreach (var date in allDates)
             {
-                MessageGroups.Clear();
-                MessageDates.Clear();
+                MessageDates.Add(FormatDate(date));
             }
 
             var filteredMessages = SelectedDate.HasValue
@@ -86,48 +98,23 @@ namespace csc13001_plant_pos.View
 
             var grouped = filteredMessages
                 .GroupBy(m => m.SentAt.Date)
-                .OrderByDescending(g => g.Key)
+                .OrderBy(g => g.Key)
                 .ToList();
 
             foreach (var group in grouped)
             {
-                var existingGroup = preserveScrollPosition
-                    ? previousGroups.FirstOrDefault(g => g.Date.Date == group.Key.Date)
-                    : null;
-
-                if (existingGroup != null && MessageGroups.Contains(existingGroup))
-                {
-                    existingGroup.Messages.Clear();
-                    foreach (var msg in group.OrderBy(m => m.Sequence)) // Sắp xếp theo Sequence
-                    {
-                        existingGroup.Messages.Add(msg);
-                    }
-                }
-                else
-                {
-                    var newGroup = new MessageDateGroup(group.Key, group.OrderBy(m => m.Sequence));
-                    if (!MessageGroups.Any(g => g.Date.Date == group.Key.Date))
-                    {
-                        MessageGroups.Add(newGroup);
-                        MessageDates.Add(FormatDate(group.Key));
-                    }
-                }
-            }
-
-            var datesToRemove = MessageGroups
-                .Where(g => !grouped.Any(gr => gr.Key.Date == g.Date.Date))
-                .ToList();
-            foreach (var group in datesToRemove)
-            {
-                MessageGroups.Remove(group);
-                MessageDates.Remove(FormatDate(group.Date));
+                var newGroup = new MessageDateGroup(group.Key, group.OrderBy(m => m.Sequence));
+                MessageGroups.Add(newGroup);
             }
 
             if (!MessageGroups.Any() && !SelectedDate.HasValue)
             {
                 var today = DateTime.Today;
                 MessageGroups.Add(new MessageDateGroup(today, Enumerable.Empty<Message>()));
-                MessageDates.Add("Hôm nay");
+                if (!MessageDates.Contains("Hôm nay"))
+                {
+                    MessageDates.Add("Hôm nay");
+                }
             }
         }
 
@@ -157,13 +144,14 @@ namespace csc13001_plant_pos.View
                 FromBot = false,
                 SentAt = DateTime.Now,
                 User = _userSession.CurrentUser,
-                Sequence = _currentSequence++ // Gán Sequence cho tin nhắn người dùng
+                Sequence = _currentSequence++
             };
 
             Messages.Add(userMessage);
             UpdateMessageGroups();
 
             NewMessage = string.Empty;
+            IsBotTyping = true;
 
             var messageDto = new CreateMessageDto
             {
@@ -173,9 +161,11 @@ namespace csc13001_plant_pos.View
 
             var response = await _messageService.SendMessageAsync(messageDto);
             System.Diagnostics.Debug.WriteLine($"Send message status: {response?.Status}, Message: {response?.Message}");
+            IsBotTyping = false;
+
             if (response?.Status == "success" && response.Data != null)
             {
-                response.Data.Sequence = _currentSequence++; // Gán Sequence cho tin nhắn bot
+                response.Data.Sequence = _currentSequence++;
                 Messages.Add(response.Data);
                 UpdateMessageGroups();
             }
@@ -200,15 +190,27 @@ namespace csc13001_plant_pos.View
             {
                 var today = DateTime.Today;
                 if (dateStr == "Hôm nay")
+                {
                     SelectedDate = today;
+                    IsInputAreaVisible = true;
+                }
                 else if (dateStr == "Hôm qua")
+                {
                     SelectedDate = today.AddDays(-1);
+                    IsInputAreaVisible = false;
+                }
                 else if (DateTime.TryParseExact(dateStr, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var parsedDate))
+                {
                     SelectedDate = parsedDate;
+                    IsInputAreaVisible = parsedDate.Date == today;
+                }
                 else
+                {
                     SelectedDate = null;
+                    IsInputAreaVisible = true;
+                }
 
-                UpdateMessageGroups(false);
+                UpdateMessageGroups();
             }
         }
     }
