@@ -454,6 +454,7 @@
                         HorizontalAlignment="Center"
                         Background="#D3F9D8"
                         Content="Xem lịch sử làm việc"
+                        Click="ShowWorkLogListDialogAsync"
                         CornerRadius="5"
                         Foreground="#666666"
                         Style="{StaticResource AccentButtonStyle}" />

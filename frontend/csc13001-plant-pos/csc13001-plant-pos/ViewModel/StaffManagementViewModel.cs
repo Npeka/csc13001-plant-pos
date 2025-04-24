@@ -121,9 +121,10 @@ namespace csc13001_plant_pos.ViewModel
         }
         private bool IsStaffDuplicate(string email, string phone)
         {
-            return StaffList.Any(c =>
-                c.Email.Equals(email, StringComparison.OrdinalIgnoreCase) ||
-                c.Phone.Equals(phone));
+            int emailCount = StaffList.Count(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            int phoneCount = StaffList.Count(c => c.Phone.Equals(phone));
+
+            return emailCount > 1 || phoneCount > 1;
         }
 
         public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
@@ -159,7 +160,9 @@ namespace csc13001_plant_pos.ViewModel
 
         public async Task<bool> AddStaffAsync(User user, StorageFile file, string username, string password)
         {
-            if (IsStaffDuplicate(user.Email, user.Phone))
+            if (StaffList.Any(c =>
+                c.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase) ||
+                c.Phone.Equals(user.Phone)))
             {
                 return false;
             }

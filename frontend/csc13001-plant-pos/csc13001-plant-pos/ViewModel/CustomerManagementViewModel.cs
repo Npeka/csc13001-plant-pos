@@ -158,14 +158,20 @@ namespace csc13001_plant_pos.ViewModel
         }
         private bool IsCustomerDuplicate(string email, string phone)
         {
-            return CustomerList.Any(c =>
-                c.Customer.Email.Equals(email, StringComparison.OrdinalIgnoreCase) ||
+            int emailCount = CustomerList.Count(c =>
+                c.Customer.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            int phoneCount = CustomerList.Count(c =>
                 c.Customer.Phone.Equals(phone));
+
+            return emailCount > 1 || phoneCount > 1;
         }
+
 
         public async Task<string?> AddCustomerAsync(CustomerDto data)
         {
-            if (IsCustomerDuplicate(data.Customer.Email, data.Customer.Phone))
+            if (CustomerList.Any(c =>
+                c.Customer.Email.Equals(data.Customer.Email, StringComparison.OrdinalIgnoreCase) ||
+                c.Customer.Phone.Equals(data.Customer.Phone)))
             {
                 return "Email hoặc số điện thoại đã tồn tại trong hệ thống.";
             }

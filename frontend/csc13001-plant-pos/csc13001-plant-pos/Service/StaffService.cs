@@ -82,6 +82,7 @@ public class StaffService : IStaffService
             json = json.Insert(startDateValueStart, formattedDate);
         }
         content.Add(new StringContent(json), "staff");
+        Debug.WriteLine(json);
         if (file != null)
         {
             var stream = await file.OpenStreamForReadAsync();
