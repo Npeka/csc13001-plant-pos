@@ -82,6 +82,7 @@ public class User {
     @Column(name = "can_manage_inventory")
     private boolean canManageInventory = false;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<WorkLog> workLogs;
 

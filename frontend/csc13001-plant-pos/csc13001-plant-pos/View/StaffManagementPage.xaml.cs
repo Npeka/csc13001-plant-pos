@@ -13,9 +13,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
-using System.Diagnostics;
-using Microsoft.UI.Text;
-using Windows.UI;
+
 namespace csc13001_plant_pos.View
 {
     public sealed partial class StaffManagementPage : Page
@@ -42,180 +40,47 @@ namespace csc13001_plant_pos.View
                 return;
             }
 
+            StackPanel dialogContent = new StackPanel { Spacing = 8 };
 
-            // Tạo container chính cho nội dung
-            StackPanel dialogContent = new StackPanel { Spacing = 12 };
-
-            // Định dạng lại thời gian và hiển thị
             foreach (var worklog in user.WorkLogs)
             {
-                // Định dạng thời gian đăng nhập
-                DateTime loginTime = DateTime.Parse(worklog.LogInTime);
-                string dayOfWeek = GetVietnameseDayOfWeek(loginTime.DayOfWeek);
-                string loginDate = loginTime.ToString("dd/MM/yyyy");
-                string loginTimeStr = loginTime.ToString("HH:mm");
-                string formattedLoginTime = $"{dayOfWeek}, ngày {loginDate}, vào lúc {loginTimeStr}";
-
-                // Định dạng thời gian đăng xuất
-                DateTime logoutTime = DateTime.Parse(worklog.LogOutTime);
-                string logoutTimeStr = logoutTime.ToString("HH:mm");
-
-                // Nếu cùng ngày thì chỉ hiển thị giờ, nếu khác ngày thì hiển thị cả ngày
-                string formattedLogoutTime;
-                if (loginTime.Date == logoutTime.Date)
-                {
-                    formattedLogoutTime = $"lúc {logoutTimeStr} cùng ngày";
-                }
-                else
-                {
-                    string logoutDayOfWeek = GetVietnameseDayOfWeek(logoutTime.DayOfWeek);
-                    string logoutDate = logoutTime.ToString("dd/MM/yyyy");
-                    formattedLogoutTime = $"{logoutDayOfWeek}, ngày {logoutDate}, lúc {logoutTimeStr}";
-                }
-
-                // Định dạng thời gian làm việc
-                string[] durationParts = worklog.WorkDuration.Split(':');
-                string formattedDuration;
-
-                if (durationParts.Length == 3)
-                {
-                    int hours = int.Parse(durationParts[0]);
-                    int minutes = int.Parse(durationParts[1]);
-                    int seconds = int.Parse(durationParts[2]);
-
-                    if (hours > 0)
-                    {
-                        formattedDuration = $"{hours} giờ {minutes} phút {seconds} giây";
-                    }
-                    else if (minutes > 0)
-                    {
-                        formattedDuration = $"{minutes} phút {seconds} giây";
-                    }
-                    else
-                    {
-                        formattedDuration = $"{seconds} giây";
-                    }
-                }
-                else
-                {
-                    formattedDuration = worklog.WorkDuration;
-                }
-
-                // Tạo card hiển thị thông tin
-                var grid = new Grid();
-                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(32) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                // Thời gian đăng nhập
-                var loginIcon = new FontIcon
-                {
-                    Glyph = "\uE823",  // Biểu tượng đồng hồ (Clock)
-                    FontSize = 16,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Foreground = new SolidColorBrush(Colors.DarkSlateBlue)
-                };
-                Grid.SetRow(loginIcon, 0);
-                Grid.SetColumn(loginIcon, 0);
-
-                var loginText = new TextBlock
-                {
-                    Text = $"Đăng nhập: {formattedLoginTime}",
-                    VerticalAlignment = VerticalAlignment.Center,
-                    FontSize = 14,
-                    Margin = new Thickness(0, 6, 0, 6),
-                    TextWrapping = TextWrapping.Wrap
-                };
-                Grid.SetRow(loginText, 0);
-                Grid.SetColumn(loginText, 1);
-
-                // Thời gian đăng xuất
-                var logoutIcon = new FontIcon
-                {
-                    Glyph = "\uE8DE",  // Biểu tượng kết thúc (Timeout)
-                    FontSize = 16,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Foreground = new SolidColorBrush(Colors.DarkRed)
-                };
-                Grid.SetRow(logoutIcon, 1);
-                Grid.SetColumn(logoutIcon, 0);
-
-                var logoutText = new TextBlock
-                {
-                    Text = $"Đăng xuất: {formattedLogoutTime}",
-                    VerticalAlignment = VerticalAlignment.Center,
-                    FontSize = 14,
-                    Margin = new Thickness(0, 6, 0, 6),
-                    TextWrapping = TextWrapping.Wrap
-                };
-                Grid.SetRow(logoutText, 1);
-                Grid.SetColumn(logoutText, 1);
-
-                // Thời gian làm việc
-                var durationIcon = new FontIcon
-                {
-                    Glyph = "\uEC92",  // Biểu tượng đồng hồ cát (timer)
-                    FontSize = 16,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Foreground = new SolidColorBrush(Colors.DarkGreen)
-                };
-                Grid.SetRow(durationIcon, 2);
-                Grid.SetColumn(durationIcon, 0);
-
-                var durationText = new TextBlock
-                {
-                    Text = $"Đã làm việc: {formattedDuration}",
-                    VerticalAlignment = VerticalAlignment.Center,
-                    FontWeight = FontWeights.SemiBold,
-                    FontSize = 14,
-                    Margin = new Thickness(0, 6, 0, 6)
-                };
-                Grid.SetRow(durationText, 2);
-                Grid.SetColumn(durationText, 1);
-
-                grid.Children.Add(loginIcon);
-                grid.Children.Add(loginText);
-                grid.Children.Add(logoutIcon);
-                grid.Children.Add(logoutText);
-                grid.Children.Add(durationIcon);
-                grid.Children.Add(durationText);
-
                 var border = new Border
                 {
                     BorderThickness = new Thickness(1),
-                    BorderBrush = new SolidColorBrush(Colors.LightGray),
-                    Padding = new Thickness(12),
-                    CornerRadius = new CornerRadius(8),
-                    Background = new SolidColorBrush(Color.FromArgb(15, 0, 0, 0)),
-                    Child = grid
+                    BorderBrush = new SolidColorBrush(Colors.Gray),
+                    Padding = new Thickness(8),
+                    CornerRadius = new CornerRadius(4),
+                    Child = new StackPanel
+                    {
+                        Children =
+                {
+                    new TextBlock { Text = $"🕒 Đăng nhập: {worklog.LogInTime}" },
+                    new TextBlock { Text = $"🕘 Đăng xuất: {worklog.LogOutTime}" },
+                    new TextBlock { Text = $"⏱️ Thời gian làm việc: {worklog.WorkDuration}" }
+                }
+                    }
                 };
 
                 dialogContent.Children.Add(border);
             }
 
-            // Tạo và hiển thị dialog
             ContentDialog dialog = new ContentDialog
             {
-                Title = $"Lịch sử làm việc của {user.Fullname}",
+                Title = "Lịch sử làm việc của nhân viên",
                 Content = new ScrollViewer
                 {
                     Content = dialogContent,
                     VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                    HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
-                    Padding = new Thickness(16),
-                    Height = 450,
-                    Width = 500 // Tăng độ rộng để hiển thị tốt hơn
+                    Height = 400,
+                    Width = 400
                 },
                 CloseButtonText = "Đóng",
-                XamlRoot = this.XamlRoot,
-                DefaultButton = ContentDialogButton.Close
+                XamlRoot = this.XamlRoot
             };
 
             await dialog.ShowAsync();
         }
+
         public async void AddNewStaff(object sender, RoutedEventArgs e)
         {
             var newUser = new csc13001_plant_pos.Model.User
@@ -575,28 +440,7 @@ namespace csc13001_plant_pos.View
             // Số điện thoại Việt Nam bắt đầu bằng 0 và có 10 chữ số
             return System.Text.RegularExpressions.Regex.IsMatch(phone, @"^0\d{9}$");
         }
-        private string GetVietnameseDayOfWeek(DayOfWeek day)
-        {
-            switch (day)
-            {
-                case DayOfWeek.Monday:
-                    return "Thứ hai";
-                case DayOfWeek.Tuesday:
-                    return "Thứ ba";
-                case DayOfWeek.Wednesday:
-                    return "Thứ tư";
-                case DayOfWeek.Thursday:
-                    return "Thứ năm";
-                case DayOfWeek.Friday:
-                    return "Thứ sáu";
-                case DayOfWeek.Saturday:
-                    return "Thứ bảy";
-                case DayOfWeek.Sunday:
-                    return "Chủ nhật";
-                default:
-                    return "";
-            }
-        }
+
     }
 
 }

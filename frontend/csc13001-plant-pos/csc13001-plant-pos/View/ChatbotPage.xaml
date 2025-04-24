@@ -25,7 +25,7 @@
                         Margin="4"
                         VerticalAlignment="Top"
                         DisplayName="{x:Bind User.Fullname, Mode=OneWay}"
-                        ProfilePicture="{x:Bind Mode=OneWay, Converter={StaticResource MessageToProfilePictureConverter}}" />
+                        ProfilePicture="{x:Bind User.ImageUrl, Mode=OneWay, Converter={StaticResource StringToUriConverter}}" />
                     <StackPanel Grid.Column="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToColumnConverter}, ConverterParameter='1:0'}" Spacing="8">
                         <TextBlock
                             HorizontalAlignment="{x:Bind FromBot, Mode=OneWay, Converter={StaticResource FromBotToAlignmentConverter}, ConverterParameter='Left:Right'}"
