@@ -437,11 +437,23 @@
                     </Grid>
 
                     <Button
+                        Width="150"
                         Padding="8"
                         HorizontalAlignment="Center"
                         Background="#D3F9D8"
                         Click="ShowStaffDialogAsync"
                         Content="Thay đổi thông tin"
+                        CornerRadius="5"
+                        Foreground="#666666"
+                        Style="{StaticResource AccentButtonStyle}" />
+
+                    <Button
+                        Width="150"
+                        Margin="0,8,0,0"
+                        Padding="8"
+                        HorizontalAlignment="Center"
+                        Background="#D3F9D8"
+                        Content="Xem lịch sử làm việc"
                         CornerRadius="5"
                         Foreground="#666666"
                         Style="{StaticResource AccentButtonStyle}" />
