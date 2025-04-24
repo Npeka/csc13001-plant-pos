@@ -4,9 +4,21 @@
     "totalPrice": 12500000,
     "purchaseDate": "2024-01-10",
     "items": [
-      { "productId": 1, "quantity": 250, "purchasePrice": 400000 },
-      { "productId": 2, "quantity": 150, "purchasePrice": 690000 },
-      { "productId": 3, "quantity": 300, "purchasePrice": 60000 }
+      {
+        "productId": 1,
+        "quantity": 250,
+        "purchasePrice": 400000
+      },
+      {
+        "productId": 2,
+        "quantity": 150,
+        "purchasePrice": 690000
+      },
+      {
+        "productId": 3,
+        "quantity": 300,
+        "purchasePrice": 60000
+      }
     ]
   },
   {
@@ -14,9 +26,21 @@
     "totalPrice": 8750000,
     "purchaseDate": "2024-01-25",
     "items": [
-      { "productId": 4, "quantity": 200, "purchasePrice": 200000 },
-      { "productId": 5, "quantity": 100, "purchasePrice": 925000 },
-      { "productId": 6, "quantity": 250, "purchasePrice": 270000 }
+      {
+        "productId": 4,
+        "quantity": 200,
+        "purchasePrice": 200000
+      },
+      {
+        "productId": 5,
+        "quantity": 100,
+        "purchasePrice": 925000
+      },
+      {
+        "productId": 6,
+        "quantity": 250,
+        "purchasePrice": 270000
+      }
     ]
   },
   {
@@ -24,9 +48,21 @@
     "totalPrice": 10200000,
     "purchaseDate": "2024-01-25",
     "items": [
-      { "productId": 7, "quantity": 150, "purchasePrice": 335000 },
-      { "productId": 8, "quantity": 120, "purchasePrice": 350000 },
-      { "productId": 9, "quantity": 180, "purchasePrice": 280000 }
+      {
+        "productId": 7,
+        "quantity": 150,
+        "purchasePrice": 335000
+      },
+      {
+        "productId": 8,
+        "quantity": 120,
+        "purchasePrice": 350000
+      },
+      {
+        "productId": 9,
+        "quantity": 180,
+        "purchasePrice": 280000
+      }
     ]
   },
   {
@@ -34,8 +70,16 @@
     "totalPrice": 7800000,
     "purchaseDate": "2024-02-05",
     "items": [
-      { "productId": 10, "quantity": 300, "purchasePrice": 180000 },
-      { "productId": 11, "quantity": 200, "purchasePrice": 320000 }
+      {
+        "productId": 10,
+        "quantity": 300,
+        "purchasePrice": 180000
+      },
+      {
+        "productId": 11,
+        "quantity": 200,
+        "purchasePrice": 320000
+      }
     ]
   },
   {
@@ -43,9 +87,21 @@
     "totalPrice": 12500000,
     "purchaseDate": "2024-01-10",
     "items": [
-      { "productId": 1, "quantity": 250, "purchasePrice": 400000 },
-      { "productId": 2, "quantity": 150, "purchasePrice": 690000 },
-      { "productId": 3, "quantity": 300, "purchasePrice": 60000 }
+      {
+        "productId": 1,
+        "quantity": 250,
+        "purchasePrice": 400000
+      },
+      {
+        "productId": 2,
+        "quantity": 150,
+        "purchasePrice": 690000
+      },
+      {
+        "productId": 3,
+        "quantity": 300,
+        "purchasePrice": 60000
+      }
     ]
   },
   {
@@ -53,9 +109,21 @@
     "totalPrice": 12500000,
     "purchaseDate": "2024-01-10",
     "items": [
-      { "productId": 4, "quantity": 200, "purchasePrice": 200000 },
-      { "productId": 5, "quantity": 100, "purchasePrice": 925000 },
-      { "productId": 6, "quantity": 250, "purchasePrice": 270000 }
+      {
+        "productId": 4,
+        "quantity": 200,
+        "purchasePrice": 200000
+      },
+      {
+        "productId": 5,
+        "quantity": 100,
+        "purchasePrice": 925000
+      },
+      {
+        "productId": 6,
+        "quantity": 250,
+        "purchasePrice": 270000
+      }
     ]
   },
   {
@@ -63,9 +131,21 @@
     "totalPrice": 8750000,
     "purchaseDate": "2024-01-25",
     "items": [
-      { "productId": 7, "quantity": 150, "purchasePrice": 335000 },
-      { "productId": 8, "quantity": 120, "purchasePrice": 350000 },
-      { "productId": 9, "quantity": 180, "purchasePrice": 280000 }
+      {
+        "productId": 7,
+        "quantity": 150,
+        "purchasePrice": 335000
+      },
+      {
+        "productId": 8,
+        "quantity": 120,
+        "purchasePrice": 350000
+      },
+      {
+        "productId": 9,
+        "quantity": 180,
+        "purchasePrice": 280000
+      }
     ]
   },
   {
@@ -73,9 +153,21 @@
     "totalPrice": 8750000,
     "purchaseDate": "2024-01-25",
     "items": [
-      { "productId": 10, "quantity": 300, "purchasePrice": 180000 },
-      { "productId": 11, "quantity": 200, "purchasePrice": 320000 },
-      { "productId": 12, "quantity": 100, "purchasePrice": 175000 }
+      {
+        "productId": 10,
+        "quantity": 300,
+        "purchasePrice": 180000
+      },
+      {
+        "productId": 11,
+        "quantity": 200,
+        "purchasePrice": 320000
+      },
+      {
+        "productId": 12,
+        "quantity": 100,
+        "purchasePrice": 175000
+      }
     ]
   },
   {
@@ -83,9 +175,21 @@
     "totalPrice": 7800000,
     "purchaseDate": "2024-02-05",
     "items": [
-      { "productId": 13, "quantity": 120, "purchasePrice": 120000 },
-      { "productId": 14, "quantity": 115, "purchasePrice": 285000 },
-      { "productId": 5, "quantity": 15, "purchasePrice": 925000 }
+      {
+        "productId": 13,
+        "quantity": 120,
+        "purchasePrice": 120000
+      },
+      {
+        "productId": 14,
+        "quantity": 115,
+        "purchasePrice": 285000
+      },
+      {
+        "productId": 5,
+        "quantity": 115,
+        "purchasePrice": 925000
+      }
     ]
   },
   {
@@ -93,9 +197,21 @@
     "totalPrice": 7800000,
     "purchaseDate": "2024-02-05",
     "items": [
-      { "productId": 6, "quantity": 110, "purchasePrice": 270000 },
-      { "productId": 8, "quantity": 110, "purchasePrice": 350000 },
-      { "productId": 12, "quantity": 115, "purchasePrice": 175000 }
+      {
+        "productId": 6,
+        "quantity": 110,
+        "purchasePrice": 270000
+      },
+      {
+        "productId": 8,
+        "quantity": 110,
+        "purchasePrice": 350000
+      },
+      {
+        "productId": 12,
+        "quantity": 115,
+        "purchasePrice": 175000
+      }
     ]
   }
 ]
