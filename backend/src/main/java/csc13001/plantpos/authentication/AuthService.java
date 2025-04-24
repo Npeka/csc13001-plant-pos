@@ -58,17 +58,16 @@ public class AuthService {
         String username = loginDTO.getUsername();
         String password = loginDTO.getPassword();
 
-        User user = userRepository.findByUsername(username)
+        User user = userRepository.findByUsernameFetchWorkLogs(username)
                 .orElseThrow(AuthException.UserNotFoundException::new);
 
         if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
             throw new AuthException.InvalidPasswordException();
         }
 
-        user.getWorkLogs().size();
         user.setPassword(null);
         String accessToken = jwtUtil.generateToken(username, user.getRole());
-        return new LoginResponseDTO(user, accessToken);
+        return new LoginResponseDTO(user, user.getWorkLogs(), accessToken);
     }
 
     public void logout(String token) {

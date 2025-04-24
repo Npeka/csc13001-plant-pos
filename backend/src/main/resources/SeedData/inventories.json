@@ -85,7 +85,7 @@
     "items": [
       { "productId": 13, "quantity": 120, "purchasePrice": 120000 },
       { "productId": 14, "quantity": 115, "purchasePrice": 285000 },
-      { "productId": 5, "quantity": 15, "purchasePrice": 925000 }
+      { "productId": 5, "quantity": 151, "purchasePrice": 925000 }
     ]
   },
   {
