@@ -167,7 +167,16 @@ namespace csc13001_plant_pos.View
                     await ShowErrorDialogAsync("Vui lòng nhập đầy đủ thông tin.");
                     return;
                 }
-
+                if (!IsValidEmail(emailTextBox.Text))
+                {
+                    await ShowErrorDialogAsync("Email không hợp lệ.");
+                    return;
+                }
+                if (!IsValidPhoneNumber(phoneTextBox.Text))
+                {
+                    await ShowErrorDialogAsync("Số điện thoại không hợp lệ.");
+                    return;
+                }
                 customer.Customer.Name = fullNameTextBox.Text;
                 customer.Customer.Email = emailTextBox.Text;
                 customer.Customer.Phone = phoneTextBox.Text;
@@ -203,6 +212,23 @@ namespace csc13001_plant_pos.View
             await ViewModel.ExportToExcelAsync(currentWindow);
         }
 
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
+        public bool IsValidPhoneNumber(string phone)
+        {
+            // Số điện thoại Việt Nam bắt đầu bằng 0 và có 10 chữ số
+            return System.Text.RegularExpressions.Regex.IsMatch(phone, @"^0\d{9}$");
+        }
     }
 }
