@@ -292,7 +292,7 @@
                             <FontIcon
                                 FontSize="14"
                                 Foreground="#FFC107"
-                                Glyph="&#xE8D4;" />
+                                Glyph="&#xE95E;" />
                         </Border>
                         <TextBlock
                             VerticalAlignment="Center"
