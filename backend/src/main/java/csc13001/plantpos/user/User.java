@@ -82,7 +82,7 @@ public class User {
     @Column(name = "can_manage_inventory")
     private boolean canManageInventory = false;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<WorkLog> workLogs;
 
     public User(String fullname, String username, String password) {

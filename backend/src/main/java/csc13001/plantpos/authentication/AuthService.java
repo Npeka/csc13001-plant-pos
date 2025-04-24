@@ -65,6 +65,7 @@ public class AuthService {
             throw new AuthException.InvalidPasswordException();
         }
 
+        user.getWorkLogs().size();
         user.setPassword(null);
         String accessToken = jwtUtil.generateToken(username, user.getRole());
         return new LoginResponseDTO(user, accessToken);
@@ -81,12 +82,15 @@ public class AuthService {
 
         String key = "blacklist:" + token;
         long expiration = claims.getExpiration().getTime() - System.currentTimeMillis();
+        String storedToken = redisTemplate.opsForValue().get(key);
+        if (storedToken != null) {
+            throw new RuntimeException("Bạn đã đăng xuất trước đó");
+        }
         redisTemplate.opsForValue().set(key, "blacklisted", expiration, TimeUnit.MILLISECONDS);
 
         LocalDateTime loginTime = LocalDateTime
                 .ofInstant(claims.getIssuedAt().toInstant(), java.time.ZoneId.systemDefault());
-        LocalDateTime logoutTime = LocalDateTime
-                .ofInstant(claims.getExpiration().toInstant(), java.time.ZoneId.systemDefault());
+        LocalDateTime logoutTime = LocalDateTime.now();
 
         Duration duration = Duration.between(loginTime, logoutTime);
         String workDuration = String.format("%02d:%02d:%02d",

@@ -4,7 +4,7 @@
     "totalPrice": 12500000,
     "purchaseDate": "2024-01-10",
     "items": [
-      { "productId": 1, "quantity": 250, "purchascePrice": 400000 },
+      { "productId": 1, "quantity": 250, "purchasePrice": 400000 },
       { "productId": 2, "quantity": 150, "purchasePrice": 690000 },
       { "productId": 3, "quantity": 300, "purchasePrice": 60000 }
     ]

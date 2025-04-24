@@ -52,7 +52,7 @@ namespace csc13001_plant_pos.View
                         var mainWindow = (App.Current as App)?.GetMainWindow();
                         if (mainWindow?.Content is Frame frame)
                         {
-                            _userSessionService.ClearUser();
+                            await _userSessionService.ClearUser();
                             frame.Navigate(typeof(AuthenticationPage));
                         }
                     }

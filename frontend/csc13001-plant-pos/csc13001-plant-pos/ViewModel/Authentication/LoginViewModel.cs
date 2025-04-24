@@ -59,7 +59,9 @@ public partial class LoginViewModel : ObservableRecipient
         {
             Error = string.Empty;
             var user = response.Data.User;
+            var accessToken = response.Data.AccessToken;
             _userSession.SetUser(user);
+            _userSession.SetAccessToken(accessToken);
 
             if (RememberMe)
             {

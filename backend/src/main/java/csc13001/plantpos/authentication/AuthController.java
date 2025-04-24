@@ -50,7 +50,7 @@ public class AuthController {
         return HttpResponse.ok("Đăng nhập thành công", loginResponseDTO);
     }
 
-    @PostMapping("/logout")
+    @DeleteMapping("/logout")
     public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
         String tokenPrefix = "Bearer ";
         if (token.startsWith(tokenPrefix)) {
