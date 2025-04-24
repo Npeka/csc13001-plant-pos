@@ -228,7 +228,7 @@ HorizontalAlignment="Left"
 VerticalAlignment="Center"
 Orientation="Horizontal"
 Spacing="4">
-                <TextBlock VerticalAlignment="Center" Text="Số nhân viên mỗi trang:" />
+                <TextBlock VerticalAlignment="Center" Text="Số sản phẩm mỗi trang:" />
                 <ComboBox
     Width="72"
     ItemsSource="{x:Bind ViewModel.PageSizeOptions}"
