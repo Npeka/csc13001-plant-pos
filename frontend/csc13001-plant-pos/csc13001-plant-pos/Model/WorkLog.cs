@@ -10,8 +10,8 @@ namespace csc13001_plant_pos.Model
 {
     public class WorkLog
     {
-        [JsonPropertyName("workLogId")]
-        public int WorkLogId { get; set; }
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
 
         [JsonPropertyName("loginTime")]
         public string? LogInTime { get; set; }
@@ -20,6 +20,6 @@ namespace csc13001_plant_pos.Model
         public string LogOutTime { get; set; }
 
         [JsonPropertyName("workDuration")]
-        public string WorkDuration;
+        public string WorkDuration { get; set; }
     }
 }
