@@ -16,6 +16,7 @@ using OfficeOpenXml;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
 using System.IO;
+using csc13001_plant_pos.DTO.ProductDTO;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -29,6 +30,12 @@ namespace csc13001_plant_pos.ViewModel
 
         [ObservableProperty]
         private ObservableCollection<Product> products;
+
+        [ObservableProperty]
+        private List<ProductDto> topSellingProducts;
+
+        [ObservableProperty]
+        private List<Product> lowStockProducts;
 
         [ObservableProperty]
         public string timeType;
@@ -61,6 +68,7 @@ namespace csc13001_plant_pos.ViewModel
             EndDate = DateTime.Now;
             reloadData();
         }
+
         public async void reloadData()
         {
             StatisticQuery = new StatisticQueryDto
@@ -90,7 +98,15 @@ namespace csc13001_plant_pos.ViewModel
 
             // Xử lý response2
             StatisticReview = response2?.Data;
+            if (StatisticReview != null)
+            {
+                TopSellingProducts = StatisticReview.TopSellingProducts?.Take(6).ToList() ?? new List<ProductDto>();
+                LowStockProducts = StatisticReview.LowStockProducts?.Take(6).ToList() ?? new List<Product>();
+            }
+
             OnPropertyChanged(nameof(StatisticReview));
+            OnPropertyChanged(nameof(TopSellingProducts));
+            OnPropertyChanged(nameof(LowStockProducts));
         }
 
 
