@@ -46,6 +46,9 @@ namespace csc13001_plant_pos.ViewModel
         [ObservableProperty]
         private bool isAscending = true;
 
+        [ObservableProperty]
+        private bool isAdmin;
+
         private readonly int[] pageSizeOptions = { 5, 10, 20, 50 };
         private readonly IStaffService _staffService;
         private readonly UserSessionService _userSessionService;
@@ -57,31 +60,31 @@ namespace csc13001_plant_pos.ViewModel
         {
             _staffService = staffService;
             _userSessionService = userSessionService;
-            LoadStaffDataAsync();
-            LoadStaffOrdersAsync();
+            IsAdmin = _userSessionService.CurrentUser?.IsAdmin ?? false;
         }
 
-        public async void LoadStaffDataAsync()
+        public async void LoadStaffDataAsync(string userId = null)
         {
-            var userId = _userSessionService.CurrentUser?.UserId ?? 0;
-            if (userId == 0) return;
+            var id = userId != null ? int.Parse(userId) : (_userSessionService.CurrentUser?.UserId ?? 0);
+            if (id == 0) return;
 
-            var response = await _staffService.GetStaffByIdAsync(userId);
+            var response = await _staffService.GetStaffByIdAsync(id);
             System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
                 StaffUser = response.Data.User;
                 TotalOrders = response.Data.TotalOrders;
                 TotalRevenue = response.Data.TotalRevenue;
+                IsAdmin = _userSessionService.CurrentUser?.IsAdmin ?? false;
             }
         }
 
-        public async void LoadStaffOrdersAsync()
+        public async void LoadStaffOrdersAsync(string userId = null)
         {
-            var userId = _userSessionService.CurrentUser?.UserId ?? 0;
-            if (userId == 0) return;
+            var id = userId != null ? int.Parse(userId) : (_userSessionService.CurrentUser?.UserId ?? 0);
+            if (id == 0) return;
 
-            var response = await _staffService.GetStaffOrdersAsync(userId);
+            var response = await _staffService.GetStaffOrdersAsync(id);
             System.Diagnostics.Debug.WriteLine($"Status: {response?.Status}, Message: {response?.Message}");
             if (response?.Status == "success" && response.Data != null)
             {
@@ -96,9 +99,9 @@ namespace csc13001_plant_pos.ViewModel
                     FilteredStaffOrders.Add(order);
                 }
             }
-
             UpdateFilteredOrders();
         }
+
         public async Task<string> UpdateStaffAsync(User user, StorageFile file)
         {
             var response = await _staffService.UpdateStaffAsync(user, file);

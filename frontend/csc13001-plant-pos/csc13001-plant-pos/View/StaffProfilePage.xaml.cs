@@ -11,6 +11,7 @@ using System;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.Storage;
+using Microsoft.UI.Xaml.Navigation;
 
 
 namespace csc13001_plant_pos.View
@@ -22,6 +23,28 @@ namespace csc13001_plant_pos.View
         {
             this.InitializeComponent();
             ViewModel = App.GetService<StaffProfileViewModel>();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter is string userId && !string.IsNullOrEmpty(userId))
+            {
+                ViewModel.LoadStaffDataAsync(userId);
+                ViewModel.LoadStaffOrdersAsync(userId);
+            }
+            else
+            {
+                ViewModel.LoadStaffDataAsync();
+                ViewModel.LoadStaffOrdersAsync();
+            }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
         private void ViewBillButton_Click(object sender, RoutedEventArgs e)
         {
