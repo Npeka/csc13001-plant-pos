@@ -54,9 +54,8 @@ namespace csc13001_plant_pos.ViewModel
             LoadDataAsync();
         }
 
-        private async void LoadDataAsync()
+        public async void LoadDataAsync()
         {
-            // Load danh mục
             var categoryResponse = await _categoryService.GetCategoriesAsync();
             if (categoryResponse?.Data != null)
             {
@@ -68,7 +67,6 @@ namespace csc13001_plant_pos.ViewModel
                 }
             }
 
-            // Load sản phẩm
             var productResponse = await _productService.GetProductsAsync();
             if (productResponse?.Data != null)
             {

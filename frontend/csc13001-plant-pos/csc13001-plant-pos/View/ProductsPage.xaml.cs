@@ -2,6 +2,7 @@ using csc13001_plant_pos.Model;
 using csc13001_plant_pos.ViewModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace csc13001_plant_pos.View
 {
@@ -13,6 +14,12 @@ namespace csc13001_plant_pos.View
         {
             this.InitializeComponent();
             this.DataContext = ViewModel = App.GetService<ProductsViewModel>();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.LoadDataAsync();
         }
 
         private void ProductItem_Tapped(object sender, TappedRoutedEventArgs e)
