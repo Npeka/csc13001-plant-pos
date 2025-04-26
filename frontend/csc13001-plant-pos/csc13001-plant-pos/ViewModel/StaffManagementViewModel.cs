@@ -126,43 +126,15 @@ namespace csc13001_plant_pos.ViewModel
                 c.Phone.Equals(phone));
         }
 
-        public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
+        public async Task<string> UpdateStaffAsync(User user, StorageFile file)
         {
-            if (IsStaffDuplicate(user.Email, user.Phone))
-            {
-                return false;
-            }
             var response = await _staffService.UpdateStaffAsync(user, file);
-            if (response)
-            {
-                var existingUser = StaffList.FirstOrDefault(u => u.UserId == user.UserId);
-                if (existingUser != null)
-                {
-                    existingUser.Fullname = user.Fullname;
-                    existingUser.Email = user.Email;
-                    existingUser.Phone = user.Phone;
-                    existingUser.Status = user.Status;
-                    existingUser.Gender = user.Gender;
-                    existingUser.IsAdmin = user.IsAdmin;
-                }
-                else
-                {
-                    StaffList.Add(user);
-                    FilteredStaffList.Add(user);
-                }
-
-                ResetFilters();
-                return true;
-            }
-            return false;
+            LoadStaffsDataAsync();
+            return response;
         }
 
-        public async Task<bool> AddStaffAsync(User user, StorageFile file, string username, string password)
+        public async Task<string> AddStaffAsync(User user, StorageFile file, string username, string password)
         {
-            if (IsStaffDuplicate(user.Email, user.Phone))
-            {
-                return false;
-            }
             var StaffCreateDto = new StaffCreateDto
             {
                 UserId = user.UserId,
@@ -180,14 +152,8 @@ namespace csc13001_plant_pos.ViewModel
                 WorkLogs = user.WorkLogs
             };
             var response = await _staffService.AddStaffAsync(StaffCreateDto, file);
-            if (response)
-            {
-                StaffList.Add(user);
-                FilteredStaffList.Add(user);
-                ResetFilters();
-                return true;
-            }
-            return false;
+            LoadStaffsDataAsync();
+            return response;
         }
 
         public async Task ExportToExcelAsync(Window window)

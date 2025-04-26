@@ -97,12 +97,8 @@ public class ProductService : IProductService
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;
-        if (root.GetProperty("status").GetString() == "success")
-        {
-            var productId = root.GetProperty("data").GetProperty("productId").GetInt32().ToString();
-            return productId;
-        }
-        return null;
+        Debug.WriteLine(root.GetProperty("message").GetString());
+        return root.GetProperty("message").GetString();
     }
 
     public async Task<string?> UpdateProductAsync(Product product, StorageFile file)
@@ -143,10 +139,6 @@ public class ProductService : IProductService
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;
-        if (root.GetProperty("status").GetString() == "success")
-        {
-            return product.ProductId.ToString();
-        }
-        return null;
+        return root.GetProperty("message").GetString();
     }
 }

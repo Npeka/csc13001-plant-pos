@@ -392,26 +392,10 @@ namespace csc13001_plant_pos.View
                 user.CanManageDiscounts = canManageDiscountsToggleSwitch.IsOn;
                 user.CanManageInventory = canManageInventoryToggleSwitch.IsOn;
 
-                bool success = isEdit
+                string success = isEdit
                     ? await ViewModel.UpdateStaffAsync(user, selectedFile)
                     : await ViewModel.AddStaffAsync(user, selectedFile, username, password);
-
-                if (success)
-                {
-                    var successDialog = new ContentDialog
-                    {
-                        Title = "Thành công",
-                        Content = isEdit ? "Đã cập nhật thông tin nhân viên." : "Đã thêm nhân viên mới.",
-                        CloseButtonText = "Đóng",
-                        XamlRoot = this.XamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style
-                    };
-                    await successDialog.ShowAsync();
-                }
-                else
-                {
-                    await ShowErrorDialogAsync("Không thể lưu thông tin nhân viên. Vui lòng thử lại.");
-                }
+                    await ShowErrorDialogAsync(success);
             }
         }
         private async Task ShowErrorDialogAsync(string message)

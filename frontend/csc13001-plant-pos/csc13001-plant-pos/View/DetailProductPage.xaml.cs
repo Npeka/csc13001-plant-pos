@@ -321,24 +321,9 @@ namespace csc13001_plant_pos.View
                 CurrentProduct.Category = categoryComboBox.SelectedItem as Category;
 
                     // Lưu thay đổi
-                    bool updateResult = await ViewModel.UpdateProductAsync(CurrentProduct, selectedFile);
+                    string updateResult = await ViewModel.UpdateProductAsync(CurrentProduct, selectedFile);
 
-
-                    if (updateResult)
-                    {
-                        var successDialog = new ContentDialog
-                        {
-                            Title = "Thành công",
-                            Content = "Đã cập nhật thông tin sản phẩm thành công.",
-                            CloseButtonText = "Đóng",
-                            XamlRoot = this.XamlRoot
-                        };
-                        await successDialog.ShowAsync();
-                    }
-                    else
-                    {
-                        await ShowErrorDialogAsync("Không thể cập nhật sản phẩm. Vui lòng thử lại sau.");
-                    }
+                        await ShowErrorDialogAsync(updateResult);
             }
         }
         private void SaveChanges()

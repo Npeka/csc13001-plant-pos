@@ -188,6 +188,7 @@ namespace csc13001_plant_pos.ViewModel
                 data.CategoryId = categoryId;
                 Categories.Add(data);
                 CategoryList.Add(data.Name);
+
                 return "Tạo danh mục mới thành công";
             }
             return response;
@@ -236,17 +237,11 @@ namespace csc13001_plant_pos.ViewModel
             return response;
         }
 
-        public async Task<bool> CreateProductAsync(Product product, StorageFile selectedFile)
+        public async Task<string> CreateProductAsync(Product product, StorageFile selectedFile)
         {
             var response = await _productService.CreateProductAsync(product, selectedFile);
-            if (response != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            LoadProductsDataAsync();
+            return response;
         }
 
         partial void OnSearchQueryChanged(string value)

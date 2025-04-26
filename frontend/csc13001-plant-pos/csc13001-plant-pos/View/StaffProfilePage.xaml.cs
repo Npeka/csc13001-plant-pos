@@ -244,24 +244,11 @@ namespace csc13001_plant_pos.View
                 ViewModel.StaffUser.Status = (string)statusComboBox.SelectedItem;
                 ViewModel.StaffUser.Gender = (string)genderComboBox.SelectedItem;
 
-                bool success = await ViewModel.UpdateStaffAsync(ViewModel.StaffUser, selectedFile);
+                string success = await ViewModel.UpdateStaffAsync(ViewModel.StaffUser, selectedFile);
 
-                if (success)
-                {
-                    var successDialog = new ContentDialog
-                    {
-                        Title = "Thành công",
-                        Content = "Đã cập nhật thông tin nhân viên.",
-                        CloseButtonText = "Đóng",
-                        XamlRoot = this.XamlRoot,
-                        Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style
-                    };
-                    await successDialog.ShowAsync();
-                }
-                else
-                {
-                    await ShowErrorDialogAsync("Không thể lưu thông tin nhân viên. Vui lòng thử lại.");
-                }
+               
+                    await ShowErrorDialogAsync(success);
+
             }
         }
         private async Task ShowErrorDialogAsync(string message)

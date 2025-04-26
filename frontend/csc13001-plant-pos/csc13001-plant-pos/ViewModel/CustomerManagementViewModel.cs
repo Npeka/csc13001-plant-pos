@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml;
 using OfficeOpenXml;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
+using csc13001_plant_pos.Model;
 
 namespace csc13001_plant_pos.ViewModel
 {
@@ -137,22 +138,11 @@ namespace csc13001_plant_pos.ViewModel
             }
             UpdateStatistics();
         }
-        public async Task<bool> DeleteCustomerAsync(string id)
+        public async Task<string> DeleteCustomerAsync(string id)
         {
             var response = await _customerService.DeleteCustomerAsync(id);
-            if (response)
-            {
-                var customerToRemove = CustomerList.FirstOrDefault(c => c.Customer.CustomerId.ToString() == id);
-                if (customerToRemove != null)
-                {
-                    CustomerList.Remove(customerToRemove);
-                    FilteredCustomerList.Remove(customerToRemove);
-
-                    UpdateStatistics();
-                    return true;
-                }
-            }
-            return false;
+            LoadCustomersDataAsync();
+            return response;
         }
         private bool IsCustomerDuplicate(string email, string phone)
         {
@@ -163,10 +153,7 @@ namespace csc13001_plant_pos.ViewModel
 
         public async Task<string?> AddCustomerAsync(CustomerDto data)
         {
-            if (IsCustomerDuplicate(data.Customer.Email, data.Customer.Phone))
-            {
-                return "Email hoặc số điện thoại đã tồn tại trong hệ thống.";
-            }
+            
             var CustomerCreateDto = new CustomerCreateDto
             {
                 Name = data.Customer.Name,
@@ -178,39 +165,15 @@ namespace csc13001_plant_pos.ViewModel
                 LoyaltyCardType = data.Customer.LoyaltyCardType,
             };
             var response = await _customerService.AddCustomerAsync(CustomerCreateDto);
-            if (response != null)
-            {
-                if (int.TryParse(response, out int parsedId))
-                {
-                    data.Customer.CustomerId = parsedId;
-                    CustomerList.Add(data);
-                    FilteredCustomerList.Add(data);
-                    UpdateStatistics();
-                    return "Tạo khách hàng mới thành công";
-                }
-                else
-                {
-                    return response;
-                }
-            }
+            LoadCustomersDataAsync();
             return response;
         }
 
         public async Task<string?> UpdateCustomerAsync(CustomerDto data)
         {
-            if (IsCustomerDuplicate(data.Customer.Email, data.Customer.Phone))
-            {
-                return "Email hoặc số điện thoại đã tồn tại trong hệ thống.";
-            }
-            var response = await _customerService.UpdateCustomerAsync(data);
-            var existingCustomer = CustomerList.FirstOrDefault(c => c.Customer.CustomerId == data.Customer.CustomerId);
-            if (existingCustomer != null)
-            {
-                var index = CustomerList.IndexOf(existingCustomer);
-                CustomerList[index] = data;
-            }
-
-            ResetFilter_Click();
+            var customer = data.Customer;
+            var response = await _customerService.UpdateCustomerAsync(customer);
+            LoadCustomersDataAsync();
             return response;
         }
 

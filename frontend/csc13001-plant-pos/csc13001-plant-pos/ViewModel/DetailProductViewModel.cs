@@ -79,17 +79,11 @@ namespace csc13001_plant_pos.ViewModel
         //    }
         //}
 
-        public async Task<bool> UpdateProductAsync(Product product, StorageFile selectedFile)
+        public async Task<string> UpdateProductAsync(Product product, StorageFile selectedFile)
         {
             var response = await _productService.UpdateProductAsync( product, selectedFile);
-            if (response != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            return response;
         }
     }
 }

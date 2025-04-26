@@ -23,9 +23,9 @@ public interface IStaffService
 
     Task<ApiResponse<List<User>>?> GetListStaffAsync();
 
-    Task<bool> UpdateStaffAsync(User user, StorageFile file);
+    Task<string> UpdateStaffAsync(User user, StorageFile file);
 
-    Task<bool> AddStaffAsync(StaffCreateDto user, StorageFile file);
+    Task<string> AddStaffAsync(StaffCreateDto user, StorageFile file);
 }
 
 public class StaffService : IStaffService
@@ -58,7 +58,7 @@ public class StaffService : IStaffService
         return JsonUtils.Deserialize<ApiResponse<List<User>>>(json);
     }
 
-    public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
+    public async Task<string> UpdateStaffAsync(User user, StorageFile file)
     {
         var content = new MultipartFormDataContent();
 
@@ -92,13 +92,14 @@ public class StaffService : IStaffService
 
         var response = await _httpClient.PutAsync($"staff/{user.UserId}", content);
         var responseJson = await response.Content.ReadAsStringAsync();
-        var apiResponse = JsonUtils.Deserialize<ApiResponse<object>>(responseJson);
-        Debug.WriteLine(apiResponse?.Message);
-        return apiResponse?.Status == "success";
+        var jsonDoc = JsonDocument.Parse(responseJson);
+        var root = jsonDoc.RootElement;
+        Debug.WriteLine(root.GetProperty("message").GetString());
+        return root.GetProperty("message").GetString();
     }
 
 
-    public async Task<bool> AddStaffAsync(StaffCreateDto user, StorageFile file)
+    public async Task<string> AddStaffAsync(StaffCreateDto user, StorageFile file)
     {
         var content = new MultipartFormDataContent();
         var json = JsonUtils.ToJson(user);
@@ -130,8 +131,10 @@ public class StaffService : IStaffService
         }
         var response = await _httpClient.PostAsync("staff", content);
         var responseJson = await response.Content.ReadAsStringAsync();
-        var apiResponse = JsonUtils.Deserialize<ApiResponse<object>>(responseJson);
-        return apiResponse?.Status == "success";
+        var jsonDoc = JsonDocument.Parse(responseJson);
+        var root = jsonDoc.RootElement;
+        Debug.WriteLine(root.GetProperty("message").GetString());
+        return root.GetProperty("message").GetString();
     }
 
 }

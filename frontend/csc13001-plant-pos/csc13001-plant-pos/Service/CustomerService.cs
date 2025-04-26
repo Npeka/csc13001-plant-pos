@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using csc13001_plant_pos.DTO;
 using csc13001_plant_pos.DTO.CustomerDTO;
 using csc13001_plant_pos.DTO.OrderDTO;
+using csc13001_plant_pos.Model;
 using csc13001_plant_pos.Utils;
 
 namespace csc13001_plant_pos.Service;
@@ -17,9 +19,9 @@ public interface ICustomerService
 
     Task<ApiResponse<List<CustomerDto>>?> GetListCustomersAsync();
 
-    Task<bool> DeleteCustomerAsync(string customerId);
+    Task<string> DeleteCustomerAsync(string customerId);
 
-    Task<string?> UpdateCustomerAsync(CustomerDto customerDto);
+    Task<string?> UpdateCustomerAsync(Customer customerDto);
 }
 
 public class CustomerService : ICustomerService
@@ -66,23 +68,21 @@ public class CustomerService : ICustomerService
         return JsonUtils.Deserialize<ApiResponse<List<CustomerDto>>>(json);
     }
 
-    public async Task<bool> DeleteCustomerAsync(string customerId)
+    public async Task<string> DeleteCustomerAsync(string customerId)
     {
         var response = await _httpClient.DeleteAsync($"customers/{customerId}");
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;
-        if (root.GetProperty("status").GetString() == "success")
-        {
-            return true;
-        }
-        return false;
+        Debug.WriteLine(root.GetProperty("message").GetString());
+        return root.GetProperty("message").GetString();
     }
 
-    public async Task<string?> UpdateCustomerAsync(CustomerDto customerDto)
+    public async Task<string?> UpdateCustomerAsync(Customer customerDto)
     {
         var content = JsonUtils.ToJsonContent(customerDto);
-        var response = await _httpClient.PutAsync("customers", content);
+
+        var response = await _httpClient.PutAsync($"customers/{customerDto.CustomerId}", content);
         var json = await response.Content.ReadAsStringAsync();
         var jsonDoc = JsonDocument.Parse(json);
         var root = jsonDoc.RootElement;

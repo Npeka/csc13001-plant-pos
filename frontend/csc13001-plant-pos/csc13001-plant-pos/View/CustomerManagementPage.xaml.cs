@@ -91,11 +91,9 @@ namespace csc13001_plant_pos.View
             var result = await deleteDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                bool success = await ViewModel.DeleteCustomerAsync(customer.Customer.CustomerId.ToString());
-                if (!success)
-                {
-                    await ShowErrorDialogAsync("Không thể xóa khách hàng. Vui lòng thử lại.");
-                }
+                string success = await ViewModel.DeleteCustomerAsync(customer.Customer.CustomerId.ToString());
+
+                    await ShowErrorDialogAsync(success);
             }
         }
 

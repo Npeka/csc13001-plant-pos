@@ -99,14 +99,10 @@ namespace csc13001_plant_pos.ViewModel
 
             UpdateFilteredOrders();
         }
-        public async Task<bool> UpdateStaffAsync(User user, StorageFile file)
+        public async Task<string> UpdateStaffAsync(User user, StorageFile file)
         {
             var response = await _staffService.UpdateStaffAsync(user, file);
-            if (response)
-            {
-                return true;
-            }
-            return false;
+            return response;
         }
 
         private void UpdateFilteredOrders()

@@ -95,15 +95,15 @@ namespace csc13001_plant_pos.ViewModel
             currentUser.Phone = Phone;
 
             var success = await _staffService.UpdateStaffAsync(currentUser, null);
-            if (success)
+            if (success.Contains("thành công"))
             {
                 InfoErrorMessage = string.Empty;
-                InfoSuccessMessage = "Cập nhật thông tin thành công.";
+                InfoSuccessMessage = success;
                 _userSessionService.SetUser(currentUser);
             }
             else
             {
-                InfoErrorMessage = "Cập nhật thông tin thất bại. Vui lòng thử lại.";
+                InfoErrorMessage = success;
                 InfoSuccessMessage = string.Empty;
             }
         }
