@@ -6,7 +6,7 @@
     "isAdmin": true,
     "startDate": null,
     "phone": "0123456789",
-    "email": "admin@plant.pos.com"
+    "email": "admin@gmail.com"
   },
   {
     "username": "staff1",
@@ -17,7 +17,7 @@
     "gender": "Male",
     "startDate": "2019-05-20",
     "phone": "0234567890",
-    "email": "staff1@plant.pos.com"
+    "email": "staff1@gmail.com"
   },
   {
     "username": "staff2",
@@ -28,7 +28,7 @@
     "gender": "Male",
     "startDate": "2020-01-15",
     "phone": "0345678901",
-    "email": "staff2@plant.pos.com"
+    "email": "staff2@gmail.com"
   },
   {
     "username": "staff3",
@@ -39,7 +39,7 @@
     "gender": "Female",
     "startDate": "2021-03-10",
     "phone": "0456789012",
-    "email": "staff3@plant.pos.com"
+    "email": "staff3@gmail.com"
   },
   {
     "username": "staff4",
@@ -50,7 +50,7 @@
     "gender": "Female",
     "startDate": "2019-07-22",
     "phone": "0567890123",
-    "email": "staff4@plant.pos.com"
+    "email": "staff4@gmail.com"
   },
   {
     "username": "staff5",
@@ -61,6 +61,6 @@
     "gender": "Male",
     "startDate": "2018-11-05",
     "phone": "0678901234",
-    "email": "staff5@plant.pos.com"
+    "email": "staff5@gmail.com"
   }
 ]

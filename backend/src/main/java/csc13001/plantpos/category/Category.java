@@ -28,7 +28,7 @@ public class Category {
 
     @NotBlank(message = "Tên danh mục là bắt buộc")
     @Size(max = 100, message = "Tên danh mục không được vượt quá 100 ký tự")
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Size(max = 255, message = "Mô tả danh mục không được vượt quá 255 ký tự")

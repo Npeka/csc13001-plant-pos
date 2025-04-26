@@ -46,7 +46,7 @@ public class CustomerService {
     }
 
     public void updateCustomer(Customer customer) {
-        Customer existingCustomer = customerRepository.findByPhone(customer.getPhone())
+        Customer existingCustomer = customerRepository.findById(customer.getCustomerId())
                 .orElseThrow(CustomerException.CustomerNotFoundException::new);
 
         existingCustomer.setName(customer.getName());
@@ -55,6 +55,12 @@ public class CustomerService {
                 throw new RuntimeException("Email đã tồn tại");
             }
             existingCustomer.setEmail(customer.getEmail());
+        }
+        if (existingCustomer.getPhone() != null && !existingCustomer.getPhone().equals(customer.getPhone())) {
+            if (customerRepository.existsByPhone(customer.getPhone())) {
+                throw new CustomerException.CustomerPhoneExistsException();
+            }
+            existingCustomer.setPhone(customer.getPhone());
         }
         existingCustomer.setGender(customer.getGender());
         existingCustomer.setAddress(customer.getAddress());
@@ -66,6 +72,10 @@ public class CustomerService {
         if (!customerRepository.existsById(id)) {
             throw new CustomerException.CustomerNotFoundException();
         }
-        customerRepository.deleteById(id);
+        try {
+            customerRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Không thể xóa khách hàng này vì có đơn hàng liên quan", e);
+        }
     }
 }

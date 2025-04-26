@@ -16,9 +16,6 @@ public class CategoryService {
     }
 
     public Category createCategory(Category category) {
-        if (categoryRepository.existsByName(category.getName())) {
-            throw new CategoryException.CategoryExistsException();
-        }
         return categoryRepository.save(category);
     }
 

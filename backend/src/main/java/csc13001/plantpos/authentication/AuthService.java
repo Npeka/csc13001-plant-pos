@@ -37,6 +37,7 @@ public class AuthService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public User register(User user) {
+        user.setUserId(null);
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new AuthException.UsernameExistsException();
         }

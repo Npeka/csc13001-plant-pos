@@ -120,7 +120,7 @@ namespace csc13001_plant_pos.View
             ComboBox genderComboBox = new ComboBox
             {
                 Header = "Giới tính",
-                ItemsSource = new List<string> { "Male", "Female", "Unknown" },
+                ItemsSource = new List<string> { "Male", "Female" },
                 SelectedItem = customer.Customer.Gender,
                 Width = 300
             };
