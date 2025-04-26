@@ -59,10 +59,12 @@ public class StaffService {
                 .orElseThrow(StaffException.StaffNotFoundException::new);
 
         user.setFullname(staff.getFullname());
-        if (userRepository.existsByEmail(staff.getEmail())) {
+        if (staff.getEmail() != null && !user.getEmail().equals(staff.getEmail())
+                && userRepository.existsByEmail(staff.getEmail())) {
             throw new RuntimeException("Email đã tồn tại trong hệ thống");
         }
-        if (userRepository.existsByPhone(staff.getPhone())) {
+        if (staff.getPhone() != null && !user.getPhone().equals(staff.getPhone())
+                && userRepository.existsByPhone(staff.getPhone())) {
             throw new RuntimeException("Số điện thoại đã tồn tại trong hệ thống");
         }
         user.setEmail(staff.getEmail());
