@@ -42,6 +42,7 @@ public class ProductService {
             product.setImageUrl(imageurl);
         }
 
+        product.setProductId(null);
         Product savedProduct = productRepository.save(product);
         eventPublisher.publishEvent(savedProduct);
         return savedProduct;

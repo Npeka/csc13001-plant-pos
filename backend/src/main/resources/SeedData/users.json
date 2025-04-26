@@ -5,7 +5,7 @@
     "fullname": "Administrator",
     "isAdmin": true,
     "startDate": null,
-    "phone": "123-456-7890",
+    "phone": "0123456789",
     "email": "admin@plant.pos.com"
   },
   {
@@ -16,7 +16,7 @@
     "status": "Working",
     "gender": "Male",
     "startDate": "2019-05-20",
-    "phone": "234-567-8901",
+    "phone": "0234567890",
     "email": "staff1@plant.pos.com"
   },
   {
@@ -27,7 +27,7 @@
     "status": "Working",
     "gender": "Male",
     "startDate": "2020-01-15",
-    "phone": "345-678-9012",
+    "phone": "0345678901",
     "email": "staff2@plant.pos.com"
   },
   {
@@ -38,7 +38,7 @@
     "status": "Working",
     "gender": "Female",
     "startDate": "2021-03-10",
-    "phone": "456-789-0123",
+    "phone": "0456789012",
     "email": "staff3@plant.pos.com"
   },
   {
@@ -49,7 +49,7 @@
     "status": "OnLeave",
     "gender": "Female",
     "startDate": "2019-07-22",
-    "phone": "567-890-1234",
+    "phone": "0567890123",
     "email": "staff4@plant.pos.com"
   },
   {
@@ -60,7 +60,7 @@
     "status": "Resigned",
     "gender": "Male",
     "startDate": "2018-11-05",
-    "phone": "678-901-2345",
+    "phone": "0678901234",
     "email": "staff5@plant.pos.com"
   }
 ]

@@ -50,7 +50,7 @@ public class User {
     private String email;
 
     @Size(min = 10, max = 20, message = "Số điện thoại phải từ 10 đến 20 ký tự")
-    @Column(name = "phone", length = 20)
+    @Column(name = "phone", length = 20, unique = true)
     private String phone;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

@@ -32,7 +32,7 @@ public class Category {
     private String name;
 
     @Size(max = 255, message = "Mô tả danh mục không được vượt quá 255 ký tự")
-    @Column(name = "description")
+    @Column(name = "description", nullable = true)
     private String description;
 
     public Category(String name, String description) {

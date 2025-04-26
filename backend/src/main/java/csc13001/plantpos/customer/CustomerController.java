@@ -42,13 +42,13 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(
-            @PathVariable Long customerId,
+            @PathVariable Long id,
             @RequestBody @Validated Customer customer,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return HttpResponse.badRequest(bindingResult);
         }
-        customer.setCustomerId(customerId);
+        customer.setCustomerId(id);
         customerService.updateCustomer(customer);
         return HttpResponse.ok("Cập nhật thông tin khách hàng thành công");
     }

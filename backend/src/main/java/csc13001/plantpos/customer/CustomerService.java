@@ -50,7 +50,12 @@ public class CustomerService {
                 .orElseThrow(CustomerException.CustomerNotFoundException::new);
 
         existingCustomer.setName(customer.getName());
-        existingCustomer.setEmail(customer.getEmail());
+        if (existingCustomer.getEmail() != null && !existingCustomer.getEmail().equals(customer.getEmail())) {
+            if (customerRepository.existsByEmail(customer.getEmail())) {
+                throw new RuntimeException("Email đã tồn tại");
+            }
+            existingCustomer.setEmail(customer.getEmail());
+        }
         existingCustomer.setGender(customer.getGender());
         existingCustomer.setAddress(customer.getAddress());
 
