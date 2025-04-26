@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Linq;
-using csc13001_plant_pos.Service;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using csc13001_plant_pos.DTO.CustomerDTO;
-using System.Threading.Tasks;
-using OfficeOpenXml;
-using Microsoft.UI.Xaml;
-using System.IO;
-using WinRT.Interop;
 using System.Collections.Generic;
-using Windows.Storage.Pickers;
-using System.ComponentModel;
-using csc13001_plant_pos.Model;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using csc13001_plant_pos.DTO.CustomerDTO;
+using csc13001_plant_pos.Service;
+using Microsoft.UI.Xaml;
+using OfficeOpenXml;
+using Windows.Storage.Pickers;
+using WinRT.Interop;
 
 namespace csc13001_plant_pos.ViewModel
 {

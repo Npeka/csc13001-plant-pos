@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using csc13001_plant_pos.Model;
 using csc13001_plant_pos.ViewModel;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
@@ -95,6 +96,16 @@ namespace csc13001_plant_pos.View
             };
 
             await ShowStaffDialogAsync(newUser, false);
+        }
+
+        public void ViewStaff(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var staff = button?.Tag as User;
+            if (staff != null)
+            {
+                Frame.Navigate(typeof(StaffProfilePage), staff.UserId.ToString());
+            }
         }
 
         public async void EditStaffInformation(object sender, RoutedEventArgs e)

@@ -30,17 +30,6 @@
                     Icon="Shop"
                     Tag="OrderPage" />
 
-                <NavigationViewItem
-                    Content="Quản lý nhân viên"
-                    Icon="People"
-                    Tag="StaffManagementPage" />
-
-                <NavigationViewItem Content="Quản lý khách hàng" Tag="CustomerManagementPage">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE902;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
                 <NavigationViewItem Content="Quản lý sản phẩm" Tag="ProductManagementPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEC0A;" />
@@ -69,14 +58,24 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Trợ lý AI" Tag="ChatbotPage">
+                <NavigationViewItem
+                    Content="Quản lý nhân viên"
+                    Icon="People"
+                    Tag="StaffManagementPage" />
+
+                <NavigationViewItem Content="Quản lý khách hàng" Tag="CustomerManagementPage">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE99A;" />
+                        <FontIcon Glyph="&#xE902;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Trợ lý AI" Tag="ChatbotPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE99A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="Tài khoản" Tag="AdminAccountPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE8D4;" />

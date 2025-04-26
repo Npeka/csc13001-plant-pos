@@ -55,15 +55,15 @@
                         <FontIcon Glyph="&#xEA8F;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+            </NavigationView.MenuItems>
 
+            <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Trợ lý AI" Tag="ChatbotPage">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE99A;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-            </NavigationView.MenuItems>
 
-            <NavigationView.FooterMenuItems>
                 <NavigationViewItem
                     Content="Hồ sơ cá nhân"
                     Icon="Contact2"
