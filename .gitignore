@@ -17,5 +17,10 @@
 /frontend/csc13001-plant-pos/.vs
 /frontend/csc13001-plant-pos/csc13001-plant-pos/obj
 /frontend/csc13001-plant-pos/csc13001-plant-pos/bin
+# Backend sensitive files
 backend/src/main/resources/application.properties
-backend/src/main/resources/application.properties
+backend/hs_err_pid*.log
+backend/replay_pid*.log
+
+# Frontend sensitive files
+frontend/csc13001-plant-pos/csc13001-plant-pos/appsettings.json
