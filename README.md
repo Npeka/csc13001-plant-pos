@@ -27,23 +27,37 @@ csc13001-plant-pos/
 
 ### Backend
 
-- **Java 17** + **Spring Boot** - RESTful API server
-- **MySQL** - Primary database
-- **Redis** - Caching layer
-- **MinIO** - Object storage for images
-- **Docker** - Containerization
-- **Swagger UI** - API documentation
+![Java][Java] ![Spring Boot][Spring Boot] ![MySQL][MySQL] ![Redis][Redis] ![MinIO][MinIO] ![Docker][Docker] ![Swagger][Swagger]
 
 ### Frontend
 
-- **C#** + **WinUI 3** - Modern Windows desktop app
-- **MVVM Pattern** - Clean architecture
-- **Dependency Injection** - Service management
+![C#][C#] ![WinUI3][WinUI3] ![.NET][.NET]
 
 ### External Services
 
-- **Gemini AI** - Plant care chatbot
-- **Email Service** - Daily reports and notifications
+![Gemini AI][Gemini] ![Gmail][Gmail]
+
+### Development Tools
+
+![Maven][Maven] ![Visual Studio][Visual Studio] ![Git][Git]
+
+<!-- Tech Stack Badges -->
+
+[Java]: https://img.shields.io/badge/Java_17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
+[Spring Boot]: https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white
+[MySQL]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
+[Redis]: https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white
+[MinIO]: https://img.shields.io/badge/MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white
+[Docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[Swagger]: https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black
+[C#]: https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white
+[WinUI3]: https://img.shields.io/badge/WinUI_3-0078D4?style=for-the-badge&logo=microsoft&logoColor=white
+[.NET]: https://img.shields.io/badge/.NET_8-512BD4?style=for-the-badge&logo=dotnet&logoColor=white
+[Gemini]: https://img.shields.io/badge/Gemini_AI-8E75B2?style=for-the-badge&logo=google&logoColor=white
+[Gmail]: https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white
+[Maven]: https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white
+[Visual Studio]: https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white
+[Git]: https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white
 
 ## 📱 Features & Screenshots
 
