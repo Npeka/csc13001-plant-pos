@@ -47,11 +47,11 @@ csc13001-plant-pos/
 
 ## 📱 Features & Screenshots
 
-<div align="center">
-
 ### Authentication & User Management
 
+<div align="center">
 <img src="docs/Login.png" width="500" alt="Login Interface">
+</div>
 
 - Secure login with credential storage
 - OTP-based password recovery
@@ -59,7 +59,9 @@ csc13001-plant-pos/
 
 ### Sales Management
 
+<div align="center">
 <img src="docs/Sale.png" width="500" alt="Sales Interface">
+</div>
 
 - Product selection and quantity management
 - Customer membership integration
@@ -68,7 +70,9 @@ csc13001-plant-pos/
 
 ### Admin Dashboard
 
+<div align="center">
 <img src="docs/AdminDashBoard.png" width="500" alt="Admin Dashboard">
+</div>
 
 - Revenue analytics with charts
 - Top-selling products tracking
@@ -77,7 +81,9 @@ csc13001-plant-pos/
 
 ### Product Management
 
+<div align="center">
 <img src="docs/ProductList.png" width="500" alt="Product Management">
+</div>
 
 - Comprehensive product catalog
 - Advanced search and filtering
@@ -86,7 +92,9 @@ csc13001-plant-pos/
 
 ### Customer Management
 
+<div align="center">
 <img src="docs/Profile.png" width="500" alt="Customer Profile">
+</div>
 
 - Member registration and profiles
 - Purchase history tracking
@@ -94,7 +102,9 @@ csc13001-plant-pos/
 
 ### Order Management
 
+<div align="center">
 <img src="docs/OrderManagement.png" width="500" alt="Order Management">
+</div>
 
 - Complete order tracking
 - Transaction history
@@ -102,7 +112,9 @@ csc13001-plant-pos/
 
 ### AI Chat Assistant
 
+<div align="center">
 <img src="docs/Chatbox.png" width="500" alt="AI Chatbot">
+</div>
 
 - Plant care consultation
 - Product recommendations
@@ -111,7 +123,9 @@ csc13001-plant-pos/
 
 ### Invoice System
 
+<div align="center">
 <img src="docs/Invoice.png" width="500" alt="Invoice System">
+</div>
 
 - Professional invoice templates
 - PDF export functionality
@@ -120,13 +134,13 @@ csc13001-plant-pos/
 
 ### Email Notifications
 
+<div align="center">
 <img src="docs/Email.png" width="500" alt="Email System">
+</div>
 
 - Automated daily reports
 - Inventory alerts
 - Customer notifications
-
-</div>
 
 ## 🛠️ Installation & Setup
 
