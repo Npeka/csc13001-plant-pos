@@ -4,7 +4,11 @@ A comprehensive Point of Sale (POS) system designed specifically for plant store
 
 ## 🎬 Demo Video
 
+<div align="center">
+
 [![PlantPOS Demo](https://img.youtube.com/vi/oViAZzM5dco/0.jpg)](https://www.youtube.com/watch?v=oViAZzM5dco)
+
+</div>
 
 ## 🏗️ Project Structure
 
@@ -40,6 +44,91 @@ csc13001-plant-pos/
 
 - **Gemini AI** - Plant care chatbot
 - **Email Service** - Daily reports and notifications
+
+## 📱 Features & Screenshots
+
+<div align="center">
+
+### Authentication & User Management
+
+<img src="docs/Login.png" width="500" alt="Login Interface">
+
+- Secure login with credential storage
+- OTP-based password recovery
+- Role-based access control (Admin/Staff)
+
+### Sales Management
+
+<img src="docs/Sale.png" width="500" alt="Sales Interface">
+
+- Product selection and quantity management
+- Customer membership integration
+- Real-time discount application
+- PDF invoice generation
+
+### Admin Dashboard
+
+<img src="docs/AdminDashBoard.png" width="500" alt="Admin Dashboard">
+
+- Revenue analytics with charts
+- Top-selling products tracking
+- Inventory alerts
+- Excel report exports
+
+### Product Management
+
+<img src="docs/ProductList.png" width="500" alt="Product Management">
+
+- Comprehensive product catalog
+- Advanced search and filtering
+- Category management
+- Stock level monitoring
+
+### Customer Management
+
+<img src="docs/Profile.png" width="500" alt="Customer Profile">
+
+- Member registration and profiles
+- Purchase history tracking
+- Loyalty program integration
+
+### Order Management
+
+<img src="docs/OrderManagement.png" width="500" alt="Order Management">
+
+- Complete order tracking
+- Transaction history
+- Payment processing
+
+### AI Chat Assistant
+
+<img src="docs/Chatbox.png" width="500" alt="AI Chatbot">
+
+- Plant care consultation
+- Product recommendations
+- Business insights
+- Multi-language support
+
+### Invoice System
+
+<img src="docs/Invoice.png" width="500" alt="Invoice System">
+
+- Professional invoice templates
+- PDF export functionality
+- Print integration
+- Transaction records
+
+### Email Notifications
+
+<img src="docs/Email.png" width="500" alt="Email System">
+
+- Automated daily reports
+- Inventory alerts
+- Customer notifications
+
+</div>
+
+## 🛠️ Installation & Setup
 
 ### Prerequisites
 
@@ -116,102 +205,19 @@ dotnet restore
 - **MinIO Console**: http://localhost:9001 (plantpos/plantpos)
 - **Database**: localhost:33306 (plantpos/plantpos)
 
-## ⚠️ Important Notes
-
-- Never commit your actual configuration files (`application.properties`, `appsettings.json`) with real credentials
-- Template files mask sensitive information for security
-- Both configuration files are already added to `.gitignore`
-- Use environment variables in production for better security
-- **Syncfusion License**: You can get a free community license from [Syncfusion](https://www.syncfusion.com/products/communitylicense) if needed
-
-## 📱 Features & Screenshots
-
-### Authentication & User Management
-
-<img src="docs/Login.png" width="400" alt="Login Interface">
-
-- Secure login with credential storage
-- OTP-based password recovery
-- Role-based access control (Admin/Staff)
-
-### Sales Management
-
-<img src="docs/Sale.png" width="400" alt="Sales Interface">
-
-- Product selection and quantity management
-- Customer membership integration
-- Real-time discount application
-- PDF invoice generation
-
-### Admin Dashboard
-
-<img src="docs/AdminDashBoard.png" width="400" alt="Admin Dashboard">
-
-- Revenue analytics with charts
-- Top-selling products tracking
-- Inventory alerts
-- Excel report exports
-
-### Product Management
-
-<img src="docs/ProductList.png" width="400" alt="Product Management">
-
-- Comprehensive product catalog
-- Advanced search and filtering
-- Category management
-- Stock level monitoring
-
-### Customer Management
-
-<img src="docs/Profile.png" width="400" alt="Customer Profile">
-
-- Member registration and profiles
-- Purchase history tracking
-- Loyalty program integration
-
-### Order Management
-
-<img src="docs/OrderManagement.png" width="400" alt="Order Management">
-
-- Complete order tracking
-- Transaction history
-- Payment processing
-
-### AI Chat Assistant
-
-<img src="docs/Chatbox.png" width="400" alt="AI Chatbot">
-
-- Plant care consultation
-- Product recommendations
-- Business insights
-- Multi-language support
-
-### Invoice System
-
-<img src="docs/Invoice.png" width="400" alt="Invoice System">
-
-- Professional invoice templates
-- PDF export functionality
-- Print integration
-- Transaction records
-
-### Email Notifications
-
-<img src="docs/Email.png" width="400" alt="Email System">
-
-- Automated daily reports
-- Inventory alerts
-- Customer notifications
-
 ## 🏛️ System Architecture
+
+<div align="center">
 
 ### Database Schema
 
-<img src="docs/Database.png" width="600" alt="Database Schema">
+<img src="docs/Database.png" width="700" alt="Database Schema">
 
 ### Component Architecture
 
-<img src="docs/ComponentDiagram.jpg" width="600" alt="Component Diagram">
+<img src="docs/ComponentDiagram.jpg" width="700" alt="Component Diagram">
+
+</div>
 
 The system follows a clean architecture pattern with:
 
